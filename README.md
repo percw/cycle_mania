@@ -47,7 +47,8 @@ It is built for bikes without automatic resistance control as well as smart trai
 - Skipped time never counts as ridden.
 - Data gaps stay gaps; they are never filled with zeros or approved seconds.
 - Demo rides are clearly labelled and never count towards records, FTP or progression.
-- Rides are stored locally (browser storage plus a local SQLite database). Nothing is sent anywhere.
+- Rides are stored locally (browser storage plus a local SQLite database). Training data is never sent anywhere.
+- The hosted version counts a few anonymous, cookie-free usage events (bucketed, no IDs, no watts or FTP), explained under *Personvern* in the app. Local and development builds send nothing.
 
 ## Screenshots
 

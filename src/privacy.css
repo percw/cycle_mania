@@ -1,0 +1,28 @@
+/* "Personvern": footer link and native dialog, in the Nordisk skumring tokens. */
+.privacy-link {
+  min-height: 32px; padding: 6px 4px; font: 500 10px/1.2 "DM Sans", sans-serif; letter-spacing: 0.06em; color: var(--text-2);
+  text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--text-2) 40%, transparent); text-underline-offset: 3px;
+}
+.privacy-link:hover { color: var(--text); }
+.privacy-dialog {
+  width: min(640px, calc(100% - 32px)); max-height: min(86vh, 860px); padding: 0; margin: auto;
+  border: 1px solid var(--line); border-radius: 20px; background: var(--panel); color: var(--text);
+  font: 400 15px/1.65 "DM Sans", sans-serif; letter-spacing: normal; box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+}
+.privacy-dialog::backdrop { background: rgba(6, 8, 11, 0.72); backdrop-filter: blur(4px); }
+.privacy-sheet { padding: 26px 30px 30px; }
+.privacy-sheet header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.privacy-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: rgba(110, 211, 166, 0.1); color: var(--good); }
+.privacy-sheet h2 { margin: 0; font: 600 34px/1 "Barlow Condensed", sans-serif; letter-spacing: 0.01em; }
+.privacy-close { margin-left: auto; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); color: var(--text-2); }
+.privacy-close:hover { color: var(--text); border-color: #3a4352; }
+.privacy-lead { margin: 10px 0 4px; font-size: 17px; color: var(--text); }
+.privacy-sheet section { padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--line); }
+.privacy-sheet h3 { margin: 0 0 4px; font: 600 15px/1.4 "DM Sans", sans-serif; color: var(--text); }
+.privacy-sheet p { margin: 6px 0 0; color: var(--text-2); }
+.privacy-optout {
+  display: flex; align-items: center; gap: 12px; margin-top: 22px; padding: 14px 16px; min-height: 52px;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--panel-2); color: var(--text); cursor: pointer;
+}
+.privacy-optout input { width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+@media (max-width: 560px) { .privacy-sheet { padding: 20px 18px 22px; } .privacy-dialog { font-size: 14px; } }

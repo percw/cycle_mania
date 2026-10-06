@@ -1,0 +1,34 @@
+/* Ride report additions: the two-question survey and the share-card button. */
+.ride-survey {
+  margin-top: 18px; padding: 22px 26px 20px; border-radius: 20px;
+  border: 1px solid var(--line); background: var(--panel);
+}
+.ride-survey header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ride-survey header > span { font: 600 12px "DM Sans", sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.survey-dismiss {
+  display: inline-flex; align-items: center; justify-content: flex-end; gap: 6px; flex: none;
+  min-height: 44px; min-width: 44px; padding: 0 4px; font-size: 13px; color: var(--muted); white-space: nowrap;
+}
+.survey-dismiss:hover { color: var(--text-2); }
+.ride-survey h3 { margin: 6px 0 14px; font: 600 26px/1.15 "Barlow Condensed", sans-serif; letter-spacing: 0.01em; color: var(--text); }
+.survey-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.survey-options button {
+  min-height: 46px; min-width: 88px; padding: 0 18px; border-radius: 12px;
+  border: 1px solid #323b4a; background: var(--panel-2); color: var(--text); font-size: 15px; font-weight: 550;
+}
+.survey-options button:hover { border-color: #4a5466; background: #212835; }
+.survey-note { margin: 12px 0 0; font-size: 12px; color: var(--muted); }
+.ride-survey.done { padding: 16px 24px; }
+.ride-survey.done p { margin: 0; font-size: 14px; color: var(--text-2); }
+.ride-survey.done strong { color: var(--good); font-weight: 600; margin-right: 4px; }
+
+.share-chip[aria-busy="true"], .share-button[aria-busy="true"] { opacity: 0.7; cursor: progress; }
+.report-actions .share-button { display: inline-flex; align-items: center; gap: 8px; }
+.share-error { font-size: 13px; color: var(--warn); }
+
+@media (max-width: 860px) {
+  .ride-survey { padding: 18px 16px; }
+  .survey-options button { flex: 1 1 calc(33% - 8px); min-width: 0; padding: 0 10px; }
+  .survey-dismiss span { display: none; }
+  .ride-survey header > span { font-size: 11px; letter-spacing: 0.1em; }
+}
