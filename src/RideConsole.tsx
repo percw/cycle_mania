@@ -66,10 +66,12 @@ function WorkoutGraph({ workout, samples, ftp, progress, index }: { workout: Wor
 }
 
 export default function RideConsole({ workout, current, elapsed, skippedSeconds, distance, target, power: livePower, cadence, heartRate, energy, running, sound, game, ghostDelta,
-  rampStatus, samples, ftp, focus, onFocus, onPause, onSkip, onWarmup, onSound, onFullscreen, onFinish }: {
+  rampStatus, erg, samples, ftp, focus, onFocus, onPause, onSkip, onWarmup, onSound, onFullscreen, onFinish }: {
   workout: Workout; current: Current; elapsed: number; skippedSeconds: number; distance: number; energy: number;
   target: number; power: number | undefined; cadence: number | null | undefined; heartRate: number | null | undefined; running: boolean; sound: boolean; game: GameState; ghostDelta?: number | null;
   rampStatus?: {interrupted:boolean;belowTargetSeconds:number;ended:boolean};
+  /** Automatic resistance is holding the trainer: the cue informs instead of instructing. */
+  erg?: { status: 'pending' | 'on' | 'error'; watts?: number } | null;
   samples: CockpitSample[]; ftp: number; focus: boolean; onFocus: () => void;
   onPause: () => void; onSkip: () => void; onWarmup: () => void; onSound: () => void; onFullscreen: () => void; onFinish: () => void;
 }) {
@@ -80,7 +82,8 @@ export default function RideConsole({ workout, current, elapsed, skippedSeconds,
   const afterNext = workout.blocks[current.index + 2];
   const hasDistance = workout.blocks.some(b => b.distanceMeters !== undefined);
   const distanceRemaining = current.remainingMeters ?? block.distanceMeters;
-  const soft = block.kind !== 'work' && feedback.state === 'over';
+  const ergOn = erg?.status === 'on';
+  const soft = (block.kind !== 'work' && feedback.state === 'over') || (ergOn && (feedback.state === 'under' || feedback.state === 'over'));
   const live = useMemo(() => blockStats(workout, samples, current.index), [workout, samples.length, current.index]);
   const blockProgress = block.distanceMeters !== undefined && distanceRemaining !== undefined
     ? 1 - distanceRemaining / Math.max(1, block.distanceMeters)
@@ -117,6 +120,7 @@ export default function RideConsole({ workout, current, elapsed, skippedSeconds,
   const zone = getZone(block.intensity * 100, 100);
   const cue = !running ? 'Pauset' : feedback.state === 'none' ? 'Venter på watt'
     : feedback.state === 'on' ? 'I målområdet'
+    : ergOn ? 'ERG justerer'
     : feedback.state === 'under' ? `Øk ${-feedback.delta} W` : `Senk ${feedback.delta} W`;
   const nextText = (b: Workout['blocks'][number]) => `${b.distanceMeters !== undefined ? meters(b.distanceMeters) : formatTime(b.seconds)} · ${Math.round(b.intensity * ftp)} W`;
   const lapGrade = lap?.inBand === undefined ? '' : lap.inBand >= 0.85 ? 'great' : lap.inBand >= 0.6 ? 'good' : 'off';
@@ -137,18 +141,18 @@ export default function RideConsole({ workout, current, elapsed, skippedSeconds,
       {rampStatus && <div className="ramp-live-cue" role="status"><strong>{rampStatus.interrupted?'Testen ble avbrutt – FTP blir ikke godkjent':rampStatus.ended?'Testdelen er ferdig · rolig nedkjøring':block.kind==='warmup'?'FTP-test · varm opp og finn jevn tråkkrytme':`Rampe · steg ${current.index} · ${formatTime(current.remaining)} til neste wattsteg`}</strong><span>{rampStatus.ended?'Du kan lagre nå eller fullføre nedkjøringen.':rampStatus.belowTargetSeconds>0?`${Math.max(0,Math.ceil(10-rampStatus.belowTargetSeconds))} s til automatisk avslutning hvis du blir under 80 % av målet.`:'Sitt rolig. Følg wattmålet uten å spurte. Avslutt når du ikke klarer å holde målet.'}</span></div>}
       <div className="ride-console-main">
         <div className={`power-focus ${feedback.state === 'on' ? 'on-target' : ''}`}>
-          <span className="cockpit-eyebrow">Watt <small>3 s</small></span>
+          <span className="cockpit-eyebrow">Watt <small>3 s</small>{erg && <em className={`erg-pill ${erg.status}`} title="Automatisk motstand">{erg.status === 'error' ? 'ERG feil' : `ERG ${erg.watts ?? '…'} W`}</em>}</span>
           <strong>{power ?? '—'}<small>W</small></strong>
           <span className="target-readout">Mål <b>{target} W</b></span>
         </div>
         <div className="cockpit-target">
           <div className={`cockpit-cue ${running ? feedback.state : 'none'} ${soft ? 'soft' : ''}`} aria-live="off">
-            {running && feedback.state === 'under' && <ChevronsUp size={22} />}
-            {running && feedback.state === 'over' && <ChevronsDown size={22} />}
+            {running && !ergOn && feedback.state === 'under' && <ChevronsUp size={22} />}
+            {running && !ergOn && feedback.state === 'over' && <ChevronsDown size={22} />}
             {running && feedback.state === 'on' && <Check size={20} />}
             {!running && <Pause size={18} />}
             <strong>{cue}</strong>
-            {running && feedback.state === 'on' && <small>{feedback.delta >= 0 ? '+' : ''}{feedback.delta} W</small>}
+            {running && (feedback.state === 'on' || (ergOn && feedback.state !== 'none')) && <small>{feedback.delta >= 0 ? '+' : ''}{feedback.delta} W</small>}
           </div>
           <TargetGauge power={power} target={target} state={feedback.state} />
         </div>

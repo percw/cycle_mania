@@ -1,4 +1,6 @@
-/** Read-only standard Bluetooth fitness telemetry. Speed is km/h, cadence rpm. */
+import { FTMS, FtmsControl, parseFitnessMachineFeature, parseSupportedPowerRange, type FtmsFeatures, type PowerRange } from './ftmsControl'
+
+/** Standard Bluetooth fitness telemetry. Speed is km/h, cadence rpm. */
 export interface BikeTelemetry {
   power?: number
   cadence?: number
@@ -12,6 +14,8 @@ const POWER_SERVICE = 0x1818
 const POWER_MEASUREMENT = 0x2a63
 const HEART_RATE_SERVICE = 0x180d
 const HEART_RATE_MEASUREMENT = 0x2a37
+const CSC_SERVICE = 0x1816
+const CSC_MEASUREMENT = 0x2a5b
 
 /** Bluetooth HRS §3.1.1: uint8/uint16 bpm and optional skin-contact status. */
 export function parseHeartRate(view: DataView): number | undefined {
@@ -64,8 +68,11 @@ export function parseCyclingPower(view: DataView): BikeTelemetry {
   return view.byteLength < 4 ? {} : { power: view.getInt16(2, true) }
 }
 
-interface CrankSample { revolutions: number; eventTime: number }
-function parseCrankSample(view: DataView): CrankSample | undefined {
+/** Cumulative revolution counter with its last event time (1/1024 s unless noted). */
+export interface RevolutionSample { revolutions: number; eventTime: number }
+
+/** Cycling Power §3.2: crank data (flags bit 5) follows the optional balance, torque and wheel fields. */
+export function parseCrankSample(view: DataView): RevolutionSample | undefined {
   if (view.byteLength < 4) return
   const flags = view.getUint16(0, true)
   if (!(flags & 0x20)) return
@@ -77,27 +84,106 @@ function parseCrankSample(view: DataView): CrankSample | undefined {
   return { revolutions: view.getUint16(offset, true), eventTime: view.getUint16(offset + 2, true) }
 }
 
-// getDevices is optional: browser support for persisted permissions varies.
-interface BleCharacteristic extends EventTarget {
-  value?: DataView
-  startNotifications(): Promise<BleCharacteristic>
+/** CSC Measurement: wheel (uint32 revs, uint16 1/1024 s) and crank (uint16 revs, uint16 1/1024 s). */
+export function parseCscMeasurement(view: DataView): { wheel?: RevolutionSample; crank?: RevolutionSample } {
+  if (view.byteLength < 1) return {}
+  const flags = view.getUint8(0)
+  const result: { wheel?: RevolutionSample; crank?: RevolutionSample } = {}
+  let offset = 1
+  if (flags & 1) {
+    if (offset + 6 > view.byteLength) return result
+    result.wheel = { revolutions: view.getUint32(offset, true), eventTime: view.getUint16(offset + 4, true) }
+    offset += 6
+  }
+  if (flags & 2) {
+    if (offset + 4 > view.byteLength) return result
+    result.crank = { revolutions: view.getUint16(offset, true), eventTime: view.getUint16(offset + 2, true) }
+  }
+  return result
 }
-interface BleService { getCharacteristic(uuid: number): Promise<BleCharacteristic> }
-interface BleServer {
+
+/** rpm between two cumulative crank samples; uint16 counters roll over. Undefined without a new event. */
+export function crankCadence(previous: RevolutionSample, next: RevolutionSample): number | undefined {
+  const revolutions = (next.revolutions - previous.revolutions + 65536) % 65536
+  const ticks = (next.eventTime - previous.eventTime + 65536) % 65536
+  if (!ticks || !revolutions) return
+  return revolutions * 60 * 1024 / ticks
+}
+
+/** km/h between two cumulative wheel samples; uint32 revolutions and uint16 event time roll over. */
+export function wheelSpeed(previous: RevolutionSample, next: RevolutionSample, circumference = DEFAULT_WHEEL_CIRCUMFERENCE): number | undefined {
+  const revolutions = (next.revolutions - previous.revolutions + 2 ** 32) % 2 ** 32
+  const ticks = (next.eventTime - previous.eventTime + 65536) % 65536
+  if (!ticks || !revolutions) return
+  return revolutions * circumference / (ticks / 1024) * 3.6
+}
+/** 700×25C road wheel, metres. */
+export const DEFAULT_WHEEL_CIRCUMFERENCE = 2.105
+
+/**
+ * Turns cumulative revolution samples into a rate. Repeated identical samples keep
+ * the last rate briefly, then report 0 after 3 s without a new event (rider stopped).
+ * Implausible jumps (sensor reset, packet loss over many rollovers) are dropped.
+ */
+export class RevolutionRate {
+  private previous?: RevolutionSample
+  private last?: number
+  private changedAt = 0
+  constructor(private rate: (previous: RevolutionSample, next: RevolutionSample) => number | undefined, private max: number) {}
+  update(next: RevolutionSample, now: number): number | undefined {
+    let result: number | undefined
+    if (this.previous) {
+      const rate = this.rate(this.previous, next)
+      const unchanged = next.revolutions === this.previous.revolutions && next.eventTime === this.previous.eventTime
+      if (rate !== undefined) {
+        if (rate <= this.max) { this.last = rate; result = rate }
+        this.changedAt = now
+      } else if (unchanged) {
+        result = now - this.changedAt >= 3000 ? 0 : this.last
+      }
+    } else this.changedAt = now
+    this.previous = next
+    return result
+  }
+  reset() { this.previous = undefined; this.last = undefined }
+}
+export const cadenceTracker = () => new RevolutionRate(crankCadence, 250)
+export const speedTracker = (circumference = DEFAULT_WHEEL_CIRCUMFERENCE) =>
+  new RevolutionRate((a, b) => wheelSpeed(a, b, circumference), 120)
+
+// getDevices is optional: browser support for persisted permissions varies.
+export type BleUuid = number | string
+export interface BleCharacteristic extends EventTarget {
+  uuid?: string
+  value?: DataView
+  properties?: { read?: boolean; write?: boolean; writeWithoutResponse?: boolean; notify?: boolean; indicate?: boolean }
+  startNotifications(): Promise<BleCharacteristic>
+  readValue?(): Promise<DataView>
+  writeValue?(value: BufferSource): Promise<void>
+  writeValueWithResponse?(value: BufferSource): Promise<void>
+}
+export interface BleService {
+  uuid?: string
+  getCharacteristic(uuid: BleUuid): Promise<BleCharacteristic>
+  getCharacteristics?(): Promise<BleCharacteristic[]>
+}
+export interface BleServer {
   connected: boolean
   connect(): Promise<BleServer>
   disconnect(): void
-  getPrimaryService(uuid: number): Promise<BleService>
+  getPrimaryService(uuid: BleUuid): Promise<BleService>
+  getPrimaryServices?(): Promise<BleService[]>
 }
-interface BleDevice extends EventTarget { id?: string; name?: string; gatt?: BleServer }
-interface BleNavigator {
+export interface BleDevice extends EventTarget { id?: string; name?: string; gatt?: BleServer }
+export interface BleNavigator {
   getDevices?(): Promise<BleDevice[]>
   requestDevice(options: {
-    filters: Array<{ services?: number[]; namePrefix?: string }>
-    optionalServices: number[]
+    filters?: Array<{ services?: number[]; namePrefix?: string }>
+    acceptAllDevices?: boolean
+    optionalServices: BleUuid[]
   }): Promise<BleDevice>
 }
-function bluetooth(): BleNavigator | undefined {
+export function bluetooth(): BleNavigator | undefined {
   return typeof navigator === 'undefined' ? undefined
     : (navigator as Navigator & { bluetooth?: BleNavigator }).bluetooth
 }
@@ -106,6 +192,7 @@ export function bluetoothAvailable(): boolean {
 }
 const BIKE_KEY = 'summit-ble-bike'
 const HEART_KEY = 'summit-ble-heart-rate'
+const CSC_KEY = 'summit-ble-cadence'
 interface RememberedDevice { id: string; name: string }
 function remembered(key: string): RememberedDevice | undefined {
   try {
@@ -124,6 +211,21 @@ export function forgetRememberedBike(): void { forget(BIKE_KEY) }
 export function hasRememberedHeartRate(): boolean { return !!remembered(HEART_KEY) }
 export function rememberedHeartRateName(): string { return remembered(HEART_KEY)?.name ?? '' }
 export function forgetRememberedHeartRate(): void { forget(HEART_KEY) }
+export function hasRememberedCadence(): boolean { return !!remembered(CSC_KEY) }
+
+/** iPhone/iPad (including iPadOS reporting as Mac): no WebKit browser has Web Bluetooth. */
+export function isAppleMobile(): boolean {
+  if (typeof navigator === 'undefined') return false
+  return /iPad|iPhone|iPod/.test(navigator.userAgent ?? '')
+    || (navigator.platform === 'MacIntel' && (navigator.maxTouchPoints ?? 0) > 1)
+}
+export function unsupportedBluetoothMessage(): string {
+  if (typeof window !== 'undefined' && !window.isSecureContext)
+    return 'Bluetooth krever HTTPS eller localhost. Åpne appen på en sikker adresse.'
+  return isAppleMobile()
+    ? 'Safari og andre nettlesere på iPhone/iPad støtter ikke Web Bluetooth. Åpne SUMMIT i Bluefy-nettleseren (gratis i App Store).'
+    : 'Nettleseren støtter ikke Web Bluetooth. Bruk Chrome eller Edge på PC/Mac, eller Chrome på Android.'
+}
 
 interface ConnectionCallbacks {
   onStatus: (status: 'connecting' | 'connected' | 'disconnected', name?: string) => void
@@ -149,10 +251,17 @@ abstract class SensorConnection {
     private fallbackName: string,
     private protocols: Protocol[],
     private filters: Array<{ services?: number[]; namePrefix?: string }>,
+    private extraServices: number[] = [],
   ) {}
 
   protected abstract receive(view: DataView): void
   protected reset(): void {}
+  /** Optional extra GATT work after the main subscription is live. Must never throw. */
+  protected async afterSubscribe(_server: BleServer, _device: BleDevice, _current: () => boolean): Promise<void> {}
+  protected unavailable(): string {
+    return 'Kunne ikke lese puls. Sensoren må støtte Bluetooth Heart Rate. ANT+-sensorer kobles til via ANT-broen.'
+  }
+  protected get primary(): BleCharacteristic | undefined { return this.characteristic }
   private onNotification = (event: Event) => {
     const value = (event.target as BleCharacteristic | null)?.value
     if (value) this.receive(value)
@@ -225,9 +334,7 @@ abstract class SensorConnection {
     const ble = bluetooth()
     if (!bluetoothAvailable() || !ble) {
       this.callbacks.onStatus('disconnected')
-      this.callbacks.onError(typeof window !== 'undefined' && !window.isSecureContext
-        ? 'Bluetooth krever HTTPS eller localhost. Åpne appen på en sikker adresse.'
-        : 'Nettleseren støtter ikke Web Bluetooth. Bruk Chrome eller Edge på PC/Mac, eller Chrome på Android.')
+      this.callbacks.onError(unsupportedBluetoothMessage())
       return
     }
     this.callbacks.onStatus('connecting')
@@ -236,7 +343,7 @@ abstract class SensorConnection {
       let device: BleDevice | undefined
       if (remembered(this.key) && ble.getDevices) device = await this.authorizedDevice()
       if (generation !== this.generation) return
-      device ??= await ble.requestDevice({ filters: this.filters, optionalServices: this.protocols.map(p => p.service) })
+      device ??= await ble.requestDevice({ filters: this.filters, optionalServices: [...this.protocols.map(p => p.service), ...this.extraServices] })
       if (generation !== this.generation) return
       await this.subscribe(device, generation)
     } catch (error) {
@@ -280,6 +387,8 @@ abstract class SensorConnection {
         device.addEventListener('gattserverdisconnected', this.onDisconnected)
         remember(this.key, device, this.fallbackName)
         this.callbacks.onStatus('connected', device.name ?? this.fallbackName)
+        try { await this.afterSubscribe(server, device, () => generation === this.generation && server.connected) }
+        catch { /* Extras (control point, secondary cadence) are optional. */ }
         return true
       } catch {
         characteristic?.removeEventListener('characteristicvaluechanged', this.onNotification)
@@ -287,9 +396,7 @@ abstract class SensorConnection {
         this.characteristic = undefined
       }
     }
-    throw new Error(this.key === BIKE_KEY
-      ? 'Fant ingen tilgjengelige sykkeldata. Sykkelen må tilby FTMS eller Cycling Power over BLE. Lukk andre treningsapper og prøv igjen.'
-      : 'Kunne ikke lese puls. Sensoren må støtte Bluetooth Heart Rate. ANT+-sensorer kobles til via ANT-broen.')
+    throw new Error(this.unavailable())
   }
   /** Cancels in-flight work and reconnect timers; keeps browser permission for the next ride. */
   disconnect(): void {
@@ -299,40 +406,161 @@ abstract class SensorConnection {
   }
 }
 
-/** No control point, resistance or other characteristic is ever written. */
+async function readCharacteristic<T>(service: BleService, uuid: BleUuid, parse: (view: DataView) => T | undefined): Promise<T | undefined> {
+  try {
+    const characteristic = await service.getCharacteristic(uuid)
+    if (!characteristic.readValue) return
+    return parse(await characteristic.readValue())
+  } catch { return }
+}
+
+export interface FtmsSetup {
+  features?: FtmsFeatures
+  powerRange?: PowerRange
+  /** True when a control point with indications is attached to the FtmsControl. */
+  control: boolean
+  cleanup: () => void
+}
+
+/**
+ * Reads Fitness Machine Feature / Supported Power Range and, when the trainer
+ * offers power or simulation targets, attaches its control point (with
+ * indications and optional Machine Status) to `control`. Never throws for
+ * missing optional characteristics; nothing is written here.
+ */
+export async function setupFtms(server: BleServer, device: BleDevice, control: FtmsControl, current: () => boolean): Promise<FtmsSetup> {
+  const cleanups: Array<() => void> = []
+  const result: FtmsSetup = { control: false, cleanup: () => { for (const cleanup of cleanups.splice(0).reverse()) cleanup() } }
+  const service = await server.getPrimaryService(FTMS.service)
+  result.features = await readCharacteristic(service, FTMS.feature, parseFitnessMachineFeature)
+  if (!current() || !result.features || (!result.features.powerTarget && !result.features.simulation)) return result
+  if (result.features.powerTarget) result.powerRange = await readCharacteristic(service, FTMS.supportedPowerRange, parseSupportedPowerRange)
+  if (!current()) return result
+  let point: BleCharacteristic
+  try { point = await service.getCharacteristic(FTMS.controlPoint) } catch { return result }
+  const write = point.writeValueWithResponse ?? point.writeValue
+  if (!write || !current()) return result
+  const onIndication = (event: Event) => {
+    const value = (event.target as BleCharacteristic | null)?.value
+    if (value) control.handleIndication(value)
+  }
+  point.addEventListener('characteristicvaluechanged', onIndication)
+  cleanups.push(() => point.removeEventListener('characteristicvaluechanged', onIndication))
+  try { await point.startNotifications() } catch { result.cleanup(); return result }
+  if (!current()) { result.cleanup(); return result }
+  try {
+    const status = await service.getCharacteristic(FTMS.machineStatus)
+    if (status !== point) {
+      const onStatus = (event: Event) => {
+        const value = (event.target as BleCharacteristic | null)?.value
+        if (value) control.handleMachineStatus(value)
+      }
+      status.addEventListener('characteristicvaluechanged', onStatus)
+      cleanups.push(() => status.removeEventListener('characteristicvaluechanged', onStatus))
+      await status.startNotifications()
+    }
+  } catch { /* Machine Status is optional. */ }
+  if (!current()) { result.cleanup(); return result }
+  control.attach({ write: data => write.call(point, data as unknown as BufferSource) }, {
+    deviceId: device.id ?? '', deviceName: device.name ?? '',
+    features: result.features, ...(result.powerRange ? { powerRange: result.powerRange } : {}),
+  })
+  cleanups.push(() => control.detach())
+  result.control = true
+  return result
+}
+
+/**
+ * Bike/trainer telemetry. Writes only through `ftms` (the FTMS control point) and
+ * only when the app explicitly asks for automatic resistance; otherwise read-only.
+ */
 export class BikeConnection extends SensorConnection {
-  private crank?: CrankSample
-  private crankChangedAt = 0
-  private previousCadence?: number
-  constructor(private bikeCallbacks: BikeCallbacks) {
+  private cadence = cadenceTracker()
+  private primaryCadenceAt = -Infinity
+  private cleanups: Array<() => void> = []
+  constructor(private bikeCallbacks: BikeCallbacks, readonly ftms: FtmsControl = new FtmsControl()) {
     super(bikeCallbacks, BIKE_KEY, 'Xebex-sykkel', [
       { service: FTMS_SERVICE, characteristic: INDOOR_BIKE_DATA },
       { service: POWER_SERVICE, characteristic: POWER_MEASUREMENT },
     ], [{ services: [FTMS_SERVICE] }, { services: [POWER_SERVICE] },
-      { namePrefix: 'XEBEX' }, { namePrefix: 'Xebex' }, { namePrefix: 'xebex' }])
+      { namePrefix: 'XEBEX' }, { namePrefix: 'Xebex' }, { namePrefix: 'xebex' }], [CSC_SERVICE])
   }
-  protected reset() { this.crank = undefined; this.previousCadence = undefined }
+  protected reset() {
+    this.cadence.reset()
+    this.primaryCadenceAt = -Infinity
+    for (const cleanup of this.cleanups.splice(0).reverse()) cleanup()
+    this.ftms.detach()
+  }
+  protected unavailable() {
+    return 'Fant ingen tilgjengelige sykkeldata. Sykkelen må tilby FTMS eller Cycling Power over BLE. Lukk andre treningsapper og prøv igjen.'
+  }
+  protected async afterSubscribe(server: BleServer, device: BleDevice, current: () => boolean) {
+    if (this.protocol === 0) {
+      const setup = await setupFtms(server, device, this.ftms, current).catch(() => undefined)
+      if (setup) this.cleanups.push(setup.cleanup)
+      // FTMS bikes without cadence often expose crank data through Cycling Power or CSC.
+      if (current() && setup?.features && !setup.features.cadence) await this.addCadenceSource(server, current, 'power')
+      if (current() && setup?.features && !setup.features.cadence) await this.addCadenceSource(server, current, 'csc')
+    } else if (current()) await this.addCadenceSource(server, current, 'csc')
+  }
+  /** Secondary cadence fills in only while the primary characteristic has no fresh cadence. */
+  private async addCadenceSource(server: BleServer, current: () => boolean, source: 'power' | 'csc') {
+    try {
+      const service = await server.getPrimaryService(source === 'power' ? POWER_SERVICE : CSC_SERVICE)
+      const characteristic = await service.getCharacteristic(source === 'power' ? POWER_MEASUREMENT : CSC_MEASUREMENT)
+      if (!current() || characteristic === this.primary) return
+      const tracker = cadenceTracker()
+      const listener = (event: Event) => {
+        const value = (event.target as BleCharacteristic | null)?.value
+        if (!value) return
+        const crank = source === 'power' ? parseCrankSample(value) : parseCscMeasurement(value).crank
+        if (!crank) return
+        const now = performance.now()
+        const cadence = tracker.update(crank, now)
+        if (cadence === undefined || now - this.primaryCadenceAt < 3000) return
+        this.bikeCallbacks.onData({ cadence })
+      }
+      characteristic.addEventListener('characteristicvaluechanged', listener)
+      this.cleanups.push(() => characteristic.removeEventListener('characteristicvaluechanged', listener))
+      await characteristic.startNotifications()
+    } catch { /* Optional cadence source. */ }
+  }
   protected receive(view: DataView) {
     const data = this.protocol === 0 ? parseIndoorBikeData(view) : parseCyclingPower(view)
     if (this.protocol === 1) {
-      const next = parseCrankSample(view)
-      if (next) {
-        const now = performance.now()
-        if (this.crank) {
-          const revolutions = (next.revolutions - this.crank.revolutions + 65536) % 65536
-          const ticks = (next.eventTime - this.crank.eventTime + 65536) % 65536
-          if (ticks && revolutions) {
-            const cadence = revolutions * 60 * 1024 / ticks
-            if (cadence <= 250) { this.previousCadence = cadence; data.cadence = cadence }
-            this.crankChangedAt = now
-          } else if (!revolutions && !ticks) {
-            data.cadence = now - this.crankChangedAt >= 3000 ? 0 : this.previousCadence
-          }
-        } else this.crankChangedAt = now
-        this.crank = next
+      const crank = parseCrankSample(view)
+      if (crank) {
+        const cadence = this.cadence.update(crank, performance.now())
+        if (cadence !== undefined) data.cadence = cadence
       }
     }
+    if (data.cadence !== undefined) this.primaryCadenceAt = performance.now()
     if (Object.values(data).some(value => value !== undefined)) this.bikeCallbacks.onData(data)
+  }
+}
+
+interface CadenceSpeedCallbacks extends ConnectionCallbacks { onData: (data: { cadence?: number; speed?: number }) => void }
+
+/** Standalone Cycling Speed and Cadence sensor (0x1816). Never produces power. */
+export class CadenceSpeedConnection extends SensorConnection {
+  private cadence = cadenceTracker()
+  private speed = speedTracker()
+  constructor(private cscCallbacks: CadenceSpeedCallbacks) {
+    super(cscCallbacks, CSC_KEY, 'Kadenssensor', [
+      { service: CSC_SERVICE, characteristic: CSC_MEASUREMENT },
+    ], [{ services: [CSC_SERVICE] }])
+  }
+  protected reset() { this.cadence.reset(); this.speed.reset() }
+  protected unavailable() {
+    return 'Kunne ikke lese kadens eller fart. Sensoren må støtte Bluetooth Cycling Speed and Cadence.'
+  }
+  protected receive(view: DataView) {
+    const { wheel, crank } = parseCscMeasurement(view)
+    const now = performance.now()
+    const data: { cadence?: number; speed?: number } = {}
+    if (crank) { const cadence = this.cadence.update(crank, now); if (cadence !== undefined) data.cadence = cadence }
+    if (wheel) { const speed = this.speed.update(wheel, now); if (speed !== undefined) data.speed = speed }
+    if (data.cadence !== undefined || data.speed !== undefined) this.cscCallbacks.onData(data)
   }
 }
 

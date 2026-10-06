@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { BikeConnection, HeartRateConnection, bluetoothAvailable, hasRememberedBike, rememberedBikeName, forgetRememberedBike, hasRememberedHeartRate, parseCyclingPower, parseHeartRate, parseIndoorBikeData } from './bluetooth'
+import { BikeConnection, CadenceSpeedConnection, HeartRateConnection, bluetoothAvailable, cadenceTracker, crankCadence, hasRememberedBike, hasRememberedCadence, rememberedBikeName, forgetRememberedBike, hasRememberedHeartRate, isAppleMobile, parseCrankSample, parseCscMeasurement, parseCyclingPower, parseHeartRate, parseIndoorBikeData, speedTracker, unsupportedBluetoothMessage, wheelSpeed } from './bluetooth'
 
 function packet(bytes: number[]) {
   return new DataView(Uint8Array.from(bytes).buffer)
@@ -423,5 +423,182 @@ describe('remembered sensors and bounded reconnection', () => {
     expect(requestDevice).toHaveBeenCalledOnce()
     connection.disconnect()
     expect(vi.getTimerCount()).toBe(0)
+  })
+})
+
+function u32(value: number) { return [value & 255, (value >>> 8) & 255, (value >>> 16) & 255, (value >>> 24) & 255] }
+
+describe('crank and wheel revolution data', () => {
+  it('derives cadence across uint16 revolution and event-time rollover', () => {
+    expect(crankCadence({ revolutions: 65535, eventTime: 65000 }, { revolutions: 0, eventTime: 488 })).toBe(60)
+    expect(crankCadence({ revolutions: 65534, eventTime: 65535 }, { revolutions: 1, eventTime: 2047 })).toBe(90)
+    expect(crankCadence({ revolutions: 10, eventTime: 100 }, { revolutions: 10, eventTime: 100 })).toBeUndefined()
+    expect(crankCadence({ revolutions: 10, eventTime: 100 }, { revolutions: 11, eventTime: 100 })).toBeUndefined()
+  })
+
+  it('derives wheel speed across uint32 rollover', () => {
+    // 2 revolutions × 2.105 m in 0.5 s = 8.42 m/s = 30.312 km/h
+    expect(wheelSpeed({ revolutions: 2 ** 32 - 1, eventTime: 65280 }, { revolutions: 1, eventTime: 256 })).toBeCloseTo(30.312, 3)
+    expect(wheelSpeed({ revolutions: 5, eventTime: 1 }, { revolutions: 5, eventTime: 1 })).toBeUndefined()
+  })
+
+  it('holds the last cadence briefly, then reports 0 when pedalling stops, and drops implausible jumps', () => {
+    const tracker = cadenceTracker()
+    expect(tracker.update({ revolutions: 100, eventTime: 0 }, 0)).toBeUndefined()
+    expect(tracker.update({ revolutions: 101, eventTime: 683 }, 700)).toBeCloseTo(89.96, 1)
+    expect(tracker.update({ revolutions: 101, eventTime: 683 }, 1500)).toBeCloseTo(89.96, 1)
+    expect(tracker.update({ revolutions: 101, eventTime: 683 }, 3700)).toBe(0)
+    expect(tracker.update({ revolutions: 200, eventTime: 1707 }, 4700)).toBeUndefined()
+    const speed = speedTracker(2)
+    speed.update({ revolutions: 0, eventTime: 0 }, 0)
+    expect(speed.update({ revolutions: 4, eventTime: 1024 }, 1000)).toBeCloseTo(28.8, 5)
+  })
+
+  it('parses CSC measurements with wheel, crank or both', () => {
+    expect(parseCscMeasurement(packet([3, ...u32(70000), ...u16(1234), ...u16(500), ...u16(999)])))
+      .toEqual({ wheel: { revolutions: 70000, eventTime: 1234 }, crank: { revolutions: 500, eventTime: 999 } })
+    expect(parseCscMeasurement(packet([2, ...u16(7), ...u16(8)]))).toEqual({ crank: { revolutions: 7, eventTime: 8 } })
+    expect(parseCscMeasurement(packet([1, ...u32(9), ...u16(10)]))).toEqual({ wheel: { revolutions: 9, eventTime: 10 } })
+    expect(parseCscMeasurement(packet([3, 1, 2, 3]))).toEqual({})
+    expect(parseCscMeasurement(packet([]))).toEqual({})
+  })
+
+  it('finds Cycling Power crank data after every optional field', () => {
+    expect(parseCrankSample(packet([...u16(0x20), ...u16(200), ...u16(42), ...u16(4096)]))).toEqual({ revolutions: 42, eventTime: 4096 })
+    expect(parseCrankSample(packet([...u16(0x20 | 1 | 4 | 16), ...u16(200), 50, ...u16(9), ...u32(1), ...u16(2), ...u16(43), ...u16(77)])))
+      .toEqual({ revolutions: 43, eventTime: 77 })
+    expect(parseCrankSample(packet([...u16(0), ...u16(200)]))).toBeUndefined()
+  })
+})
+
+describe('unsupported browsers', () => {
+  it('points iPhone and iPad users to Bluefy and others to Chrome or Edge', () => {
+    vi.stubGlobal('window', { isSecureContext: true })
+    vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)', platform: 'iPhone', maxTouchPoints: 5 })
+    expect(isAppleMobile()).toBe(true)
+    expect(unsupportedBluetoothMessage()).toMatch(/Bluefy/)
+    vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (Macintosh)', platform: 'MacIntel', maxTouchPoints: 5 })
+    expect(isAppleMobile()).toBe(true)
+    vi.stubGlobal('navigator', { userAgent: 'Mozilla/5.0 (X11; Linux x86_64) Firefox/140', platform: 'Linux x86_64', maxTouchPoints: 0 })
+    expect(isAppleMobile()).toBe(false)
+    expect(unsupportedBluetoothMessage()).toMatch(/Chrome eller Edge/)
+    vi.stubGlobal('window', { isSecureContext: false })
+    expect(unsupportedBluetoothMessage()).toMatch(/HTTPS/)
+  })
+})
+
+/** A trainer exposing distinct services/characteristics, including an FTMS control point that answers. */
+class TrainerCharacteristic extends MockCharacteristic {
+  written: number[][] = []
+  readValue?: () => Promise<DataView>
+  constructor(readable?: number[], private onWrite?: (bytes: number[], self: TrainerCharacteristic) => void) {
+    super()
+    if (readable) this.readValue = vi.fn(async () => packet(readable))
+  }
+  writeValueWithResponse = vi.fn(async (data: Uint8Array) => {
+    const bytes = [...data]
+    this.written.push(bytes)
+    this.onWrite?.(bytes, this)
+  })
+}
+function smartTrainer({ cadence = true, powerTarget = true, cyclingPower = false } = {}) {
+  const indoorBike = new TrainerCharacteristic()
+  const feature = new TrainerCharacteristic([...u32((cadence ? 2 : 0) | (1 << 14)), ...u32(powerTarget ? 1 << 3 : 0)])
+  const range = new TrainerCharacteristic([...u16(0), ...u16(1200), ...u16(1)])
+  const controlPoint = new TrainerCharacteristic(undefined, (bytes, self) => queueMicrotask(() => self.emit([0x80, bytes[0], 1])))
+  const power = new TrainerCharacteristic()
+  const services: Record<number, Record<number, TrainerCharacteristic> | undefined> = {
+    0x1826: { 0x2ad2: indoorBike, 0x2acc: feature, 0x2ad8: range, 0x2ad9: controlPoint },
+    ...(cyclingPower ? { 0x1818: { 0x2a63: power } } : {}),
+  }
+  const base = setupDevice()
+  base.device.gatt.getPrimaryService.mockImplementation((async (id: number) => {
+    const service = services[id]
+    if (!service) throw new Error('No service')
+    return { getCharacteristic: async (uuid: number) => {
+      if (!service[uuid]) throw new Error('No characteristic')
+      return service[uuid]
+    } }
+  }) as never)
+  return { ...base, indoorBike, controlPoint, power }
+}
+const nextTask = () => new Promise(resolve => setTimeout(resolve, 0))
+
+describe('BikeConnection FTMS control', () => {
+  it('attaches the control point only for trainers that support target power, and writes only on request', async () => {
+    const { connection, controlPoint } = smartTrainer()
+    await connection.connect()
+    const snapshot = connection.ftms.getSnapshot()
+    expect(snapshot.supportsErg).toBe(true)
+    expect(snapshot.info).toMatchObject({ deviceId: 'test-device-id', deviceName: 'XEBEX test', powerRange: { min: 0, max: 1200, increment: 1 } })
+    expect(controlPoint.written).toEqual([])
+    connection.ftms.setDesired({ mode: 'erg', watts: 210 })
+    await nextTask()
+    expect(controlPoint.written).toEqual([[0x00], [0x07], [0x05, 210, 0]])
+    expect(connection.ftms.getSnapshot().status).toBe('on')
+  })
+
+  it('drops control on disconnect and never re-engages by itself after reconnecting', async () => {
+    vi.useFakeTimers()
+    const { connection, controlPoint, device } = smartTrainer()
+    await connection.connect()
+    connection.ftms.setDesired({ mode: 'erg', watts: 210 })
+    await vi.advanceTimersByTimeAsync(0)
+    device.gatt.connected = false
+    device.dispatchEvent(new Event('gattserverdisconnected'))
+    expect(connection.ftms.getSnapshot()).toMatchObject({ supportsErg: false, hasControl: false, status: 'off' })
+    await vi.advanceTimersByTimeAsync(2000)
+    expect(connection.ftms.getSnapshot().supportsErg).toBe(true)
+    expect(controlPoint.written).toHaveLength(3)
+    connection.ftms.setDesired({ mode: 'erg', watts: 210 })
+    await vi.advanceTimersByTimeAsync(0)
+    expect(controlPoint.written.slice(3)).toEqual([[0x00], [0x07], [0x05, 210, 0]])
+    connection.disconnect()
+  })
+
+  it('leaves trainers without target power read-only', async () => {
+    const { connection, controlPoint } = smartTrainer({ powerTarget: false })
+    await connection.connect()
+    expect(connection.ftms.getSnapshot().supportsErg).toBe(false)
+    connection.ftms.setDesired({ mode: 'erg', watts: 200 })
+    await nextTask()
+    expect(controlPoint.written).toEqual([])
+  })
+
+  it('fills missing FTMS cadence from Cycling Power crank data, but FTMS cadence wins when present', async () => {
+    const { connection, callbacks, indoorBike, power } = smartTrainer({ cadence: false, cyclingPower: true })
+    await connection.connect()
+    expect(power.startNotifications).toHaveBeenCalledOnce()
+    indoorBike.emit([...u16(64), ...u16(2500), ...u16(230)])
+    expect(callbacks.onData).toHaveBeenLastCalledWith({ speed: 25, power: 230 })
+    power.emit([...u16(0x20), ...u16(230), ...u16(10), ...u16(0)])
+    power.emit([...u16(0x20), ...u16(230), ...u16(11), ...u16(683)])
+    expect(callbacks.onData.mock.lastCall?.[0].cadence).toBeCloseTo(89.96, 1)
+    indoorBike.emit([...u16(4 | 64), ...u16(2500), ...u16(160), ...u16(230)])
+    callbacks.onData.mockClear()
+    power.emit([...u16(0x20), ...u16(230), ...u16(12), ...u16(1366)])
+    expect(callbacks.onData).not.toHaveBeenCalled()
+    connection.disconnect()
+    power.emit([...u16(0x20), ...u16(230), ...u16(13), ...u16(2049)])
+    expect(callbacks.onData).not.toHaveBeenCalled()
+  })
+})
+
+describe('CadenceSpeedConnection', () => {
+  it('reads cadence and speed from a standalone CSC sensor and never reports power', async () => {
+    const { requestDevice, characteristic } = setupDevice()
+    const callbacks = { onData: vi.fn(), onStatus: vi.fn(), onError: vi.fn() }
+    const connection = new CadenceSpeedConnection(callbacks)
+    await connection.connect()
+    expect(requestDevice).toHaveBeenCalledWith({ filters: [{ services: [0x1816] }], optionalServices: [0x1816] })
+    expect(hasRememberedCadence()).toBe(true)
+    characteristic.emit([3, ...u32(1000), ...u16(0), ...u16(50), ...u16(0)])
+    expect(callbacks.onData).not.toHaveBeenCalled()
+    characteristic.emit([3, ...u32(1004), ...u16(1024), ...u16(51), ...u16(683)])
+    const data = callbacks.onData.mock.lastCall?.[0]
+    expect(data.cadence).toBeCloseTo(89.96, 1)
+    expect(data.speed).toBeCloseTo(4 * 2.105 * 3.6, 3)
+    expect(data).not.toHaveProperty('power')
+    connection.disconnect()
   })
 })

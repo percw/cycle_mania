@@ -57,6 +57,9 @@ import {
 } from "./game";
 import SensorPanel from "./SensorPanel";
 import { useSensors } from "./useSensors";
+import { useErg } from "./useErg";
+import ErgToggle from "./ErgToggle";
+import DeviceCheck from "./DeviceCheck";
 import {
   loadRides,
   persistRide,
@@ -533,7 +536,7 @@ export default function App() {
         setError(message);
         setPendingStart(null);
       },
-    });
+    }, erg.control);
     if (readStored("summit-auto-connect", true))
       void connection.current.connectRemembered();
     return () => connection.current?.disconnect();
@@ -633,7 +636,7 @@ export default function App() {
           s.samples.push({
             second: Math.floor(s.elapsed + dt),
             power,
-            cadence: s.demo ? 88 : (telemetryRef.current.cadence ?? null),
+            cadence: s.demo ? 88 : (telemetryRef.current.cadence ?? sensors.cadence ?? null),
             heartRate: s.demo
               ? null
               : (externalHr.current ?? telemetryRef.current.heartRate ?? null),
@@ -975,6 +978,18 @@ export default function App() {
     ? sessionState(session)
     : null;
   const target = current ? Math.round(current.block.intensity * (session?.ramp?.referenceFtp??ftp)) : 0;
+  // Automatic resistance (ERG): opt-in per trainer, real Bluetooth rides only, never demo or FTP ramp tests.
+  const erg = useErg({ session: !!session, running: !!session?.running, target,
+    eligible: !!session && !session.demo && !session.ramp && sensorSource === "ble" && bleStatus === "connected" });
+  const liveCadence = telemetry.cadence ?? sensors.cadence;
+  function openDeviceCheck() {
+    if (sessionRef.current) return;
+    // The check page opens its own connection: two owners of one control point would fight.
+    connection.current?.disconnect();
+    setDeviceModal(false);
+    setPage("device-check");
+    window.scrollTo(0, 0);
+  }
   const livePower = session?.demo
     ? Math.round(target * (1 + 0.025 * Math.sin(session.elapsed * 0.8)))
     : telemetry.power;
@@ -1107,7 +1122,8 @@ export default function App() {
           {!session.ramp && (activeWorld==="tron"?<JourneyHUD journey={journey} state={expedition} paused={!session.running} onChoice={chooseMission} items={currentAchievements}/>:expeditionEnabled?<ExpeditionHUD progress={campaign} state={expedition} onChoice={chooseMission} paused={!session.running} demo={session.demo}/>:<div className="classic-progress">{Math.round(game.score).toLocaleString("nb-NO")} poeng · {game.stars} stjerner</div>)}
           <RideConsole workout={sessionWorkout(session)} current={current} elapsed={session.elapsed} skippedSeconds={session.skippedSeconds||0}
             distance={session.distance} target={target} power={livePower}
-            cadence={session.demo?88:telemetry.cadence===undefined?undefined:Math.round(telemetry.cadence)}
+            cadence={session.demo?88:liveCadence===undefined?undefined:Math.round(liveCadence)}
+            erg={erg.active ? { status: erg.status === "off" ? "pending" : erg.status, watts: erg.targetWatts } : null}
             heartRate={session.demo?null:(sensors.heartRate??telemetry.heartRate)}
             running={session.running} sound={sound} game={game} ghostDelta={ghost===null?null:game.score-ghost} onPause={togglePause} onSkip={skipSegment} onWarmup={skipWarmup}
             onSound={()=>{if(!sound)enableGameSound();setSound(!sound)}} onFullscreen={toggleFullscreen}
@@ -1131,6 +1147,7 @@ export default function App() {
         </main>
       ) : (
         <main className="main">
+          {page === "device-check" && <DeviceCheck onBack={() => setPage("home")} onClose={() => { if (readStored("summit-auto-connect", true)) void connection.current?.connectRemembered(); }} />}
           {page === 'ftp-test' && <><RampTestSetup ftp={ftp} history={history} onStart={startRamp} disabled={!!pendingStart}/><RampTestProgress history={history} onRepeat={repeatRamp}/></>}
           {page === "home" && (
             <>
@@ -1246,6 +1263,7 @@ export default function App() {
                   <div className="session-links">
                     <button className="text-button demo-start" onClick={() => start(readyWorkout, true)}>Ta en demotur</button>
                     <button className="text-button builder-launch" onClick={()=>setBuilder(null)}>+ Bygg egen økt</button>
+                    <button className="text-button device-check-link" onClick={openDeviceCheck}>Test sykkelen din</button>
                   </div>
                 </aside>
               </section>
@@ -1798,9 +1816,9 @@ export default function App() {
                       <small>watt</small>
                     </span>
                     <span>
-                      {telemetry.cadence === undefined
+                      {liveCadence === undefined
                         ? "—"
-                        : Math.round(telemetry.cadence)}
+                        : Math.round(liveCadence)}
                       <small>rpm</small>
                     </span>
                     <span>
@@ -1809,10 +1827,11 @@ export default function App() {
                     </span>
                   </div>
                 )}
+                <ErgToggle erg={erg} riding={!!session} />
                 <p className="fine-print">
                   Bruk Chrome eller Edge på en støttet datamaskin eller Android,
                   via localhost eller HTTPS. Sykkelen må sende FTMS- eller
-                  Cycling Power-data. Motstand justeres på sykkelen.
+                  Cycling Power-data. {erg.supported ? "Uten ERG justerer du motstanden selv." : "Motstand justeres på sykkelen."}
                 </p>
                 {!bluetoothAvailable() && (
                   <div className="inline-notice">
@@ -1862,6 +1881,7 @@ export default function App() {
                   {session ? "Tilbake til økten" : "Prøv en demotur først"}
                   <ArrowRight size={15} />
                 </button>
+                {!session && <button className="text-button center device-check-link" onClick={openDeviceCheck}>Test sykkelen din: se hva den støtter</button>}
                 <div className="auto-connect-settings">
                   <label>
                     <input

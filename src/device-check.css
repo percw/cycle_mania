@@ -1,0 +1,120 @@
+/* "Test sykkelen din": one calm page, the verdict first, details below. */
+.device-check { padding-bottom: 60px; }
+.device-check .page-heading > .secondary { flex: none; }
+.dc-grid {
+  display: grid; gap: 16px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  grid-template-areas: "connect connect" "error error" "live live" "verdict verdict" "services erg";
+  align-items: start;
+}
+.dc-card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: 20px 22px; min-width: 0;
+}
+.dc-card h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+.dc-card p { font-size: 13px; line-height: 1.6; color: var(--text-2); }
+
+.dc-connect { grid-area: connect; display: flex; align-items: center; gap: 16px; }
+.dc-connect > button { flex: none; min-width: 150px; }
+.dc-device { flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.dc-device strong { font-size: 16px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dc-device small { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.dc-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--muted); }
+.dc-dot.connecting { background: var(--info); animation: dc-pulse 1.2s ease-in-out infinite; }
+.dc-dot.connected { background: var(--good); }
+.dc-dot.lost { background: var(--warn); }
+@keyframes dc-pulse { 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .dc-dot.connecting { animation: none; } }
+
+.dc-error {
+  grid-area: error; padding: 12px 16px; border-radius: 10px; font-size: 13px; line-height: 1.6;
+  border: 1px solid color-mix(in srgb, var(--warn) 45%, transparent); color: var(--warn);
+}
+
+.dc-live { grid-area: live; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 14px 10px; }
+.dc-live > div { display: flex; flex-direction: column; align-items: center; gap: 4px; border-left: 1px solid var(--line); }
+.dc-live > div:first-child { border-left: 0; }
+.dc-live b { font: 600 44px/1 "Barlow Condensed", sans-serif; font-variant-numeric: tabular-nums; color: var(--text); }
+.dc-live small { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+.dc-services { grid-area: services; }
+.dc-services ul, .dc-erg-result { list-style: none; margin: 0; padding: 0; }
+.dc-services li {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 11px 0; border-top: 1px solid var(--line);
+}
+.dc-services li:first-child { border-top: 0; padding-top: 2px; }
+.dc-services li > span { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.dc-services li strong { font-size: 13px; font-weight: 600; color: var(--text); }
+.dc-services li small { font-size: 11px; line-height: 1.5; color: var(--muted); overflow-wrap: anywhere; }
+.dc-services li em {
+  flex: none; font-style: normal; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px;
+  border: 1px solid var(--line); color: var(--muted); white-space: nowrap;
+}
+.dc-services li.supported em { color: var(--good); border-color: color-mix(in srgb, var(--good) 35%, transparent); }
+.dc-services li.proprietary em { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
+.dc-card .dc-features { margin-top: 12px; font-size: 12px; color: var(--muted); }
+
+.dc-erg { grid-area: erg; display: flex; flex-direction: column; gap: 14px; }
+.dc-erg h2 { margin-bottom: 0; }
+.dc-erg > button { align-self: flex-start; }
+.dc-erg-running { display: flex; flex-direction: column; gap: 10px; }
+.dc-erg-running strong { color: var(--text); }
+.dc-erg-live b { font: 600 22px/1 "Barlow Condensed", sans-serif; color: var(--text); }
+.dc-stop {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px; align-self: stretch;
+  min-height: 52px; border-radius: 10px; font-size: 15px; font-weight: 700;
+  background: var(--text); color: var(--bg);
+}
+.dc-stop:hover { background: var(--text-2); color: var(--bg); }
+.dc-erg-result li { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 4px 0; color: var(--text-2); }
+.dc-erg-result li.ok svg { color: var(--good); }
+.dc-erg-result li.failed, .dc-erg-result li.failed svg { color: var(--warn); }
+.dc-erg-result li.stopped { color: var(--muted); }
+
+.dc-verdict {
+  grid-area: verdict; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 16px; align-items: start;
+  border-left: 3px solid var(--text-2);
+}
+.dc-verdict.full { border-left-color: var(--good); }
+.dc-verdict.data { border-left-color: var(--info); }
+.dc-verdict.none { border-left-color: var(--warn); }
+.dc-verdict h2 { font-size: 22px; margin-bottom: 6px; }
+.dc-verdict-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); }
+.dc-verdict.full .dc-verdict-mark { color: var(--good); }
+.dc-verdict.data .dc-verdict-mark { color: var(--info); }
+.dc-verdict.none .dc-verdict-mark { color: var(--warn); }
+.dc-card .dc-note { margin-top: 6px; color: var(--muted); }
+.dc-report-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.dc-report-actions small { font-size: 11px; color: var(--muted); }
+.dc-report { grid-column: 2 / -1; margin-top: 6px; }
+.dc-report summary { cursor: pointer; font-size: 12px; color: var(--text-2); }
+.dc-report pre {
+  margin: 10px 0 0; padding: 14px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line);
+  font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--text-2);
+  white-space: pre-wrap; overflow-wrap: anywhere; max-height: 320px; overflow: auto;
+}
+
+.dc-unsupported {
+  display: flex; gap: 14px; align-items: flex-start; max-width: 720px;
+  border-color: color-mix(in srgb, var(--warn) 45%, transparent);
+}
+.dc-unsupported > svg { color: var(--warn); margin-top: 2px; }
+
+@media (max-width: 760px) {
+  .dc-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "connect" "error" "live" "verdict" "erg" "services"; }
+  .dc-connect { flex-wrap: wrap; }
+  .dc-connect > button { flex: 1 1 100%; }
+  .dc-live { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
+  .dc-live > div:nth-child(3) { border-left: 0; }
+  .dc-live b { font-size: 36px; }
+  .dc-verdict { grid-template-columns: auto minmax(0, 1fr); }
+  .dc-report-actions { grid-column: 1 / -1; align-items: stretch; }
+  .dc-report { grid-column: 1 / -1; }
+  .device-check .page-heading { flex-direction: column; align-items: stretch; }
+  .device-check .page-heading > .secondary { font-size: 14px; padding: 12px 16px; gap: 8px; }
+  .device-check .page-heading > .secondary svg { width: 16px; }
+}
+
+/* Small entry points: home start card and sensor dialog. */
+.device-check-link { display: inline-flex; align-items: center; gap: 6px; }

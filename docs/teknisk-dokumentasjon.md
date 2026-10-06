@@ -24,7 +24,7 @@ npm start
 
 ## Sykkel, puls og ANT+
 
-- **Bluetooth-sykkel:** FTMS Indoor Bike Data og Cycling Power. Appen leser watt, kadens, fart og puls som konsollen faktisk sender. Den skriver ikke til kontrollpunkt eller endrer motstanden. Juster motstanden på sykkelen.
+- **Bluetooth-sykkel:** FTMS Indoor Bike Data og Cycling Power. Appen leser watt, kadens, fart og puls som konsollen faktisk sender. Den skriver bare til FTMS-kontrollpunktet når du selv har slått på automatisk motstand (ERG) for en sykkel som støtter det (se under). Ellers justerer du motstanden på sykkelen.
 - **BLE-puls:** en uavhengig forbindelse til standard Heart Rate Service. Garmin, Suunto, Polar og andre merker fungerer når den aktuelle modellen sender denne standarden. Aktiver eventuelt pulsdeling/broadcast på klokken. Et merke alene garanterer ikke støtte.
 - **ANT+:** koble en kompatibel Garmin ANT USB2/USB-m-mottaker til maskinen. Under «Koble til sykkel» velger du «Start ANT+-mottaker». Velg ANT+ som kilde for sykkeldata dersom du bruker watt fra ANT+. Broen leser standard sykkelwatt og puls. Ingen motstandsstyring.
 - Den kjente Xebex-konsollen fra 2019 har **BT 62194 / ANT 47963**. ANT-broen filtrerer sykkelwatt til 47963. Konsollnummeret fastslår ikke om Bluetooth-profilen er FTMS, Cycling Power eller proprietær. Broen lytter også etter standard ANT+ Fitness Equipment-målinger med watt. Proprietære protokoller uten disse profilene støttes ikke.
@@ -32,6 +32,28 @@ npm start
 - Web Bluetooth krever localhost eller HTTPS. Safari og Firefox støtter ikke denne tilkoblingen. ANT+-broen kan fortsatt brukes fra en nettleser som åpner den lokale backend-appen.
 
 Brukeren har bekreftet at BLE fra Xebex gir riktig watt og kadens. Fysisk mottak fra pulsbelte og ANT+-USB må fortsatt verifiseres på utstyret. De automatiserte testene bruker protokollpakker, frakobling og en simulert nettleserforbindelse.
+
+## Automatisk motstand (ERG), kadenssensor og sykkeltest
+
+**ERG.** Smarttrenere som oppgir *wattmål* i FTMS Fitness Machine Feature (0x2ACC) og har kontrollpunkt (0x2AD9), får bryteren «Automatisk motstand (ERG)» under «Koble til sykkel». Bryteren er av som standard og huskes per enhet i nettleseren (`summit-erg:<enhet>`). Når den er på:
+
+- Ved start ber appen om kontroll (0x00), starter (0x07) og setter wattmålet (0x05, sint16 W). Nytt mål skrives bare når målet faktisk endres (blokkbytte, segmenthopp), aldri per sekund.
+- Pause sender Stop/Pause med «pause» (0x08 02). Fortsett sender Start (0x07) og målet på nytt. Avsluttet økt sender Stopp (0x08 01) og Reset (0x01). Slås ERG av midt i økten, sendes bare Reset, slik at sykkelen går til fri motstand uten å stoppe.
+- Én kommando om gangen, med svar (indikasjon 0x80) og 3 sekunders tidsavbrudd. «Ikke tillatt» gir ett nytt forsøk på å be om kontroll. Andre feil vises som «ERG feil» i cockpiten, uten nye forsøk før neste målendring. Machine Status «kontroll mistet» (0xFF) gjør at kontroll bes om på nytt.
+- Wattmålet begrenses til sykkelens Supported Power Range (0x2AD8) og steglengde, og til et tak på 1500 W i appen (800 W hvis sykkelen ikke oppgir område). Ugyldige verdier sendes aldri.
+- Brudd på forbindelsen slår ERG av. Etter automatisk gjenkobling er økten pauset, og ERG kobles inn igjen (med ny forespørsel om kontroll) først når du trykker Fortsett.
+- Demoturer og FTP-ramptest bruker aldri ERG. I rampen holder du wattmålet selv.
+- Cockpiten viser en liten «ERG 245 W»-merkelapp ved wattallet. Med ERG aktiv står det «ERG justerer» i dempet farge i stedet for «Øk/Senk N W».
+
+`src/ftmsControl.ts` har rene kode-/dekodefunksjoner og kontrolleren `FtmsControl`. `src/useErg.ts` avgjør ønsket tilstand fra økten. Simulering av stigning (0x11: vind, stigning, crr, cw) er implementert og testet i modulen, men ikke koblet til verdenene ennå.
+
+**Kadens fra kurbeldata.** Cycling Power-målere gir kadens fra kurbelomdreininger (flagg bit 5), med riktig håndtering av overløp i 16-bits tellere. FTMS-sykler som ikke oppgir kadens i Feature, får kadens fra Cycling Power eller CSC på samme enhet når den finnes. FTMS-kadens vinner når den sendes.
+
+**Kadens-/fartssensor (CSC, 0x1816/0x2A5B).** Under «Flere sensorer» kan en frittstående standard sensor kobles til og huskes. Den gir kadens, og fart med hjulsensor (hjulomkrets 2,105 m), og kadensen brukes når sykkelen ikke sender kadens. Den gir aldri watt. Appen beregner ikke estimerte watt, så rekorder, FTP, ramptest og prestasjoner bygger fortsatt bare på målte watt. Virtuell distanse beregnes som før fra watt.
+
+**Test sykkelen din.** Lenken ved «Start økten» og i sensorvinduet åpner en egen side. Appens egen sykkeltilkobling kobles fra mens du tester, og den huskede sykkelen kobles til igjen når du går ut. Siden kobler til hvilken som helst Bluetooth-enhet og viser standardtjenestene (FTMS, Cycling Power, CSC, Heart Rate, Device Information, Battery) med karakteristikker, og kjente proprietære protokoller (Tacx FE-C over BLE `6E40FEC1-…`, Wahoo `A026…`) som «kjent, ikke støttet ennå». Watt, kadens, fart og puls vises live. Hvis sykkelen støtter wattmål, kan du kjøre en ERG-test: 100 W og deretter 150 W i 10 sekunder hver, med tydelig stoppknapp. Konklusjonen er «Fungerer fullt», «Fungerer uten automatisk motstand» eller «Ikke støttet». «Kopier rapport» kopierer enhetsnavn, produsent/modell/fastvare, tjenester, målinger og testresultat, men ingen enhets-ID eller personlige data. Uten Web Bluetooth foreslår siden Bluefy på iPhone/iPad og Chrome eller Edge ellers.
+
+Verifikasjon: `node scripts/erg-smoke.mjs` bruker ekte nettleser med egen Vite-server og midlertidig SQLite. Den simulerer en FTMS-trener med kontrollpunkt som logger hver skrevne kommando, en trener som bare har Tacx FE-C, og en CSC-sensor. Testen kontrollerer nøyaktig opkodesekvens gjennom start, blokkbytte, pause, frakobling og gjenkobling, ERG av/på og avslutning, at demo og ramptest aldri skriver, og hele sykkeltest-siden. ERG er ennå ikke prøvd på en fysisk smarttrener.
 
 ## Under en økt
 

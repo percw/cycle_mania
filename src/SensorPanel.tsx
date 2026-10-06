@@ -1,4 +1,4 @@
-import { Bluetooth, Heart, Radio, Usb } from "lucide-react";
+import { Bluetooth, Gauge, Heart, Radio, Usb } from "lucide-react";
 import { bluetoothAvailable } from "./bluetooth";
 import type { useSensors } from "./useSensors";
 export default function SensorPanel({
@@ -41,6 +41,38 @@ export default function SensorPanel({
           : sensors.hrStatus === "connecting"
             ? "Søker etter pulsbelte …"
             : "Koble til BLE-puls"}
+      </button>
+      <div className="sensor-row">
+        <span className="sensor-icon">
+          <Gauge size={19} />
+        </span>
+        <div>
+          <strong>
+            {sensors.cscStatus === "connected"
+              ? sensors.cscName || "Kadenssensor tilkoblet"
+              : "Kadens- og fartssensor"}
+          </strong>
+          <small>
+            {sensors.cscStatus === "connected" && sensors.speed !== undefined
+              ? `${sensors.speed.toFixed(1)} km/t · gir ikke watt`
+              : "Standard BLE-kadens/fart · gir ikke watt"}
+          </small>
+        </div>
+        <span className="sensor-value csc-value">
+          {sensors.cadence === undefined ? "—" : Math.round(sensors.cadence)}
+        </span>
+      </div>
+      <button
+        className="secondary full"
+        disabled={!bluetoothAvailable() || sensors.cscStatus === "connecting"}
+        onClick={() => void sensors.toggleCadence()}
+      >
+        <Bluetooth size={15} />
+        {sensors.cscStatus === "connected"
+          ? "Koble fra kadenssensor"
+          : sensors.cscStatus === "connecting"
+            ? "Søker etter kadenssensor …"
+            : "Koble til kadenssensor"}
       </button>
       <div className="sensor-row">
         <span className="sensor-icon">

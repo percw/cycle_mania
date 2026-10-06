@@ -12,6 +12,7 @@
     "server": "node --watch server/index.mjs",
     "start": "node server/index.mjs",
     "test:sensors": "node scripts/sensor-smoke.mjs",
+    "test:erg": "node scripts/erg-smoke.mjs",
     "test:ui": "node scripts/ui-smoke.mjs",
     "test:expedition": "node scripts/expedition-smoke.mjs"
   },
