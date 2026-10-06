@@ -1,0 +1,187 @@
+{
+  "id": "09",
+  "persona": "Den visuelle entusiasten",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron viser en lesbar tredjepersonssykkel, tydelige cyan/oransje banekanter og et stort, samlet kontrollpanel, men store svarte flater og enkel bygeometri gjør scenen visuelt sparsom.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-tunnel.png",
+      "observation": "Datatunnelen gir sterkere dybde gjennom gjentatte lysrammer, og prestasjonskortet viser konkret fremdrift mot Presisjon uten å skjule watt og tid.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon Rush har tett bysilhuett, høybane, stor planet og lange siktlinjer som gir mer skala og fartspreg enn Tron-bildene.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound skiller seg tydelig ut med lyse sveveøyer, ringer, fossefall og et synlig veivalg; HUD-en er fortsatt lett å finne mot den lyse scenen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-launcher.png",
+      "observation": "Startsiden forklarer fire prestasjonskrav og tilhørende visuelle belønninger, viser seks verdensvarianter i produktet og setter øktvalg, wattmål og startknapp tydelig i samme flate.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet, hoppet over og gjenstående tid, viser datagap eksplisitt og legger målt effekt mot mål i en ryddig graf.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Sammenligningen viser rullende effektrekorder, et tydelig merket øktbasert FTP-anslag, forskjell fra tilsvarende økt og dokumenterte prestasjonsopplåsinger.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/TronWorld.tsx",
+      "observation": "Scenen bruker dynamisk chase-kamera, tone mapping, begrenset bloom, tre sektorer og visuelle oppgraderinger koblet til lagrede prestasjoner; dette støtter variasjon i bevegelse, men beviser ikke opplevd flyt eller bildefrekvens.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Opplåsinger krever ikke-demoøkter, minst 95 prosent datadekning og måloppnåelse; kravene skiller arbeidsdrag, samlet utholdenhet, aktive pauser og ulike treningsdager.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 6,
+    "third_fun": 5,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 5,
+    "interval_fit": 5
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Tre svært ulike aktive verdener, tydelig romfølelse i Neon og Skybound og en ren lyssykkelidentitet i Tron gir et sterkt førsteinntrykk for denne profilen.",
+    "third_fun": "Sektorbytter, veivalg og varige visuelle oppgraderinger kan bære flere økter, men Tron ser repeterende og geometrisk enkel ut over tid, og langvarig kameraflyt er ikke demonstrert.",
+    "agency": "Neon og Skybound tilbyr avgrensede gjenreis/utforsk-valg ved porter, mens selve kjøringen ellers i stor grad følger wattmål og automatisk bane.",
+    "visuals": "Bildene viser sterk kontrast, tydelige silhuetter, store landemerker og reell stilforskjell mellom mørk grid, neonby og sveveøyer; Tron mangler noe detaljtetthet og spektakulær variasjon.",
+    "clarity": "Stor wattverdi, mål, intervall, tid og planlinje er samlet og lesbare, men prestasjonskort og veivalg legger ekstra store flater over scenen.",
+    "interval_fit": "Målwatt, neste segment, pause, hopping og blokklinjen er tydelige, og visuelle belønninger følger presisjon fremfor rå overytelse; presentasjonen kan likevel trekke blikket fra lange terskeldrag.",
+    "data_trust": "Demo er tydelig merket, datagap fylles ikke som null, hopp skilles fra syklet tid og analyse/opplåsinger filtrerer bort demo; ekte maskinvareytelse og full fysisk kjede er ikke bevist her.",
+    "analysis_usefulness": "Oversikten og blokklisten forklarer utførelse, dekning, avvik og sammenligning godt, men den lange siden og tette tabellen gir mindre umiddelbar visuell belønning enn selve verdenene.",
+    "unlock_fairness": "Krav, fremdrift og konkret scenegevinst er synlige, deterministiske og knyttet til målte sekunder med høy dekning; demofremdrift kan forhåndsvises, men lagres ikke permanent."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Profilen vil trolig velge mellom Tron, Neon og Skybound ut fra uttrykk og raskt forstå startflaten, med Neon eller Skybound som sterkeste visuelle krok.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Den store wattverdien og banens siktlinjer vil trolig gjøre draget lett å lese, mens fartspreget avhenger av animasjon og bildefrekvens som stillbildene ikke viser.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Lavere mål er fortsatt tydelig, og Pausekontroll gir restitusjonen en visuell hensikt uten å kreve ekstra watt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Neon og Skybound kan holde interessen med landemerker og porter; Tron kan begynne å føles ensartet dersom sektorene ikke oppleves mer dynamiske enn bildene antyder.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Profilen vil trolig verdsette at prestasjonen både forklares i grafer og setter et synlig spor i verden, selv om analysesiden er mer funksjonell enn spektakulær.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "En tredje økt er sannsynlig for å se nye sektorer og opptjente sceneendringer, men videre retur avhenger av at kamera, fart og verdensvariasjon faktisk holder høy kvalitet i bevegelse.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Tre markant forskjellige aktive 3D-uttrykk",
+    "Store landemerker og lange siktlinjer i Neon og Skybound",
+    "Dokumentert trening låser opp synlige detaljer i Tron",
+    "Veivalg gjør enkelte verdensendringer spillerstyrte"
+  ],
+  "frictions": [
+    {
+      "issue": "Tron har mye svart tomrom og relativt enkel, repeterende arkitektur sammenlignet med profilens Forza-forventning.",
+      "evidence": "evaluation-v2/evidence/tron-active.png og tron-core.png",
+      "severity": "medium",
+      "category": "visuals"
+    },
+    {
+      "issue": "Stillbilder og programvarerendring dokumenterer ikke stabil bildefrekvens, responsivt kamera eller sterk fartsfølelse på faktisk gaming-PC.",
+      "evidence": "Manifestets runtime-notat sier at grafikken bruker headless software WebGL2 og at ingen maskinvarebenchmark hevdes.",
+      "severity": "high",
+      "category": "reliability"
+    },
+    {
+      "issue": "Store progresjons- og veivalgspaneler dekker en merkbar del av verden under kjøring.",
+      "evidence": "evaluation-v2/evidence/tron-tunnel.png og sky-active.png",
+      "severity": "low",
+      "category": "clarity"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser 30:00 syklet, 10:00 hoppet over, 24:00 gjenstående og 00:10 uten gyldige wattdata.",
+      "analysis-comparison.png merker 217 W som et øktbasert FTP-anslag og skiller det fra FTP-test.",
+      "analytics.ts filtrerer demo fra fysisk fremgang og lar målehull forbli hull."
+    ],
+    "strengths": [
+      "Skiller tydelig mellom målt, planlagt, hoppet over og manglende data.",
+      "Viser både blokkpresisjon og rullerende effekt uten å blande dette med spillpoeng.",
+      "Demo og simulerte data er synlig merket."
+    ],
+    "gaps": [
+      "Evidensen bruker syntetiske historiske data og viser ikke langvarig nøyaktighet fra profilens egen sykkel.",
+      "Ingen ytelsesbenchmark viser om data og grafikk holder seg responsive samtidig på faktisk maskinvare."
+    ],
+    "verdict": "Datapresentasjonen er uvanlig ryddig og troverdig for en visuelt orientert spiller, men teknisk korrekthet på ekte maskinvare må fortsatt bekreftes."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-launcher.png viser krav og belønning for Presisjon, Utholdenhet, Pausekontroll og Kontinuitet.",
+      "achievements.ts krever ekte, målte resultater med minst 95 prosent dekning og teller ikke demo.",
+      "runtime-checks.json bekrefter at demovisning ikke kan gi permanente priser."
+    ],
+    "strengths": [
+      "Hver opplåsing har synlig terskel, fremdrift og navngitt sceneendring.",
+      "Rolig restitusjon belønnes gjennom Pausekontroll.",
+      "Høyere effekt enn planen gir ingen dokumentert fordel."
+    ],
+    "gaps": [
+      "Bare fire eksplisitte Tron-prestasjoner kan bli et kort progresjonsløp for en spiller som søker mye visuelt innhold.",
+      "Hvor dramatiske de opptjente endringene føles i bevegelse er ikke vist av stillbildene."
+    ],
+    "verdict": "Opplåsingslogikken er rettferdig og lett å etterprøve, og den kobler treningskvalitet til presentasjon på en måte denne profilen sannsynligvis vil verdsette."
+  },
+  "preferred_world": "neon",
+  "world_reason": "Neon Rush gir sterkest kombinasjon av høydefølelse, skala, lys, siktlinjer og antydet fart, samtidig som HUD-en forblir tydelig.",
+  "one_change": "Gi hver verden flere tydelige, kameraaktive hendelser som reagerer på riktig watt—store forbikjøringer, skift i høyde og iscenesatte landemerker—med en valgfri ytelsesvisning for stabil FPS.",
+  "return_reason": "Ja, primært for å utforske den markante verdensvariasjonen og se dokumenterte prestasjoner endre scenen; varig interesse avhenger av flyt og fart i faktisk kjøring.",
+  "counterargument": "Den mørke, rene Tron-stilen kan oppleves bevisst fokusert snarere enn tom, og de to lysere verdenene gir allerede betydelig visuell variasjon uten å forstyrre treningsmålet.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en menneskelig brukertest eller faktisk treningsøkt.",
+    "Skjermbildene er automatiserte opptak med simulerte data og kan ikke dokumentere lyd, kameraflyt eller fartsfølelse.",
+    "Headless WebGL2-fallback gir ikke grunnlag for å anslå FPS eller kvalitet på profilens gaming-PC.",
+    "Historiske måledata i analysen er syntetiske fixtures, ikke ekte brukerhistorikk."
+  ],
+  "summary": "SUMMIT treffer den visuelle entusiasten godt med tydelig stilskifte, stor romfølelse i Neon og Skybound og prestasjonsbaserte sceneoppgraderinger. Tron er lesbar og særpreget, men visuelt enklere. Trening, analyse og opplåsinger er gjennomgående forståelige og rettferdige; den største usikkerheten er om fart, kamera og ytelse føles like sterke i faktisk bevegelse som komposisjonen gjør i stillbilder."
+}

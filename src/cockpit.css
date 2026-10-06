@@ -1,0 +1,388 @@
+/*
+ * Ride cockpit. Read from 1–3 m away, mid-effort, often in peripheral vision:
+ * big tabular numerals, one dominant cue (power vs target), colour that means
+ * the same thing everywhere (green = in band, blue = push, amber = ease off).
+ */
+:root {
+  --hud-on: var(--good);
+  --hud-under: #6cc7ff;
+  --hud-over: #ffb15c;
+  --hud-soft: #c9cfd8;
+  --hud-ink: #f3f1ed;
+  --hud-muted: #939aa5;
+  --hud-faint: #69768c;
+  --hud-line: rgba(172, 226, 204, 0.11);
+  --hud-glass: linear-gradient(180deg, rgba(12, 15, 20, 0.8), rgba(8, 10, 13, 0.9));
+}
+
+/* Immersive ride: the app chrome steps aside while you train. */
+.app.is-riding > .header { display: none; }
+.app.is-riding .ride-view,
+.app.is-riding .ride-view.expedition-ride { height: 100dvh; min-height: 520px; }
+.app.is-riding .ride-view:after {
+  background: linear-gradient(#090b0eaa, transparent 18%, transparent 52%, #090b0ecc 88%);
+}
+
+/* ---------- top bar ---------- */
+.ride-topbar {
+  position: absolute; z-index: 6; top: 16px; left: 20px; right: 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  pointer-events: none;
+}
+.ride-topbar > * { pointer-events: auto; }
+.ride-title {
+  display: flex; align-items: center; gap: 10px; min-width: 0; max-width: 56%;
+  padding: 9px 16px 9px 12px; border-radius: 12px;
+  background: rgba(10, 12, 16, 0.58); border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  font: 500 13px/1.2 "DM Sans", sans-serif; color: #babec5;
+}
+.ride-title > svg { width: 24px; height: 20px; color: var(--accent); flex: none; }
+.ride-title > span { white-space: nowrap; }
+.ride-title > b { color: #f4f2ef; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ride-title > i { width: 3px; height: 3px; border-radius: 9px; background: #657185; flex: none; }
+.ride-top-actions { display: flex; align-items: center; gap: 8px; }
+.ride-topbar .session-source {
+  position: static; display: inline-flex; align-items: center; gap: 7px;
+  font: 600 11px/1 "DM Sans", sans-serif; letter-spacing: 0.12em; padding: 11px 13px;
+  border-radius: 10px; background: rgba(10, 12, 16, 0.58); border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e9e4dc;
+}
+.ride-topbar .session-source.demo { color: #f5d98a; border-color: rgba(245, 217, 138, 0.3); }
+.sensor-chip {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 13px;
+  border-radius: 10px; background: rgba(10, 12, 16, 0.58); border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px); font: 500 12px "DM Sans", sans-serif; color: #c9ccd2;
+}
+.sensor-chip i { width: 8px; height: 8px; border-radius: 9px; background: #e06a5c; box-shadow: 0 0 10px #e06a5c99; }
+.sensor-chip.on i { background: var(--hud-on); box-shadow: 0 0 10px rgba(110, 211, 166, 0.6); }
+.sensor-chip.demo i { background: #f5d98a; box-shadow: none; }
+.sensor-chip b { color: #ff7b8a; font-size: 12px; }
+
+/* Game panels sit under the top bar. */
+.app.is-riding .expedition-hud,
+.app.is-riding .classic-progress { top: 74px; }
+.app.is-riding .expedition-choice { top: 74px; }
+.app.is-riding .ride-view .real-world-caption { top: 74px; }
+
+/* World sector tags: bottom-right on the launcher card, under the top bar while riding. */
+.world-sector-tag.neon { bottom: 116px; right: 24px; }
+.world-sector-tag.tron { top: 74px; right: 22px; }
+.app.is-riding .world-sector-tag { top: 70px; bottom: auto; right: 24px; }
+
+/* Focus mode: training only. No game panels, no route deadlines. */
+.ride-view.focus-mode .journey-hud,
+.ride-view.focus-mode .expedition-hud,
+.ride-view.focus-mode .expedition-choice,
+.ride-view.focus-mode .classic-progress,
+.ride-view.focus-mode .performance-hud { display: none !important; }
+
+/* Route choices: a glance, not a paragraph. */
+.app.is-riding .expedition-choice {
+  width: min(400px, calc(100% - 40px)); padding: 16px 18px; border-radius: 16px;
+  background: rgba(13, 16, 21, 0.86); backdrop-filter: blur(14px);
+}
+.app.is-riding .expedition-choice > div:first-child > .eyebrow { font-size: 10px; letter-spacing: 0.14em; }
+.app.is-riding .expedition-choice > div:first-child > strong { font-size: 26px; }
+.app.is-riding .expedition-choice > div:first-child > small { font-size: 12px; }
+.app.is-riding .expedition-choices button { min-height: 60px; padding: 12px; border-radius: 10px; }
+.app.is-riding .expedition-choices button strong { font-size: 15px; }
+.app.is-riding .expedition-choices button small { font-size: 11px; line-height: 1.35; }
+.app.is-riding .expedition-choices button em { font-size: 11px; }
+.app.is-riding .journey-choice .expedition-choices button small { display: none; }
+.app.is-riding .expedition-choices kbd { font-size: 11px; }
+
+/* ---------- edge aura: peripheral feedback ---------- */
+.target-aura {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  transition: box-shadow 0.7s ease;
+}
+.target-aura.on { box-shadow: inset 0 0 0 2px rgba(110, 211, 166, 0.22), inset 0 0 150px rgba(110, 211, 166, 0.14); }
+.target-aura.under { box-shadow: inset 0 0 0 2px rgba(108, 199, 255, 0.3), inset 0 0 170px rgba(108, 199, 255, 0.22); }
+.target-aura.over { box-shadow: inset 0 0 0 2px rgba(255, 179, 86, 0.5), inset 0 0 90px rgba(255, 168, 80, 0.16); }
+.target-aura.soft { box-shadow: inset 0 0 120px rgba(201, 207, 216, 0.08); }
+
+/* ---------- console ---------- */
+.ride-console.cockpit {
+  --zone: #8ea7ba;
+  position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 6;
+  width: min(1260px, calc(100% - 40px));
+  padding: 18px 22px 10px; border-radius: 22px;
+  background: var(--hud-glass);
+  border: 1px solid rgba(172, 226, 204, 0.13);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px) saturate(1.2);
+  color: var(--hud-ink);
+  font-family: "DM Sans", sans-serif;
+}
+.cockpit .ride-console-main {
+  display: grid;
+  grid-template-columns: minmax(190px, 1fr) minmax(260px, 1.45fr) minmax(200px, 1fr) minmax(160px, 0.8fr);
+  align-items: stretch;
+}
+.cockpit .ride-console-main > * { padding: 2px 24px; border-left: 1px solid var(--hud-line); min-width: 0; }
+.cockpit .ride-console-main > :first-child { padding-left: 4px; border-left: 0; }
+.cockpit .ride-console-main > :last-child { padding-right: 4px; }
+
+.cockpit-eyebrow {
+  display: flex; align-items: center; gap: 7px;
+  font: 600 11px/1.2 "DM Sans", sans-serif; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--hud-muted); white-space: nowrap;
+}
+.cockpit-eyebrow small { font-size: 10px; letter-spacing: 0.04em; text-transform: none; color: var(--hud-faint); }
+.cockpit-eyebrow i { width: 9px; height: 9px; border-radius: 3px; flex: none; }
+
+/* power */
+.cockpit .power-focus { display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+.cockpit .power-focus > strong {
+  display: block;
+  font: 600 clamp(64px, 7vw, 104px)/0.86 "Barlow Condensed", sans-serif;
+  font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
+  color: var(--hud-ink); transition: color 0.35s;
+}
+.cockpit .power-focus > strong > small { font-size: 0.26em; font-weight: 500; margin-left: 6px; color: var(--hud-muted); letter-spacing: 0.04em; }
+.cockpit.state-on .power-focus > strong { color: var(--hud-on); }
+.cockpit.state-under .power-focus > strong { color: var(--hud-under); }
+.cockpit.state-over .power-focus > strong { color: var(--hud-over); }
+.cockpit.soft .power-focus > strong { color: var(--hud-soft); }
+.target-readout { font: 500 14px "DM Sans", sans-serif; color: var(--hud-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.target-readout b { font: 600 28px/1 "Barlow Condensed", sans-serif; color: #f7f5f2; margin-left: 6px; letter-spacing: 0.01em; text-transform: none; }
+
+/* target cue + gauge */
+.cockpit-target { display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+.cockpit-cue {
+  display: flex; align-items: center; gap: 8px; min-height: 34px;
+  font: 600 clamp(24px, 2.3vw, 32px)/1 "Barlow Condensed", sans-serif; letter-spacing: 0.03em; text-transform: uppercase;
+  color: #8d94a0; transition: color 0.35s;
+}
+.cockpit-cue small { margin-left: auto; font: 500 14px "DM Sans", sans-serif; letter-spacing: 0; text-transform: none; color: var(--hud-muted); font-variant-numeric: tabular-nums; }
+.cockpit-cue.on { color: var(--hud-on); }
+.cockpit-cue.under { color: var(--hud-under); }
+.cockpit-cue.over { color: var(--hud-over); }
+.cockpit-cue.soft { color: var(--hud-soft); }
+
+.target-gauge { position: relative; padding-bottom: 22px; }
+.gauge-track {
+  position: relative; height: 18px; border-radius: 99px;
+  display: grid; grid-template-columns: 1fr calc(var(--band) * 2) 1fr;
+  background: rgba(255, 255, 255, 0.05);
+}
+.gauge-track::after {
+  content: ""; position: absolute; left: 50%; top: 4px; bottom: 4px; width: 2px; margin-left: -1px;
+  background: rgba(10, 12, 16, 0.55); border-radius: 2px;
+}
+.gauge-under { border-radius: 99px 0 0 99px; background: rgba(255, 255, 255, 0.07); }
+.gauge-band { background: rgba(110, 211, 166, 0.22); box-shadow: inset 0 0 0 1px rgba(110, 211, 166, 0.55); transition: background 0.35s, box-shadow 0.35s; }
+.gauge-over { border-radius: 0 99px 99px 0; background: rgba(255, 255, 255, 0.07); }
+.target-gauge.on .gauge-band { background: var(--hud-on); box-shadow: 0 0 24px rgba(110, 211, 166, 0.5); }
+.gauge-marker {
+  position: absolute; top: -9px; bottom: -9px; width: 6px; margin-left: -3px; border-radius: 4px;
+  background: #fff; box-shadow: 0 0 0 2px #0a0d11, 0 0 18px rgba(255, 255, 255, 0.75);
+  transition: left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.gauge-scale { position: absolute; left: 0; right: 0; bottom: 0; height: 15px; font: 500 12px "DM Sans", sans-serif; color: var(--hud-faint); font-variant-numeric: tabular-nums; }
+.gauge-scale span { position: absolute; transform: translateX(-50%); }
+
+/* interval */
+.cockpit .interval-focus { display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+.interval-label { font: 600 15px/1.25 "DM Sans", sans-serif; color: #ede9e4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 3px; }
+.cockpit .interval-focus > strong {
+  font: 600 clamp(54px, 5.4vw, 80px)/0.9 "Barlow Condensed", sans-serif;
+  font-variant-numeric: tabular-nums; color: #f9f7f5;
+}
+.cockpit .interval-focus > small { font-size: 12px; color: var(--hud-muted); }
+.block-progress { height: 4px; border-radius: 4px; background: rgba(255, 255, 255, 0.08); overflow: hidden; margin-top: 7px; }
+.block-progress i { display: block; height: 100%; background: var(--zone); border-radius: 4px; transition: width 0.3s linear; }
+.cockpit .interval-focus > .lap-average { font: 500 13px "DM Sans", sans-serif; color: var(--hud-muted); margin-top: 2px; }
+.lap-average b { color: #f0ede8; font-weight: 600; }
+
+/* next */
+.cockpit-next { display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+.cockpit-next > strong {
+  display: flex; align-items: center; gap: 8px; min-width: 0;
+  font: 600 17px/1.25 "DM Sans", sans-serif; color: #f3f0ec;
+}
+.cockpit-next > strong > i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.cockpit-next > span:not(.cockpit-eyebrow) { font: 600 26px/1 "Barlow Condensed", sans-serif; color: #e8e3db; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cockpit-next > small { font-size: 12px; color: var(--hud-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* graph */
+.cockpit-graph { position: relative; height: 60px; margin-top: 16px; border-radius: 9px; background: rgba(255, 255, 255, 0.025); overflow: hidden; }
+.cockpit-graph svg { display: block; width: 100%; height: 100%; }
+.cockpit-graph .block-body { fill: #ffffff; fill-opacity: 0.07; transition: fill-opacity 0.4s; }
+.cockpit-graph .past .block-body { fill-opacity: 0.035; }
+.cockpit-graph .now .block-body { fill-opacity: 0.95; }
+.cockpit-graph .block-cap { opacity: 0.95; }
+.cockpit-graph .past .block-cap { fill: #5d6879; opacity: 0.8; }
+.graph-trace { fill: none; stroke: #ffffff; stroke-width: 1.6px; stroke-linejoin: round; stroke-linecap: round; opacity: 0.92; }
+.graph-playhead { stroke: #ffffff; stroke-width: 2px; }
+.graph-marker {
+  position: absolute; top: 0; width: 0; height: 0; margin-left: -6px;
+  border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #fff;
+}
+
+/* foot: metrics + controls */
+.cockpit-foot { display: flex; align-items: center; gap: 18px; margin-top: 8px; }
+.cockpit .secondary-metrics { display: flex; align-items: baseline; gap: 18px; font: 500 12px "DM Sans", sans-serif; color: var(--hud-muted); white-space: nowrap; }
+.cockpit .secondary-metrics b { font: 600 22px "Barlow Condensed", sans-serif; color: #ece8e1; margin-right: 3px; font-variant-numeric: tabular-nums; }
+.cockpit .ride-toolbar { flex: 1; display: flex; align-items: center; gap: 4px; transition: opacity 0.3s; }
+.cockpit .console-spacer { flex: 1; }
+.cockpit .ride-toolbar > button,
+.cockpit .ride-detail > summary {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 11px;
+  font: 500 13px "DM Sans", sans-serif; color: #babec5; white-space: nowrap;
+}
+.cockpit .ride-toolbar > button:hover,
+.cockpit .ride-detail > summary:hover { background: rgba(255, 255, 255, 0.07); color: #fff; }
+.cockpit .ride-toolbar > .console-pause { background: rgba(255, 255, 255, 0.07); color: #f5f3f0; }
+.cockpit .ride-toolbar > .warmup-skip { background: rgba(244, 132, 104, 0.12); color: var(--accent); }
+.cockpit .ride-toolbar > .end-ride { border: 1px solid rgba(255, 255, 255, 0.14); }
+.cockpit .ride-toolbar > button[aria-pressed="true"] { color: var(--accent); background: rgba(244, 132, 104, 0.1); }
+.cockpit .ride-detail { position: relative; }
+.cockpit .ride-detail > summary { list-style: none; cursor: pointer; }
+.cockpit .ride-detail > summary::-webkit-details-marker { display: none; }
+.cockpit .ride-detail > div {
+  position: absolute; bottom: 54px; right: 0; width: 310px; z-index: 2;
+  display: flex; flex-direction: column; gap: 10px; padding: 18px 20px; border-radius: 14px;
+  background: #101319f7; border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 13px; line-height: 1.5; color: #e4ded6; box-shadow: 0 18px 60px #0009;
+}
+.cockpit .ride-detail > div small { font-size: 12px; color: var(--hud-muted); }
+@media (hover: hover) {
+  .cockpit .ride-toolbar { opacity: 0.6; }
+  .cockpit:hover .ride-toolbar, .cockpit:focus-within .ride-toolbar, .cockpit .ride-toolbar:has(details[open]) { opacity: 1; }
+}
+
+/* ---------- countdown ---------- */
+.cockpit-countdown {
+  position: absolute; z-index: 7; left: 50%; top: 40%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px; pointer-events: none;
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.55);
+}
+.cockpit-countdown strong {
+  font: 700 clamp(120px, 15vw, 220px)/0.82 "Barlow Condensed", sans-serif; color: #fff;
+  animation: countdown-pop 1s ease-out both;
+}
+.cockpit-countdown span {
+  font: 600 14px "DM Sans", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #efebe6;
+  padding: 8px 16px; border-radius: 99px; background: rgba(10, 12, 16, 0.62); backdrop-filter: blur(8px); text-shadow: none;
+}
+.cockpit-countdown b { font: 700 48px/1 "Barlow Condensed", sans-serif; color: var(--next); }
+@keyframes countdown-pop {
+  0% { transform: scale(1.35); opacity: 0; }
+  18% { transform: scale(1); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: scale(0.94); opacity: 0.2; }
+}
+
+/* ---------- lap receipt ---------- */
+.lap-receipt {
+  position: absolute; z-index: 7; top: 74px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 16px; padding: 13px 22px 13px 14px; border-radius: 18px;
+  background: rgba(12, 15, 19, 0.88); border: 1px solid rgba(110, 211, 166, 0.4);
+  backdrop-filter: blur(14px); box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
+  animation: lap-in 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.15) both;
+}
+.lap-receipt > svg { width: 36px; height: 36px; padding: 8px; border-radius: 99px; color: var(--hud-on); background: rgba(110, 211, 166, 0.15); }
+.lap-receipt > span { display: flex; flex-direction: column; gap: 3px; }
+.lap-receipt small { font: 600 11px "DM Sans", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hud-muted); }
+.lap-receipt strong { font: 600 28px/1 "Barlow Condensed", sans-serif; color: #f6f4f0; white-space: nowrap; }
+.lap-receipt em { font: 500 14px "DM Sans", sans-serif; font-style: normal; color: var(--hud-muted); margin-left: 8px; }
+.lap-receipt > b { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; padding-left: 18px; border-left: 1px solid rgba(255, 255, 255, 0.1); font: 700 32px/1 "Barlow Condensed", sans-serif; color: var(--hud-on); }
+.lap-receipt.good { border-color: rgba(245, 206, 104, 0.45); }
+.lap-receipt.good > b, .lap-receipt.good > svg { color: #f5ce68; }
+.lap-receipt.good > svg { background: rgba(245, 206, 104, 0.14); }
+.lap-receipt.off { border-color: rgba(255, 255, 255, 0.16); }
+.lap-receipt.off > b, .lap-receipt.off > svg { color: #c6cad0; }
+.lap-receipt.off > svg { background: rgba(255, 255, 255, 0.08); }
+@keyframes lap-in { from { opacity: 0; transform: translate(-50%, -14px) scale(0.96); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+
+/* ---------- pause ---------- */
+.app.is-riding .pause-overlay {
+  top: 42%; z-index: 8; gap: 10px; padding: 30px 40px 26px; min-width: 340px;
+  border-radius: 22px; background: rgba(13, 15, 20, 0.92); border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+}
+.app.is-riding .pause-overlay h2 { margin: 2px 0 0; font: 600 40px/1 "Barlow Condensed", sans-serif; letter-spacing: 0.02em; }
+.pause-overlay .pause-stats { display: flex; gap: 26px; margin: 8px 0 6px; }
+.pause-overlay .pause-stats span { display: flex; flex-direction: column; gap: 3px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--hud-muted); }
+.pause-overlay .pause-stats b { font: 600 28px/1 "Barlow Condensed", sans-serif; letter-spacing: 0; color: #f3f1ed; text-transform: none; }
+.app.is-riding .pause-overlay .primary { min-width: 230px; justify-content: center; }
+.pause-overlay kbd { font: 500 11px "DM Sans", sans-serif; color: var(--hud-faint); border: 0; }
+
+/* ---------- mid-size ---------- */
+@media (max-width: 1100px) {
+  .cockpit .ride-console-main { grid-template-columns: minmax(170px, 1fr) minmax(220px, 1.4fr) minmax(170px, 1fr); }
+  .cockpit-next { display: none !important; }
+  .cockpit .ride-console-main > * { padding: 2px 18px; }
+  .cockpit .metric-wide { display: none; }
+}
+
+/* ---------- phone ---------- */
+@media (max-width: 640px) {
+  .ride-topbar { top: 10px; left: 10px; right: 10px; gap: 8px; }
+  .ride-title { max-width: none; flex: 1; padding: 8px 12px 8px 10px; font-size: 12px; }
+  .ride-title > span, .ride-title > i { display: none; }
+  .ride-topbar .session-source { font-size: 9px; padding: 10px 9px; letter-spacing: 0.08em; }
+  .sensor-chip { min-height: 36px; padding: 0 10px; }
+  .sensor-chip span { display: none; }
+  .app.is-riding .expedition-hud, .app.is-riding .classic-progress { top: 60px; }
+  .app.is-riding .expedition-choice { top: 60px; left: 10px; right: 10px; width: auto; padding: 12px 14px; }
+  .app.is-riding .expedition-choice > div:first-child > strong { font-size: 21px; }
+  .app.is-riding .expedition-choices button { min-height: 52px; }
+  .app.is-riding .ride-view .real-world-caption { top: 60px; }
+  .app.is-riding .world-sector-tag { display: none; }
+
+  .ride-console.cockpit { left: 8px; right: 8px; bottom: 8px; transform: none; width: auto; padding: 12px 12px 4px; border-radius: 18px; }
+  .cockpit .ride-console-main { grid-template-columns: 1fr auto; row-gap: 10px; }
+  .cockpit .ride-console-main > * { padding: 0; border-left: 0; }
+  .cockpit .power-focus { order: 1; gap: 3px; }
+  .cockpit .interval-focus { order: 2; align-items: flex-end; text-align: right; max-width: 175px; }
+  .cockpit-target { order: 3; grid-column: 1 / -1; gap: 9px; }
+  .cockpit .power-focus > strong { font-size: 66px; }
+  .cockpit .interval-focus > strong { font-size: 50px; }
+  .cockpit-eyebrow { font-size: 10px; letter-spacing: 0.1em; }
+  .interval-label { font-size: 13px; max-width: 175px; }
+  .target-readout { font-size: 12px; }
+  .target-readout b { font-size: 24px; }
+  .cockpit-cue { font-size: 24px; min-height: 26px; }
+  .block-progress { width: 120px; margin-top: 4px; }
+  .cockpit .interval-focus > .lap-average { font-size: 12px; }
+  .target-gauge { padding-bottom: 18px; }
+  .gauge-track { height: 16px; }
+  .cockpit-graph { height: 34px; margin-top: 8px; }
+  .cockpit-foot { flex-direction: column; align-items: stretch; gap: 2px; margin-top: 6px; }
+  .cockpit .secondary-metrics { justify-content: space-around; }
+  .cockpit .secondary-metrics b { font-size: 20px; }
+  .cockpit .ride-toolbar { flex-wrap: wrap; gap: 2px; opacity: 1; }
+  .cockpit .ride-toolbar > button, .cockpit .ride-detail > summary { padding: 0 9px; font-size: 12px; }
+  .cockpit .ride-toolbar > .warmup-skip { order: 9; flex-basis: 100%; min-height: 40px; }
+  .cockpit .ride-toolbar > button[aria-label="Fullskjerm"], .cockpit .ride-detail { display: none; }
+  .cockpit .console-spacer { display: none; }
+  .cockpit .ride-toolbar > .end-ride { margin-left: auto; }
+
+  .cockpit-countdown { top: 34%; }
+  .cockpit-countdown strong { font-size: 128px; }
+  .cockpit-countdown b { font-size: 36px; }
+  .lap-receipt { top: 60px; left: 10px; right: 10px; transform: none; padding: 10px 14px 10px 10px; gap: 12px; animation-name: lap-in-mobile; }
+  .lap-receipt strong { font-size: 22px; }
+  .lap-receipt em { display: none; }
+  .lap-receipt > b { font-size: 26px; padding-left: 12px; margin-left: auto; }
+  .lap-receipt > b small { display: none; }
+  .app.is-riding .pause-overlay { min-width: 0; width: calc(100% - 32px); padding: 24px 20px; top: 36%; }
+}
+@keyframes lap-in-mobile { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
+
+/* Short landscape screens (laptops on a stand, tablets sideways). */
+@media (max-height: 760px) and (min-width: 641px) {
+  .ride-console.cockpit { padding: 12px 18px 6px; bottom: 12px; }
+  .cockpit .power-focus > strong { font-size: clamp(56px, 6vw, 80px); }
+  .cockpit .interval-focus > strong { font-size: clamp(46px, 4.6vw, 64px); }
+  .cockpit-graph { height: 42px; margin-top: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cockpit-countdown strong, .lap-receipt { animation: none; }
+  .gauge-marker, .target-aura, .block-progress i { transition: none; }
+}

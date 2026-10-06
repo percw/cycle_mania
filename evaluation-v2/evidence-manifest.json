@@ -1,0 +1,191 @@
+{
+  "frozen": true,
+  "captured_at": "2026-10-03T20:07:53.786019+00:00",
+  "build_description": "SUMMIT with six worlds including Tron, deterministic measurement-derived achievements, per-block execution analysis and expedition modes.",
+  "allowed_files": [
+    "evaluation-v2/evidence/tron-active.png",
+    "evaluation-v2/evidence/tron-mobile.png",
+    "evaluation-v2/evidence/tron-launcher.png",
+    "evaluation-v2/evidence/tron-new-player.png",
+    "evaluation-v2/evidence/tron-tunnel.png",
+    "evaluation-v2/evidence/tron-core.png",
+    "evaluation-v2/evidence/tron-award.png",
+    "evaluation-v2/evidence/neon-active.png",
+    "evaluation-v2/evidence/sky-active.png",
+    "evaluation-v2/evidence/analysis-overview.png",
+    "evaluation-v2/evidence/analysis-intervals.png",
+    "evaluation-v2/evidence/analysis-comparison.png",
+    "evaluation-v2/evidence/unit-tests.json",
+    "evaluation-v2/evidence/sensor-checks.json",
+    "evaluation-v2/evidence/runtime-checks.json",
+    "evaluation-v2/evidence/analysis-checks.json",
+    "evaluation-v2/evidence/tron-sectors.json",
+    "src/App.tsx",
+    "src/worlds.ts",
+    "src/WorldScene.tsx",
+    "src/TronWorld.tsx",
+    "src/NeonWorld.tsx",
+    "src/SkyWorld.tsx",
+    "src/RideScene.tsx",
+    "src/RideConsole.tsx",
+    "src/GameHUD.tsx",
+    "src/AchievementsUI.tsx",
+    "src/achievements.ts",
+    "src/achievements.test.ts",
+    "src/analytics.ts",
+    "src/analytics.test.ts",
+    "src/SessionAnalysis.tsx",
+    "src/ProgressPanel.tsx",
+    "src/expedition.ts",
+    "src/ExpeditionUI.tsx",
+    "src/game.ts",
+    "src/gameSound.ts",
+    "src/training.ts",
+    "src/storage.ts",
+    "src/bluetooth.ts",
+    "src/useSensors.ts",
+    "src/achievements.css",
+    "src/session-analysis.css",
+    "src/expedition.css",
+    "src/styles.css",
+    "server/index.mjs",
+    "server/fit.mjs",
+    "scripts/tron-smoke.mjs",
+    "scripts/tron-sectors.mjs",
+    "scripts/sensor-smoke.mjs"
+  ],
+  "sha256": {
+    "evaluation-v2/evidence/tron-active.png": "7826e4333adfbd845d0f633f3de661f91a33c7723cc85dc9b6cc1d696b1b0792",
+    "evaluation-v2/evidence/tron-mobile.png": "b3150945b860eab591dbb09f23110360ff78bc59e29685674e0b3c49e2eb92ae",
+    "evaluation-v2/evidence/tron-launcher.png": "c425cf6ebcd3d244e9742ad249b12783a1cc8febeffdccfdfd9eb10781a654cc",
+    "evaluation-v2/evidence/tron-new-player.png": "0f97a7a47a9702b481df74848ce86b802d6ec0d2fff15eb93f9397012d7a4a9d",
+    "evaluation-v2/evidence/tron-tunnel.png": "e00f4e79a206cd580d6b1b4a9162620b0f0d2578797a82dec68dbea6b58548e4",
+    "evaluation-v2/evidence/tron-core.png": "42a13c81160fd2471c7f5af834854524d2b94ed486b20880d902e740299c1350",
+    "evaluation-v2/evidence/tron-award.png": "756a99f561a72c0dbb2bad9de48a2033dcedfd73b11923ec1bde92db62b4d5cc",
+    "evaluation-v2/evidence/neon-active.png": "5919c5d7567665ec3ac593a9f811da92ed76c79b6a51682b8a660378709f5959",
+    "evaluation-v2/evidence/sky-active.png": "3ad29203adf5e85105a28e9ba5d9f617ef544311f2b453b43d4820490b50957e",
+    "evaluation-v2/evidence/analysis-overview.png": "c103568d7b96281683bd92dabc5db832e5745d8eecbc4d234b8f4620fa6d92f0",
+    "evaluation-v2/evidence/analysis-intervals.png": "8796435dd8322516662d5ca38eeec2707e20ea8693929de6fcc0cc2c9d138528",
+    "evaluation-v2/evidence/analysis-comparison.png": "49954e97cb7e2e9f9279df8db7373f1097039bc0fbf2549b7c608d19849d2fda",
+    "evaluation-v2/evidence/unit-tests.json": "8cae86b00353b11e8dcfa24f6bb470d1b9de07fc32d28af8aef2f832eecde959",
+    "evaluation-v2/evidence/sensor-checks.json": "4726a84f0d7d91a5a46932051e8f12d05c71b37d434f220322b7001ba9e18161",
+    "evaluation-v2/evidence/runtime-checks.json": "d54df550f2333055ae2419950b216a3dba0ce638ac8143274b02a5c15f3db96c",
+    "evaluation-v2/evidence/analysis-checks.json": "59df1cc7a29f759d2c08df6f8e2a9798e86c532525eced04c49257713bbae0d8",
+    "evaluation-v2/evidence/tron-sectors.json": "de44aa44db1e3af356fce8ddd18881a34f1311590cfe660cc66fb3401f270161",
+    "src/App.tsx": "b3105214a4697f16572668f79a2bc04b316f1495fa2b0a98a225f5bae3c42b4f",
+    "src/worlds.ts": "73d98ecd6c085e66cf58896a6a5ae7f0b0da1e5d24c23b5851f1a4895dbf0690",
+    "src/WorldScene.tsx": "4b3975bd3793715959661e672357a8e29f3035103d45774ae1b901b074d21365",
+    "src/TronWorld.tsx": "b13b423773bc79a9fee9f92adc0f508f64bc98a9d3de357f696ec2a8508f5ed1",
+    "src/NeonWorld.tsx": "0e01ef5df18d3f6a140372313a1e2882e45207c4401a91843b07c56919bcf338",
+    "src/SkyWorld.tsx": "12c379a26e6793e7a4688873c9d0745a3928e5ed0836f4a8ad13bd9cad0fe961",
+    "src/RideScene.tsx": "eeba89f94de95570188f69f84fa837a2295dc6863faa939a5500fe95d8027417",
+    "src/RideConsole.tsx": "82eef3a273c8bd2aaab7e4703e884944608f7a6f66a8f05da1cb5418d025cd2d",
+    "src/GameHUD.tsx": "2b298f3c6da7abd40334b664b1eb7516bc08cc2dc7425751cfdc42b6fd63f74b",
+    "src/AchievementsUI.tsx": "1eb1db7036c73d9fa2c45ba12dff53519c8c54411f67cf17df0df4a1c71b4472",
+    "src/achievements.ts": "26fef7bfaaa4681762eefc7eb546d01e0f4821999a48f4678e677eb03af9a2b0",
+    "src/achievements.test.ts": "a613634716be50d7c050840c81682b2c4f8b51501922c6ed467865e7951396d5",
+    "src/analytics.ts": "c02cdfecaa20bcc82e170d99440334cbd39368ca4b8f59748edf5981e64eb6c5",
+    "src/analytics.test.ts": "3c36d4ee4243d89cd45b4f9e16399a1bb4cae00fcf8fe7393077f03cf5ec68f2",
+    "src/SessionAnalysis.tsx": "5d66e5ae57c760aa5b5420744a34550263d2a30318a2151318d558b9e5126a6e",
+    "src/ProgressPanel.tsx": "680610069944dd3739f5b35a06adede1dd1c3c8d3b148de8ce87cc6033cb2627",
+    "src/expedition.ts": "7d551426ba0e9c6de15805233e731e8906b859ade610e9c33f79df6740ac7e6d",
+    "src/ExpeditionUI.tsx": "8940e9da0242a8490f487badb92540b46367952d8fdd65262eb1933e95c0149a",
+    "src/game.ts": "8439db20d94be9f2f19106427796eaa1111f38e79688ffb0f91a3b441b92a79f",
+    "src/gameSound.ts": "bc6246f21a90adab754c46ee006323e8145956daded454131ffb579d0825ae1e",
+    "src/training.ts": "4219f8909f8ac5c135e27df8c91b1f5b09a6dd66660709c2b1b72f569007279a",
+    "src/storage.ts": "95d269311094e1ed113a82cdc3c64d05c8c32c46a554afca2f193c7ec964e506",
+    "src/bluetooth.ts": "7affe6c78852572ba27e0a194cf45a4b49a1b5dcfa5ffe6b3429a3a5fcc39357",
+    "src/useSensors.ts": "c52e655bf4b3323030a0624d4d46447c855358fb5aaeede100b15efa68bfcb0c",
+    "src/achievements.css": "79fbcbac71e01c972ebf28daaf2b94f807d98125b6d5fa1d3bf78d1e9fc0ed61",
+    "src/session-analysis.css": "7ca579fa5ec2811cdda04ac4bb651f2dc23a0b83eb26be35578522944b5b546e",
+    "src/expedition.css": "303d4e0d9685230963c4865c4dd86dd3cb52e137970d38cd40aab608c1a5ce35",
+    "src/styles.css": "525950e5acfb555c16913582e88f838946e8095ae1c3836875650496927a9cbc",
+    "server/index.mjs": "b819d3b9f2d1d3c729f6b44eb296dd5fa9318e0a8cabfe4daa2f091f1b3c0656",
+    "server/fit.mjs": "240e50809beb1aec3c3227589660e3e121c36089494e6f30edf3222a6ccba73c",
+    "scripts/tron-smoke.mjs": "d64cd98f896addcbaabeb3f5c8c8c7a5d6b0dbcc1cecafe39d72f10fef06ec71",
+    "scripts/tron-sectors.mjs": "1f2a59584ad846a44ede9f02e3ec5478ec59621c4ac7923799c965cf57a53ec4",
+    "scripts/sensor-smoke.mjs": "0ae050ad3fd56bb74c924c49bc488c426d56a1a2bd3174f8bb89094a9e3cb16b"
+  },
+  "build_sha256": {
+    "dist/assets/NeonWorld-C-Ei23Sq.js": "049379ea15dc04b73b58bd5ccfe9325146e65be239238615a8ba03bc9ea4295f",
+    "dist/assets/SkyWorld-DI848Wdo.js": "fecf094eed7aed578a063d866af4bc448cd705014c9db0681df0152d8fca6456",
+    "dist/assets/TronWorld-0nRAunaS.js": "0688f667b40f00fb05a1070beff0dbbe2349126e160d9faea3f7ac91735ebc0d",
+    "dist/assets/index-1QDpfhiH.js": "db9981d26080bb5a4029bbe76e7d5eeafe1fa553a7f0a362b267d62a0bc0d2b5",
+    "dist/assets/index-BLoOcTYr.css": "9165b1bf0ea41103af0e9e20e530ff71668762e8a3594e85ad8895a2278bf54c",
+    "dist/assets/react-Dy-GIXkn.js": "6e6dcd4abf81fe24cc734fddac8cddcfd68fb888353c40807059fb21859e427d",
+    "dist/assets/rolldown-runtime-CbXtAM7H.js": "bbf7c5086ae414dc3f33777e3eebf16ea8631325b8bb4690d25091c03567f31a",
+    "dist/assets/three-BJsp9IkV.js": "b03ee2b118be1d06812af2e9f04befad4092135bca64369d250ca2ca3880242f",
+    "dist/favicon.svg": "e5456ee5851acf756395b4d2a81f6d93fe8876e4a6a5931c7600ec5b0c1fc9c6",
+    "dist/index.html": "59644eedf355f626cf23bf0c50a0bb7fdc9e8a4d0cf06c1fc2a443f94d2d04e0"
+  },
+  "screenshots": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "category": "active_tron",
+      "shows": "Tron demo with four visual achievements derived from three synthetic historical fixtures."
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-mobile.png",
+      "category": "mobile",
+      "shows": "Same Tron demo on390x844."
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-launcher.png",
+      "category": "launcher_or_progression",
+      "shows": "Tron selection and four deterministic achievement requirements, fulfilled by fixtures."
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "category": "launcher_or_progression",
+      "shows": "Tron launcher with empty history and locked requirements."
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-tunnel.png",
+      "category": "active_tron",
+      "shows": "Tron after100 accelerated work seconds; no saved history."
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-core.png",
+      "category": "active_tron",
+      "shows": "Tron after180 accelerated work seconds; no saved history."
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-award.png",
+      "category": "active_tron",
+      "shows": "Tron after320 accelerated work seconds; temporary demo precision preview, not permanent unlock."
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "category": "active_other",
+      "shows": "Neon expedition with route-choice UI in demo."
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "category": "active_other",
+      "shows": "Skybound expedition with route-choice UI in demo."
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "category": "result_or_analysis",
+      "shows": "Measured execution UI from synthetic fixture:30min ridden,10min skipped,24min remaining,10sec missing samples."
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "category": "result_or_analysis",
+      "shows": "Per-block observed/planned seconds, power and adherence for the same fixture."
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "category": "result_or_analysis",
+      "shows": "Power records, estimate/comparison context and training insights for synthetic fixture."
+    }
+  ],
+  "runtime_notes": [
+    "All screenshots are automated browser captures with isolated in-memory APIs. Historical measured-looking records are synthetic fixtures, not actual exercise.",
+    "Active scenes are demos with accelerated time; no physical exertion, real-world FPS, actual sound experience or longitudinal enjoyment was measured.",
+    "Sensor smoke used mock BLE with actual realtime packet sampling, temporary SQLite restart and Garmin FIT decoding. Hardware BLE bike was previously confirmed by user; HR and ANT hardware were not tested here.",
+    "Tron has four explicit performance achievements. Existing Neon/Sky expedition cores are earned by accumulated on-target seconds; no random drops. Demo progress never contributes to saved real campaign.",
+    "The per-interval analysis modal was widened after first runtime pass; analysis images were recaptured against final width. New scene sector shots use current final build.",
+    "Current unit/backend suite100passing; sensor smoke19checks. Graphics use headless software WebGL2 fallback. No hardware performance benchmark is claimed."
+  ]
+}

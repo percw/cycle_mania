@@ -1,0 +1,393 @@
+{
+  "kind": "deterministic_rule_probes",
+  "date": "2026-09-30",
+  "ftp": 250,
+  "seconds": 1980,
+  "limitation": "Engine-only synthetic streams. Missing-data probe bypasses app auto-pause and is NOT an end-to-end BLE test. No claim of human enjoyment or measured hardware performance.",
+  "results": [
+    {
+      "scenario": "on_target",
+      "label": "Exactly prescribed target throughout",
+      "score": 8081,
+      "stars": 15,
+      "pulses": 165,
+      "bestCombo": 4,
+      "onTarget": 1980,
+      "observed": 1980,
+      "masteredBlocks": 2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 300,
+          "score": 1248,
+          "stars": 3,
+          "pulses": 25,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 2398,
+          "stars": 3,
+          "pulses": 50,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "recovery",
+          "seconds": 180,
+          "score": 788,
+          "stars": 3,
+          "pulses": 15,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 2398,
+          "stars": 3,
+          "pulses": 50,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 300,
+          "score": 1248,
+          "stars": 3,
+          "pulses": 25,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        }
+      ],
+      "careerFromOneRide": {
+        "level": 4,
+        "progress": 0.6383333333333333,
+        "remaining": 1519,
+        "title": "Utforsker"
+      }
+    },
+    {
+      "scenario": "gentle_variation",
+      "label": "Smooth variation within ±8% of target",
+      "score": 8081,
+      "stars": 15,
+      "pulses": 165,
+      "bestCombo": 4,
+      "onTarget": 1980,
+      "observed": 1980,
+      "masteredBlocks": 2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 300,
+          "score": 1248,
+          "stars": 3,
+          "pulses": 25,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 2398,
+          "stars": 3,
+          "pulses": 50,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "recovery",
+          "seconds": 180,
+          "score": 788,
+          "stars": 3,
+          "pulses": 15,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 2398,
+          "stars": 3,
+          "pulses": 50,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 300,
+          "score": 1248,
+          "stars": 3,
+          "pulses": 25,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        }
+      ],
+      "careerFromOneRide": {
+        "level": 4,
+        "progress": 0.6383333333333333,
+        "remaining": 1519,
+        "title": "Utforsker"
+      }
+    },
+    {
+      "scenario": "wide_variation",
+      "label": "Smooth variation within ±20% of target",
+      "score": 1284,
+      "stars": 0,
+      "pulses": 25,
+      "bestCombo": 1,
+      "onTarget": 659,
+      "observed": 1980,
+      "masteredBlocks": 0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 300,
+          "score": 174,
+          "stars": 0,
+          "pulses": 3,
+          "coverage": 1,
+          "targetFractionOfObserved": 0.33
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 400,
+          "stars": 0,
+          "pulses": 8,
+          "coverage": 1,
+          "targetFractionOfObserved": 0.333
+        },
+        {
+          "kind": "recovery",
+          "seconds": 180,
+          "score": 111,
+          "stars": 0,
+          "pulses": 2,
+          "coverage": 1,
+          "targetFractionOfObserved": 0.339
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 400,
+          "stars": 0,
+          "pulses": 8,
+          "coverage": 1,
+          "targetFractionOfObserved": 0.333
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 300,
+          "score": 199,
+          "stars": 0,
+          "pulses": 4,
+          "coverage": 1,
+          "targetFractionOfObserved": 0.33
+        }
+      ],
+      "careerFromOneRide": {
+        "level": 2,
+        "progress": 0.38,
+        "remaining": 1116,
+        "title": "Rekrutt"
+      }
+    },
+    {
+      "scenario": "overshoot",
+      "label": "Constant 125% of target",
+      "score": 0,
+      "stars": 0,
+      "pulses": 0,
+      "bestCombo": 0,
+      "onTarget": 0,
+      "observed": 1980,
+      "masteredBlocks": 0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 300,
+          "score": 0,
+          "stars": 0,
+          "pulses": 0,
+          "coverage": 1,
+          "targetFractionOfObserved": 0
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 0,
+          "stars": 0,
+          "pulses": 0,
+          "coverage": 1,
+          "targetFractionOfObserved": 0
+        },
+        {
+          "kind": "recovery",
+          "seconds": 180,
+          "score": 0,
+          "stars": 0,
+          "pulses": 0,
+          "coverage": 1,
+          "targetFractionOfObserved": 0
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 0,
+          "stars": 0,
+          "pulses": 0,
+          "coverage": 1,
+          "targetFractionOfObserved": 0
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 300,
+          "score": 0,
+          "stars": 0,
+          "pulses": 0,
+          "coverage": 1,
+          "targetFractionOfObserved": 0
+        }
+      ],
+      "careerFromOneRide": {
+        "level": 1,
+        "progress": 0,
+        "remaining": 600,
+        "title": "Rekrutt"
+      }
+    },
+    {
+      "scenario": "fatigue",
+      "label": "Work starts at target and linearly falls to 85%; other segments at target",
+      "score": 6295,
+      "stars": 9,
+      "pulses": 131,
+      "bestCombo": 4,
+      "onTarget": 1582,
+      "observed": 1980,
+      "masteredBlocks": 0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 300,
+          "score": 1248,
+          "stars": 3,
+          "pulses": 25,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 1505,
+          "stars": 0,
+          "pulses": 33,
+          "coverage": 1,
+          "targetFractionOfObserved": 0.668
+        },
+        {
+          "kind": "recovery",
+          "seconds": 180,
+          "score": 788,
+          "stars": 3,
+          "pulses": 15,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 1505,
+          "stars": 0,
+          "pulses": 33,
+          "coverage": 1,
+          "targetFractionOfObserved": 0.668
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 300,
+          "score": 1248,
+          "stars": 3,
+          "pulses": 25,
+          "coverage": 1,
+          "targetFractionOfObserved": 1
+        }
+      ],
+      "careerFromOneRide": {
+        "level": 4,
+        "progress": 0.2130952380952381,
+        "remaining": 3305,
+        "title": "Utforsker"
+      }
+    },
+    {
+      "scenario": "missing_data",
+      "label": "No data for seconds 20–29 in each minute, otherwise target",
+      "score": 6204,
+      "stars": 0,
+      "pulses": 137,
+      "bestCombo": 4,
+      "onTarget": 1650,
+      "observed": 1650,
+      "masteredBlocks": 0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "seconds": 300,
+          "score": 916,
+          "stars": 0,
+          "pulses": 20,
+          "coverage": 0.833,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 1903,
+          "stars": 0,
+          "pulses": 42,
+          "coverage": 0.833,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "recovery",
+          "seconds": 180,
+          "score": 566,
+          "stars": 0,
+          "pulses": 13,
+          "coverage": 0.833,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "work",
+          "seconds": 600,
+          "score": 1878,
+          "stars": 0,
+          "pulses": 41,
+          "coverage": 0.833,
+          "targetFractionOfObserved": 1
+        },
+        {
+          "kind": "cooldown",
+          "seconds": 300,
+          "score": 941,
+          "stars": 0,
+          "pulses": 21,
+          "coverage": 0.833,
+          "targetFractionOfObserved": 1
+        }
+      ],
+      "careerFromOneRide": {
+        "level": 4,
+        "progress": 0.19142857142857142,
+        "remaining": 3396,
+        "title": "Utforsker"
+      }
+    }
+  ]
+}

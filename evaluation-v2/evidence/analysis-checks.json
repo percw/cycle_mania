@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "checks": [
+    "measured summary prioritizes execution, honest datagaps and correctly mapped skipped intervals",
+    "no browser exceptions or console errors"
+  ],
+  "errors": [],
+  "fixtureNotes": "All API data isolated in memory. Three prior measured-looking rides are synthetic fixtures, not user records. Active rides are demos with accelerated time; no physical sensor test."
+}

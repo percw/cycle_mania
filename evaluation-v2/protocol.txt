@@ -1,0 +1,29 @@
+SUMMIT — ny evaluering med 20 syntetiske spillerprofiler
+Bestilt modell: gpt-5.6-sol. Én fersk agentkontekst per profil.
+
+Dette er en strukturert designevaluering utført av språkmodeller. Det er IKKE en menneskelig brukertest, målt spilleglede, fysisk treningsøkt, representativ undersøkelse eller prognose for kundelojalitet. Returvalg og reaksjoner over tid er hypoteser. Ikke oppgi oppdiktede personlige sanseinntrykk, fysisk anstrengelse, faktisk brukstid eller direkte sitater fra mennesker.
+
+UTEN INNSYN I TIDLIGERE DOMMER
+Les bare denne protokollen, din tildelte profil, evaluation-v2/evidence-manifest.json og filene som manifestets allowed_files eksplisitt angir. Ikke les evaluation/, evaluation-v2/players/ (unntatt din egen fil), report.*, ratings.csv, verdicts-frozen.json, andre agenters meldinger eller rotagentens syntese. Ikke gjør brede filsøk. Dersom du tilfeldigvis ser gamle eller andre spilleres vurderinger, oppgi contamination.disclosed=true, beskriv hva du så, og varsle rotagenten. En slik vurdering skal erstattes, ikke tas med i snittet.
+
+Samme appversjon og evidens deles med alle. Les manifestet før du vurderer. Åpne minst FIRE skjermbilder med view_image: aktiv Tron-scene, minst én annen aktiv verden, øktoppsummering/analyse og startside/progresjon. Mobilprofilen må i tillegg inspisere et mobilbilde. Manifestet beskriver hva hvert bilde faktisk viser. Les relevante kildefiler og runtime-resultater for å undersøke reglene. Skille mellom direkte synlig observasjon, kildekodestøttet funksjon og prediksjon. Kode er ikke bevis for at en fysisk sensor faktisk fungerer eller at en grafisk effekt ble sett i aksjon. Ingen nettleser, API-kall, sensorforbindelse, databaseendring, appendring eller nye agenter.
+
+VURDER HELE TRENINGSOPPLEVELSEN
+Følg den tildelte profilens prioriteringer gjennom første bruk, første intervall, restitusjon, tenkt minutt 20, analyse etter økten og vurderingen av en tredje økt. Undersøk hvordan Tron og de andre verdenene støtter en presis treningsøkt. Se etter om wattmål, segmenthopp, pause/gjenopptakelse, resultatlagring og analyse er forståelige. Skill spillpoeng fra fysisk prestasjon, FTP-anslag fra direkte måling, og automatisk testdata fra ekte historikk.
+
+Undersøk også hvorfor noe låses opp: er kriteriet synlig, deterministisk og knyttet til en dokumentert prestasjon? Kan overskipping, demo, manglende sensorverdier eller unødvendig høy effekt gi ufortjent fremdrift? Ikke anta at slike feil finnes; knytt påstander til konkret evidens. Vurder hvorvidt rolige økter og restitusjon er meningsfulle uten press om å overstyre planen. Tilfeldig pynt og prestasjonsbaserte milepæler er ulike ting. Vurder funn kritisk uten å tilpasse dommen til utviklerens ambisjoner.
+
+SKALA, HELTALL 1–7
+Samme ankre brukes for de seks historisk sammenlignbare nøklene first_fun, third_fun, agency, visuals, clarity og interval_fit:
+1 aktivt avvisende; 2 stort sett kjedelig/frustrerende; 3 svakt med enkelte lyspunkter; 4 blandet/tilstrekkelig; 5 engasjerende med tydelige mangler; 6 sterkt engasjerende; 7 eksepsjonelt/overbevisende.
+first_fun og third_fun er predikert trivsel, aldri faktisk opplevd trivsel. agency gjelder meningsfulle valg, visuals visuelt uttrykk og lesbarhet, clarity forståelighet, interval_fit samsvar med treningsplanen.
+
+Tre nye skårer oppgis separat under training_ratings, og må ikke sammenlignes numerisk med den gamle evalueringen:
+data_trust: Hvor godt støtter evidensen tillit til registrerte data og skillet mellom registrering, demo, poeng og anslag?
+analysis_usefulness: Hvor godt hjelper den synlige analysen denne profilen å forstå økten og utviklingen videre?
+unlock_fairness: Hvor forståelig, etterprøvbar og treningsrelevant er sammenhengen mellom prestasjon og opplåsing?
+For disse tre: 1 undergraver formålet; 2 store hull; 3 svak støtte; 4 blandet/tilstrekkelig; 5 nyttig med tydelige hull; 6 sterk støtte; 7 uvanlig tydelig og overbevisende støtte. Ukjent teknisk korrekthet skal beskrives som usikkerhet, ikke gjettes bort med høy eller lav skår.
+
+UTDATA
+Skriv kun evaluation-v2/players/NN.json og NN.txt, der NN er din tildelte id. Følg player-template.json/schema.json. evidence_manifest_sha256 skal være SHA-256 av manifestfilen du fikk. evidence minst fire konkrete oppføringer. journey skal inneholde alle seks stadier. Hver av de ni skårene trenger en kort begrunnelse under rating_reasons. training_data og performance_unlocks skal hver ha evidence, strengths, gaps og verdict. Foretrukket verden er tron|neon|sky|original|none. confidence er low|medium, aldri high. Ikke gi 20-minutters eller tredjeøktsreaksjoner basis observed.
+TXT: 200–400 ord på norsk med profilens dom, begrunnelse og viktigste forbedring. Ingen oppdiktede sitater. Rapporter til rotagenten når filene er skrevet. Ikke les andres filer etterpå.

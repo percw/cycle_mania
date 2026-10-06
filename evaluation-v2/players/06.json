@@ -1,0 +1,204 @@
+{
+  "id": "06",
+  "persona": "Tallnerden",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron-visningen viser watt, wattmål, intervallnavn og tidslinje tydelig, mens spillpoeng ligger skjult under Detaljer; demodata er eksplisitt merket.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon har samme treningskonsoll og en ekspedisjonsmåler, men den synlige spillprogresjonen forklarer ikke øktkvalitet like presist som analysen etterpå.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser et konkret veivalg med målte-sekunder-krav, samtidig som wattmål og neste treningssegment forblir lesbare.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden oppgir fire låsekrav med varighet, toleranse, datadekning og konkrete visuelle belønninger før første økt.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet, planlagt, hoppet over og gjenstående tid, viser 99 % wattdekning, 97 % måloppnåelse og varsler om ti sekunder datagap.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Hver blokk viser målt mot planlagt tid, snitteffekt mot mål og treffsikkerhet; ufullførte og umålte blokker står som delvise eller uten måling.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Visningen skiller wattrekorder, et eksplisitt øktbasert FTP-anslag, sammenligning mot tilsvarende økt og dokumenterte prestasjoner.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/analytics.ts",
+      "observation": "Koden krever sammenhengende målte prøver for effektrekorder, fyller ikke datagap, sammenligner bare tilstrekkelig like økter og merker 95 % av 20-minutterswatt som et anslag, ikke en FTP-test.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Opplåsinger beregnes fra lagrede, ikke-demo måleserier med minst 95 % dekning; poeng, tilfeldig trekk og rå overytelse inngår ikke i kriteriene.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/unit-tests.json",
+      "observation": "Den frosne testkjøringen har 100 av 100 beståtte tester, inkludert analyse av datagap, hopp, sammenlignbarhet, demoeksklusjon og prestasjonskrav.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 6,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Den direkte koblingen mellom wattmål, presisjon og en visuelt tydelig Tron-verden gir et sterkt førsteinntrykk for en datainteressert syklist, selv om selve styringen er enkel.",
+    "third_fun": "Sammenlignbare økter, rekorder og dokumenterte mål gir en returgrunn, men den langsiktige analysen er for grunn til å bære interessen alene.",
+    "agency": "Veivalg i Neon og Sky og valg av økt/verden gir noe innflytelse, mens Tron hovedsakelig belønner korrekt utførelse fremfor taktiske valg.",
+    "visuals": "Tre svært ulike, lesbare verdener og tydelige tilstandsmarkører gir sterk presentasjon uten at wattkonsollen forsvinner.",
+    "clarity": "Demo, spillpoeng, målt watt, FTP-anslag, hopp og datagap navngis eksplisitt, selv om progresjonslagene samlet kan kreve litt innlæring.",
+    "interval_fit": "Mål, nåværende blokk, neste blokk, pause og hopp er tydelige, og belønningen favoriserer planpresisjon også i restitusjon fremfor høyest mulig watt.",
+    "data_trust": "Målte prøver behandles konservativt, demoer og mangler ekskluderes, og FIT/database-kjeden er testet med mock-BLE; reell maskinvare og langtidshistorikk er likevel ikke validert her.",
+    "analysis_usefulness": "Per-blokk-dekning, målpresisjon, effektkurve og strengt sammenlignbare økter forklarer konkret hvorfor en økt var bedre, men flerukers trend, belastning og mer avansert effektprofil mangler.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og målingsbaserte, og hopp, demo og overytelse gir ingen snarvei; utvalget er begrenset til fire Tron-prestasjoner."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil sannsynligvis forstå verdiforslaget raskt fordi FTP, wattmål og låsekrav er synlige før start, men vil kontrollere at FTP er satt riktig.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Vil trolig følge wattavvik og målpresisjon mer enn poeng, og oppleve Tron-responsen som en motiverende sekundær bekreftelse.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Vil sannsynligvis verdsette at aktiv pause har eget wattmål og egen prestasjon, siden dette belønner planlojalitet fremfor unødvendig hard kjøring.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Forventes fortsatt å være engasjert av løpende presisjon og sektorendringer, men kan savne mer analytisk informasjon underveis enn poeng og combo.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Vil sannsynligvis bruke blokk-tabellen, datadekning og sammenligning aktivt for å finne om forbedringen skyldtes jevnere watt, bedre dekning eller mer fullført arbeid.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Vil trolig returnere for å etablere sammenlignbare data og låse kontinuitet, men etterlyse tydeligere flerøktskurver og belastningsutvikling.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Per-blokk-analyse med observert tid, snitteffekt, mål og treffsikkerhet",
+    "Streng sammenligning mot forrige tilsvarende økt ved samme FTP",
+    "Effektrekorder for 5 sekunder, 1, 5 og 20 minutter",
+    "Gjennomsiktige prestasjonskrav som belønner foreskrevet effekt og restitusjon"
+  ],
+  "frictions": [
+    {
+      "issue": "Langtidsanalysen er grunn for en profil som vil forstå FTP-utvikling og årsaker over tid.",
+      "evidence": "ProgressPanel viser primært snitteffekt for de siste tolv øktene og høyeste 20-minuttersanslag, uten belastningstrend, volum, power-duration-kurve eller periodefiltrering.",
+      "severity": "high",
+      "category": "analysis"
+    },
+    {
+      "issue": "FTP-anslaget kan være nyttig, men er ikke en direkte test eller trendmodell.",
+      "evidence": "analysis-comparison.png og analytics.ts merker anslaget som 95 % av beste sammenhengende 20 minutter og ber brukeren bekrefte med FTP-test.",
+      "severity": "medium",
+      "category": "training_data"
+    },
+    {
+      "issue": "Spillinteraksjonen gir begrenset analytisk eller taktisk kontroll under selve Tron-økten.",
+      "evidence": "tron-active.png viser en sterk responsiv scene, men brukerens sentrale handlinger er fortsatt å holde wattmålet, pause eller hoppe segment.",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "Prestasjonssystemet kan bli uttømt raskt for en datadrevet samler.",
+      "evidence": "tron-new-player.png og achievements.ts viser fire faste kriterier uten synlige nivåer, personlige terskler eller videre mestringssteg.",
+      "severity": "medium",
+      "category": "progression"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser syklet/planlagt tid, 99 % wattdekning, målpresisjon, hopp, gjenstående tid og eksplisitt datagap.",
+      "analysis-intervals.png fordeler målt tid, snitteffekt og treffsikkerhet per blokk uten å late som umålte blokker er gjennomført.",
+      "analytics.ts krever sammenhengende målepunkter for rekorder og tilstrekkelig like økter for sammenligning.",
+      "sensor-checks.json dokumenterer mock-BLE-pakker, lagrede prøver, SQLite-restart og validert FIT-eksport, men ikke en full fysisk maskinvaretest i denne evalueringen."
+    ],
+    "strengths": [
+      "Tydelig skille mellom demo, målinger, estimat og spillpoeng.",
+      "Datagap, pauser og hopp behandles eksplisitt og konservativt.",
+      "Sammenligning krever samme plan, FTP, hopp og omtrent samme utførelse.",
+      "FTP endres aldri automatisk fra et øktbasert anslag."
+    ],
+    "gaps": [
+      "Ingen rik flerukers analyse av belastning, volum, sonedistribusjon eller power-duration-utvikling.",
+      "Snitteffekt mellom ulike økter er synlig selv om teksten advarer mot direkte sammenligning.",
+      "Evidensen verifiserer ikke nøyaktighet mot fysisk kraftmåler eller langvarig datasynkronisering."
+    ],
+    "verdict": "Svært tillitvekkende behandling av enkeltøkter og sammenlignbarhet, men analyseflaten må bli dypere før den kan erstatte et dedikert treningsanalyseverktøy for denne profilen."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser alle fire krav og deres konkrete visuelle belønninger før de er oppnådd.",
+      "achievements.ts krever lagrede ikke-demoøkter, minst 95 % dekning og dokumenterte målsekunder.",
+      "achievements.test.ts, oppsummert i unit-tests.json, verifiserer at hopp, manglende telemetri, score og demo ikke kan gi opplåsing.",
+      "tron-sectors.json viser at en demo kan forhåndsvise Presisjon midlertidig uten å endre lagret historikk."
+    ],
+    "strengths": [
+      "Kriteriene er målbare, synlige og etterprøvbare.",
+      "Overdreven watt gir ingen fordel over å følge planen.",
+      "Restitusjon og kontinuitet får egne meningsfulle krav.",
+      "Midlertidig demofremdrift er adskilt fra permanent opplåsing."
+    ],
+    "gaps": [
+      "Bare fire prestasjoner gir begrenset langsiktig dybde.",
+      "Faste terskler gir få grader av mestring etter første opplåsing.",
+      "De synlige belønningene er kosmetiske og gir lite ny analyse eller treningsfunksjon."
+    ],
+    "verdict": "Rettferdig og faglig godt koblet til gjennomføring, med uvanlig få smutthull i evidensen; systemet trenger flere nivåer for å holde en tallnerd engasjert over tid."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Tron gjør dokumentert wattpresisjon til synlige, eksplisitte milepæler og holder spillpoeng sekundært til øktplanen, noe som passer profilens behov for målbar mening.",
+  "one_change": "Bygg en flerøkts analysevisning med power-duration-kurve, ukentlig volum og belastning, sonefordeling, FTP-estimathistorikk og forklarte endringer filtrert på sammenlignbare økter.",
+  "return_reason": "Ja: kombinasjonen av presis intervallutførelse, ærlig dataregnskap og sammenlignbare målinger gir en troverdig grunn til å samle flere økter.",
+  "counterargument": "En datanerd kan foretrekke et etablert analyseverktøy og oppleve verdener og kosmetiske belønninger som støy når den langsiktige statistikken fortsatt er enkel.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en gjennomført fysisk treningsøkt eller menneskelig brukertest.",
+    "Skjermbildene bruker syntetiske historikkdata og akselererte demoer.",
+    "Mock-BLE, programvare-WebGL og automatiske tester sier ikke sikkert hvordan fysisk målenøyaktighet, lyd, ytelse eller glede utvikler seg over tid.",
+    "Bare manifestets tillatte evidens ble vurdert."
+  ],
+  "summary": "SUMMIT er sterkest når det behandler wattdata med mer disiplin enn gamification vanligvis gjør: målte sekunder, mangler, hopp, estimater og poeng holdes fra hverandre. Tron gir dataene en tydelig visuell belønning, og analysen forklarer en enkelt økt godt. For Tallnerden er den største mangelen en rikere flerøktsmodell som kan vise hvorfor form og FTP faktisk utvikler seg over uker."
+}

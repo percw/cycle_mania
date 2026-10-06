@@ -1,0 +1,102 @@
+[
+  {
+    "id": "01",
+    "name": "Konkurransesyklisten",
+    "profile": "Erfaren Zwift- og landeveissyklist. Motiveres av rettferdig konkurranse, personlige rekorder og presise 4x10-minutters terskeløkter. Skeptisk til poeng uten sportslig mening."
+  },
+  {
+    "id": "02",
+    "name": "Den ferske mosjonisten",
+    "profile": "Lite erfaring med watt, FTP eller dataspill. Vil klare 20–30 minutter uten å bli overveldet. Trenger enkel forklaring og en følelse av mestring."
+  },
+  {
+    "id": "03",
+    "name": "Actionspilleren",
+    "profile": "Spiller Hades, Doom og raske actionspill. Forventer tydelig respons, meningsfulle valg og variasjon. Tester 30/30-intervaller; pynt alene holder ikke."
+  },
+  {
+    "id": "04",
+    "name": "Utforskeren",
+    "profile": "Liker Journey, Zelda og oppdagelse. Velger Skybound og en lang rolig tur. Vil finne nye steder og hemmeligheter, ikke optimalisere poeng."
+  },
+  {
+    "id": "05",
+    "name": "Den travle forelderen",
+    "profile": "Har 25 minutter mellom gjøremål, er allerede oppvarmet og vil starte umiddelbart. Avbrytelser og enkel gjenopptakelse er avgjørende."
+  },
+  {
+    "id": "06",
+    "name": "Tallnerden",
+    "profile": "Liker treningsanalyse, FTP-utvikling og sammenlignbare data. Vil skille faktiske wattprestasjoner fra spillpoeng, og forstå hvorfor en økt var bedre."
+  },
+  {
+    "id": "07",
+    "name": "Rytmespilleren",
+    "profile": "Spiller Beat Saber og rytmespill, motiveres av timing, musikk og flyt. Prøver korte intervaller og forventer at visuelle og hørbare belønninger kjennes synkroniserte."
+  },
+  {
+    "id": "08",
+    "name": "Langturssyklisten",
+    "profile": "Sykler 60–90 minutter i sone 2. Tåler rolig tempo, men ønsker landskapsvariasjon og en grunn til å bli i appen fremfor å se en serie."
+  },
+  {
+    "id": "09",
+    "name": "Den visuelle entusiasten",
+    "profile": "Har en kraftig gaming-PC og elsker Forza, høy fart, kameraarbeid og spektakulære verdener. Bedømmer særlig romfølelse, lesbarhet og presentasjon."
+  },
+  {
+    "id": "10",
+    "name": "Mobilbrukeren",
+    "profile": "Bruker en 390px mobilskjerm på styret, svette fingre og kort blikkavstand. Vil raskt se neste drag, wattmål og skippe oppvarming."
+  },
+  {
+    "id": "11",
+    "name": "Den rolige brukeren",
+    "profile": "Foretrekker lav visuell belastning, ro og enkel informasjon. Neon og mange blinkende belønninger kan oppleves slitsomt. Vil ha et behagelig alternativ."
+  },
+  {
+    "id": "12",
+    "name": "Prestasjonssamleren",
+    "profile": "Liker achievements, samlinger, opplåsinger og langsiktig progresjon i PC-spill. Vil se hva dagens tur åpner og hva neste tydelige milepæl er."
+  },
+  {
+    "id": "13",
+    "name": "Den sosiale spilleren",
+    "profile": "Spiller helst med venner og kjenner Zwifts gruppeturer. Prøver dette som singleplayer og vil se om en personlig rival kan erstatte noe av det sosiale."
+  },
+  {
+    "id": "14",
+    "name": "Veteranen på eldre laptop",
+    "profile": "Bruker eldre laptop og en sykkel med ustabil BLE. Vil ha lav friksjon, gjenkobling, stabile kontroller og en scene som ikke distraherer fra økten. Ikke anta målte maskinytelser."
+  },
+  {
+    "id": "15",
+    "name": "Den utålmodige nyhetssøkeren",
+    "profile": "Blir fort lei rutiner og hopper mellom spill. Gir appen fem minutter til å vise noe overraskende. Prøver Neon, Skybound og en originalverden."
+  },
+  {
+    "id": "16",
+    "name": "Den disiplinerte intervallutøveren",
+    "profile": "Trener målrettet 2x20 min terskel. Vil at spillreglene støtter jevn effekt, oppvarming og restitusjon. Misliker insentiver til å sprenge planen."
+  },
+  {
+    "id": "17",
+    "name": "Den usikre tilbakevendende",
+    "profile": "Kommer tilbake til trening etter en lang pause uten medisinske forutsetninger. Trenger toleranse for feil, oppmuntring og små realistiske fremskritt. Rangering og tap av combo kan demotivere."
+  },
+  {
+    "id": "18",
+    "name": "Strategispilleren",
+    "profile": "Liker Slay the Spire og strategispill. Ønsker valg, avveininger og bygging av en egen spillestil. Er åpen for enkel styring fra sykkel, men vil ha mer enn passiv kjøring."
+  },
+  {
+    "id": "19",
+    "name": "Den målbevisste morgenmosjonisten",
+    "profile": "Vil bygge en vane med tre økter i uken, starter trøtt og ønsker lav friksjon. Er fornøyd med enkel underholdning dersom progresjon og neste økt er tydelig."
+  },
+  {
+    "id": "20",
+    "name": "Den skeptiske testeren",
+    "profile": "Har prøvd mange treningsapper og mistenker at gamification bare er tall over en skjermsparer. Vil bli overbevist av faktisk interaksjon, variasjon og en grunn til å komme tilbake."
+  }
+]

@@ -1,0 +1,197 @@
+{
+  "id": "02",
+  "persona": "Den ferske mosjonisten",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden viser et tydelig 20-minutters lettvalg og en stor startknapp, men også FTP, wattmål, fire prestasjonskrav, flere verdener og mange økter på samme flate.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Den aktive konsollen prioriterer aktuell watt, wattmål, tekstlig målstatus, gjenværende tid og neste del, mens spilldetaljer ligger under en detaljkontroll.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound har en lys, rolig verden og et avgrenset veivalg mellom Gjenreis og Utforsk, med automatisk fortsettelse etter 12 sekunder.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon viser tydelig oppdragsfremdrift og en visuelt sterk by, men tilfører samtidig flere tellere og begreper til øktvisningen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet, planlagt, hoppet over, gjenstående og manglende måledata, og viser målt watt mot mål.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Resultatsiden forklarer FTP som et øktbasert anslag, viser rekordvinduer og sammenligner måloppnåelse med en tidligere tilsvarende økt.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/RideConsole.tsx",
+      "observation": "Konsollen oversetter avvik til «Litt mer kraft» og «Senk kraften», har pause, neste segment og egen knapp for ferdig oppvarming.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "De fire Tron-belønningene beregnes fra lagrede, ikke-demo målesekunder, datadekning og måloppnåelse; rå watt og spillpoeng er ikke kriterier.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/sensor-checks.json",
+      "observation": "Mock-BLE-kontrollen dokumenterer start fra ett klikk, pause ved avbrudd, korrekt lagring etter hopp og analyse før spillbelønninger, men er ikke en fysisk test med denne profilen.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 4,
+    "third_fun": 5,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 4,
+    "interval_fit": 5
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 4,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Den korte lettøkten, sterke verdenen og konkrete livebeskjeder kan gi tidlig mestring, men ukjent FTP og den tette startsiden kan gjøre første valg usikkert.",
+    "third_fun": "Skybound-veivalg, synlig verdensprogresjon og små prestasjonsmål gir en grunn til å prøve igjen, selv om grunnhandlingen fortsatt mest er å holde et wattmål.",
+    "agency": "Brukeren velger verden, økt, pause, hopp og ekspedisjonsretning, men syklingen har få beslutninger utenfor de korte veiskillene i Neon og Skybound.",
+    "visuals": "Tron, Neon og Skybound er tydelig forskjellige, polerte og lesbare; særlig Skybound gir denne profilen et vennlig og mindre teknisk uttrykk.",
+    "clarity": "Livevisningen forklarer kraftjustering enkelt, men startsiden introduserer FTP, watt, prestasjoner, nivåer og mange økter før en nybegynner har fått hjelp til å kalibrere målet.",
+    "interval_fit": "Et fremhevet 20-minutters lettalternativ passer tidsønsket, og pause, segmenthopp og oppvarmingshopp gir fleksibilitet; riktig belastning avhenger likevel av en meningsfull FTP-verdi.",
+    "data_trust": "Demo merkes, hopp og datagap holdes utenfor syklet tid, og tester støtter lagring og sensorregler; tilliten begrenses av at evidensen bruker mock-BLE og syntetiske data.",
+    "analysis_usefulness": "Analysen er ærlig og detaljert, men wattdekning, treffsikkerhet, rekordvinduer og FTP-anslag krever mer forklaring enn denne profilen sannsynligvis ønsker etter første økt.",
+    "unlock_fairness": "Kravene er synlige, målbare og belønner tid nær planen fremfor ekstra kraft; demo, manglende data og hopping kan ikke gi permanent prestasjonsfremdrift."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil sannsynligvis velge 20 minutter lett og forstå startknappen, men kan stoppe ved spørsmålet om 250 W FTP er riktig.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Vil trolig mestre styringen fordi skjermen sier om kraften skal opp eller ned og viser neste del tydelig.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Kan oppleve at rolig sykling fortsatt teller, siden målområdet og ekspedisjonsfremdriften bruker samme kontrollerte logikk som arbeidsdelene.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "En 20-minutters lettøkt er ferdig omtrent her og kan gi en passende første seier; i lengre økter kan den begrensede handlingen begynne å føles repetitiv.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Vil forstå hovedbudskapet om tid og måloppnåelse, men kan overse den tette tabellen og være usikker på hva FTP-anslaget betyr for neste økt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Kan komme tilbake for å åpne første landemerke eller nå et enkelt Tron-krav dersom appen først har hjulpet med et trygt startnivå.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Fremhevet 20-minutters lettøkt",
+    "Tekstlig mer eller mindre kraft i stedet for bare tall",
+    "Rolig Skybound-verden med små, forståelige veivalg",
+    "Første landemerke kan åpnes på første ekte tur"
+  ],
+  "frictions": [
+    {
+      "issue": "Ingen synlig nybegynnerflyt hjelper brukeren å velge eller anslå FTP før wattmålene tas i bruk.",
+      "evidence": "tron-new-player.png viser «250 W din FTP» og lenken «Sett din FTP», mens appteksten bare forklarer FTP som terskeleffekt.",
+      "severity": "high",
+      "category": "onboarding"
+    },
+    {
+      "issue": "Startsiden viser flere parallelle systemer før første økt.",
+      "evidence": "tron-new-player.png viser fire prestasjoner, fire verdenskort, tre hurtigøkter, nivå og ukesstatus samtidig.",
+      "severity": "medium",
+      "category": "clarity"
+    },
+    {
+      "issue": "Etteranalysen er mer teknisk enn handlingsrettet for en nybegynner.",
+      "evidence": "analysis-overview.png og analysis-comparison.png viser datadekning, ±10 %, rekordvinduer og FTP-anslag uten ett enkelt forslag til neste økt.",
+      "severity": "medium",
+      "category": "analysis"
+    },
+    {
+      "issue": "Meningsfulle handlinger underveis er begrenset.",
+      "evidence": "RideConsole.tsx tilbyr pause og hopp; aktive Skybound/Neon-bilder viser de viktigste spillvalgene som et todelt veiskille.",
+      "severity": "low",
+      "category": "agency"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "SessionAnalysis.tsx viser syklet mot planlagt tid, datadekning, datagap, hopp og treffsikkerhet bare for målte sekunder.",
+      "sensor-checks.json dokumenterer lagring av faktiske sensorprøver, planposisjoner etter hopp, pausehåndtering og FIT-dekoding i et isolert mock-oppsett.",
+      "ProgressPanel.tsx merker FTP som et anslag fra 20 sammenhengende målte minutter og endrer ikke FTP automatisk."
+    ],
+    "strengths": [
+      "Demo og ekte målinger skilles tydelig.",
+      "Manglende data blir ikke fylt med null eller godkjente sekunder.",
+      "Hopp og pauser blåser ikke opp syklet tid.",
+      "Spillpoeng beskrives separat fra treningsutvikling."
+    ],
+    "gaps": [
+      "Sensorbeviset bygger på mock-BLE, ikke en fysisk økt med profilen.",
+      "Nybegynneren får lite hjelp til å kontrollere om start-FTP og dermed alle wattmål er realistiske.",
+      "Analysen forklarer målekvalitet bedre enn den forklarer hva brukeren bør gjøre neste gang."
+    ],
+    "verdict": "Datamodellen virker uvanlig ærlig og godt avgrenset, men en fersk mosjonist trenger en enklere inngang til FTP og én tydelig anbefaling etter økten."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "AchievementBoard oppgir eksakte krav til målte minutter, målprosent og datadekning.",
+      "achievements.ts filtrerer demoer og krever lagrede målinger; tester bekrefter at hopp, rå watt, poeng og manglende data ikke kan kvalifisere.",
+      "expedition.ts gir bare fremdrift ved fersk effekt innenfor ±10 % av målet og teller bare lagrede ekte ekspedisjoner i kampanjen."
+    ],
+    "strengths": [
+      "Kriteriene er synlige før økten.",
+      "Å tråkke hardere enn planen gir ingen snarvei.",
+      "Rolig kontroll og aktive pauser kan gi meningsfull fremdrift.",
+      "Demoen kan forhåndsvise belønninger uten å lagre dem."
+    ],
+    "gaps": [
+      "Presisjon på minst 90 % og 95 % datadekning kan føles strengt før brukeren forstår wattstyring.",
+      "Tron-kortene bruker treningsbegreper som «arbeidsdrag» og «aktive pauser» uten nybegynnerforklaring.",
+      "Ekspedisjonsopplåsinger er rettferdige, men forbindelsen mellom hvert korte portoppdrag og den langsiktige verdenen kan kreve noen økter å forstå."
+    ],
+    "verdict": "Opplåsingene er etterprøvbare og treningsrelevante. De vil motivere bedre dersom første mål presenteres som en guidet, oppnåelig nybegynneroppgave."
+  },
+  "preferred_world": "sky",
+  "world_reason": "Skybound har den roligste og mest inviterende presentasjonen, og valget mellom å gjenreise og utforske gir enkel mestring uten Trons prestasjonstunge uttrykk.",
+  "one_change": "Lag en obligatorisk førstegangsveiviser som forklarer watt med vanlig språk, hjelper brukeren å sette et forsiktig startnivå og starter én anbefalt 20-minutters Skybound-økt.",
+  "return_reason": "Retur er sannsynlig hvis første økt føles lett nok og åpner et konkret landemerke; uten hjelp til riktig FTP kan feil wattmål gjøre at mestringsfølelsen uteblir.",
+  "counterargument": "En motivert nybegynner kan bruke demoturen, velge den fremhevede lettøkten og følge de svært tydelige livebeskjedene uten å forstå all statistikken med en gang.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en gjennomført menneskelig treningsøkt.",
+    "Skjermbildene bruker demoer og syntetiske historikkdata.",
+    "Sensorflyten er kontrollert med mock-BLE; faktisk maskinvare, lyd, fysisk belastning og ytelse ble ikke opplevd eller målt.",
+    "Langtidsmotivasjon og reaksjonen på tredje økt er hypoteser."
+  ],
+  "summary": "SUMMIT kan gi en fersk mosjonist en visuelt sterk og ærlig første treningsopplevelse, særlig med den fremhevede 20-minutters lettøkten og Skybounds små veivalg. Den største risikoen er at appen krever et meningsfullt FTP-tall før den har lært brukeren hva tallet betyr eller hjulpet med et trygt utgangspunkt."
+}

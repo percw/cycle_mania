@@ -1,0 +1,11 @@
+Spiller 16 – Den disiplinerte intervallutøveren
+
+Dette er en syntetisk vurdering, ikke en menneskelig prøveøkt. For denne personaen treffer SUMMIT uvanlig godt på selve treningsplanen. Startskjermen gjør 2 × 20 min terskel lett å finne, med 98 % FTP og 60 minutters total varighet. Koden bekrefter ti minutters oppvarming, to 20-minutters drag, fem minutter aktiv pause og fem minutters nedkjøring. Derfor får intervalltilpasning 7 av 7.
+
+Den aktive HUD-en er sterk: målwatt, faktisk watt, gjenværende tid, øktprofil og sonestatus kan leses uten å tolke en abstrakt spillmekanikk. Neon-bildet viser 125 W mot 128 W og 100 % presisjon; Skybound viser 245 W mot 239 W. I pausen sier systemet uttrykkelig at rolig kraft lader like mye. Regelproben underbygger dette: foreskrevet restitusjon får full belønning, mens konstant 125 % av målet gir null poeng. Dette er akkurat riktig insentiv for en utøver som ikke vil lokkes til å sprenge planen. Klarhet får 6, og handlefrihet 5: det finnes mange økter, FTP-innstilling, pause, segmenthopp og verdensvalg, men selve langtidsinteraksjonen er i hovedsak å holde wattmålet.
+
+Førstegleden vurderes til 5. De to aktive verdenene er tydelig forskjellige og visuelt gjennomarbeidet, så det visuelle får 6. Jeg ville likevel valgt den opprinnelige Fjordveien: den rolige, klassiske innrammingen virker best egnet til to lange drag. Dette er en prognose fordi aktiv Fjord-scene ikke finnes i det inspiserte skjermmaterialet.
+
+Den viktigste svakheten er treningspresisjon. Eksakt mål og jevn variasjon innen ±8 % får identisk toppresultat, fordi treffet er binært innen ±10 %. Dessuten sendes siste øyeblikkelige wattverdi til spillet uten rullerende snitt. Det kan belønne et bølgende drag og gjøre tilbakemeldingen mer urolig enn en disiplinert terskelutøver ønsker. Høyeste prioritet er derfor en valgfri «jevn effekt»-modus med gradert presisjon basert på 3-sekunders snitteffekt.
+
+Forventet glede i en tredje økt er 5. Jeg forventer at personaen vender tilbake, først og fremst fordi øktoppskriften, pausene og overkjøringsstraffen støtter en eksisterende rutine. Personlig rekord og historikk kan holde sammenligningen relevant; spillvariasjonen alene er neppe nok over tid.

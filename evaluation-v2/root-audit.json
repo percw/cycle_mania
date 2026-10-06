@@ -1,0 +1,257 @@
+{
+  "status": "complete",
+  "requested_model": "gpt-5.6-sol",
+  "fresh_contexts": true,
+  "source_and_build_frozen_before_players": true,
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "verdict_edits_by_root": false,
+  "history_comparison_withheld_until_complete": true,
+  "notes": [
+    "Player03 disclosed a directory listing exposing report filenames only; no report or verdict contents were read. Retained because names contain no evaluative information. No ratings or conclusions were shared with other players.",
+    "All automated exercise records are isolated synthetic fixtures. User database receives no fixture rides.",
+    "UI regression software WebGL input acknowledgement exceeded30seconds; rerun grants60seconds without bypassing assertions or changing app code.",
+    "UI15cases passed after timing assertions were changed from fixed20second cutoff to observed wall-time bounds, plus explicit virtual advance. App code and frozen evidence unchanged.",
+    "Mobile player10 cites the active Tron mobile screenshot, which satisfies both mobile and active_tron content requirements. All20 pairs pass 200–400word and required cited screenshot category checks."
+  ],
+  "build_hashes_unchanged": true,
+  "factual_clarifications": [
+    {
+      "player_id": "13",
+      "claim": "Ghost is only a HUD delta with no in-world rival.",
+      "correction": "NeonWorld, SkyWorld and TronWorld all render a 3D ghost when a recorded personal-best score supplies ghostDelta. The active screenshots do not establish that this conditional ghost was visible. Its position is based on game-score difference, not measured route/time replay; no social group or friends mode exists.",
+      "source": [
+        "src/TronWorld.tsx:214",
+        "src/TronWorld.tsx:248",
+        "src/NeonWorld.tsx:365",
+        "src/NeonWorld.tsx:432",
+        "src/SkyWorld.tsx:406",
+        "src/SkyWorld.tsx:467",
+        "src/App.tsx:980"
+      ],
+      "verdict_changed": false,
+      "ratings_changed": false,
+      "correction_nb": "Profilen beskriver ghost som bare en tallforskjell i HUD. Neon, Sky og Tron har også en 3D-ghost når en lagret personlig rekord gir sammenligningsdata. Bildene dokumenterer ikke at denne betingede ghosten var synlig. Posisjonen følger forskjell i spillpoeng, ikke en målt reprise av avstand eller tid. Kritikken av manglende sosial gruppesykling er fortsatt riktig."
+    }
+  ],
+  "completed_players": 20,
+  "verdict_pairs_schema_valid": true,
+  "protocol_checks": [
+    {
+      "id": "01",
+      "words": 259,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "02",
+      "words": 273,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "03",
+      "words": 308,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "04",
+      "words": 278,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "05",
+      "words": 286,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "06",
+      "words": 240,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "07",
+      "words": 272,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "08",
+      "words": 250,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "09",
+      "words": 268,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "10",
+      "words": 264,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "mobile",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "11",
+      "words": 235,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "12",
+      "words": 249,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "13",
+      "words": 271,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "14",
+      "words": 257,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "15",
+      "words": 278,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "16",
+      "words": 285,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "17",
+      "words": 304,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "18",
+      "words": 263,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "19",
+      "words": 268,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    },
+    {
+      "id": "20",
+      "words": 286,
+      "cited_image_categories": [
+        "active_other",
+        "active_tron",
+        "launcher_or_progression",
+        "result_or_analysis"
+      ]
+    }
+  ],
+  "verdicts_frozen_before_comparison": true,
+  "completed_at": "2026-10-03T20:39:36.652340+00:00",
+  "report_browser_checks": {
+    "ok": true,
+    "checks": [
+      "20valid scenarios",
+      "all20cards displayed",
+      "persona search",
+      "return filter exact count",
+      "detail expansion",
+      "390px no horizontal overflow",
+      "zero browser errors"
+    ],
+    "errors": []
+  },
+  "screenshots_visually_reviewed": true
+}

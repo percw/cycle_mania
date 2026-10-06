@@ -1,0 +1,198 @@
+{
+  "id": "16",
+  "persona": "Den disiplinerte intervallutøveren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron-visningen viser aktuell effekt, wattmål, statusen «I målområdet», gjenværende tid, neste segment og en samlet øktprofil samtidig.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden tilbyr 2 × 20 min og forklarer fire låste Tron-prestasjoner med konkrete krav til målte minutter, presisjon, datadekning og treningsdager.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon gir en visuelt tydelig alternativ verden, men hovedinteraksjonen i bildet er fortsatt å følge wattmålet og øktprofilen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser et tidsavgrenset veivalg mellom gjenreisning og utforsking uten å skjule wattmål, segmenttid eller pausekontroll.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller 30:00 syklet fra 64:00 planlagt, 10:00 hoppet over, 24:00 gjenstående og 10 sekunder uten gyldig watt; spillpoeng står ikke som mål på gjennomføring.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Per-del-tabellen viser målt tid, planlagt tid, snitteffekt, mål og treffsikkerhet separat for arbeidsdrag og aktive pauser.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Sammenligningen merker FTP-tallet som et øktbasert anslag, viser 5 s til 20 min rekorder og knytter dokumenterte prestasjoner til presisjon og datadekning.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "2 × 20 terskel er definert som to 20-minutters drag på 98 % FTP, med ti minutters oppvarming, fem minutters aktiv pause og fem minutters nedkjøring.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Spillpoeng og combo bygges bare innenfor 90–110 % av målet; effekt over øvre grense klassifiseres som høy og gir ikke poengprogresjon.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Varige prestasjoner krever lagrede, ikke-demo økter med minst 95 % datadekning; hoppet tid, rå watt og spillpoeng kan ikke alene oppfylle kravene.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 4,
+    "visuals": 5,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 6,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Tron gir umiddelbar, lesbar belønning for kontrollert effekt og gjør et langt terskeldrag mer levende uten å premiere et rykk over planen.",
+    "third_fun": "Dokumenterte visuelle milepæler og sammenligning med tilsvarende økter gir en troverdig returgrunn, men selve kjøringen er fortsatt mest målholding.",
+    "agency": "Valg av økt og verden, pause, hopp og Sky/Neon-veivalg gir kontroll, mens Tron under 2 × 20 har få meningsfulle beslutninger utover pacing.",
+    "visuals": "Tron, Neon og Skybound er distinkte og polerte, med en svært lesbar konsoll; store overlegg og mye skjermaktivitet kan likevel konkurrere med fokus på lange drag.",
+    "clarity": "Nåeffekt, mål, målstatus, tid, neste segment og øktprofil er samlet, og demo, spillpoeng, målt progresjon og FTP-anslag merkes tydelig forskjellig.",
+    "interval_fit": "Den konkrete 2 × 20-planen har riktig struktur, og overskyting belønnes ikke; ±10 % er likevel et bredt målområde for en utøver som vil trene svært jevnt.",
+    "data_trust": "Kilde og tester skiller målte samples, datagap, pause, hopp, demo, spillpoeng og estimater; evidensen verifiserer ikke en full fysisk 2 × 20 med brukerens utstyr.",
+    "analysis_usefulness": "Per-drag dekning, snitt, mål og treffsikkerhet samt historisk sammenligning gjør økten handlingsrettet, men mangler variasjon/fade innen og mellom de to lange dragene.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og målingsbaserte, med dekning og demoavgrensning; noen terskler er brede og kan nås uten å dokumentere en full 2 × 20."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Profilen vil sannsynligvis velge den synlige 2 × 20-økten og Tron fordi både wattmål og prestasjonskrav er konkrete før start.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Klar effektstatus og nedtelling vil trolig støtte kontrollert åpning, mens combo gir en ekstra grunn til å unngå både under- og overskyting.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Den aktive pausen vil oppleves som en del av oppgaven fordi den har eget mål og en egen dokumentert Pausekontroll-prestasjon.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Etter tjue minutter vil visuell fremdrift og presis tid hjelpe utholdenheten, men den enkle målsonen kan føles mindre informativ enn ønsket om helt jevn terskeleffekt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Profilen vil trolig verdsette per-drag-regnskapet og at hopp, datagap og FTP-estimat forklares, men savne en tydelig sammenligning av første og andre 20-minuttersdrag.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Tre dokumenterte dager og sammenlignbare økter gir en sannsynlig returgrunn, så lenge den visuelle progresjonen fortsetter å speile planlojalitet fremfor høyest mulig watt.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "2 × 20 terskel finnes som en eksplisitt plan på 98 % FTP.",
+    "Spillresponsen belønner jevn effekt og stopper når watt ligger over målområdet.",
+    "Arbeidsdrag og aktive pauser analyseres hver for seg.",
+    "Tron-endringer er koblet til dokumentert presisjon, varighet, pausekontroll og kontinuitet."
+  ],
+  "frictions": [
+    {
+      "issue": "Målområdet på ±10 % er bredt for presis terskeltrening og skjuler variasjon innenfor sonen.",
+      "evidence": "src/game.ts og src/analytics.ts bruker samme 90–110 %-grense for treff og treffsikkerhet.",
+      "severity": "medium",
+      "category": "feedback"
+    },
+    {
+      "issue": "Etteranalysen viser ikke fade eller effektvariasjon mellom de to 20-minuttersdragene som en egen konklusjon.",
+      "evidence": "evaluation-v2/evidence/analysis-intervals.png viser snitt og treff per del, men ingen variasjonsmål eller eksplisitt drag-mot-drag-fall.",
+      "severity": "medium",
+      "category": "analysis"
+    },
+    {
+      "issue": "Flere prestasjoner kan låses opp tidlig uten at hele 2 × 20-økten er gjennomført.",
+      "evidence": "src/achievements.ts krever fem arbeidsminutter for Presisjon og tjue målte målsekund-minutter for Utholdenhet, ikke fullføring av begge terskeldrag.",
+      "severity": "low",
+      "category": "fairness"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png skiller syklet, hoppet, gjenstående og manglende måletid.",
+      "analysis-intervals.png viser målt/planglagt tid, snitt/mål og treff per blokk.",
+      "analytics.ts krever sammenhengende målinger for 20-minuttersverdi og kaller FTP-resultatet et anslag, ikke en test.",
+      "sensor-checks.json dokumenterer lagring av ferske BLE-pakker, planposisjoner, pauser, datagap og FIT-eksport i et mock-oppsett."
+    ],
+    "strengths": [
+      "Demo og ekte historikk holdes adskilt.",
+      "Hopp og pauser blåser ikke opp syklet tid.",
+      "Arbeid og restitusjon har separate treffsikkerhetsmål.",
+      "Sammenligning krever samme plan, FTP, hoppmønster og høy datadekning."
+    ],
+    "gaps": [
+      "Ingen dokumentert fysisk 2 × 20 med faktisk bruker og sykkel.",
+      "Ingen variabilitetsindeks, effektfade eller eksplisitt sammenligning mellom drag 1 og 2.",
+      "Puls og kadens vises live, men inngår ikke tydelig i den viste etteranalysen."
+    ],
+    "verdict": "Datamodellen er svært godt tilpasset disiplinert planutførelse og forklarer usikkerhet ærlig; analysen trenger ett ekstra lag for å vurdere jevnheten i lange terskeldrag."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser alle fire krav og belønninger før de er opptjent.",
+      "achievements.ts krever ikke-demo, lagrede målinger, minst 95 % dekning og eksplisitt måloppnåelse.",
+      "achievements.test.ts dokumenterer at hoppet tid, rå watt, demo og målegap ikke kan gi prestasjonene.",
+      "expedition.ts fastslår at overskuddswatt ikke gir raskere progresjon i Neon og Skybound."
+    ],
+    "strengths": [
+      "Ingen gevinst ved å sprenge wattplanen.",
+      "Kriteriene er synlige og etterprøvbare.",
+      "Kontrollert restitusjon belønnes direkte.",
+      "Midlertidig live-forhåndsvisning blir ikke permanent før en ekte målt økt lagres."
+    ],
+    "gaps": [
+      "Presisjon og utholdenhet dokumenterer delmål, ikke fullført 2 × 20.",
+      "Den brede ±10 %-sonen kan belønne en ujevn terskelgjennomføring.",
+      "Bare fire Tron-prestasjoner gir begrenset langsiktig differensiering for en målrettet utøver."
+    ],
+    "verdict": "Opplåsingene er rettferdige og treningsrelevante fordi kontroll slår rå effekt, men de bør også ha en milepæl for komplett, jevn 2 × 20-gjennomføring."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Tron knytter de synlige endringene mest direkte til presisjon, aktiv restitusjon og dokumentert kontinuitet, som passer bedre enn ekspedisjonsvalg for denne profilen.",
+  "one_change": "Legg til et eget 2 × 20-kvalitetskort og en opplåsing som krever begge drag fullført med høy datadekning, smalere avvik og liten effektfade mellom dragene.",
+  "return_reason": "Ja, fordi appen gjør planlojalitet til selve spillregelen og gir en troverdig analyse etterpå; returen avhenger av at langtidsprogresjonen fortsetter å måle kvaliteten på hele terskeløkten.",
+  "counterargument": "En ±10 %-sone kan være bevisst tolerant for sensorer og dagsform, og per-blokk-snittet lar allerede en erfaren utøver sammenligne dragene manuelt.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en gjennomført fysisk økt eller menneskelig brukertest.",
+    "Skjermbildene bruker syntetiske historikkdata og akselererte demoøkter.",
+    "BLE-røykprøven brukte mock-telemetri; maskinvareytelse og langvarig sensorkvalitet er ikke dokumentert her.",
+    "Lyd, faktisk anstrengelse og trivsel etter tre økter er ikke observert."
+  ],
+  "summary": "SUMMIT passer denne profilen godt: 2 × 20-planen er konkret, overskyting lønner seg ikke, restitusjon teller som ferdighet, og analysen skiller måling fra spill. Den viktigste mangelen er at «jevn» effekt reduseres til en bred ±10 %-grense uten en tydelig vurdering av variasjon og fade gjennom begge lange drag."
+}

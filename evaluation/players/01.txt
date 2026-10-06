@@ -1,0 +1,11 @@
+SUMMIT – syntetisk evaluering for persona 01: Konkurransesyklisten
+
+Denne rytteren vil sannsynligvis få en god første økt. Forsiden gjør den foretrukne 4 × 10-minutters terskeløkten lett å finne og viser både 98 % FTP, 64 minutter og 245 W. Under økten er målwatt, faktisk effekt, gjenværende tid og øktprofil tydelige. Neon Rush er visuelt den sterkeste verdenen for denne personaen: byen formidler fart, og den personlige ghosten gir en relevant form for selvkonkurranse. Skybound har større miljøkontrast, men passer svakere til ønsket om et konkurransepreget uttrykk. Fjordveien kan være et roligere alternativ, men tilgjengelig bevis viser ikke en aktiv Fjord-scene.
+
+Vurderingene er 5/7 for førstegangs moro, 4/7 for forventet moro i tredje økt, 4/7 for agens, 6/7 for visuelt uttrykk, 6/7 for tydelighet og 6/7 for intervalltilpasning. Førsteinntrykket løftes av en polert scene og svært lesbar treningsinformasjon. Intervalltilpasningen er sterk fordi arbeidsdrag og aktive pauser har egne wattmål, pausen belønner kontroll fremfor ekstra innsats, og ekte turer støtter måledata, FIT-eksport og analyse mot tidligere tilsvarende økter. Agensen er mer begrenset: rytteren regulerer watt, men det finnes ikke synlig styring, rutevalg eller taktiske beslutninger, og motstanden justeres manuelt.
+
+Den største svakheten er sportslig mening i poengene. Den deterministiske motorproben ga nøyaktig samme 8081 poeng for helt eksakt mål og jevn variasjon innenfor ±8 %. En binær ±10 %-sone er forståelig, men for grov til å belønne presis terskelpacing. Resultatskjermen fremhever dessuten poeng, pulser og flyt før mer relevante mål som treffsikkerhet og effektutvikling. Derfor er returvurderingen «kanskje»: egen ghost og treningsanalysen kan lokke til en ny sammenligning, men nyhetseffekten kan avta uten dypere konkurranse.
+
+Én endring vil ha størst effekt: bruk en transparent, normalisert 0–100 kvalitetsindeks som graderer faktisk avvik fra wattmålet per arbeidsdrag, og la ghosten følge denne indeksen. Da får rekorden en sportslig betydning denne rytteren kan stole på.
+
+Begrensning: Dette er en modellprediksjon basert på skjermbilder, kildekode og automatiserte tester. Ingen fysisk 64-minutters økt eller reell sensoropplevelse ble gjennomført.

@@ -1,0 +1,171 @@
+{
+  "ok": true,
+  "checks": [
+    "empty-history locked criteria",
+    "accelerated tunnel and core",
+    "measured preview milestone after320seconds",
+    "precision unlocked as temporary demo preview only",
+    "Tron checkpoint restores paused score and world"
+  ],
+  "errors": [],
+  "state": {
+    "page": "home",
+    "mode": "riding",
+    "route": "tron",
+    "ftp": 250,
+    "workoutCount": 100,
+    "bluetooth": "disconnected",
+    "renderer": "WebGL 2",
+    "campaign": {
+      "restored": 0,
+      "discovered": 0,
+      "structures": [
+        {
+          "name": "Gridporten",
+          "cost": 1,
+          "unlocked": false
+        },
+        {
+          "name": "Datasøylen",
+          "cost": 5,
+          "unlocked": false
+        },
+        {
+          "name": "Lysbroen",
+          "cost": 15,
+          "unlocked": false
+        },
+        {
+          "name": "Kjerneringen",
+          "cost": 35,
+          "unlocked": false
+        },
+        {
+          "name": "Nettverket",
+          "cost": 70,
+          "unlocked": false
+        },
+        {
+          "name": "Hovedkjernen",
+          "cost": 120,
+          "unlocked": false
+        }
+      ],
+      "relics": [
+        {
+          "name": "Lysdisken",
+          "cost": 1,
+          "unlocked": false
+        },
+        {
+          "name": "Datakuben",
+          "cost": 4,
+          "unlocked": false
+        },
+        {
+          "name": "Rutenøkkelen",
+          "cost": 10,
+          "unlocked": false
+        },
+        {
+          "name": "Kjernedisken",
+          "cost": 24,
+          "unlocked": false
+        },
+        {
+          "name": "Systemkartet",
+          "cost": 48,
+          "unlocked": false
+        },
+        {
+          "name": "Gridminnet",
+          "cost": 80,
+          "unlocked": false
+        }
+      ],
+      "chapter": 1
+    },
+    "achievements": [
+      {
+        "id": "precision",
+        "name": "Presisjon",
+        "requirement": "5 målte minutter i arbeidsdrag, minst 90 % innenfor wattmålet.",
+        "reward": "Cyan hjulkrans",
+        "earned": false,
+        "ready": true,
+        "progress": 1,
+        "evidence": "332/300 målsekunder · 100 % presisjon · 100 % datadekning"
+      },
+      {
+        "id": "endurance",
+        "name": "Utholdenhet",
+        "requirement": "20 målte minutter i én økt, minst 80 % innenfor wattmålet.",
+        "reward": "Opplyste grid-tårn",
+        "earned": false,
+        "ready": false,
+        "progress": 0.2833333333333333,
+        "evidence": "340/1200 målsekunder · 100 % presisjon · 100 % datadekning"
+      },
+      {
+        "id": "recovery",
+        "name": "Pausekontroll",
+        "requirement": "3 målte minutter i aktive pauser, minst 90 % innenfor pausens wattmål.",
+        "reward": "Systembuer i kjernen",
+        "earned": false,
+        "ready": false,
+        "progress": 0,
+        "evidence": "Ingen kvalifiserende målinger ennå"
+      },
+      {
+        "id": "consistency",
+        "name": "Kontinuitet",
+        "requirement": "3 ulike treningsdager med minst 10 målte minutter og 80 % innenfor wattmålet.",
+        "reward": "Forlenget lysspor og karosserilys",
+        "earned": false,
+        "ready": false,
+        "progress": 0,
+        "evidence": "0/3 treningsdager med dokumentert måloppnåelse"
+      }
+    ],
+    "session": {
+      "workout": "4 × 10 min",
+      "elapsed": 340.97299999999996,
+      "demo": true,
+      "distanceKm": 3.1245764916917254,
+      "block": {
+        "label": "Drag 1 av 4",
+        "seconds": 600,
+        "intensity": 0.98,
+        "kind": "work"
+      },
+      "index": 2,
+      "remaining": 268.0115,
+      "totalRemaining": 2908.0115,
+      "completed": false,
+      "progress": 0.24270533854166668,
+      "zoneSeconds": [
+        8.984499999999999,
+        0,
+        0,
+        331.9885,
+        0,
+        0,
+        0
+      ],
+      "game": {
+        "score": 1268,
+        "combo": 4,
+        "charge": 0.4144166666666702,
+        "pulses": 28,
+        "stars": 0,
+        "quality": "locked",
+        "masteredBlocks": 0
+      },
+      "world": "tron",
+      "sector": 0,
+      "expedition": null
+    },
+    "summary": null,
+    "coordinateSystem": "Three.js world: Y up; rider follows a closed X/Z road"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "05",
+  "persona": "Den travle forelderen",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startskjermen har en stor og tydelig Start økten-knapp, men den fremhevede økten er 4 × 10 min / 64 min; de tre synlige alternativene under er 40, 60 og 38 minutter. Ingen synlig snarvei tar utgangspunkt i at brukeren bare har 25 minutter."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "Den aktive Neon-visningen viser Pause øverst til venstre, Neste segment og Jeg er ferdig oppvarmet samlet på venstre side, samt wattmål, gjenstående tid, nåverdi og hele øktprofilen."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound gir en lys og tydelig alternativ verden, mens de samme sentrale øktkontrollene og treningsdataene er beholdt. Skjermen har samtidig mange separate informasjonsflater rundt selve banen."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatdialogen skiller demotur fra virkelig fremgang, viser tid, effekt, distanse, arbeid og sonetid, og forklarer eksplisitt at hoppede minutter ikke teller som syklet."
+    },
+    {
+      "path": "output/gameplay/report.json",
+      "observation": "Den eksisterende kjøretidsrapporten bekrefter at pause fryser spillpoeng og treningsklokke, reload gjenoppretter en pauset økt, og at warmup/segment kan hoppes over uten å blåse opp registrert varighet."
+    },
+    {
+      "path": "output/playwright/sensor-smoke/report.json",
+      "observation": "Sensortesten bekrefter at ett Start-klikk kan koble til sykkelen og starte en målt økt, at autorisert sykkel gjenkobles stille etter reload, og at pausetid holdes utenfor øktvarigheten."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Regelproben viser at jevn effekt innenfor ±8 % av målet får full uttelling, mens 125 % av målet gir null; spillet belønner dermed kontroll fremfor unødvendig oversatsing."
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "Kildekoden lagrer aktiv økt periodisk, åpner lagret økt som pauset, auto-pauser ved sensorbrudd eller gamle wattdata, tilbyr tidlig Lagre og avslutt, og viser et tydelig Fortsett økten-overlegg."
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "Biblioteket inneholder korte restitusjonsøkter, blant annet 10 og 15 min lett tråkk, men varigheten i navnet er hoveddelen; med oppvarming og nedkjøring blir de henholdsvis 20 og 25 minutter."
+    },
+    {
+      "path": "src/bluetooth.ts",
+      "observation": "En tidligere autorisert sykkel huskes, og frakobling utløser tre avgrensede gjenkoblingsforsøk etter 2, 5 og 10 sekunder."
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 5,
+    "visuals": 6,
+    "clarity": 5,
+    "interval_fit": 5
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Jeg vil trolig stoppe opp ved at den store anbefalingen varer 64 minutter og de tre synlige alternativene også er for lange. Jeg må forstå at en passende 20–25-minutters økt finnes i biblioteket, noe som bruker av den knappe tiden før start.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Når økten først er valgt, forventer jeg rask oppstart med en husket sykkel og setter pris på den svært synlige knappen Jeg er ferdig oppvarmet. Wattmål, tid igjen og korrigerende tekst gjør det mulig å følge draget med korte blikk.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Jeg forventer at rolig tråkk fortsatt oppleves nyttig fordi restitusjonswatt gir progresjon. Hvis et barn avbryter, er Pause/Fortsett og automatisk pause ved sensorbrudd viktigere for meg enn poengsystemet.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "I en kort økt kan jeg være ferdig eller nær mål innen tidsvinduet; i en lengre økt kan jeg avslutte og lagre det som faktisk er gjennomført. Jeg forventer fortsatt god visuell energi, men de mange HUD-panelene kan bli mer informasjon enn jeg trenger når oppmerksomheten er delt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Jeg vil sannsynligvis komme tilbake fordi favoritter, husket sensor og gjenoppretting av en pauset økt reduserer risikoen ved avbrudd. Returlysten ville vært sterkere om startsiden husket et kort favorittvalg eller lot meg velge tilgjengelig tid direkte.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Pause, automatisk pause og gjenoppretting gjør en avbrutt økt mindre kostbar.",
+    "Jeg er ferdig oppvarmet passer direkte når brukeren allerede er varm.",
+    "Tydelige wattmål og gjenstående tid fungerer med korte blikk.",
+    "Husket sykkel og ett-klikk-start kan gjøre senere økter raske.",
+    "Neon og Skybound gir merkbart ulike visuelle stemninger uten å endre øktkontrollene."
+  ],
+  "frictions": [
+    {
+      "issue": "Startsiden prioriterer en 64-minutters økt og viser ingen direkte anbefaling som passer et 25-minutters tidsvindu.",
+      "evidence": "output/gameplay/launcher.png / App.tsx featured og quick-cards",
+      "severity": "high",
+      "category": "onboarding"
+    },
+    {
+      "issue": "De passende korte øktene ligger i et bibliotek med 100 økter uten varighetsfilter; brukeren må søke eller bla før start.",
+      "evidence": "src/App.tsx library-tools/category-filters og src/training.ts recovery-10/recovery-15",
+      "severity": "medium",
+      "category": "clarity"
+    },
+    {
+      "issue": "Navn som 15 min lett tråkk beskriver hoveddelen, mens kortet viser 25 minutters totalvarighet; dette kan gi et lite planleggingsøyeblikk under tidspress.",
+      "evidence": "src/training.ts make() og recovery-familien / library-card duration",
+      "severity": "low",
+      "category": "clarity"
+    },
+    {
+      "issue": "Aktivvisningen fordeler mål, score, telemetri, oppdrag og tidslinje over flere paneler, noe som øker blikkbelastningen ved samtidige avbrytelser.",
+      "evidence": "output/gameplay/neon-flow.png og output/gameplay/sky-flow.png",
+      "severity": "medium",
+      "category": "accessibility"
+    },
+    {
+      "issue": "Den personlige rekordmotstanderen vises først etter en sammenlignbar virkelig tur, så første korte økt får ikke den returkroken.",
+      "evidence": "src/App.tsx bestRun/ghost og src/game.ts ghostScore",
+      "severity": "low",
+      "category": "progression"
+    }
+  ],
+  "preferred_world": "neon",
+  "world_reason": "Neon Rush gir den mest umiddelbare følelsen av fart og belønning i et kort tidsvindu. Skybound er visuelt lysere og roligere, men for denne personaen veier rask energi og tydelig fremdrift litt tyngre enn utforskningsstemning; Fjordveien virker minst særpreget av de tre på startskjermen.",
+  "one_change": "Legg en tydelig «Jeg har 25 min og er allerede varm»-hurtigstart på startsiden som velger en passende kort økt, hopper over oppvarmingen og starter med husket sykkel.",
+  "return_reason": "Ja: robust pause/gjenopptakelse, tidlig lagring og stille sensorgjenkobling gjør produktet realistisk å bruke mellom gjøremål, og en lagret favoritt kan redusere startfriksjonen etter første økt.",
+  "counterargument": "Verdien av pause og gjenoppretting kan overvurderes dersom brukerens avbrudd vanligvis avslutter hele treningsvinduet; da vil mangelen på en synlig, ferdig kuratert 20–25-minutters hurtigøkt dominere og gjøre retur mer usikker.",
+  "limitations": [
+    "Dette er en syntetisk vurdering, ikke en menneskelig prøve eller målt glede.",
+    "Jeg har ikke koblet til en fysisk sykkel eller opplevd et reelt familieavbrudd.",
+    "Langtidsreaksjoner og tredjegangsbruk er prognoser basert på skjermbilder, kildekode og eksisterende kjøretidsrapporter.",
+    "Kjøretidsproben for manglende data er en motorprobe og ikke en ende-til-ende BLE-test; vurderingen av sensoravbrudd støttes derfor også av sensor-smoke-rapporten og kildekoden."
+  ],
+  "summary": "For en travel forelder er SUMMIT sterkest etter at økten har startet: oppvarming kan hoppes over, avbrudd håndteres trygt, og økten kan gjenopptas eller lagres tidlig. Den største svakheten er at startsiden fremhever lange økter og ikke lar et 25-minutters tidsbudsjett styre valget. Jeg forventer likevel retur fordi den tekniske håndteringen av pause og gjenkobling passer personaen uvanlig godt."
+}

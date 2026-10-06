@@ -1,0 +1,9 @@
+SUMMIT – syntetisk evaluering for persona 08: Langturssyklisten
+
+Denne personaen sykler vanligvis 60–90 minutter rolig i sone 2 og trenger først og fremst landskapsvariasjon og en grunn til å bli i appen. Førsteinntrykket forventes å være godt. Startskjermen presenterer Neon Rush, Skybound og Fjordveien som tydelig forskjellige steder, og treningsbiblioteket inneholder jevne utholdenhetsøkter på 60, 75 og 90 minutter, i tillegg til sone-2-bølger. Derfor får første økt 5/7 og intervalltilpasningen 6/7.
+
+Skybound er favoritten. Skjermbildet og scenekoden viser øyer, fossefall, porter, vegetasjon, ruiner, templer og et seilskip i en lys, rolig verden. Neon har sterkere kontraster og tre visuelt klare sektorer, mens Fjordveien er mer gjenkjennelig, men enklere. Samlet får det visuelle 6/7. Målwatt, segmenttid, sone, profil, watt, kadens og progresjon er lett synlig, og resultatet forklarer også begrensningene ved demotur. Klarhet får derfor 6/7, selv om HUD-en dekker mye av utsikten.
+
+Den avgjørende svakheten for denne rytteren er varighet. Skybound resirkulerer en 1,8 km sløyfe, Neon en 2,4 km sløyfe og Fjordveien en 0,9 km sløyfe. På en langtur vil de samme omgivelsene passeres mange ganger. Spillmekanikken gir puls omtrent hvert tolvte sekund, flyt opp til fire, stjerner per fullført blokk og et personlig rekordspøkelse. Dette gir nyttig rytme og rettferdig belønning også i restitusjon, men liten påvirkning på reisen. Agency vurderes til 3/7.
+
+Ved minutt 20 forventes den første oppdagelsesfølelsen å avta. Nivå og egen rekord kan utløse én tur til, men uten nye områder eller rutevalg er forventet tredjegangsmoro 3/7, og returviljen er «kanskje». Den viktigste forbedringen er å gjøre Skybound til en sammenhengende 60–90-minutters ekspedisjon der nye delområder og landemerker låses opp etter tilbakelagt distanse. Vurderingen er en modellprediksjon basert på eksisterende skjermbilder, kildekode og regelprober, ikke en menneskelig langtidsprøve.

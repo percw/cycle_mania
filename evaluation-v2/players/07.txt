@@ -1,0 +1,9 @@
+SUMMIT treffer denne profilen best i Tron. De lysende banene, den store wattvisningen og femsekunders nedtellingen gjør faseskiftene lette å lese. På en 30/30-økt følger flere belønninger innsatsen: en energipuls etter 12 sekunder på mål, økende flytnivå hvert 15. sekund, en egen mestringsbelønning ved fullført blokk og et lydsignal når neste fase starter. Aktiv pause bruker samme logikk ved lavere watt, så restitusjonen blir en del av mønsteret.
+
+Det er likevel et klart skille mellom god tidsrespons og et rytmespill. Lydsystemet lager korte tonefølger for fase, puls og mestring, men evidensen viser ingen musikkbane, taktgrid eller kobling til kadens. Lyd er dessuten avslått ved start. Første økt fremstår derfor som engasjerende, mens en tredje økt er mer usikker: verdensbytte og mange intervallvarianter gir variasjon, men signalene bygger ikke en musikalsk reise slik Beat Saber gjør. Neon har mer farge og fartspreg, og Skybound tilbyr veivalg, men slike overlegg kan også bryte konsentrasjonen midt i korte drag.
+
+Treningsdelen er sterk. Analysen viser hvert arbeidsdrag og hver pause med målt tid, planlagt tid, snitteffekt og treffsikkerhet. Hopp, gjenstående plan og manglende watt holdes tydelig fra godkjent arbeid. Demo gir ikke FTP-estimat eller permanent fremgang. Tron-opplåsingene har synlige krav til målte sekunder, presisjon, dekning og ulike treningsdager; for høy effekt eller manglende data gir ingen dokumentert snarvei.
+
+Skårer: første glede 5/7, tredje glede 4/7, handlekraft 4/7, visuelt 6/7, tydelighet 6/7, intervalltilpasning 6/7, datatillit 6/7, analysenytte 6/7 og rettferdige opplåsinger 6/7. Returvalg: kanskje.
+
+Viktigste forbedring er et adaptivt musikalsk taktlag som legger fasebyttet på taktslaget og bygger instrumenter når watt og kadens holdes stabilt. Da kan dagens presise treningsmotor også skape den flyten profilen faktisk søker.

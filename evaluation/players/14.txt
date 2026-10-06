@@ -1,0 +1,11 @@
+SUMMIT – syntetisk vurdering for «Veteranen på eldre laptop»
+
+Vurderingen er blandet positiv. Førsteinntrykket får 4/7 i moro: forsiden har en synlig knapp for sykkeltilkobling, en klar startknapp og demotur, men også mange verdener, økter og progresjonselementer. For en veteran som vil raskt i gang, er den klassiske vei- og fjellverdenen det beste valget. Den virker roligere enn både Neon og Sky, uten at jeg kan hevde at den yter bedre på eldre maskinvare.
+
+Selve intervallet passer svært godt og får 6/7. Wattmål og gjenværende tid er store, sonen er navngitt, og hele øktprofilen ligger synlig nederst. Restitusjon behandles riktig som en del av oppgaven: rolig kraft gir fortsatt progresjon. Klarhet får 5/7 fordi treningsdataene er gode, mens poeng, flyt, ladning og oppdrag gjør særlig Neon og Sky unødvendig travle. Visuelt er helheten gjennomarbeidet (5/7), men det finnes ingen synlig lavgrafikkmodus.
+
+Kontroll og valgfrihet får 5/7: brukeren kan velge verden og økt, pause, hoppe til neste segment, slå av lyd og bruke demo. Den viktigste usikkerheten er BLE. Koden husker sykkelen, prøver gjenkobling etter 2, 5 og 10 sekunder og pauser ved brudd eller gamle wattdata. Det beskytter loggen, men etter tre mislykkede forsøk kan en ustabil sykkel kreve ny manuell handling. Den isolerte sensortesten viste stille gjenkobling etter reload, men dette er ikke bevis på fysisk Bluetooth-pålitelighet.
+
+Forventet moro i en tredje økt blir 4/7, og returviljen er «kanskje». Rutine, tydelig intervallstyring og husket sykkel trekker opp; gjentatte avbrudd kan raskt trekke ned. Høyest prioritet er en vedvarende gjenkoblingsflate i pauseoverlegget, med synlig status og én tydelig handling for å fortsette når ferske wattdata er tilbake.
+
+Ingen FPS eller ytelse på eldre laptop er målt. Reaksjonen etter 20 minutter og returviljen er prediksjoner, ikke observerte brukerdata.

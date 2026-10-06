@@ -1,0 +1,38 @@
+{
+  "name": "xebex-summit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "vitest run",
+    "dev:client": "vite --host 127.0.0.1",
+    "server": "node --watch server/index.mjs",
+    "start": "node server/index.mjs",
+    "test:sensors": "node scripts/sensor-smoke.mjs",
+    "test:ui": "node scripts/ui-smoke.mjs",
+    "test:expedition": "node scripts/expedition-smoke.mjs"
+  },
+  "dependencies": {
+    "@garmin/fitsdk": "21.217.0",
+    "lucide-react": "1.49.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "playwright": "1.63.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.1",
+    "vitest": "5.0.3"
+  },
+  "optionalDependencies": {
+    "ant-plus": "^0.2.0"
+  }
+}

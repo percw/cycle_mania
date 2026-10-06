@@ -1,0 +1,11 @@
+Persona 15: Den utålmodige nyhetssøkeren
+
+Dette er en syntetisk vurdering basert på de avgrensede skjermbildene, kildekoden og runtime-probene, ikke en rapport fra en virkelig deltaker.
+
+SUMMIT har en god første krok for denne personaen. Lanseringsskjermen viser Neon Rush, Skybound og Fjordveien som tre tydelige stemninger, og det er lett å starte en demotur. Neon gir fart, lys og en storby med senere skifter til reaktortunnel og orbitalbro. Skybound er enda mer annerledes, med sveveøyer, templer og et roligere lyst uttrykk. Derfor får visuell appell 6/7 og førsteøktsmoro 5/7. Skybound blir favoritten fordi den gir størst kontrast til både Neon og den klassiske Fjordveien.
+
+Problemet oppstår når nyhet blir til rutine. Kildekoden viser at de tre verdenene deler den samme grunnhandlingen: hold effekten innenfor 90–110 prosent av wattmålet, bygg combo, lad en puls og få stjerner ved segmentslutt. Neon og Skybound reagerer forskjellig med lys, partikler og omgivelser, men spilleren styrer ikke rute, portal eller andre hendelser. Agency blir derfor 3/7. Tydelige mål og tilbakemeldinger løfter klarhet til 5/7, selv om HUD-en er tettpakket.
+
+Intervalltilpasningen får 5/7. Recovery belønnes også når riktig lavt wattmål holdes, pause fryser klokken, og runtime-probene viser konsekvente resultater for innsats innenfor målområdet. Samtidig har belønningen en hard kant: ±20 prosent variasjon gir null stjerner. Etter 20 minutter forventes sektorene og rekordspøkelset fortsatt å gi noe interesse, men kjernehandlingen vil sannsynligvis føles gjentatt. Forventet tredjeøktsmoro blir 3/7, og returvurderingen er «kanskje».
+
+Høyeste prioritet er en femminutters oppdagelsesmodus med én unik handling i hver verden, for eksempel portalvalg i Neon, rutevalg i Skybound og en pacingutfordring i Fjord. Da får personaen en reell overraskelse før den fremhevede 64-minuttersøkten krever en stor tidsinvestering.

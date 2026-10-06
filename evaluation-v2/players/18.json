@@ -1,0 +1,188 @@
+{
+  "id": "18",
+  "persona": "Strategispilleren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Den aktive Skybound-scenen viser et tidsbegrenset veivalg mellom Gjenreis og Utforsk, med neste milepæl og ulikt krav på 30 eller 40 målsekunder.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon gir en tydelig alternativ verden og synlig ekspedisjonsprogresjon, men skjermbildet viser ellers den samme wattstyrte kjøringen og konsollen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron har et sterkt visuelt uttrykk, presist wattmål og synlig intervallstatus, mens aktiv skjerm i hovedsak viser kjøring og prestasjonsprogresjon fremfor taktiske valg.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden forklarer fire låste Tron-belønninger med konkrete krav og viser valg mellom verdener og en stor øktkatalog.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller 30 minutter syklet, 10 minutter hoppet over, 24 minutter gjenstående og 10 sekunder datagap, og viser målt effekt mot mål.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Etteranalysen viser effektvinduer, tydelig merket FTP-anslag, sammenligning med tilsvarende økt og dokumenterte belønninger.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/expedition.ts",
+      "observation": "Gjenreis og Utforsk har separate, deterministiske progresjonsspor; bare fersk målt tid innenfor ±10 % av målet lader oppdrag, og ekstra watt gir ingen fordel.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/sensor-checks.json",
+      "observation": "Den isolerte sensortesten dokumenterer 38 ferske målesekunder, et fullført gjenreisningsoppdrag, et veivalg til utforskning og lagring av rutevalg og måledata.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 5,
+    "visuals": 6,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 6,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Sterke verdener og hyppige veivalg gir en lovende start, men den strategiske modellen er bare et binært valg.",
+    "third_fun": "To varige progresjonsspor og mange økter kan bære flere besøk, mens identiske valgsløyfer trolig begrenser langsiktig dybde.",
+    "agency": "Verden, økt og ekspedisjonsretning kan velges, men Gjenreis/Utforsk endrer primært samlespor og ventetid, ikke treningsstrategien.",
+    "visuals": "Tron, Neon og Skybound er tydelig forskjellige, gjennomarbeidede og lesbare, med særlig sterk romfølelse i Skybound og Neon.",
+    "clarity": "Wattmål, neste segment, tidslinje, portkrav og låsekrav er eksplisitte; forholdet mellom spillpoeng og treningsutvikling forklares også.",
+    "interval_fit": "Progresjon krever tid nær foreskrevet wattmål, pause fryser tiden, og ekstra effekt gir ingen gevinst, så spillaget respekterer økten godt.",
+    "data_trust": "Evidensen skiller demo, målte data, spillpoeng og estimater, og viser at hopp, pauser og datagap behandles særskilt; ekte maskinvareytelse er ikke fullt dokumentert.",
+    "analysis_usefulness": "Per-blokk-gjennomføring, effektgraf, datadekning, sammenligning og merkede estimater gir nyttig grunnlag for neste valg av økt.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og basert på lagrede målinger med datadekning; demo, hopping og overskyting kan ikke gi permanent snarvei ifølge testene."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Verdensvalget, øktutvalget og de to kampanjesporene vil sannsynligvis vekke interesse, men strategispilleren vil raskt lete etter konsekvenser av valgene.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Et tydelig wattmål og porter som lades av presis kjøring gir en forståelig kobling mellom trening og progresjon.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At rolig effekt teller på samme vilkår og overskyting ikke hjelper, gjør restitusjonen legitim; veivalgene kan holde oppmerksomheten uten å presse intensiteten opp.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Hyppige porter vil fortsatt gi små beslutninger, men gjentakelsen av samme todeling kan begynne å føles mekanisk uten kombinasjoner, risiko eller situasjonsbestemte avveininger.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Den detaljerte analysen vil sannsynligvis tilfredsstille ønsket om å evaluere utførelsen, særlig fordi hopp, datagap og estimater merkes eksplisitt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Synlige landemerker, relikvier og prestasjonskrav kan trekke spilleren tilbake, men videre retur avhenger av om progresjonen byr på nye beslutninger fremfor bare høyere tellere.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "To parallelle kampanjespor per verden med synlige neste milepæler.",
+    "Veivalg under økten med korte, tydelige konsekvenser i målsekunder og belønningstype.",
+    "Seks visuelt ulike verdener og en stor øktkatalog gir rom for egen kombinasjon av spillestil og trening.",
+    "Etteranalyse og prestasjonskvitteringer gjør utfallet etterprøvbart."
+  ],
+  "frictions": [
+    {
+      "issue": "Veivalget er gjentatt Gjenreis eller Utforsk uten dokumenterte synergier, ressurser eller situasjonsbestemte kostnader.",
+      "evidence": "src/expedition.ts gir Gjenreis fast 30 sekunder og Utforsk fast 40 sekunder, knyttet til hvert sitt tellerspor.",
+      "severity": "high",
+      "category": "agency"
+    },
+    {
+      "issue": "Tron tilbyr sterke prestasjonsmål, men lite aktiv strategi mens økten pågår.",
+      "evidence": "evaluation-v2/evidence/tron-active.png viser prestasjonsstatus og kjøring, men ingen aktiv beslutning tilsvarende ekspedisjonsportene.",
+      "severity": "medium",
+      "category": "variety"
+    },
+    {
+      "issue": "Rutevalg er dokumentert via skjermknapper/tastvalg, ikke som styring direkte fra sykkelen.",
+      "evidence": "src/ExpeditionUI.tsx viser knapper merket 1 og 2; sensor-checken dokumenterer live kontrollvalg, men ikke sykkelbasert valginputt.",
+      "severity": "medium",
+      "category": "accessibility"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser syklet tid, hoppet tid, gjenstående plan, datagap, datadekning og målt effekt mot mål.",
+      "analysis-comparison.png merker 217 W som et øktbasert FTP-anslag og skiller det fra en FTP-test.",
+      "unit-tests.json rapporterer 100 beståtte tester, blant annet for datagap, pausekronologi, hoppede intervaller og sammenlignbar historikk.",
+      "sensor-checks.json dokumenterer BLE-pakker, lagrede prøver, FIT-dekoding og gjenoppretting i isolert testmiljø."
+    ],
+    "strengths": [
+      "Målt gjennomføring prioriteres foran spillbelønninger i resultatvisningen.",
+      "Manglende data fylles ikke som null eller godkjente sekunder.",
+      "Spillpoeng, FTP-anslag, demo og ekte historikk beskrives som ulike begreper.",
+      "Per-intervall-visning gjør hopp og delvis målte blokker synlige."
+    ],
+    "gaps": [
+      "Skjermbildene bygger på syntetiske data og akselererte demoer.",
+      "Ingen langvarig bruk med spillerens egen sykkel eller validering mot en ekstern referansemåler er dokumentert.",
+      "Analysen anbefaler ikke eksplisitt et strategisk neste øktvalg ut fra kampanjebygg eller prioriteringer."
+    ],
+    "verdict": "Sterk og ærlig beslutningsstøtte for å analysere økten, men evidensen kan ikke fastslå faktisk sensornøyaktighet eller langtidsverdi."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser fire eksakte krav og deres visuelle belønninger før de er åpnet.",
+      "achievements.ts krever lagrede, ikke-demo-økter, minst 95 % dekning og dokumentert tid nær foreskrevet mål.",
+      "unit-tests.json viser beståtte tester for demo, datagap, hopping, nøyaktig terskel og foreløpige live-milepæler.",
+      "expedition.ts gir fremdrift bare fra ferske telemetrioppdateringer innenfor ±10 % av målet og begrenser hvert steg til ett sekund."
+    ],
+    "strengths": [
+      "Kriteriene er synlige før opplåsing og viser løpende bevis.",
+      "Belønningene dekker arbeid, utholdenhet, aktive pauser og konsistens over flere dager.",
+      "Ekstra watt, demo, manglende målinger og hopp gir ingen dokumentert fordel.",
+      "Rolig presis kjøring kan drive ekspedisjonen uten å gjøre hardere alltid bedre."
+    ],
+    "gaps": [
+      "Tron-belønningene er faste kosmetiske milepæler uten dokumentert spillerstyrt bygg eller gjensidig utelukkende utviklingsvei.",
+      "Ekspedisjonsgrenene samler separate tellere, men viser få reelle avveininger utover 30 mot 40 målsekunder.",
+      "Det er ukjent hvor meningsfulle belønningene føles etter at tersklene er passert."
+    ],
+    "verdict": "Svært etterprøvbart og treningsrelevant, men progresjonen trenger flere strategiske konsekvenser for å fungere som et egent byggevalg."
+  },
+  "preferred_world": "sky",
+  "world_reason": "Skybound viser den tydeligste kombinasjonen av visuelt særpreg, løpende veivalg og to synlige kampanjeretninger, som passer ønsket om aktiv beslutning bedre enn Tron.",
+  "one_change": "La Gjenreis og Utforsk åpne ulike, kombinerbare fordeler og oppdragsregler som endrer senere veivalg, uten å endre den foreskrevne wattplanen.",
+  "return_reason": "Jeg ville kanskje kommet tilbake for å utvikle begge kampanjespor og sammenligne analyser, men den binære valgsløyfen må vise nye konsekvenser innen tredje økt.",
+  "counterargument": "Enkelheten er også en styrke under harde intervaller: to raske valg kan gi nok aktivitet uten at en kompleks meny stjeler fokus fra sikker og presis sykling.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en menneskelig spill- eller treningstest.",
+    "Skjermbildene bruker syntetiske historikkdata og akselerert demo, så ingen faktisk trivsel, fysisk belastning eller varighet er målt.",
+    "Maskinvaretesten brukte mock BLE; faktisk respons, grafikkytelse og sensorpresisjon på spillerens oppsett er ukjent.",
+    "Vurderingen bygger på det frosne, avgrensede evidenssettet og er ikke en full kodegjennomgang."
+  ],
+  "summary": "SUMMIT passer Strategispilleren bedre i Skybound og Neon enn i Tron: veivalg, parallelle samlespor og tydelig analyse gjør treningen aktiv og etterprøvbar. Opplevelsen mangler fortsatt strategisk dybde fordi valgene hovedsakelig flytter to tellere med faste kostnader."
+}

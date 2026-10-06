@@ -1,0 +1,150 @@
+{
+  "id": "20",
+  "persona": "Den skeptiske testeren",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startsiden viser Neon Rush, Skybound og Fjordveien som tydelig forskjellige verdener, et direkte demovalg, personlig rekord per verden, karrierenivå og tilgang til 100 økter."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "Den aktive Neon-scenen viser wattmål og tid, levende sensortall, poeng, flyt-multiplikator, ladning, presisjon, dragmestring og neste fase samtidig med 3D-løypen."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound har en klart annen visuell identitet med svevende øyer, lys vei, porter og egen figur, men presenterer samme poeng-, flyt-, ladnings- og dragmestringsstruktur som Neon."
+    },
+    {
+      "path": "output/playwright/neon-tunnel.png",
+      "observation": "Neons reaktortunnel skiller seg romlig fra bydelen med repeterte lysbuer og en mer lukket trasé."
+    },
+    {
+      "path": "output/playwright/neon-orbit.png",
+      "observation": "Orbitalbroen gir en tredje Neon-sektor med åpen horisont og planetmotiv, men kjøretøyet følger fortsatt en fast bane."
+    },
+    {
+      "path": "output/gameplay/neon-mastery.png",
+      "observation": "Under restitusjon viser grensesnittet 2571 poeng, 85 % ladning, ett mestret drag, tre stjerner og 54 pulser, og forklarer at rolig kraft lader like mye når pausens wattmål følges."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatdialogen skiller demodata fra fysisk fremgang, viser poeng, stjerner, pulser og beste flyt, og opplyser at ni minutter ble hoppet over og ikke regnes som syklet."
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Spillmotoren krever effekt innenfor 90–110 % av målet, bygger en opptil 4× combo over tid, utløser en puls omtrent hvert tolvte treffsekund og tildeler stjerner først ved tilstrekkelig dekning og presisjon."
+    },
+    {
+      "path": "src/GameHUD.tsx",
+      "observation": "HUD-en forklarer om watt er lav, høy eller låst, viser presisjon og personlig rekord-differanse, og resultatkortet skiller øvingspoeng fra XP på lagrede turer."
+    },
+    {
+      "path": "src/worlds.ts",
+      "observation": "Verdensbeskrivelsene lover ulike temaer og sektorer, men alle deler den samme intervallmekanikken; Fjordveien beskrives uttrykkelig med samme intervallmål og valgfri spillprogresjon."
+    },
+    {
+      "path": "src/NeonWorld.tsx",
+      "observation": "Neon kobler ladning, korrekt watt, arbeidsfase og spillhendelser til lysstyrke, spor, fartseffekt og partikkelutbrudd, og visualiserer et lagret personlig beste som et spøkelseskjøretøy."
+    },
+    {
+      "path": "src/SkyWorld.tsx",
+      "observation": "Skybound kobler den samme spilltilstanden til krystallglød, veibelysning, partikler, himmelfarge og et personlig spøkelse, mens kjøringen følger en forhåndsbestemt bane."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Det deterministiske motorprobet gir 8081 poeng, 15 stjerner og to mestrede arbeidsdrag ved mål eller ±8 %, mot 1284 poeng og ingen stjerner ved ±20 %; konstant 125 % gir null poeng."
+    },
+    {
+      "path": "output/gameplay/report.json",
+      "observation": "Den eksisterende runtime-rapporten bekrefter blant annet pausefrysing, ingen stjerner for hoppet oppvarming, progresjon i foreskrevet restitusjon, lagrede ghost-sjekkpunkter og gjenoppretting etter omlasting uten konsollfeil."
+    },
+    {
+      "path": "output/playwright/sensor-smoke/report.json",
+      "observation": "Sensorrøykprøven bekrefter at målt watt, kadens, puls og fart vises, og at pause, segmenthopp, lagring og FIT-eksport håndteres i en isolert test."
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Demoturen, tre tydelige verdener og den store startknappen senker terskelen, men denne personaen vil fortsatt teste om watt faktisk endrer noe mer enn tallene.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Koblingen mellom riktig watt, combo, ladning, lyseffekter og pulser vil sannsynligvis motbevise den mest negative skjermsparerhypotesen og gi en merkbar første belønning.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At restitusjonsmålet fortsatt lader og belønner kontroll, gjør mekanikken treningsrelevant, men avslører også at nesten all interaksjon er den samme handlingen: hold wattbåndet.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Sektorskifter, personlig ghost og tydelig neste fase kan bære økten, men faste baner og gjentatt poengsløyfe vil trolig begynne å føles forutsigbare.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "En tredje økt er aktuell for å prøve en annen verden eller slå egen rekord, men uten nye valg eller verdensspesifikke regler er varig nysgjerrighet usikker.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Wattpresisjon påvirker både poeng, combo, ladning og synlige sceneeffekter.",
+    "Personlig ghost og rekord per verden gir en konkret grunn til å forbedre seg.",
+    "Neon og Skybound har tydelig forskjellige rom, farger og stemninger.",
+    "Demomodus lar en skeptiker kontrollere mekanikken før sensoroppsett.",
+    "Restitusjon belønnes når det foreskrevne rolige målet følges."
+  ],
+  "frictions": [
+    {
+      "issue": "Den sentrale handlingen er fortsatt å holde effekt innenfor samme ±10 %-bånd; det finnes ingen observerbar styring, rutebeslutning eller taktisk avveining som endrer forløpet.",
+      "evidence": "src/game.ts; src/NeonWorld.tsx; src/SkyWorld.tsx",
+      "severity": "high",
+      "category": "agency"
+    },
+    {
+      "issue": "Verdensbytte gir sterk visuell variasjon, men poeng, combo, ladning, stjerner og dragmestring er i hovedsak samme system på tvers av Neon, Skybound og originalverdenen.",
+      "evidence": "src/worlds.ts; src/GameHUD.tsx; output/gameplay/neon-flow.png; output/gameplay/sky-flow.png",
+      "severity": "medium",
+      "category": "variety"
+    },
+    {
+      "issue": "Karrieren viser nivå og XP til neste nivå, men evidensen viser få konkrete opplåsinger eller nye mekaniske mål som kan gjøre nivåøkning meningsfull over flere økter.",
+      "evidence": "output/gameplay/launcher.png; src/GameHUD.tsx",
+      "severity": "medium",
+      "category": "progression"
+    },
+    {
+      "issue": "Den aktive skjermen har mange samtidige tall og paneler, slik at den egentlige årsakskjeden mellom watt, ladning og scenereaksjon kan kreve en demotur å avkode.",
+      "evidence": "output/gameplay/neon-flow.png; output/gameplay/sky-flow.png",
+      "severity": "low",
+      "category": "clarity"
+    }
+  ],
+  "preferred_world": "neon",
+  "world_reason": "Neon viser den klareste koblingen mellom presisjon, energi, fartseffekt, sektorskifter og personlig ghost, og gir derfor den sterkeste motvekten til mistanken om en passiv bakgrunn.",
+  "one_change": "Legg til valgfrie, intervalltrygge ruteporter der rytteren velger en risiko/belønning-gren med en kort kadensendring mens wattmålet beholdes, slik at valget faktisk endrer rute, poengmulighet og neste utfordring.",
+  "return_reason": "Jeg ville kanskje kommet tilbake for å prøve Skybound og måle meg mot mitt eget Neon-løp, men ikke ennå stole på at samme grunnsløyfe holder etter flere økter.",
+  "counterargument": "Verdenssektorer, 100 økter og en stadig oppdatert personlig ghost kan gi langt mer praktisk variasjon enn statiske bevis og kildekode klarer å vise, særlig for en bruker som motiveres av finjustering av egen presisjon.",
+  "limitations": [
+    "Dette er en syntetisk personavurdering, ikke en menneskelig spill- eller treningstest.",
+    "Skjermbildene er øyeblikksbilder og viser ikke animasjon, lyd, timing eller opplevd respons direkte.",
+    "Langtidsreaksjon, tredjeøktlyst og kjedsomhet er hypoteser, ikke observerte utfall.",
+    "Runtime-probene er deterministiske motorstrømmer; manglende-data-probet er ikke en ende-til-ende BLE-test.",
+    "Den originale Fjordveien ble vurdert fra startsiden og kildekoden, ikke fra et eget aktivt skjermbilde."
+  ],
+  "summary": "SUMMIT motbeviser delvis mistanken om at gamification bare er tall over en skjermsparer: wattpresisjon driver combo, ladning, mestring, synlige effekter og en lagret personlig ghost. Førsteøkten ser engasjerende og svært tydelig ut, særlig i Neon, men alle verdener deler i hovedsak samme mekaniske handling. Jeg ville kanskje returnert for en ny verden og egen rekord, mens en tredje økt trenger reelle valg og mer verdensspesifikk spillvariasjon."
+}

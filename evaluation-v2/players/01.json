@@ -1,0 +1,206 @@
+{
+  "id": "01",
+  "persona": "Konkurransesyklisten",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron viser 239 W mot et tydelig mål på 245 W, aktivt drag, tid igjen, neste blokk og en eksplisitt merking av simulerte data.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden viser 4 × 10 min som hurtigvalg og fire låste prestasjoner med konkrete krav til målte minutter, presisjon og treningsdager.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-tunnel.png",
+      "observation": "Tron endrer sektor til Data Tunnel under draget, mens wattmål, gjenværende tid, øktprofil, pause og segmenthopp er synlige.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon har en klart annerledes byscene og ekspedisjonsprogresjon, men samme sentrale treningskonsoll.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser et tidsbegrenset veivalg mellom gjenreisning og utforsking uten å skjule wattmål eller intervalltid.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Analysen viser hvert av fire terskeldrag og hver aktive pause separat med målt/planktid, snitteffekt/mål, dekning og treffsikkerhet; hoppede og ufullførte deler står som umålte.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Etteranalysen skiller wattrekorder, FTP-anslag, målpresisjon og sammenligning mot tilsvarende økt, og opplyser at ti minutter ble hoppet over.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "4 × 10 min er definert som fire 600-sekunders drag på 98 % FTP, tre 180-sekunders aktive pauser på 50 % FTP, ti minutters oppvarming og fem minutters nedkjøring.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Tron-opplåsinger beregnes fra lagrede, ikke-demo målinger med minst 95 % dekning; overskipping, rå watt og spillscore er ikke kvalifikasjon.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/unit-tests.json",
+      "observation": "Den frosne testkjøringen rapporterer 100 av 100 beståtte tester, blant annet for eksakte terskler, datagap, hopp, sammenlignbarhet og prestasjonsopplåsinger.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 4,
+    "visuals": 5,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 6,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Tron gir umiddelbar fart, sektorbytter og presis wattrespons, mens egen rekord og synlige krav gir sportslig retning; selve kjøringen virker likevel i stor grad automatisk.",
+    "third_fun": "Egne rekorder, sammenlignbare økter og fire varige Tron-belønninger kan bære flere økter, men tre sektorer og få prestasjonsmål kan bli forutsigbare for en erfaren Zwift-bruker.",
+    "agency": "Pause, hopp, oppvarmingsvalg, verdensvalg og ekspedisjonsgrener gir kontroll, men Tron har ingen tydelig linje-, taktikk- eller styringsbeslutning utover å holde riktig effekt.",
+    "visuals": "Trons mørke cyan-oransje grid er særpreget og lesbart, med synlige sektorendringer; Neon og Sky gir reell stilbredde, selv om skjermbildene ikke dokumenterer animasjonsflyt eller maskinytelse.",
+    "clarity": "Aktuell watt, mål, målområde, drag, tid, neste blokk og kontroller er samlet tydelig, og demo, spillpoeng, FTP-anslag og målt utvikling forklares som ulike ting.",
+    "interval_fit": "Den ønskede 4 × 10-økten finnes med eksakte ti-minuttersdrag på 98 % FTP, tre-minutters pauser, oppvarming og nedkjøring; ±10 % belønningsvindu er bredere enn en konkurransesyklist kan ønske for presis pacing.",
+    "data_trust": "Kilde og tester støtter eksplisitte målposisjoner, pauser, datagap, demoavgrensning og målt FIT-eksport; tilliten stopper på seks fordi evidensen ikke er en fysisk økt med denne spillerens eget oppsett.",
+    "analysis_usefulness": "Per-drag dekning, snitteffekt, målpresisjon, effektkurve og strengt sammenlignbare tidligere økter svarer godt på om 4 × 10 ble gjennomført bedre; normalisert effekt, belastning og mer fysiologisk kontekst mangler.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og basert på dokumentert tid ved foreskrevet watt, også i pauser; demo gir bare forhåndsvisning, men det finnes kun fire Tron-kriterier og belønningene er hovedsakelig kosmetiske."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil trolig velge Tron og 4 × 10 raskt fordi FTP, wattmål, varighet og prestasjonskrav er synlige før start.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Vil trolig oppfatte direkte wattavvik, nedtelling og tydelig målområde som nyttig pacing, mens poenglaget først blir interessant når det kobles til egen rekord.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Vil trolig godta aktiv pause som en del av prestasjonen fordi riktig rolig effekt belønnes likt og høyere watt ikke kjøper fremdrift.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Sektorendringer og løpende presisjon kan holde oppmerksomheten, men mangelen på taktiske valg kan gjøre opplevelsen mer til en visuelt sterk intervallspiller enn en konkurranse.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Vil trolig bruke per-drag-tabellen og sammenligning mot samme plan mer enn totalscore, særlig fordi hopp og datagap vises ærlig.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Vil sannsynligvis komme tilbake for å slå egen sammenlignbar gjennomføring, men kan miste interesse hvis de fire Tron-belønningene er nådd og rekordløpet fortsatt bare er et poengghost.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Eksakt 4 × 10-oppskrift med mål per drag og pause",
+    "Egen ghost og sammenligning mot tidligere tilsvarende økt",
+    "Per-drag analyse med watt, dekning og målpresisjon",
+    "Prestasjoner som belønner kontroll fremfor unødvendig høy effekt",
+    "Tydelig forskjellige Tron-, Neon- og Sky-miljøer"
+  ],
+  "frictions": [
+    {
+      "issue": "Tron tilbyr lite taktisk spillerbyrå under selve draget.",
+      "evidence": "Aktive Tron-bilder og RideConsole viser pacing, pause og hopp, mens veivalg finnes i Neon/Sky-ekspedisjonene.",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "Ghosten er en spillscore og har svakere sportslig sammenlignbarhet enn etteranalysen.",
+      "evidence": "src/App.tsx velger beste score for samme verden og økt, mens src/analytics.ts krever samme FTP, tilsvarende varighet, dekning og samme hopp for treningssammenligning.",
+      "severity": "medium",
+      "category": "fairness"
+    },
+    {
+      "issue": "Analyse mangler etablerte belastningsmål og rikere kontekst for en erfaren syklist.",
+      "evidence": "analysis-comparison.png viser besteeffekter, FTP-estimat og målpresisjon, men ikke normalisert effekt, intensitetsfaktor eller treningsbelastning.",
+      "severity": "low",
+      "category": "analysis"
+    },
+    {
+      "issue": "Langsiktig Tron-progresjon kan bli grunn etter fire opplåsinger.",
+      "evidence": "tron-new-player.png og src/achievements.ts viser fire faste prestasjoner og kosmetiske verdensbelønninger.",
+      "severity": "medium",
+      "category": "progression"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser 30:00 syklet, 99 % wattdekning, 97 % innenfor mål, ti minutter hoppet og ti sekunder datagap.",
+      "analysis-intervals.png fordeler målt tid, snitteffekt og treffsikkerhet på hvert planlagt drag og hver pause.",
+      "analytics.ts utelater demo, avviser usammenhengende datavinduer og sammenligner bare tilstrekkelig like økter.",
+      "sensor-checks.json dokumenterer mock-BLE-pakker, gjenkobling, lagring og dekodet FIT i den isolerte testen."
+    ],
+    "strengths": [
+      "Skiller simulering, måling, spillpoeng og FTP-anslag eksplisitt.",
+      "Bevarer hopp, planposisjon, veggtid og manglende målinger uten å fylle hull.",
+      "Gir sportslig relevant per-drag gjennomføring og forsiktig historisk sammenligning.",
+      "FTP-estimat forklares som et øktbasert anslag og endrer ikke FTP automatisk."
+    ],
+    "gaps": [
+      "Ingen fysisk økt med spillerens egen smartsykkel er dokumentert i dette evidenssettet.",
+      "Ingen normalisert effekt, intensitetsfaktor, belastningsscore eller detaljert puls-/kadensanalyse.",
+      "Snitteffekt over tid kan være mindre informativ når øktvarighet og intensitet varierer."
+    ],
+    "verdict": "Sterk og uvanlig ærlig grunnmur for presis intervallvurdering, med noen analysefelt en erfaren konkurransesyklist fortsatt vil hente fra et mer modent treningsverktøy."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser kravene før de er oppnådd og knytter hvert krav til en navngitt visuell belønning.",
+      "achievements.ts krever lagrede økter uten demo, minst 95 % dekning og konkrete målsekunder innenfor ±10 %.",
+      "unit-tests.json rapporterer beståtte tester for at hopp, demo, datagap, rå watt og score ikke kan gi kvalifikasjon.",
+      "tron-award.png viser at demo-prestasjonen er merket som forhåndsvisning, og manifestet presiserer at den ikke er permanent."
+    ],
+    "strengths": [
+      "Synlige og etterprøvbare kriterier.",
+      "Ingen fordel av å overskride wattmålet.",
+      "Restitusjon og kontinuitet belønnes sammen med arbeidsdrag.",
+      "Demo og uobserverte sekunder kan ikke gi varig opplåsing."
+    ],
+    "gaps": [
+      "Bare fire Tron-prestasjoner begrenser langsiktig dybde.",
+      "Belønningene er visuelle og gir ikke en ny sportslig utfordring eller konkurranseform.",
+      "Det brede ±10 %-vinduet skiller ikke svært jevn terskelpacing fra bare godkjent pacing."
+    ],
+    "verdict": "Rettferdig og treningsrelevant progresjon som denne skeptiske profilen kan stole på, men med for få milepæler og for lite sportslig konsekvens etter opplåsing."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Tron kobler visuelle endringer direkte til dokumentert presisjon, utholdenhet, pausekontroll og kontinuitet, og passer derfor bedre til rekord- og terskelfokuset enn ekspedisjonsgrenene i Neon og Sky.",
+  "one_change": "Gjør rekordløpet til en strengt sammenlignbar sportslig rival: samme økt, FTP, hopp og datadekning, med blokk-for-blokk ghost for wattpresisjon og fullføring fremfor en generell spillscore.",
+  "return_reason": "Ja: den presise 4 × 10-oppskriften, per-drag analysen og rettferdige målbaserte belønninger gir en troverdig grunn til å prøve å forbedre gjennomføringen over flere økter.",
+  "counterargument": "For en syklist som primært trenger struktur og avledning kan automatisk kjøring være en fordel: færre taktiske valg lar oppmerksomheten bli på jevn effekt, og analysen gir allerede den sportslige meningen poengene alene mangler.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en menneskelig brukertest eller gjennomført fysisk økt.",
+    "Aktive bilder bruker akselerert demo med simulerte data; de dokumenterer ikke faktisk lyd, responsfølelse eller treningsbelastning.",
+    "Grafikken ble fanget med headless programvare-WebGL2, så bildeflyt og ytelse på spillerens maskin er ukjent.",
+    "Sensor-smoke brukte mock-BLE; evidensen bekrefter ikke denne profilens konkrete sykkeloppsett eller langvarig feltstabilitet.",
+    "Reaksjonen ved minutt 20, tredje økt og returvalget er hypoteser."
+  ],
+  "summary": "SUMMIT passer konkurransesyklisten godt som presis, visuelt engasjerende 4 × 10-spiller. Måldata, analyse og prestasjonsopplåsinger er påfallende ryddige og motstår å belønne overskipping eller unødvendig høy effekt. Det som holder opplevelsen under toppnivå er at Tron har lite taktisk byrå, ghosten er mindre strengt sammenlignbar enn etteranalysen, og fire kosmetiske opplåsinger gir begrenset langtidsspill."
+}

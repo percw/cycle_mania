@@ -1,0 +1,11 @@
+SUMMIT gir den usikre tilbakevendende en troverdig inngang, men ikke helt den emosjonelle tryggheten profilen trenger. Dommen er «kanskje» til en ny økt. Predikert spilleglede er 4/7 både første og tredje gang; agency 4, visuelt uttrykk 5, tydelighet 5 og intervalltilpasning 5. For treningsdelen får datatillit 6, analysenytte 5 og rettferdige opplåsinger 6.
+
+Det sterkeste er at en 20-minutters lett økt ligger synlig på startsiden med et konkret wattmål. Underveis samler konsollen nåwatt, mål, tid, neste blokk, pause og segmenthopp på ett sted. Skybound er den beste verdenen for profilen: lysere og vennligere enn Tron og Neon, med et enkelt veivalg som gir litt eierskap. Koden viser også at rolig kraft og aktive pauser kan gi spillfremdrift; hardere er ikke automatisk bedre.
+
+Den største friksjonen er flytnivået. Det bygges ved å holde seg innenfor ±10 prosent av wattmålet, men nullstilles etter mer enn tre sekunder utenfor. For en som er usikker etter lang pause kan dette gjøre helt normale svingninger til synlige tap. Startsiden viser dessuten nivå, XP og fire låste prestasjoner, mens analysen viser watt under tidligere rekorder selv når målpresisjonen har blitt bedre. Det kan overskygge et realistisk fremskritt: å møte opp og sykle rolig.
+
+Treningsdataene behandles derimot ryddig. Analysen skiller syklet, hoppet og gjenstående tid, viser datagap og holder demo, spillpoeng og FTP-anslag adskilt. Opplåsinger bygger på lagrede målinger med høy dekning, ikke tilfeldigheter, rå watt eller demo. Det gjør systemet etterprøvbart, men krav på 80–90 prosent presisjon kan fortsatt føles strengt.
+
+Viktigste endring er en valgfri tilbakekomstmodus: start med en kort restitusjonsplan, skjul rangering, spøkelsesrival og flyttap, og la første milepæl være oppmøte og fullførte rolige minutter. Da kan den sterke datatilliten støtte mestring i stedet for å forsterke prestasjonspress.
+
+Dette er en prediktiv designevaluering basert på automatiserte skjermbilder, kildekode og syntetiske data, ikke en fysisk økt eller menneskelig brukertest.

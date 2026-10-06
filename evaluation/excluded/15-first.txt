@@ -1,0 +1,11 @@
+Persona 15 – Den utålmodige nyhetssøkeren
+
+Dette er en syntetisk vurdering basert på faktiske skjermbilder, kildekode og deterministiske runtime-prober, ikke en menneskelig spilltest. Første møte er sterkt: launcheren gjør Neon Rush, Skybound og Fjordveien visuelt forskjellige med én gang, og demotur senker terskelen for å se om spillet har noe nytt å by på. Neon blir favoritten fordi by, reaktortunnel og orbitalbro faktisk gir tre distinkte scener, mens Skybound byr på et tydelig stilbrudd med lyse skyer, øyer og ruiner. Fjordveien er roligere og mindre spillpreget.
+
+Førsteøktsmoro får 5/7 og det visuelle 6/7. Wattpresisjon gir rask respons gjennom ladning, pulser, flyt og stjerner, og personlig rekord-ghost er en forståelig utfordring. Klarhet og intervalltilpasning får begge 5/7: wattmål, segmenttid og neste fase er tydelige, og runtime-proben viser at både arbeidsdrag og restitusjon belønnes når målet følges. Samtidig dekker mange paneler store deler av verdenen.
+
+Byrå/agency får 3/7. Spilleren velger verden og økt, men kan ikke styre, velge vei eller ta taktiske beslutninger underveis; alle verdenene tolker innsatsen gjennom den samme ±10-prosentregelen. Neon og Skybound reagerer visuelt på ladning og fase, men selve handlingen endres ikke. Kretsene er også faste og repeterende, så ved minutt 20 forventes miljøoverraskelsen å avta.
+
+Forventet moro i tredje økt får derfor 3/7, og returdommen er «maybe». En ny verden, et annet intervall eller jakt på eget rekordløp kan utløse én ny økt, men nivå og poeng alene virker for forutsigbart for denne personaen. Høyest prioritet er ett uforutsigbart veivalg hvert 3.–4. minutt, med to korte hendelser som har ulik wattoppgave, miljø og belønning, og som roteres mellom økter.
+
+Vurderingen har middels sikkerhet. Statiske bilder og kode fanger ikke lyd, fysisk innsats eller tempoet i overgangene. Under kildeinspeksjonen ble root-audit-filen utilsiktet åpnet; den inneholdt ingen spillerratings, men full isolasjon fra aggregert syntese er derfor ikke perfekt.

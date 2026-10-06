@@ -1,0 +1,9 @@
+Persona 04 – Utforskeren
+
+Dette er en syntetisk vurdering basert på skjermbilder, kildekode og runtime-prober, ikke en rapport fra en menneskelig deltaker. For en spiller som liker Journey, Zelda og følelsen av å finne nye steder, er Skybound det klare førstevalget. Startskjermen presenterer verdenen med «utforsking» og «undring», og den aktive scenen leverer et sterkt visuelt løfte: svevende øyer, fossefall, ruiner, lysende porter og en gyllen vei over skyene. Derfor får visuell appell 6/7 og forventet moro i første økt 5/7.
+
+Intervalltilpasningen får 6/7. Biblioteket har rolige sammenhengende utholdenhetsøkter fra 20 til 90 minutter, og motoren belønner riktig lav effekt også i restitusjon. Måleffekt, tid, neste segment og kvalitetsmelding er tydelige, så klarhet får 5/7. Samtidig dekker flere store HUD-flater mye av landskapet, og belønningsspråket handler hele tiden om poeng, presisjon, kombinasjon og mestrede drag. Det gjør opplevelsen mer treningsstyrt enn oppdagelsesdrevet.
+
+Den største svakheten er agency, vurdert til 2/7. Kilden viser at Skybound følger én fast 1800-meters krets som gjentas automatisk. Spilleren kan velge verden og økt, pause og hoppe over segmenter, men kan ikke styre, velge en avstikker eller finne en skjult rute. Det finnes heller ingen dokumentert samling av steder, hemmeligheter eller funn mellom øktene. Ved rundt 20 minutter forventer jeg derfor at motivene begynner å føles som vakker bakgrunn på repetisjon. Forventet moro i tredje økt blir 3/7, og returvurderingen er «kanskje».
+
+Én endring vil treffe denne personaen klart best: bygg forgrenede Skybound-ruter med synlige og skjulte avstikkere, og lagre oppdagede steder og hemmeligheter på et verdenskart. Da kan en rolig langtur drives av nysgjerrighet i stedet for bare en ny poengsum.

@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "checks": [
+    "isolated temporary SQLite, ephemeral API and independent Vite server",
+    "one Start click connects the bike and begins a measured workout without an app dialog",
+    "thirty real seconds of fresh on-target BLE packets complete a restoration mission",
+    "earned route decision selects exploration through the live mission controls",
+    "reload silently reconnects the remembered authorized bike with no new picker and keeps workout paused",
+    "fresh reconnected telemetry clears stale connection notices without dismissing them",
+    "sensor settings connects an independent standard BLE heart-rate sensor",
+    "ride console displays measured 267 W, 92 rpm, 156 bpm and accumulated distance",
+    "warmup and segment skips advance workout without inflating recorded duration",
+    "samples retain increasing planned positions and exact work/recovery targets after skips",
+    "reload after skips preserves every sample position and skipped offset exactly while paused",
+    "pause freezes elapsed time and resume excludes paused duration",
+    "saved world and positive game score match the real workout after checkpoint recovery",
+    "saved positive expedition counters, discoveries and route choices match the measured runtime",
+    "save stores actual duration, zones and measured sensor samples via API into isolated SQLite",
+    "measured execution, skipped time, power chart and interval targets appear before collapsed game rewards",
+    "downloaded FIT passes Garmin CRC/integrity decoder and contains measured watts, cadence and heart rate",
+    "SQLite retains the ride after restarting the isolated backend",
+    "no browser exceptions or requests to the user runtime"
+  ],
+  "samples": 38,
+  "seconds": 38.00039999997615,
+  "fitBytes": 757,
+  "expedition": {
+    "version": 1,
+    "restored": 1,
+    "discovered": 0,
+    "completed": 1,
+    "discoveries": [],
+    "choices": [
+      {
+        "stage": 1,
+        "route": "restore",
+        "second": 0
+      },
+      {
+        "stage": 2,
+        "route": "explore",
+        "second": 30.249399999976156
+      }
+    ]
+  },
+  "pageErrors": []
+}

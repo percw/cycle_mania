@@ -1,0 +1,52 @@
+{
+  "basis": "Root synthesis of 20 frozen GPT-5.6 Sol scenario judgments, with factual corrections recorded separately. No human enjoyment or retention was measured.",
+  "conclusion_nb": "Treningsdata og etterprøvbare belønninger er sterkest. Det er en moderat forbedring i forventet gjenbruk og valg, men fortsatt begrenset spilldybde. Visuell vurdering gikk ned, så dette er ikke en entydig forbedring på alle områder.",
+  "priorities": [
+    {
+      "title": "Utvikling over flere økter",
+      "player_ids": [
+        "01",
+        "06",
+        "08",
+        "16"
+      ],
+      "detail": "Vis ukentlig volum og belastning, effektvarighet, FTP-anslag over tid og stabilitet gjennom lange drag. Behold strenge regler for sammenlignbare økter."
+    },
+    {
+      "title": "Roligere og lettere visning",
+      "player_ids": [
+        "10",
+        "11",
+        "14",
+        "17"
+      ],
+      "detail": "Kompakt mobilpanel, samlet rolig modus og valgbar lavgrafikk. Faktisk ytelse og lesbarhet under fysisk sykling må prøves på brukerens utstyr."
+    },
+    {
+      "title": "Mer konsekvens i spillvalgene",
+      "player_ids": [
+        "03",
+        "04",
+        "08",
+        "18",
+        "20"
+      ],
+      "detail": "Gi rutevalg ulike hendelser og varige konsekvenser, og varier innholdet gjennom lange økter. Prestasjon skal fortsatt bety å følge wattmålet, også i pausene."
+    },
+    {
+      "title": "Tydelig neste økt og milepæl",
+      "player_ids": [
+        "02",
+        "05",
+        "12",
+        "19"
+      ],
+      "detail": "Forenkle første FTP-oppsett og vis hva neste passende økt bidrar til i trening og samling. Unngå at flere parallelle tellere blir hovedopplevelsen."
+    }
+  ],
+  "human_validation": [
+    "Gjennomfør en reell kortøkt i Tron og en lengre intervalløkt i valgt verden; kontroller at watt, puls, segmenter og FIT stemmer.",
+    "Prøv mobilvisning og sensorbrudd på faktisk utstyr, og noter lesbarhet, gjenopptakelse og datagap.",
+    "Etter tre separate økter: vurder lyst til å starte igjen, hva som ble repetitivt, og om analysen forklarte gjennomføringen."
+  ]
+}

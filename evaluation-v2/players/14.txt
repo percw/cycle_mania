@@ -1,0 +1,9 @@
+SUMMIT ser ut til å håndtere den ustabile forbindelsen bedre enn den eldre laptopen. Kilde og frosne tester viser at en husket BLE-sykkel kan kobles til igjen uten ny enhetsvelger, og at uventede brudd utløser tre avgrensede forsøk. Ved brudd, gammel watt eller inaktiv app settes en ekte økt på pause. Pause, hopp og gjenopptakelse bevarer planposisjon og blåser ikke opp syklet tid. Dette er en sterk match for profilen, selv om testene brukte mock-BLE og ikke den faktiske sykkelen.
+
+Tron er mitt foretrukne valg av de observerte verdenene. Den svarte banen er roligere enn den lyse, tette Neon-byen, og konsollen samler watt, wattmål, neste del, tid, pause og segmenthopp på en lesbar flate. Samtidig er dette fortsatt kontinuerlig antialiasert 3D med glød og bloom. Det finnes en 2D-feilmelding hvis initialiseringen svikter, men ingen synlig lavgrafikkmodus. Evidensen har ingen målt FPS eller belastning på eldre maskinvare, så stabil ytelse kan ikke antas.
+
+Etter økten er SUMMIT særlig overbevisende. Analysen skiller planlagt, syklet, hoppet og gjenstående tid, viser datadekning og lar hull stå som hull. Hver blokk får målt tid, snittwatt og treffsikkerhet. FTP oppgis som anslag, og demo, spillpoeng og fysisk fremgang holdes fra hverandre.
+
+Opplåsingene er også rettferdige: de krever dokumenterte målsekunder, høy dekning og relevant måloppnåelse. Demo, hopp, manglende data, rå score og unødvendig høy watt kvalifiserer ikke. Belønningene er imidlertid mer sceneeffekt, som ikke nødvendigvis frister denne profilen.
+
+Returvalget er **kanskje**. Viktigste forbedring er en tydelig lavgrafikkmodus som reduserer oppløsning og detaljer, slår av bloom og tilbyr en enkel 2D-bakgrunn uten å miste treningskonsollen.

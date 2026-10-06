@@ -1,0 +1,135 @@
+{
+  "id": "02",
+  "persona": "Den ferske mosjonisten",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Førstesiden er visuelt tydelig, men fremhever 4 × 10 min, 64 minutter, 98 % FTP og 245 W. Demotur er tilgjengelig, mens de lettere øktene ligger lenger ned eller i biblioteket."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "Aktiv Neon-visning viser 125 W mål, 128 W faktisk effekt, tid igjen og teksten «Perfekt flyt». Samtidig konkurrerer målpanel, spillpanel, sensorpanel, oppdragskort og tidslinje om oppmerksomheten."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound har et lysere og roligere visuelt uttrykk. Skjermen viser 245 W mål mot 239 W faktisk, «Frekvens låst» og 100 % presisjon, slik at vellykket utførelse kan leses direkte."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatet samler poeng, stjerner, pulser, beste flyt, tid, snitteffekt, distanse og soner. Demoturen merkes tydelig som simulerte data, og hoppet tid forklares."
+    },
+    {
+      "path": "output/final-game/shot-0.png",
+      "observation": "Fjordveien fremstår roligere og mer naturalistisk enn Neon, med enkel vei og dempede farger, men gir mindre av den synlige eventyrbelønningen som Skybound tilbyr."
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "Førstegangsverdier er 250 W FTP, Neon og en fremhevet 4 × 10-minutters terskeløkt. FTP forklares først i profilmodalen, mens aktiv økt har pause, segmenthopp, oppvarmingshopp og direkte mer/mindre-kraft-tekst."
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Spillmotoren regner ±10 % av målet som treff, bygger en puls på 12 sekunder, nullstiller combo etter mer enn tre sekunder utenfor målet og gir stjerner først ved minst 85 % dekning og 70 % treffsikkerhet."
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "Biblioteket inneholder lette alternativer som «10 min lett tråkk», som med fem minutters oppvarming og nedkjøring varer 20 minutter, men navnet oppgir bare hoveddelens varighet."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Den deterministiske motorproben ga full uttelling ved jevn variasjon innen ±8 %, men ingen stjerner eller mestrede drag ved variasjon innen ±20 %. Proben er motorbasert og ikke en fysisk eller komplett BLE-test."
+    },
+    {
+      "path": "output/gameplay/report.json",
+      "observation": "Eksisterende runtime-test rapporterer at pause fryser klokke og poeng, foreskrevet restitusjon gir progresjon, hoppet oppvarming ikke gir stjerner, og lagret tilstand gjenopprettes pauset."
+    }
+  ],
+  "ratings": {
+    "first_fun": 4,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 4,
+    "interval_fit": 4
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Den innbydende verdenen og demoknappen senker terskelen for å se hva appen er, men 250 W FTP og en fremhevet 64-minutters terskeløkt gjør det vanskelig å vite om opplegget passer en ny mosjonist.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Med et passende wattmål er hovedoppgaven forståelig: sammenlign mål og faktisk watt, og følg rådet om å øke eller senke kraften. Pulser, presisjon og combo legger likevel et ekstra tolkningslag oppå den enkle oppgaven.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Restitusjonen kan oppleves som en reell mestringsdel fordi rolig wattmål lader like mye og kan gi stjerner; brukeren blir ikke bedt om å tråkke hardere enn planen.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "På en lett 20-minuttersvariant er det sannsynlig at tydelig tid igjen og hyppige små belønninger holder oppmerksomheten. På standardøkten er brukeren derimot bare en liten del inn i 64 minutter og kan oppleve både varighet og skjerminformasjon som for mye.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "En tredje økt er plausibel dersom brukeren selv finner korte, lette økter og liker Skybound, men mindre sannsynlig dersom valget fortsatt er et bibliotek på 100 økter uten en tydelig nybegynnersti eller personlig anbefaling.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Direkte beskjed om å øke, senke eller holde kraften gjør wattmålet håndterbart i fart.",
+    "Hyppige pulser, stjerner og «drag mestret» kan gi små, forståelige mestringsøyeblikk.",
+    "Rolig sykling i oppvarming og restitusjon teller også, noe som støtter en gjennomførbar økt.",
+    "Demotur, pause, segmenthopp og oppvarmingshopp reduserer kostnaden ved å prøve.",
+    "Skybound gir en vennlig og tydelig annerledes verden uten Neons mest intense uttrykk."
+  ],
+  "frictions": [
+    {
+      "issue": "Første anbefaling krever kunnskap og kapasitet personaen ikke kan forventes å ha: 250 W FTP og 64 minutter nær terskel.",
+      "evidence": "output/gameplay/launcher.png; src/App.tsx initialFtp og featured",
+      "severity": "high",
+      "category": "onboarding"
+    },
+    {
+      "issue": "Passende 20–30-minutters lettøkter finnes, men er ikke presentert som en enkel nybegynnersti, og øktnavnet skiller ikke alltid hoveddel fra total varighet.",
+      "evidence": "src/training.ts recovery-10 til recovery-20; src/App.tsx bibliotek med 100 økter",
+      "severity": "high",
+      "category": "clarity"
+    },
+    {
+      "issue": "Aktiv skjerm viser mange parallelle tall og begreper før en ny bruker har lært hvilke to eller tre som er viktigst.",
+      "evidence": "output/gameplay/neon-flow.png og output/gameplay/sky-flow.png",
+      "severity": "medium",
+      "category": "clarity"
+    },
+    {
+      "issue": "Treffvinduet kan være strengt for en uerfaren syklist; moderat effektvariasjon kan gi poeng, men ingen stjerner eller mestrede drag.",
+      "evidence": "src/game.ts stepGame/completeGameBlock; evaluation/runtime-probes.json wide_variation",
+      "severity": "medium",
+      "category": "fairness"
+    },
+    {
+      "issue": "Under selve økten består valgene hovedsakelig av å følge wattmålet, pause eller hoppe; verdenene endrer presentasjonen mer enn beslutningene.",
+      "evidence": "src/App.tsx ride-view; src/game.ts",
+      "severity": "low",
+      "category": "agency"
+    }
+  ],
+  "preferred_world": "sky",
+  "world_reason": "Skybound kombinerer et lyst, mindre aggressivt uttrykk med en tydelig idé om å vekke øyriket. Det gir mer synlig mestring enn den rolige originalverdenen og lavere visuell intensitet enn Neon, selv om HUD-en fortsatt er tett.",
+  "one_change": "Lag en førstegangs «20 minutter rolig»-introduksjon som forklarer watt og FTP underveis, kalibrerer et forsiktig startmål og starter direkte i en lett Skybound-økt.",
+  "return_reason": "Brukeren kan komme tilbake for tydelige små mestringsøyeblikk og en rolig, ferdig valgt økt, men dagens startside krever for mye forkunnskap til at returen er sikker.",
+  "counterargument": "Personaen kan oppdage demoturen og den lette 20-minuttersøkten uten hjelp; da kan de klare tilbakemeldingene, de tydelige pausene og verdensbyttet gjøre førsteopplevelsen betydelig bedre enn vurderingen antar.",
+  "limitations": [
+    "Dette er en syntetisk persona-evaluering, ikke en menneskelig brukertest eller målt treningsopplevelse.",
+    "Jeg har vurdert eksisterende skjermbilder, kildekode og rapporterte runtime-tester, men har ikke syklet fysisk eller koblet til en virkelig sensor.",
+    "Reaksjoner ved 20 minutter og en tredje økt er hypoteser.",
+    "Den deterministiske motorproben måler spillregler, ikke fysisk mestring, maskinvare eller opplevd motivasjon."
+  ],
+  "summary": "SUMMIT kan gi en fersk mosjonist tydelig mestring når et passende wattmål først er valgt: opp/ned-råd, små belønninger og progresjon i pausene er gode grep. Førsteinntrykket er likevel blandet fordi appen åpner med 250 W FTP og en 64-minutters terskeløkt fremfor en forklart 20–30-minutters nybegynnerøkt. Skybound er det mest lovende valget for denne personaen, men returintensjonen forblir usikker uten en guidet start."
+}

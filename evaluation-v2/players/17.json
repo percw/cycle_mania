@@ -1,0 +1,186 @@
+{
+  "id": "17",
+  "persona": "Den usikre tilbakevendende",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden tilbyr en 20-minutters lett restitusjonsøkt, viser 113 W som mål og forklarer fire låste prestasjoner med konkrete krav; den viser også nivå, XP og vanskeligere økter samtidig.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Den aktive Tron-scenen viser nåwatt, målwatt, melding om at rytteren er i målområdet, gjenværende tid, neste blokk, pause og neste segment i et samlet kontrollfelt.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound har et lyst, roligere uttrykk og lar spilleren velge mellom Gjenreis og Utforsk ved et veiskille, mens samme tydelige øktkonsoll ligger nederst.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon viser tydelig målrespons og ekspedisjonsfremdrift, men den sterke gløden og høydeopplevelsen gir et mer intenst uttrykk enn Skybound.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller 30 minutter syklet fra 10 minutter hoppet over og 24 minutter som gjenstår, viser 99 % wattdekning og markerer ti sekunder datagap uten å fylle dem inn.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Resultatsiden viser både små forbedringer mot en tilsvarende økt og wattverdier under tidligere rekorder, forklarer FTP som et anslag og lister dokumenterte opplåsinger.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Flytnivå bygges etter sammenhengende tid innenfor ±10 % av wattmålet og nullstilles etter mer enn tre sekunder utenfor området; poeng gis for måloppnåelse, pulser og mestrede blokker.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Prestasjonene krever lagrede, målte sekunder med minst 95 % datadekning; demoer utelates, og kriteriene gjelder presisjon, utholdenhet, pausekontroll og tre separate treningsdager.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/unit-tests.json",
+      "observation": "Den frosne testen rapporterer 100 av 100 tester bestått, blant annet for datagap, hoppede segmenter, demoekskludering, FTP-anslag og prestasjonskrav.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 4,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 5,
+    "clarity": 5,
+    "interval_fit": 5
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "En lett 20-minuttersøkt, tydelig wattveiledning og en vakker verden kan gi en trygg start, men nivå, rekorder og fire låste prestasjoner legger prestasjonspress på en allerede usikker bruker.",
+    "third_fun": "Synlige små milepæler og nye verdener gir en grunn til å fortsette, men gjentatt flyttap og rekordreferanser kan gjøre økt tre til en ny vurdering av om man er god nok.",
+    "agency": "Verden, økt, pause, segmenthopp og ekspedisjonsretning kan velges, men selve syklingen styres hovedsakelig av å holde et wattmål.",
+    "visuals": "Skybound er lyst og inviterende, og Tron er visuelt tydelig; Neon og flere samtidige statuslag kan likevel bli intense for en utrygg tilbakevender.",
+    "clarity": "Nåwatt, mål, neste blokk og direkte beskjed om å øke eller senke kraften er lett å forstå, og analysebegrepene forklares godt.",
+    "interval_fit": "Biblioteket har korte restitusjonsøkter, oppvarming, pause, gjenopptakelse og segmenthopp, men opplevelsen hjelper ikke synlig brukeren med å velge et forsiktig nivå etter lang pause.",
+    "data_trust": "Demo, målinger, datagap, hoppet tid, poeng og FTP-anslag skilles tydelig, med beståtte tester; reell maskinvare og langtidsdrift er ikke dokumentert i dette materialet.",
+    "analysis_usefulness": "Per-blokk-dekning og treff gir konkret forståelse, men rekordavvik og mange prosenttall kan overskygge budskapet om at en delvis, rolig økt fortsatt er et godt fremskritt.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og basert på målte sekunder fremfor rå watt eller demo, men høye presisjons- og dekningskrav kan gjøre realistisk ujevn tilbakekomst lite belønnende."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil trolig velge 20 min lett tråkk og oppleve wattmålet som konkret, men kan bli usikker av nivå, XP og flere låste prestasjoner før første økt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Den direkte målresponsen kan skape mestring når effekten er nær målet; et flytnivå som faller raskt kan samtidig tolkes som nederlag.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At rolig kraft også teller og at pausemålet belønnes, vil trolig legitimere restitusjon bedre enn et system som bare premierer høy effekt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Pause, avslutning og segmenthopp gir en trygg utvei, men synlig presisjon og combo kan holde oppmerksomheten på feil fremfor gjennomføring.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Den ærlige analysen kan bekrefte hva som faktisk ble gjort, men resultatflaten bør først fremheve fullførte minutter og kontinuitet før rekordtap.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "En synlig fremgang mot kontinuitet kan lokke tilbake, men retur er usikker dersom hvert avvik fortsatt fremstilles gjennom tap av flyt og sammenligning med eget beste.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "20 min lett tråkk med lavt og tydelig wattmål",
+    "Rolig kraft og aktive pauser teller som måloppnåelse",
+    "Skybound gir et vennlig uttrykk og et enkelt veivalg",
+    "Kontinuitet belønner tre separate treningsdager"
+  ],
+  "frictions": [
+    {
+      "issue": "Flytnivået nullstilles etter få sekunder utenfor wattområdet.",
+      "evidence": "src/game.ts nullstiller combo etter mer enn tre bomsekunder, mens GameHUD viser flytnivået fremtredende.",
+      "severity": "high",
+      "category": "feedback"
+    },
+    {
+      "issue": "Start- og resultatsidene blander forsiktig trening med nivå, XP, rekorder og strenge prestasjonskrav.",
+      "evidence": "tron-new-player.png viser nivå og fire låste krav; analysis-comparison.png viser watt under rekord side om side med forbedret målpresisjon.",
+      "severity": "medium",
+      "category": "accessibility"
+    },
+    {
+      "issue": "Det finnes ingen synlig veiviser for å velge et realistisk FTP- eller øktnivå etter lang pause.",
+      "evidence": "tron-new-player.png viser satt FTP og mange øktvalg, men ingen tilbakekomsttilpasning utover en lett anbefalt økt.",
+      "severity": "medium",
+      "category": "onboarding"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png skiller syklet, hoppet og gjenstående tid og viser datagap eksplisitt.",
+      "SessionAnalysis.tsx sier at demo ikke gir formutvikling, FTP-anslag eller opplåsinger, og at manglende watt ikke godkjennes.",
+      "unit-tests.json dekker sammenhengende målevinduer, pauser, hopp, demoer og sammenlignbar historikk."
+    ],
+    "strengths": [
+      "Skiller fysisk måling fra spillpoeng og demo.",
+      "Bevarer hull som ukjent data i stedet for å gjøre dem til null eller godkjent tid.",
+      "Forklarer at FTP er et øktbasert anslag og ikke endrer satt FTP automatisk."
+    ],
+    "gaps": [
+      "Evidensen omfatter ikke faktisk økt på profilens utstyr eller flere måneders historikk.",
+      "Analysen prioriterer fortsatt presisjon og rekorder mer enn trygg tilbakekomst og gradvis belastning."
+    ],
+    "verdict": "Datagrunnlaget fremstår uvanlig ærlig og etterprøvbart, men presentasjonen trenger et enklere, mer oppmuntrende lag for denne profilen."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser eksakte terskler og konkrete visuelle belønninger før de er opptjent.",
+      "achievements.ts krever målt, lagret tid, høy dekning og målnær effekt og utelukker demoer.",
+      "unit-tests.json viser beståtte tester for at hopp, datagap, rå watt og demo ikke kan gi ufortjent fremdrift."
+    ],
+    "strengths": [
+      "Det er ingen tilfeldige dropp eller fordel av å sykle unødvendig hardt.",
+      "Pausekontroll og kontinuitet gjør rolig arbeid og vane relevante.",
+      "Fremdrift og krav er synlige og dokumenterbare."
+    ],
+    "gaps": [
+      "Minst 80–90 % målpresisjon og 95 % dekning kan føles binært for en bruker i ustabil oppstart.",
+      "Belønningene feirer presis utførelse mer enn det å møte opp og fullføre en kort, tilpasset økt."
+    ],
+    "verdict": "Systemet er teknisk rettferdig, men den første belønningsterskelen bør være mer tolerant og knyttet til trygg kontinuitet for en tilbakevender."
+  },
+  "preferred_world": "sky",
+  "world_reason": "Skybound har den vennligste visuelle tonen og tilbyr et enkelt veivalg som kan gi mestring uten at alt handler om fart eller rekord.",
+  "one_change": "Lag en valgfri tilbakekomstmodus som starter med en kort restitusjonsplan, skjuler rangering, spøkelsesrival og flyttap, og løfter frem oppmøte og fullførte rolige minutter som første milepæl.",
+  "return_reason": "Retur er sannsynlig dersom den lette inngangen og kontinuitetsmålet føles viktigere enn tap av combo og sammenligning med tidligere toppverdier.",
+  "counterargument": "Den direkte tilbakemeldingen og de transparente kravene kan også oppleves som betryggende: brukeren vet nøyaktig hva som teller, og rå watt alene gir ingen fordel.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en gjennomført treningsøkt eller menneskelig brukertest.",
+    "Skjermbildene bruker syntetiske historikkdata og akselererte demoer.",
+    "Ingen fysisk anstrengelse, lydopplevelse, maskinvareytelse eller langtidseffekt ble målt."
+  ],
+  "summary": "SUMMIT har en troverdig og visuelt tiltalende vei tilbake via korte restitusjonsøkter, tydelige mål og ærlig analyse. For den usikre tilbakevendende er opplevelsen likevel bare blandet engasjerende fordi flyttap, rangering og rekordavvik kan gjøre normale feil til nederlag."
+}

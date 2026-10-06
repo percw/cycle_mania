@@ -1,0 +1,205 @@
+{
+  "id": "08",
+  "persona": "Langturssyklisten",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser en lys verden med svevende øyer, broer og et tydelig valg mellom Gjenreis og Utforsk, samtidig som wattmål, tid og neste del er synlige.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon Rush har et klart annerledes bylandskap, en løpende ekspedisjonsmåler og den samme lesbare øktkonsollen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-tunnel.png",
+      "observation": "Tron-tunnelen gir et konkret sceneskifte og viser fremdrift mot en dokumentert presisjonsbelønning, men motivet er fortsatt en mørk, repetitiv bane.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden viser fire verdenskort, en stor øktkatalog og fire låste Tron-krav med eksakte mål, datadekning og visuelle belønninger.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet tid, hoppet plan, gjenstående plan og datagap, og viser målt effekt mot mål gjennom økten.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Resultatsiden viser varighetsrekorder, merker FTP som et øktbasert estimat og forklarer at en rolig økt ikke betyr at terskelen har falt.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "Katalogen inneholder sammenhengende utholdenhetsøkter på 20–90 minutter, oppdelte rolige økter og sone-2-bølger, med oppvarming og nedkjøring i tillegg.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/expedition.ts",
+      "observation": "Gjenreis krever 30 og Utforsk 40 observerte sekunder innenfor ±10 % av målet; overskuddseffekt, manglende effekt og timerhopp gir ingen fremdrift, og lagrede ekte turer bygger separate kampanjer per verden.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/worlds.ts",
+      "observation": "Appen definerer seks verdener; Tron, Neon og Sky har særskilte temaer, mens Fjordveien, Høyfjell og Midnattssol er varianter av den klassiske rundløypen.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/sensor-checks.json",
+      "observation": "Den isolerte sensorprøven bekrefter pause, gjenopptakelse, segmenthopp, målposisjoner etter hopp, lagring og FIT-eksport med målte testpakker; den er ikke en fysisk langturstest.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 5,
+    "visuals": 5,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Skybound og Neon gir tydelig landskapsskifte og små rutevalg uten å kreve høy intensitet; det virker mer engasjerende enn en ren treningsgraf, men er bare vurdert fra demoopptak.",
+    "third_fun": "Seks verdener, to kampanjespor per verden og langsiktige landemerker gir returgrunn, men tre klassiske verdener deler samme rundløype og full langturvariasjon er ikke vist.",
+    "agency": "Gjenreis/Utforsk er et forståelig valg med ulik varighet og egne samlinger, men valget er binært og gjentas ofte fremfor å endre treningsplanen vesentlig.",
+    "visuals": "Sky, Neon og Tron er lett å skille og har god dybde og lesbar konsoll; hvor godt miljøene holder seg visuelt varierte gjennom 90 minutter er ukjent.",
+    "clarity": "Watt, mål, gjenværende tid, neste del, pause og segmenthopp er samlet tydelig, og demo samt estimerte data merkes eksplisitt.",
+    "interval_fit": "Katalogen dekker 60, 75 og 90 minutter jevn sone 2 samt bølgeøkter, og spillfremdrift belønner planlagt rolig effekt like mye som harde drag.",
+    "data_trust": "Målte prøver, demo, hoppet tid, datagap, spillpoeng og FTP-estimat holdes adskilt; tester støtter flyten, men ingen fysisk 60–90-minutters sensorøkt er dokumentert.",
+    "analysis_usefulness": "Dekning, treffsikkerhet, blokkvis gjennomføring og sammenlignbare rekorder er nyttige, men analysen gir begrenset langturspesifikk innsikt om jevnhet, pulsdrift eller tid i sone over hele turen.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og basert på målt tid ved foreskrevet effekt; demo, hopp, manglende data og unødvendig høy effekt kan ikke kjøpe permanent fremdrift."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil sannsynligvis velge Skybound og en 60- eller 75-minutters utholdenhetsøkt fordi både varighet, wattmål og utforskning er tydelige før start.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Den store wattvisningen og fremdrift ved rolig måloppnåelse vil trolig gjøre det lett å finne sone-2-rytmen uten å jage ekstra effekt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Rolige blokker beholder spillverdi fordi samme presisjonsregel brukes, men hyppige portalvalg kan oppleves som mer mas enn avkobling.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Landskapet og kampanjemålet vil trolig holde oppmerksomheten bedre enn en statisk treningsskjerm, men gjentatte 30/40-sekunderssløyfer kan begynne å avsløre systemet.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Vil sannsynligvis verdsette ærlig dekning og effekt mot mål, men savne en tydelig langturvurdering av jevn sone-2-belastning og eventuell pulsdrift.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Vil trolig returnere for å åpne neste landemerke og prøve en annen verden, med forbehold om at en hel 90-minutters tur må vise mer miljøutvikling enn stillbildene beviser.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "60-, 75- og 90-minutters utholdenhetsøkter med sone-2-mål",
+    "Seks visuelle verdener med separat lagret kampanjefremdrift",
+    "Utforsk-sporet åpner relikvier uten å kreve mer effekt enn planen",
+    "Tydelige neste landemerker gir en konkret grunn til å komme tilbake",
+    "Analyse som synliggjør manglende data og hoppet tid"
+  ],
+  "frictions": [
+    {
+      "issue": "Langtidsvariasjonen i hver verden er ikke dokumentert.",
+      "evidence": "Skjermbildene viser enkeltøyeblikk og Tron-sektorer; ingen evidens følger en verden gjennom 60–90 minutter.",
+      "severity": "high",
+      "category": "variety"
+    },
+    {
+      "issue": "Portalvalg hvert 30. eller 40. målsekund kan bli gjentakende på en rolig langtur.",
+      "evidence": "src/expedition.ts bruker faste 30/40-sekunders oppdrag og åpner det samme binære valget etter fullført oppdrag.",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "Tre naturverdener er palett- og stemningsvarianter av samme rundløype.",
+      "evidence": "src/WorldScene.tsx sender Fjordveien, Høyfjell og Midnattssol til RideScene, og src/worlds.ts beskriver alle tre som 8,4 km rundløype.",
+      "severity": "medium",
+      "category": "variety"
+    },
+    {
+      "issue": "Etteranalysen mangler tydelig langturspesifikk tolkning.",
+      "evidence": "analysis-overview.png og analysis-comparison.png viser effekt, dekning, rekorder og FTP-estimat, men ikke pulsdrift eller en egen vurdering av stabil sone-2-gjennomføring over tid.",
+      "severity": "medium",
+      "category": "analysis"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser 30:00 syklet av 64:00, 10:00 hoppet plan, 24:00 gjenstående og et datagap på 00:10.",
+      "analysis-intervals.png viser målt/plansatt tid, snitteffekt mot mål og treffprosent per blokk.",
+      "analysis-comparison.png merker 217 W som et øktbasert FTP-estimat, ikke en FTP-test.",
+      "sensor-checks.json dokumenterer målepakker, pause/gjenopptakelse, posisjoner etter hopp, lagring og FIT-eksport i et isolert oppsett."
+    ],
+    "strengths": [
+      "Datagap fylles ikke med null eller godkjente sekunder.",
+      "Hoppet og ikke syklet tid skilles fra aktiv tid.",
+      "Spillpoeng forklares separat fra treningsutvikling.",
+      "Sammenligning krever tilsvarende økt, FTP, varighet og god datadekning."
+    ],
+    "gaps": [
+      "Ingen ekte 60–90-minutters tur eller maskinvareytelse er målt i evidensen.",
+      "Langtursspesifikke mål som pulsdrift og effektstabilitet over lengre vinduer mangler.",
+      "Den synlige analysen bygger på syntetiske fixtures."
+    ],
+    "verdict": "Datagrunnlaget presenteres ærlig og er godt egnet til å kontrollere om en rolig økt ble fulgt, men det forklarer foreløpig mindre om kvaliteten på selve langturutholdenheten."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser Presisjon, Utholdenhet, Pausekontroll og Kontinuitet med målte minutter, treffsikkerhet og konkrete visuelle belønninger.",
+      "src/achievements.ts krever minst 95 % datadekning, målt måloppnåelse og lagret ikke-demo-historikk.",
+      "src/expedition.ts teller bare fersk effekt innenfor ±10 % og avviser manglende data, overdreven effekt og timerhopp.",
+      "unit-tests.json rapporterer 100 av 100 beståtte tester, inkludert grenser for achievements og ekspedisjonsfremdrift."
+    ],
+    "strengths": [
+      "Utholdenhet og kontinuitet passer direkte til rolige langturer.",
+      "Å sykle hardere enn planen gir ingen fordel.",
+      "Demo og segmenthopp gir ikke permanent belønning.",
+      "Krav og belønning er synlige før de er oppnådd."
+    ],
+    "gaps": [
+      "Tron har bare fire eksplisitte prestasjonsbelønninger.",
+      "Ekspedisjonsoppdragene gjentar samme 30/40-sekundersregel svært ofte.",
+      "Det er ikke vist hvor mye hvert opplåst landemerke faktisk endrer en lang tur visuelt."
+    ],
+    "verdict": "Opplåsingene er uvanlig rettferdige for sone 2 fordi kontrollert planoppfølging, ikke rå watt, driver fremdriften; langsiktig variasjon i belønningene er mindre sikkert."
+  },
+  "preferred_world": "sky",
+  "world_reason": "Skybound har det roligste og mest landskapsorienterte uttrykket i evidensen, og Utforsk-sporet gir relikvier og veivalg uten å presse effekten over sone-2-målet.",
+  "one_change": "La en 60–90-minutters ekspedisjon utvikle seg i større kapitler med merkbart nye biomer, vær og landemerker hvert 10.–15. minutt, og gjør de hyppige portalvalgene valgfrie eller sjeldnere.",
+  "return_reason": "Jeg ville sannsynligvis kommet tilbake for en ny rolig tur for å åpne neste Skybound-landemerke og prøve en annen varighet, men videre retur avhenger av at verden faktisk forandrer seg gjennom hele langturen.",
+  "counterargument": "Den faste rytmen kan være en fordel for en syklist som ønsker lav mental belastning: seks verdener, klare mål og små valg kan være akkurat nok selskap uten å konkurrere med treningen.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en gjennomført fysisk sykkeløkt eller måling av faktisk trivsel.",
+    "Aktive skjermbilder er akselererte demoer med syntetiske data og viser ikke en hel 60–90-minutters opplevelse.",
+    "Lyd, fysisk belastning, ekte maskinvareytelse og langvarig stabilitet ble ikke opplevd eller målt.",
+    "Sensorprøven brukte mock BLE; den støtter dataflyten, men dokumenterer ikke denne profilens utstyr i en lang økt."
+  ],
+  "summary": "SUMMIT ser godt tilpasset en sone-2-langtur ut: øktkatalogen har riktig varighet, rolig effekt belønnes rettferdig, og Skybound gir et visuelt mål utover tallene. Jeg predikerer retur, men den avgjørende usikkerheten er om miljø og oppdrag varierer nok etter minutt 20 til å slå en serie gjennom hele økten."
+}

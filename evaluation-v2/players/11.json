@@ -1,0 +1,194 @@
+{
+  "id": "11",
+  "persona": "Den rolige brukeren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Den aktive Tron-scenen har et mørkt og relativt sparsomt miljø, men sterke cyan/oransje kontraster, et stort prestasjonspanel og en omfattende bunnkonsoll konkurrerer om oppmerksomheten.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound bruker lysere pasteller enn Neon, men scenen er fylt av ringer, svevende øyer, skyer og to samtidige ekspedisjonspaneler, inkludert et tidsbegrenset veivalg.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon viser mange lysende bygningskanter, fartslinjer og sterke fargekontraster rundt banen; dette er det minst rolige synlige alternativet for profilen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden viser tydelige øktvalg, wattmål og fire konkrete Tron-krav, men siden er lang og informasjonsrik med verdener, prestasjoner, økter og ukeprogresjon samtidig.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet, planlagt, hoppet over og manglende data, og samler hovedtall og wattkurve i et rolig mørkt oppsett.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Hver blokk viser målt tid, planlagt tid, snitteffekt, mål og treffsikkerhet; ikke gjennomførte deler står eksplisitt uten målinger.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Sammenligningen merker FTP-tallet som et øktbasert anslag, forklarer at det ikke er en FTP-test, og viser hvilke dokumenterte prestasjoner økten utløste.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/styles.css",
+      "observation": "Regelen for prefers-reduced-motion fjerner overganger og myk rulling, men dokumenterer ikke at keyframe-animasjoner eller selve 3D-verdenens bevegelse stoppes.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/expedition.ts",
+      "observation": "Ekspedisjonsframdrift gis bare for ferske, gyldige målinger innenfor ±10 % av målet; restitusjon teller likt, overskuddseffekt gir ingen ekstra framdrift, og demoresultater lagres ikke i kampanjen.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Tron-opplåsinger har faste terskler for presisjon, utholdenhet, pausekontroll og kontinuitet og krever lagrede, ikke-demo målinger med minst 95 % datadekning.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 4,
+    "third_fun": 3,
+    "agency": 4,
+    "visuals": 3,
+    "clarity": 5,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Tydelige wattmål og valg av verden kan gi en god start, men alle viste aktive verdener legger flere sterke visuelle signaler oppå treningen.",
+    "third_fun": "Den rolige profilen kan verdsette rutinen, men uten en dokumentert lavstimulusmodus vil gjentatte paneler, belønninger og scenebevegelse sannsynligvis bli mer slitsomme enn motiverende.",
+    "agency": "Sky og Neon tilbyr reelle veivalg og verden kan velges fritt, men tidsbegrensede valg og mange progresjonssystemer kan kjennes som ekstra oppgaver fremfor behagelig kontroll.",
+    "visuals": "Utførelsen er særpreget og lesbar, men Neon er svært lysintens, Tron har hard kontrast, og selv den lysere Sky-scenen er visuelt tett for en bruker som søker ro.",
+    "clarity": "Watt, mål, neste blokk, pause og segmenthopp er tydelige, mens startsidens mange parallelle seksjoner og spillbegreper øker den kognitive belastningen.",
+    "interval_fit": "Planen står sentralt, pause og hopp er tilgjengelig, og kode/testevidens viser at rolig restitusjon belønnes likeverdig uten fordel for å sykle hardere enn foreskrevet.",
+    "data_trust": "Demo, målte data, datagap, hoppet tid og estimat skilles eksplisitt, og testene dekker sentrale feiltilfeller; fysisk sensorbruk og langtidsdrift er likevel ikke målt i denne evalueringen.",
+    "analysis_usefulness": "Analysen forklarer gjennomføring per blokk og datagap godt, men mengden tall og rekordkort kan være mer enn denne profilen ønsker etter en rolig økt.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og basert på måloppnåelse med datadekning; både restitusjon og kontinuitet verdsettes, og demo, manglende data og unødvendig høy effekt avvises."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil sannsynligvis forstå øktvalget og wattmålet, men må bruke tid på å sortere en lang side med flere verdener og progresjonssystemer.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Den faste bunnkonsollen gjør målet enkelt å følge, men bevegelig 3D-scene og spillvarsler kan trekke oppmerksomhet fra den rolige rytmen.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Kan oppleve restitusjonen som legitim fordi appen sier at rolig kraft lader like mye og belønner pausekontroll, uten press om ekstra watt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Visuell aktivitet og gjentatte progresjonssignaler kan ha blitt trettende, selv om treningsinformasjonen fortsatt er lett å finne.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Vil sannsynligvis ha nytte av den ærlige oversikten over gjennomført, hoppet og manglende tid, men kan ønske en kortere standardoppsummering.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Retur avhenger trolig av om originalverdenen faktisk oppleves roligere eller om visuell aktivitet kan dempes; dagens dokumenterte alternativer gir ikke nok sikkerhet.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Tydelig wattmål, neste blokk og pausekontroll",
+    "Restitusjon teller like mye som arbeidsdrag når målet følges",
+    "Fjordveien beskrives som en klassisk verden med valgfri spillprogresjon",
+    "Rolig, ærlig analyse av gjennomført og manglende data"
+  ],
+  "frictions": [
+    {
+      "issue": "Ingen dokumentert innstilling samler lav bevegelse, dempede effekter og færre belønningspaneler i en egen rolig modus.",
+      "evidence": "src/styles.css reduserer overganger ved prefers-reduced-motion, men de viste aktive scenene og kildekoden dokumenterer fortsatt 3D-bevegelse, keyframe-belønninger og flere HUD-lag.",
+      "severity": "high",
+      "category": "accessibility"
+    },
+    {
+      "issue": "Skybound har en mildere palett, men er fortsatt visuelt tett og krever et tidsbegrenset veivalg.",
+      "evidence": "evaluation-v2/evidence/sky-active.png viser mange ringer og svevende elementer samt to store ekspedisjonspaneler og automatisk valg etter 12 sekunder.",
+      "severity": "medium",
+      "category": "visuals"
+    },
+    {
+      "issue": "Startsiden presenterer mange valg og progresjonslag samtidig.",
+      "evidence": "evaluation-v2/evidence/tron-new-player.png viser øktkort, fire prestasjonskrav, fire verdenskort, øktbibliotek og ukeprogresjon på samme lange side.",
+      "severity": "medium",
+      "category": "clarity"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "evaluation-v2/evidence/analysis-overview.png skiller 30:00 syklet, 10:00 hoppet over, gjenstående plan og 10 sekunder uten gyldige watt.",
+      "evaluation-v2/evidence/analysis-intervals.png viser observert og planlagt tid, effekt og treffsikkerhet per blokk.",
+      "src/analytics.ts utelater demo fra analyse, beholder datagap og krever sammenhengende målte sekunder for effektrekorder og FTP-anslag.",
+      "evaluation-v2/evidence/unit-tests.json rapporterer 100 beståtte tester, blant annet for demo, datagap, hopp og FTP-estimat."
+    ],
+    "strengths": [
+      "Manglende data fylles ikke inn som null eller godkjente sekunder.",
+      "Spillpoeng, målt watt, FTP-anslag og fysisk framgang forklares som ulike størrelser.",
+      "Per-blokk-visningen gjør restitusjon og arbeidsdrag etterprøvbare."
+    ],
+    "gaps": [
+      "Evidensen bygger på syntetiske fixtures og mock/smoke-kontroller, ikke en fysisk økt for denne profilen.",
+      "Den detaljerte analysen mangler en dokumentert, valgfri kortvisning for brukere som ønsker svært enkel informasjon."
+    ],
+    "verdict": "Databehandlingen framstår troverdig og ærlig i evidensen, mens presentasjonen kan forenkles for en bruker som ønsker lav kognitiv belastning."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "evaluation-v2/evidence/tron-new-player.png viser fire låste krav med terskler og navngitte visuelle belønninger.",
+      "src/achievements.ts krever lagrede ikke-demoøkter, målt tid, presisjon og minst 95 % datadekning.",
+      "src/expedition.ts krever watt innenfor ±10 % og lar restitusjon telle likt; overskuddseffekt kjøper ikke framdrift.",
+      "evaluation-v2/evidence/unit-tests.json viser beståtte tester som avviser demo, manglende telemetri, hoppet tid og overdreven effekt."
+    ],
+    "strengths": [
+      "Kriteriene er konkrete og kontrollerbare før økten.",
+      "Pausekontroll og kontinuitet gir rolige, treningsrelevante mål.",
+      "Høyere watt enn planen gir ingen snarvei."
+    ],
+    "gaps": [
+      "Belønningene er primært flere lyse sceneelementer, som kan være en ulempe for denne profilen.",
+      "Ekspedisjonsvalg og hyppige hendelser kan gjøre ellers rolig framdrift mer påtrengende."
+    ],
+    "verdict": "Opplåsingslogikken er rettferdig og treningsrelevant, men belønningsformen bør kunne dempes eller byttes til stillferdig progresjon."
+  },
+  "preferred_world": "original",
+  "world_reason": "Fjordveien beskrives i src/worlds.ts som den opprinnelige verdenen med valgfri spillprogresjon og en rytmeorientert, klassisk tur. Det passer profilen bedre enn Neon, Tron og den visuelt tette Sky-scenen, men ingen aktiv Fjord-skjerm var med i evidensen.",
+  "one_change": "Legg til en tydelig rolig modus som reduserer 3D-bevegelse og lysglimt, skjuler spillpoeng og midlertidige belønningspaneler, lar veivalg skje uten tidsfrist og beholder bare wattmål, blokk, tid og pausekontroll.",
+  "return_reason": "Kanskje: den presise treningsstyringen, rettferdige restitusjonen og ærlige analysen er sterke, men en tredje økt virker avhengig av at den visuelle belastningen faktisk kan senkes.",
+  "counterargument": "Tron-scenen er mørk og geometrisk ryddig, lyd er av som standard, og en bruker kan velge Fjordveien og ignorere detaljer; det kan gjøre opplevelsen roligere enn de mest aktive skjermbildene antyder.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en menneskelig brukertest eller måling av trivsel.",
+    "Skjermbildene er automatiserte demoer med syntetiske data og akselerert tid.",
+    "Ingen aktiv skjerm av Fjordveien var tilgjengelig, så foretrukket verden bygger delvis på kildebeskrivelse.",
+    "Faktisk bevegelsesbelastning, lydopplevelse, sensorstabilitet og reaksjon etter 20 minutter eller tre økter ble ikke målt."
+  ],
+  "summary": "SUMMIT gir denne profilen en overraskende solid treningskjerne: målet er tydelig, rolig restitusjon belønnes, data skilles ærlig og opplåsinger kan ikke kjøpes med unødvendig høy effekt. Den synlige spillpresentasjonen er likevel for aktiv til å være et trygt, behagelig valg uten en fullverdig rolig modus."
+}

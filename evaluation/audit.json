@@ -1,0 +1,42 @@
+{
+  "method": "Root checks existence and consistency of evidence; factual transcription corrections are logged. Original ratings and judgments are preserved.",
+  "corrections": [
+    {
+      "persona": "03",
+      "field": "evidence: output/gameplay/result.png",
+      "original": "67 pulser",
+      "corrected": "57 pulser",
+      "reason": "Screenshot visually shows 57; corrected transcription only, no rating changed."
+    },
+    {
+      "persona": "10",
+      "field": "frictions / limitations",
+      "original": {
+        "issue": "Det finnes ikke et faktisk mobilbilde av startflaten eller resultatpanelet, så hele mobilreisen kan ikke vurderes visuelt.",
+        "evidence": "output/gameplay/launcher.png og output/gameplay/result.png er 1440 px brede",
+        "severity": "low",
+        "category": "onboarding"
+      },
+      "corrected": "Removed evidence-coverage limitation from app friction list; clarified that mobile launcher evidence exists elsewhere but was not inspected by this evaluator. Original ratings, return intention and summary unchanged.",
+      "reason": "A missing image in the inspected subset is a limitation of the evaluation, not an application defect."
+    },
+    {
+      "persona": "15",
+      "field": "frictions: onboarding",
+      "original": "Den fremhevede 64-minuttersøkten og fem minutters oppvarming gjør at en utålmodig førstegangsbruker kan forlate appen før mestring, senere sektorer og resultatprogresjon blir synlig.",
+      "corrected": "Den fremhevede 64-minuttersøkten og den første femminuttersblokken i oppvarmingen gjør at en utålmodig førstegangsbruker kan forlate appen før mestring, senere sektorer og resultatprogresjon blir synlig.",
+      "reason": "The featured workout has two 5-minute warmup blocks, totaling 10 minutes. Clarified that the screenshot timer shows the first block; ratings unchanged."
+    }
+  ],
+  "excluded": [
+    {
+      "persona": "15",
+      "task": "/root/player_15",
+      "files": [
+        "excluded/15-first.json",
+        "excluded/15-first.txt"
+      ],
+      "reason": "Evaluator voluntarily disclosed accidental exposure to root synthesis in root-audit.json. Excluded before aggregation and replaced with fresh isolated evaluator; no player judgments or scores were otherwise read."
+    }
+  ]
+}

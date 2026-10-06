@@ -1,0 +1,9 @@
+Persona 11 – Den rolige brukeren
+
+Dette er en syntetisk vurdering, ikke en faktisk deltakers opplevelse. For denne personaen er Skybound det klart beste dokumenterte valget. Den aktive Skybound-scenen bruker lyse, myke farger og en tydelig vei, mens Neon Rush har sterke cyanlys, glødende bygninger og lysspor. Fjordveien virker lovende som et roligere, klassisk alternativ, men bevisene viser ikke et aktivt skjermbilde av den, så Skybound får preferansen.
+
+Første økt vurderes til 4/7 i moro. Wattmålet og tiden er svært lette å finne, og det er positivt at rolig, presis innsats belønnes. Motorprobene viser full uttelling både ved helt jevn effekt og myk variasjon innen ±8 prosent. Recovery passer også godt: koden og kjøretidsrapporten viser at foreskrevet lav watt fortsatt gir lading og progresjon, og Skybound demper himmelfarge og vingebevegelse. Derfor får intervalltilpasning 5/7 og klarhet 5/7.
+
+Problemet er mengden samtidige signaler. Under syklingen vises mål og tid sammen med poeng, combo, ladeprosent, presisjon, oppdrag, stjerner, pulser, telemetri og øktprofil. Belønningsmeldinger kan ligge over scenen i 3,5 sekunder, og scenene fortsetter med partikler, glød og kontinuerlig bevegelse. Systeminnstillingen for redusert bevegelse slår av CSS-overganger, men stopper ikke 3D-animasjonen. Visuell appell og agency får derfor 4/7: verdensvalg, pause og lyd av hjelper, men det mangler kontroll over selve intensiteten.
+
+Ved 20 minutter forventes den gjentatte visuelle aktiviteten å bli slitsom. Forventet moro i tredje økt settes til 3/7, og returviljen er «kanskje». Den viktigste endringen er en rolig modus som bare viser wattmål, tid, neste fase og grunnleggende telemetri, samtidig som spill-HUD, popups, partikler, glød og kamerabevegelse reduseres kraftig.

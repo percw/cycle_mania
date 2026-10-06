@@ -1,0 +1,194 @@
+{
+  "id": "05",
+  "persona": "Den travle forelderen",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": "Ingen tidligere rapporter, andre spillerfiler eller rotagentens syntese ble lest."
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-launcher.png",
+      "observation": "Startsiden viser en anbefalt 20-minutters lettøkt, avkryssing for at brukeren allerede er varm og en tydelig Start økten-knapp.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Under økten er watt, wattmål, gjenværende intervalltid, neste del, pause, neste segment og avslutning samlet i en fast konsoll.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon-verdenen har samme treningskonsoll, men også ekspedisjonsfremdrift og et mer visuelt tett bymiljø.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller 30:00 syklet fra 10:00 hoppet over og 24:00 som gjenstår, viser 99 % wattdekning og varsler eksplisitt om ti sekunder uten gyldige watt.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Per-del-tabellen viser hvilke oppvarmings- og avslutningsdeler som ikke ble syklet, delvis fullført drag og faktiske målte sekunder per blokk.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/runtime-checks.json",
+      "observation": "Den frosne kjøresjekken oppgir at pause fryser treningstiden, at mobilkontroller forblir synlige, og at demo ikke kan gi permanente utmerkelser.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/sensor-checks.json",
+      "observation": "Mock-BLE-sjekken oppgir at omlasting kobler til kjent sykkel igjen med økten pauset, at hopp bevarer planposisjon, og at pause/gjenopptakelse utelater pauset tid.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "En lagret aktivøkt lastes inn pauset; tilkoblingsbrudd, inaktiv app og manglende ferske watt pauser økten, mens øktstatus sjekkpunktlagres omtrent hvert femte sekund og ved pause eller hopp.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Fire Tron-opplåsinger bruker lagrede, målte sekunder, minst 95 % datadekning og eksplisitte presisjonskrav; demo, poeng og rå høy watt er ikke kriterier.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 5,
+    "visuals": 5,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Rask inngang, tydelig wattrespons og en markant verden lover en engasjerende kortøkt, men sensorstart kan fortsatt koste tid.",
+    "third_fun": "Flere verdener og dokumentert fremdrift gir grunn til retur, men profilen kan oppleve ekspedisjoner og poeng som ekstra lag i en knapp hverdag.",
+    "agency": "Verden, økt, pause, segmenthopp og enkelte ekspedisjonsvalg er meningsfulle valg, men selve syklingen følger i hovedsak en fast plan.",
+    "visuals": "Tron og Neon er tydelig forskjellige og treningskonsollen er lesbar; store fremdriftskort og effekter kan likevel konkurrere om oppmerksomheten.",
+    "clarity": "Wattmål, neste blokk, tid, pause og skip er synlige samtidig, og demo samt måledata merkes tydelig.",
+    "interval_fit": "Allerede varm-funksjonen, pause og segmenthopp passer 25-minuttersvinduet svært godt, og hoppet tid fremstilles ikke som syklet.",
+    "data_trust": "Evidensen viser måledekning, datagap, pauset tid og demo separat, med varig lagring og FIT-sjekk; ekte langtidsbruk og fysisk maskinvare er ikke dokumentert her.",
+    "analysis_usefulness": "Per-blokk-tid og treffsikkerhet forklarer hva som faktisk ble gjennomført, men den omfattende siden krever mer tid enn denne profilen ofte har etter økten.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og bygger på målte sekunder nær planlagt watt; høyere rå watt, skip og demo gir ingen snarvei."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Profilen vil sannsynligvis velge 20 min lett tråkk, markere at oppvarmingen allerede er gjort og starte med få valg.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Det store wattallet, wattmålet og gjenværende tid bør gjøre første arbeidsdel lett å følge med korte blikk.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Ved en avbrytelse bør den faste pauseknappen og automatisk pause ved bortfall av watt gjøre det trygt å forlate sykkelen kort.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Med oppvarmingen hoppet over vil 20-minutters hoveddelen være ferdig, men profilens stramme tidsramme kan gjøre nedkjøringen avhengig av segmenthopp.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "En rask kontroll av syklet tid, hopp og wattdekning vil være nyttig; den komplette analysen er trolig mer detaljert enn tiden tillater.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Sannsynlig retur dersom kjent sykkel kobler seg til raskt og siste økt er lett å velge igjen; Tron fremstår mindre avledende enn ekspedisjonsverdenene.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Allerede varm hopper direkte til hoveddelen.",
+    "Pause og gjenopptakelse bevarer en avbrutt økt.",
+    "En 20-minutters lettøkt kan tilpasses et 25-minuttersvindu.",
+    "Målte prestasjoner gir konkrete Tron-opplåsinger uten å belønne overskipping."
+  ],
+  "frictions": [
+    {
+      "issue": "Første målte start kan bruke en merkbar del av tidsvinduet hvis sykkelen ikke allerede leverer ferske wattdata.",
+      "evidence": "src/App.tsx venter på tilkobling og ferske watt, med en 30-sekunders tidsavbrudd før brukeren bes tråkke og trykke start igjen.",
+      "severity": "medium",
+      "category": "onboarding"
+    },
+    {
+      "issue": "Brå omlasting kan i verste fall rulle økten noen sekunder tilbake mellom sjekkpunkter.",
+      "evidence": "src/App.tsx sjekkpunktlagrer løpende status når mer enn omtrent fem sekunder har gått, samt ved pause og segmenthopp.",
+      "severity": "low",
+      "category": "reliability"
+    },
+    {
+      "issue": "Etterøktsanalysen er informativ, men omfattende for en bruker som straks må videre.",
+      "evidence": "analysis-overview.png og analysis-intervals.png viser en lang visning med graf, sammendrag og ti separate blokkrader.",
+      "severity": "medium",
+      "category": "analysis"
+    },
+    {
+      "issue": "Neon-ekspedisjonens ekstra fremdriftslag kan bli en distraksjon under en tidskritisk økt.",
+      "evidence": "neon-active.png viser både ekspedisjonsmål og treningskonsoll i et visuelt tett miljø.",
+      "severity": "low",
+      "category": "clarity"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png skiller syklet, hoppet og gjenstående plantid og viser datagap.",
+      "sensor-checks.json dokumenterer at pause, hopp, omlasting, lagring og FIT-eksport ble kontrollert med mock-BLE og isolert database.",
+      "analytics.ts utelater demo og ukjente målinger fra analyse og krever sammenhengende målte data for FTP-anslag."
+    ],
+    "strengths": [
+      "Pauset tid og hoppet plantid blåser ikke opp aktiv varighet.",
+      "Manglende watt markeres og fylles ikke kunstig inn.",
+      "Analyse skiller spillpoeng, måloppnåelse og øktbasert FTP-anslag."
+    ],
+    "gaps": [
+      "Fysisk BLE-maskinvare og langvarig bruk ble ikke testet i den frosne evidensen.",
+      "Sjekkpunkter hvert femte sekund kan gi et lite tilbakesprang ved brå avbrytelse.",
+      "Den mest nyttige hurtigoppsummeringen er ikke tydelig prioritert for en bruker med dårlig tid."
+    ],
+    "verdict": "Sterk og ærlig datamodell for avbrutte kortøkter, med særlig god behandling av pause, hopp og manglende watt; den praktiske friksjonen på ekte utstyr er fortsatt usikker."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-launcher.png viser alle fire krav, konkret fremdrift og kosmetisk belønning.",
+      "achievements.ts krever lagrede målesekunder, høy datadekning og 80–90 % tid innenfor wattmålet.",
+      "unit-tests.json oppgir beståtte tester for at demo, datagap, hopp, poeng og rå watt ikke gir ufortjente opplåsinger."
+    ],
+    "strengths": [
+      "Kriteriene er synlige før økten og kan etterprøves i målehistorikken.",
+      "Presisjon og kontrollert restitusjon belønnes fremfor unødvendig hard sykling.",
+      "Kontinuitet kan oppnås med tre ulike dager og minst ti målte minutter per dag, noe som passer korte økter."
+    ],
+    "gaps": [
+      "Utholdenhetskravet på 20 målte minutter kan bli knapt når profilen bare har 25 minutter inklusive oppstart.",
+      "Alle fire permanente prestasjonsopplåsinger er knyttet til Tron-estetikk, så verdien avhenger av at denne verdenen appellerer."
+    ],
+    "verdict": "Rettferdig og treningsrelevant progresjon som tåler avbrudd uten å belønne snarveier; tidsvinduet gjør enkelte milepæler krevende, men ikke vilkårlige."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Tron gir tydelig prestasjonsfremdrift og et mørkt, ryddig spor uten ekspedisjonsvalg som krever ekstra oppmerksomhet i en kort og avbrytbar økt.",
+  "one_change": "Lag en ett-trykksmodus for 25 minutter som bruker sist valgte verden og økt, hopper over oppvarming når valgt, avslutter med tilpasset nedkjøring og viser en kompakt oppsummering.",
+  "return_reason": "Ja, fordi kortøkt, oppvarmingshopp og robust pause/gjenopptakelse løser profilens viktigste hverdagsproblem, forutsatt at sykkelen kobler til raskt.",
+  "counterargument": "Den positive dommen kan overvurdere flyten: evidensen bygger på automatiserte demonstrasjoner og mock-sensor, og et reelt tilkoblingsproblem eller flere avbrudd kan spise opp hele 25-minuttersvinduet.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke faktisk bruk eller målt glede.",
+    "Skjermbildene bruker demo og syntetiske historikkdata.",
+    "Ingen fysisk trening, ekte langtidsbruk, lydopplevelse eller maskinvareytelse ble vurdert.",
+    "Sensor-sjekken brukte mock-BLE; fysisk HR- og ANT+-maskinvare var ikke testet."
+  ],
+  "summary": "For en allerede oppvarmet forelder med 25 minutter er SUMMIT uvanlig godt tilpasset: økten kan startes raskt, oppvarmingen hoppes over, avbrudd pauser uten å telle videre, og gjennomføringen rapporteres ærlig. Tron er det beste valget fordi treningsinformasjon og målte milepæler er tydelige uten ekstra ekspedisjonsvalg. Største risiko er oppstartsfriksjon mot ekte sensor og at detaljert etteranalyse tar mer tid enn profilen har."
+}

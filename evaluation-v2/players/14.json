@@ -1,0 +1,193 @@
+{
+  "id": "14",
+  "persona": "Veteranen på eldre laptop",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Den aktive Tron-scenen har en mørk og forholdsvis ryddig bane, mens watt, wattmål, neste del, tid og pause/hopp ligger samlet i en tydelig konsoll.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon har flere lysende bygninger og større visuell tetthet enn Tron, men beholder samme lesbare øktkonsoll nederst.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden viser startknapp, wattmål, oppvarmingsvalg og fire låste prestasjoner med tallfestede krav og navngitte visuelle belønninger.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet, planlagt og hoppet tid, viser 99 % wattdekning og markerer et datagap på ti sekunder uten å fylle det med null eller godkjente sekunder.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Hver øktdel viser målt tid mot plan, snittwatt mot mål og treffsikkerhet; deler uten målinger står eksplisitt som ingen målinger.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Sammenligningen merker FTP-tallet som et øktbasert anslag, viser forskjeller mot rekord og tilsvarende økt, og dokumenterer hvilke prestasjoner økten utløste.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sensor-checks.json",
+      "observation": "Den frosne sensor-smoken rapporterer at husket sykkel kobles til igjen uten ny velger, at fersk telemetri fjerner varsel, og at pause, hopp, lagring og FIT-data bevares; testen brukte mock-BLE, ikke denne profilens maskinvare.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/bluetooth.ts",
+      "observation": "Uventet frakobling utløser tre avgrensede gjenkoblingsforsøk etter 2, 5 og 10 sekunder, mens eksplisitt frakobling avbryter ventende forsøk.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "Brudd, over ti sekunder uten ferske watt eller inaktiv app pauser en ekte økt og forklarer hvorfor; økten checkpointes lokalt og krever eksplisitt fortsettelse.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/TronWorld.tsx",
+      "observation": "Tron kjører antialiasert 3D med pikselratio opptil 1,6 og bloom; ved initialiseringsfeil vises en 2D-feilmelding og økt/målinger fortsetter, men ingen brukerjusterbar lavgrafikkmodus fremgår.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 4,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 4,
+    "clarity": 5,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 6,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Lav startfriksjon, tydelige mål og en rolig Tron-palett kan fungere, men ukjent ytelse på eldre laptop gjør førsteinntrykket usikkert.",
+    "third_fun": "Pålitelig øktgjenopptakelse og dokumentert progresjon gir en grunn til å vende tilbake, men manglende lavgrafikkmodus kan bli en vedvarende terskel.",
+    "agency": "Pause, fortsett, neste segment, hopp over oppvarming og verdensvalg er meningsfulle, men profilen kan ikke styre grafikkbelastning eller scenetetthet.",
+    "visuals": "Tron har god kontrast og tydelig konsoll, mens Neon er tettere; kontinuerlig 3D, glød og bloom kan distrahere, og ingen faktisk laptop-ytelse er målt.",
+    "clarity": "Live/demo er merket, wattmål og status er tydelige, og feiltekster forklarer sensortap; automatisk gjenkobling og forsøksteller er mindre synlige i selve turbildet.",
+    "interval_fit": "Ferske watt kreves, sensortap pauser økten, og pause, segmenthopp og oppvarmingshopp er eksplisitte uten å blåse opp syklet tid.",
+    "data_trust": "Datagap, demo, hopp og pauser holdes adskilt, og lagring/FIT er testet med mock-BLE; ekte ustabil sykkel og eldre laptop er ikke testet her.",
+    "analysis_usefulness": "Oversikt, graf og blokkvis tabell gjør avbrudd og faktisk gjennomføring lett å kontrollere, med ærlig FTP- og sammenligningskontekst.",
+    "unlock_fairness": "Kravene er synlige og bygger på lagrede, målte sekunder med dekning og måloppnåelse; demo, manglende data, hopp og ekstra watt kvalifiserer ikke."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Profilen vil trolig forstå startkortet og sensorknappen raskt, men vil lete etter en lavgrafikkinnstilling før en lengre økt.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Den samlede konsollen og direkte beskjed om å øke eller senke kraften vil sannsynligvis holde oppmerksomheten på planen.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Tydelig wattmål og belønning av kontrollert pause bør oppleves relevant, særlig fordi høyere watt ikke gir en fordel.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Hvis 3D-scenen kjører stabilt, vil Tron trolig være mindre distraherende enn Neon; uten maskinmåling eller kvalitetsvalg forblir dette usikkert.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Profilen vil sannsynligvis verdsette at datagap, hopp og ufullførte blokker vises ærlig og kan skille sensorproblemer fra egen utførelse.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Retur er sannsynlig hvis automatisk gjenkobling fungerer på den faktiske sykkelen og 3D-belastningen er akseptabel; ellers kan appen velges bort til fordel for et enklere display.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Husket BLE-sykkel og avgrenset automatisk gjenkobling",
+    "Automatisk pause ved sensortap eller gammel watt",
+    "Stor, samlet konsoll med watt, mål, tid og kontroller",
+    "Ærlig analyse av datagap, hopp og målte intervaller"
+  ],
+  "frictions": [
+    {
+      "issue": "Ingen synlig lavgrafikkmodus for eldre maskinvare.",
+      "evidence": "src/TronWorld.tsx bruker antialiasert 3D, opptil 1,6 pikselratio og bloom; manifestet oppgir bare headless programvare-WebGL2 og ingen maskinvarebenchmark.",
+      "severity": "high",
+      "category": "reliability"
+    },
+    {
+      "issue": "Gjenkoblingsforløpet er robust i kode, men lite forklarende i turbildet.",
+      "evidence": "src/bluetooth.ts forsøker etter 2, 5 og 10 sekunder, mens src/App.tsx viser frakoblet/pauset beskjed uten synlig forsøksteller.",
+      "severity": "medium",
+      "category": "clarity"
+    },
+    {
+      "issue": "Lyse og tette scener kan trekke blikket fra økten.",
+      "evidence": "evaluation-v2/evidence/neon-active.png viser mange lysende bygningsflater og spor rundt den samme øktkonsollen.",
+      "severity": "medium",
+      "category": "visuals"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "evaluation-v2/evidence/sensor-checks.json rapporterer mock-BLE-pakker, bevart posisjon etter hopp/reload, pause som fryser tid, SQLite-lagring og Garmin-validert FIT.",
+      "src/App.tsx pauser ekte økter ved frakobling, mer enn ti sekunder uten watt eller lang inaktivitet.",
+      "evaluation-v2/evidence/analysis-overview.png viser datagap, wattdekning og separat hoppet/gjenstående tid."
+    ],
+    "strengths": [
+      "Manglende watt blir ikke gjort om til null eller godkjent tid.",
+      "Demo, spillpoeng, måledata og øktbasert FTP-anslag er eksplisitt adskilt.",
+      "Lokal checkpointing og lagring reduserer tap ved avbrudd."
+    ],
+    "gaps": [
+      "Ingen test med profilens faktiske ustabile BLE-sykkel.",
+      "Ingen måling av hvordan maskinbelastning påvirker sensormottak, rendering eller lagring på eldre laptop.",
+      "Maskinvaren for puls og ANT+ er ikke fysisk testet i denne evidensen."
+    ],
+    "verdict": "Sterk og ærlig databehandling i den dokumenterte testbanen, men pålitelighet på profilens konkrete maskinvare må fortsatt bekreftes."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "evaluation-v2/evidence/tron-new-player.png viser fire krav med målte minutter, presisjon og datadekning.",
+      "src/achievements.ts krever ekte lagrede økter, minst 95 % dekning og full målbar utførelse; demo filtreres bort.",
+      "evaluation-v2/evidence/unit-tests.json rapporterer beståtte tester for at demo, datagap, hopp, rå watt og score ikke gir ufortjent opplåsing."
+    ],
+    "strengths": [
+      "Det lønner seg å følge foreskrevet arbeid og restitusjon, ikke å tråkke unødvendig hardt.",
+      "Kriterier, fremdrift og konkret visuell belønning er synlige.",
+      "Kontinuitet krever tre unike dokumenterte treningsdager."
+    ],
+    "gaps": [
+      "Belønningene er hovedsakelig mer sceneeffekt, som kan være lite attraktive for en bruker som ønsker mindre distraksjon og lavere belastning.",
+      "En live milepæl er foreløpig til turen lagres, noe som bør være tydelig ved avbrudd."
+    ],
+    "verdict": "Rettferdig og etterprøvbart system, men belønningstypen passer denne profilen dårligere enn selve kriteriene."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Av de observerte aktive verdenene har Tron mørkest og ryddigst rom, og den tydelige konsollen dominerer; ytelsen på eldre laptop er likevel ukjent og bloom kan ikke slås av.",
+  "one_change": "Legg til en tydelig lavgrafikkmodus som reduserer pikselratio og scenedetaljer, slår av bloom og lar øktkonsollen fortsette i en enkel 2D-bakgrunn.",
+  "return_reason": "Profilen vil kanskje returnere fordi pause, gjenkobling og analyse beskytter økten, men bare dersom den faktiske laptopen kan kjøre scenen stabilt uten at grafikken tar oppmerksomheten.",
+  "counterargument": "Lazy lasting, begrenset pikselratio og 2D-fallback kan være nok på mange eldre maskiner, og den mørke Tron-scenen er mindre travel enn Neon; evidensen måler likevel ikke dette på relevant maskinvare.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en menneskelig brukertest eller gjennomført treningsøkt.",
+    "Ingen faktisk FPS, prosessor-/GPU-belastning, batteribruk eller termisk stabilitet er målt.",
+    "Sensor-smoken brukte mock-BLE; profilens konkrete sykkel og avbruddsmønster er ikke prøvd.",
+    "Skjermbildene bruker simulerte data og syntetisk historikk, og faktisk lydopplevelse er ikke vurdert."
+  ],
+  "summary": "SUMMIT beskytter treningsdata og avbrutte økter bedre enn den visuelt tunge presentasjonen først antyder: BLE kan kobles til igjen, sensortap pauser økten, og analysen synliggjør hull. For veteranen på eldre laptop er hovedusikkerheten manglende lavgrafikkmodus og fravær av relevante ytelsesmålinger."
+}

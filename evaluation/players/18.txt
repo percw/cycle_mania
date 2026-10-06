@@ -1,0 +1,9 @@
+SUMMIT – syntetisk personarapport 18: Strategispilleren
+
+Dette er en modellbasert vurdering, ikke en menneskelig spilltest. For en spiller som liker Slay the Spire, valg og bygging av spillestil, gir SUMMIT et sterkt førsteinntrykk, men begrenset strategisk dybde. Startskjermen tilbyr tre tydelige hovedverdener og mange økter. Under turen er målet lett å lese: hold deg innenfor wattsonen for å bygge ladning, combo, pulser og segmentmestring. Neon fremstår som beste valg for denne personaen fordi høy kontrast, tydelige reaksjoner og et synlig personlig rekordspøkelse gjør optimaliseringen konkret.
+
+Jeg setter førsteøktsmoro til 4/7. Presentasjonen, sektorbyttene og den raske belønningssløyfen kan være engasjerende, men handlingen er i hovedsak å følge ett wattmål på én automatisk bane. Forventet moro i tredje økt er 3/7: rekordjakt gir en grunn til å prøve igjen, men nivå og XP åpner ikke dokumenterte evner, utstyr, synergier eller alternative strategier. Agency blir derfor 2/7.
+
+Det visuelle får 6/7. Neon og Skybound har klart forskjellige uttrykk, og ladning, treningsfase og belønningshendelser påvirker scenene synlig. Klarhet får også 6/7 fordi wattmål, gjenstående tid, neste fase, intervallprofil og spillprogresjon vises samtidig. Intervalltilpasning får 6/7: kildekoden og probene viser at presisjon belønnes, recovery teller, hopp ikke gir mestring, og for høy effekt ikke lønner seg. Dette støtter treningsplanen godt.
+
+Den største svakheten er at valg av verden hovedsakelig endrer tema. Det finnes ingen rutegren, ressursforvaltning eller byggbeslutning under økten. Det viktigste grepet er derfor å tilby to–tre oppgraderinger etter hvert arbeidsdrag, med tydelige avveininger som endrer poeng- og belønningsmønsteret uten å belønne feil watt. Da kan hver økt bli et faktisk bygg, samtidig som treningsmålet beholdes. Returdommen er «kanskje»: ghost og ulike økter kan lokke, men strategisk progresjon mangler.

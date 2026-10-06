@@ -1,0 +1,11 @@
+Prestasjonssamleren — syntetisk evaluering
+
+SUMMIT treffer denne personaen godt i selve økten. Førsteinntrykket viser nivå, tittel, XP til neste nivå og egne rekorder per verden. Under Neon Rush er belønningssløyfen tett og lett å lese: poeng, opptil ×4 flyt, ladestatus, presisjon, energipulser, stjerner og mestrede drag. Neon får et ekstra fortrinn fordi et lagret personlig rekordløp blir en synlig holografisk motstander. Skybound har en tydelig annen identitet, men bruker de samme reglene. Fjordveien virker roligere og mer klassisk, og blir derfor mindre attraktiv for en spiller som først og fremst vil samle prestasjoner.
+
+Første økt får 5/7 i forventet moro. Det finnes hele tiden en liten teller å forbedre, og runtime-probene viser at jevn måloppnåelse faktisk skiller seg kraftig fra upresis kjøring. Intervalltilpasningen får 6/7: arbeidsdrag og restitusjon inngår i samme spillregel, og riktig rolig innsats lader like mye i pausen. Klarheten får 5/7 fordi neste mikrobelønning er konkret, mens den langsiktige belønningen er vag. Visuelt får opplevelsen 6/7; særlig Neon og Sky gir to sterke, lett gjenkjennelige rammer.
+
+Agency får 4/7. Spilleren velger verden og økt og kan jakte egen rekord, men handlingen er hovedsakelig å holde foreskrevet watt. Det finnes få valg om hvilken belønning eller progresjonsgren man vil forfølge.
+
+Forventet moro ved tredje økt faller til 4/7, og returviljen er «kanskje». Ekte turer gir XP, karrierenivå og rekordspøkelse, men stjerner, pulser og mestrede drag blir ikke vist som en varig samling. Det mest virkningsfulle grepet er en prestasjonsbok med én synlig neste verdensbelønning før start og et varig emblem etter måloppnåelse. Da ville «300 XP til neste nivå» svare på det viktigste spørsmålet: Hva åpner dagens tur?
+
+Dette er en modellprognose fra eksisterende skjermbilder, kildekode og runtime-prober, ikke en menneskelig eller fysisk gjennomført test.

@@ -1,0 +1,199 @@
+{
+  "id": "03",
+  "persona": "Actionspilleren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": "Ingen tidligere vurderinger eller andre spilleres dommer ble lest."
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron viser en tydelig lysmotorsykkel, sterk fartsretning, watt, wattmål, drag, nedtelling og øktprofil, men den store flaten øverst til venstre er et langsiktig prestasjonskort fremfor tett actionfeedback.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon har en markant futuristisk by, høy veibane og ekspedisjonsfremdrift, men skjermbildet viser ingen aktivt veivalg i øyeblikket.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser et lesbart veivalg mellom Gjenreis og Utforsk med automatisk valg etter 12 sekunder, samtidig som wattmål og intervalldata forblir synlige.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden forklarer fire låste Tron-belønninger med konkrete krav til målte sekunder, presisjon og treningsdager, og skiller dette fra verdens- og øktvalg.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Analysen viser målt tid, planlagt tid, snitteffekt, wattmål og treffsikkerhet per del, og gjør hoppede og ufullførte deler eksplisitte.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Et syntetisk eksempel skiller wattrekorder, et eksplisitt øktbasert FTP-anslag, sammenligning med tilsvarende økt og dokumenterte prestasjoner.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "Katalogen inneholder 3 × 10 × 30/30 med 30 sekunder på 120 % FTP, 30 sekunder rolig og tre minutter seriepause.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Spillet gir combo, ladning, pulser og poeng for tid innenfor ±10 % av målet; en feilmargin på inntil tre sekunder bevarer kjeden, og overskuddseffekt gir ingen ekstra uttelling.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/unit-tests.json",
+      "observation": "100 av 100 tester passerte, blant annet at 30/30-strukturen bevares, manglende sensordata ikke gir poeng, hopp nullstiller blokkdekning, og prestasjonskrav ikke kan tjenes med demo, hopp eller rå watt alene.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 5,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Tre tydelig ulike verdener, rask wattrespons og korte belønningssløyfer gir en lovende første 30/30-økt, men handlingen er hovedsakelig å holde et tall i et område.",
+    "third_fun": "Verdensbytte, egen rekord og ekspedisjonsvalg kan bære noen gjentakelser, men de samme portene, målstyringen og to rutetypene vil trolig føles rutinepregede for en Hades- og Doom-spiller.",
+    "agency": "Neon og Skybound tilbyr faktiske veivalg, og verden og økt kan velges, men valgene styrer primært hvilken teller som fylles; Tron har ingen tilsvarende beslutninger under draget.",
+    "visuals": "Tron, Neon og Skybound har klart forskjellige paletter, rom og kjøretøy, med god wattlesbarhet; Tron er samtidig mørk og geometrisk repetitiv, og skjermbilder kan ikke bevise bevegelsesfølelse eller stabil bildefrekvens.",
+    "clarity": "Watt, mål, segmentnavn, nedtelling, neste fase og korrigerende beskjed er svært tydelige, og hopp/pause er synlige; forholdet mellom spillpoeng, ekspedisjon og permanente prestasjoner krever likevel litt orientering.",
+    "interval_fit": "Den eksakte 30/30-planen finnes, femsekundersovergangen varsles, korte avvik tolereres og rolige perioder belønnes uten press om å overskride målet.",
+    "data_trust": "Tester og synlig UI skiller målinger, datagap, demo, spillpoeng og FTP-anslag konsekvent, men evidensen er i hovedsak automatisert og verifiserer ikke en fysisk 30/30-økt på denne maskinvaren.",
+    "analysis_usefulness": "Per-blokk watt, dekning, presisjon og sammenligning kan forklare utførelsen godt, men en 3 × 10 × 30/30-økt gir over 60 deler og tabellen lukkes når det er mer enn 12, uten serieoppsummering eller handlingsrettet diagnose.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og basert på lagrede målte sekunder med minst 95 % dekning; demo, hopp, manglende data og unødvendig høy watt gir ingen snarvei, men belønningene er bare kosmetiske Tron-endringer."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil trolig velge Neon eller Tron på grunn av det sterke visuelle løftet, men må lete i øktbiblioteket etter 30/30-planen fremfor å få den presentert som en actionutfordring.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Den store watten, umiddelbare beskjeden om å øke eller senke og korte energipulser vil sannsynligvis gi tilfredsstillende respons, men uten sikting, unnamanøver eller taktisk risiko.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At rolig kraft lader like mye og at ekspedisjonsfremdrift bruker samme målregel, gjør pausen meningsfull uten å lokke til å ødelegge restitusjonen.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Ved minutt 20 vil de repeterte 30/30-skiftene og portene sannsynligvis holde rytmen, mens mangelen på nye handlingstyper kan gjøre at verden kjennes som en visuelt flott bakgrunn.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Vil trolig verdsette ærlig blokkdata og se hvilke drag som glapp, men savne en kompakt serievis analyse og en tydelig kobling mellom taktiske valg og resultat.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Kan komme tilbake for egen rekord og en annen verden, men tredje økt avhenger av om visuelle variasjoner og samlertellere er nok når selve handlingen fortsatt er målholding.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Presis og umiddelbar wattkorrigering som passer korte 30/30-skifter.",
+    "Tre visuelt tydelige verdener med reell rutevisning i Neon og Skybound.",
+    "Combo, energipulser, stjerner og egen rekord belønner rytme uten å belønne overtråkking.",
+    "Kosmetiske Tron-endringer dokumenterer faktisk treningsutførelse over tid."
+  ],
+  "frictions": [
+    {
+      "issue": "Moment-til-moment-handlingen reduseres til å holde watt innenfor et område.",
+      "evidence": "src/game.ts beregner treff, combo, ladning og poeng fra samme ±10 %-regel; det finnes ingen annen aktiv mekanikk i Tron.",
+      "severity": "high",
+      "category": "agency"
+    },
+    {
+      "issue": "Veivalgene endrer primært gjenreisings- eller utforskingsteller, ikke en tydelig spillmessig avveining.",
+      "evidence": "src/expedition.ts gir restore 30 og explore 40 målsekunder og fører dem til strukturer eller relikvier; skjermbildet viser bare disse to valgene.",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "Trons aktive HUD prioriterer langsomme prestasjonskrav over den mer actionpregede combo- og ladningsinformasjonen.",
+      "evidence": "src/App.tsx viser PerformanceHUD i Tron, mens GameHUD ikke monteres i aktiv scene; tron-active.png viser prestasjonskortet.",
+      "severity": "medium",
+      "category": "feedback"
+    },
+    {
+      "issue": "Analyse av mikrointervaller kan bli tung å skanne.",
+      "evidence": "src/SessionAnalysis.tsx lukker detaljtabellen når økten har mer enn 12 deler, mens 3 × 10 × 30/30 inneholder over 60 arbeids- og pauseblokker inkludert seriepauser.",
+      "severity": "medium",
+      "category": "analysis"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser syklet/planlagt, wattdekning, målpresisjon, hoppet tid, gjenstående tid og eksplisitt datagap.",
+      "analysis-intervals.png viser målt/planlagt tid, snitt/mål og treffsikkerhet per blokk.",
+      "unit-tests.json rapporterer 100/100 tester, inkludert datagap, pauser, hopp, målplassering, FIT og sammenlignbarhet.",
+      "sensor-checks.json rapporterer 19 beståtte mock-BLE/runtime-kontroller og 38 sekunder med lagrede samples."
+    ],
+    "strengths": [
+      "Demo og ekte måling merkes separat, og demo påvirker ikke form, FTP eller opplåsinger.",
+      "Manglende data fylles ikke som null eller godkjent tid.",
+      "Spillpoeng beskrives som måloppnåelse, mens treningsutvikling behandles separat.",
+      "FTP presenteres som et øktbasert anslag fra 20 sammenhengende målte minutter og endrer ikke innstillingen automatisk."
+    ],
+    "gaps": [
+      "Skjermbildene bruker syntetiske fixtures, ikke en faktisk gjennomført 30/30-økt.",
+      "Mock-BLE og tester støtter kjeden teknisk, men dokumenterer ikke full fysisk sensoratferd eller langvarig stabilitet.",
+      "Mikrointervaller mangler en kompakt serieoppsummering som fremhever fall i kvalitet gjennom serien."
+    ],
+    "verdict": "Datagrunnlaget fremstår ærlig og uvanlig godt avgrenset for en spillifisert treningsapp. For denne profilen er den største mangelen at analysen forklarer utførelse bedre enn den omsetter den til et kort, handlingsrettet neste mål."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser fire konkrete, låste krav og den kosmetiske belønningen for hvert krav.",
+      "src/achievements.ts krever lagrede, ekte økter, minst 95 % dekning og målt tid på riktig arbeids- eller restitusjonsdel.",
+      "unit-tests.json bekrefter at demo, hopp, datagap, avrunding, rå watt, poeng og ekspedisjonsteller ikke kan gi ufortjent prestasjon.",
+      "tron-award.png merker demoen tydelig og viser Presisjon som en midlertidig forhåndsvisning."
+    ],
+    "strengths": [
+      "Kriteriene er synlige før økten og rapporterer konkret fremdrift etterpå.",
+      "Presisjon, utholdenhet, kontrollert pause og kontinuitet dekker flere legitime treningsatferder.",
+      "Hardere enn foreskrevet gir ingen fordel, og restitusjon kan belønnes på egne premisser.",
+      "Belønningene gir synlige endringer i Tron uten å blande seg med målt fysisk fremgang."
+    ],
+    "gaps": [
+      "Bare fire prestasjoner gir begrenset langsiktig bredde for en spiller som forventer utviklende systemer.",
+      "Belønningene er kosmetiske og åpner ikke nye handlinger, bygg eller taktiske muligheter.",
+      "En spiller som foretrekker Neon eller Skybound må fortsatt gå til Tron for å se belønningene."
+    ],
+    "verdict": "Opplåsingene er rettferdige, etterprøvbare og treningsrelevante, men de gir for lite mekanisk utvikling til å fungere som hovedmotor for en actionspiller."
+  },
+  "preferred_world": "sky",
+  "world_reason": "Skybound kombinerer den tydeligste romlige variasjonen med et synlig veivalg midt i økten; Tron ser skarpt ut, men prestasjonskortet gjør den aktive opplevelsen mindre actionpreget.",
+  "one_change": "Gjør hver 30-sekunders arbeids-/pauseovergang til et kort spillscenario med et tydelig valg som endrer neste hindring eller belønning, samtidig som utfallet fortsatt bestemmes av å følge wattmålet og aldri av å tråkke hardere.",
+  "return_reason": "Kanskje: den første 30/30-økten har sterk presentasjon, presis respons og ærlig progresjon, men en tredje økt krever mer mekanisk variasjon enn målholding og kosmetiske opplåsinger.",
+  "counterargument": "Under harde 30/30-intervaller kan enkel styring være riktig: mer kompleks action kan svekke sikkerhet, teknikk og wattkontroll. De korte feedbacksløyfene og verdensbyttene kan derfor være nok når treningen, ikke spillet, er hovedmålet.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en menneskelig brukertest eller fysisk treningsøkt.",
+    "Aktive scener ble vurdert fra automatiserte skjermbilder og kildekode; faktisk lyd, animasjonsrespons, følelse av fart og bildefrekvens ble ikke målt.",
+    "Analyse- og historikkbildene bruker syntetiske fixtures.",
+    "Sensorbeviset omfatter mock-BLE og automatiske kontroller, ikke en full 30/30-økt med fysisk sykkel for denne evalueringen."
+  ],
+  "summary": "SUMMIT passer 30/30-trening svært godt og belønner kontroll fremfor rå kraft. Som actionspill er det visuelt overbevisende og responsivt, men valgene og opplåsingene endrer for lite av selve handlingen til å sikre varig interesse for denne profilen."
+}

@@ -1,0 +1,128 @@
+{
+  "id": "06",
+  "persona": "Tallnerden",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startskjermen viser FTP 250 W, foreskrevet wattmål 245 W, prosent av FTP, øktprofil og 100 økter; spillverden og treningsvalg presenteres samtidig."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "Aktiv Neon-scene skiller mål 125 W fra målt 128 W og viser tid, sone, kadens, fart, mekanisk arbeid og øktprofil, mens spillpoeng, flyt, presisjon og pulser ligger i en egen HUD."
+    },
+    {
+      "path": "output/gameplay/neon-mastery.png",
+      "observation": "I restitusjonen er 125 W-målet fortsatt tydelig, og HUD-en forklarer at rolig kraft lader like mye; mestring, stjerner og spillpoeng belønner dermed også korrekt pausekjøring."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound har en tydelig annen visuell identitet, men viser samme mål-, måle- og spillstruktur som Neon, inkludert 245 W mot 239 W og 100 % presisjon."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Demoturresultatet merker dataene som simulerte og sier uttrykkelig at turen verken viser fysisk fremgang eller gir grunnlag for FTP; spillpoeng står separat fra snitteffekt, arbeid og sonetid."
+    },
+    {
+      "path": "output/final-game/shot-0.png",
+      "observation": "Fjordveien gir et roligere originalalternativ med de samme praktiske intervallfeltene, men uten den dominerende spill-HUD-en som ses i Neon og Sky."
+    },
+    {
+      "path": "src/analytics.ts",
+      "observation": "Målte turer analyseres med sammenhengende 5 s, 1 min, 5 min og 20 min besteffekt, målt dekning, ±10 % måloppnåelse, sammenligning mot forrige tilsvarende økt og et eksplisitt forsiktig 95 %-basert FTP-anslag."
+    },
+    {
+      "path": "src/ProgressPanel.tsx",
+      "observation": "Resultat- og utviklingsvisningen skiller målt effektanalyse fra spillprogresjon, forklarer at ulike intensiteter ikke kan sammenlignes direkte, og viser at FTP-anslaget aldri endrer innstilt FTP automatisk."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Regelproben gir 8081 poeng ved mål og ved variasjon innen ±8 %, 1284 ved ±20 %, og 0 ved konstant 125 % av mål; dette bekrefter at poeng primært måler tid innenfor et toleransebånd, ikke høyest mulig watt."
+    },
+    {
+      "path": "output/playwright/sensor-smoke/report.json",
+      "observation": "Den isolerte sensortesten registrerte faktiske watt-, kadens- og pulsverdier, lagret målte prøver og eksporterte en FIT-fil som besto integritetskontroll."
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 5,
+    "interval_fit": 6
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "FTP, wattmål, prosent av FTP og øktprofil gjør det raskt mulig å velge en relevant terskeløkt; tre verdener gir et hyggelig, men sekundært valg.",
+      "basis": "observed"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Skillet mellom mål- og faktisk watt er lett å lese, men det store poengtallet og den lite forklarte presisjonsmålingen konkurrerer med treningsdataene om oppmerksomheten.",
+      "basis": "observed"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At foreskrevet lav effekt fortsatt gir fremdrift gjør pausen treningsmessig logisk og reduserer fristelsen til å produsere unødvendige watt.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Personlig rekordspøkelse og løpende treffsikkerhet kan holde fokus, men en tallorientert syklist vil savne intervallvise avvik og en forklaring på om et bedre spillresultat faktisk betyr bedre fysisk prestasjon.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Sammenlignbare besteffekter, måloppnåelse og FTP-anslag gir en grunn til å komme tilbake, men manglende drag-for-drag-sammenligning gjør at utviklingsbildet fortsatt føles grovt.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Samme økt kan sammenlignes på måloppnåelse og snitteffekt når FTP og varighet er sammenlignbare.",
+    "Besteffekt over fire varigheter og et forsiktig 20-minutters FTP-anslag gir treningsrelevant progresjon.",
+    "Eget rekordspøkelse gir en konkret gjentakelsesgrunn i Neon og Sky.",
+    "FIT- og CSV-eksport gjør at måledata kan brukes videre utenfor spillet."
+  ],
+  "frictions": [
+    {
+      "issue": "Resultatet forklarer ikke hvilket drag som ble bedre eller dårligere enn forrige tilsvarende økt.",
+      "evidence": "src/ProgressPanel.tsx RideAnalysis og src/analytics.ts analyzeRide",
+      "severity": "high",
+      "category": "progression"
+    },
+    {
+      "issue": "Spillpoeng og XP er sterkt fremhevet, mens poengformelen og forholdet til faktisk wattprestasjon ikke forklares i grensesnittet.",
+      "evidence": "output/gameplay/neon-flow.png og src/game.ts stepGame",
+      "severity": "medium",
+      "category": "clarity"
+    },
+    {
+      "issue": "Utviklingsgrafen bruker snitteffekt på tvers av de siste øktene, selv om ulike øktprofiler gjør disse søylene svake som formtrend.",
+      "evidence": "src/ProgressPanel.tsx ProgressPanel",
+      "severity": "medium",
+      "category": "progression"
+    },
+    {
+      "issue": "Valg av verden endrer hovedsakelig presentasjon; treningsreglene og måloppnåelsen er like, så den taktiske påvirkningen under økten er begrenset.",
+      "evidence": "src/worlds.ts og src/game.ts",
+      "severity": "low",
+      "category": "agency"
+    }
+  ],
+  "preferred_world": "neon",
+  "world_reason": "Neon gjør jakt på egen rekord mest eksplisitt gjennom arcade-presentasjonen og det lagrede rekordspøkelset. Sky er visuelt friskere, mens Fjordveien er roligere, men for denne personaen gir Neon den tydeligste koblingen til repeterbar prestasjon.",
+  "one_change": "Legg til en drag-for-drag-tabell etter økten med målwatt, faktisk snitteffekt, måloppnåelse og endring mot forrige gjennomføring av samme økt.",
+  "return_reason": "Jeg ville vurdert en tredje økt for å bygge sammenlignbare besteffekter og se måloppnåelse og FTP-anslag utvikle seg, men bare dersom analysen oppleves mer verdifull enn selve poengjakten.",
+  "counterargument": "Verdikten kan være for streng fordi kildekoden viser mer treningsanalyse enn demobildet kan demonstrere; etter flere ekte, identiske økter kan sammenligningene og eksportmulighetene være nok til å gjøre SUMMIT til et fast analyseverktøy.",
+  "limitations": [
+    "Dette er en syntetisk personaevaluering, ikke en menneskelig trenings- eller brukertest.",
+    "Skjermbildene viser hovedsakelig demodata; reaksjoner på fysisk belastning, langvarig lesbarhet og motivasjon er prediksjoner.",
+    "Kildekode og deterministiske prober bekrefter regler og tilgjengelige analyser, men ikke hvordan de oppleves med en ekte sykkel over flere økter.",
+    "Sensor-smoke-testen var kort og isolert og dokumenterer dataflyt, ikke målenøyaktighet mot kalibrert referanseutstyr."
+  ],
+  "summary": "SUMMIT treffer Tallnerden godt på struktur: FTP-baserte mål, ekte måledata, besteffekter, måloppnåelse og forsiktige FTP-anslag holdes tydeligere adskilt fra spillpoeng enn førsteinntrykket tilsier. Neon er den mest motiverende verdenen for gjentakbar rekordjakt, og intervallmekanikken belønner også korrekt restitusjon. Likevel mangler analysen den viktigste forklaringen på hvorfor en økt var bedre: sammenligning av hvert enkelt drag mot forrige tilsvarende økt."
+}

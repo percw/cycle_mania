@@ -1,0 +1,194 @@
+{
+  "id": "20",
+  "persona": "Den skeptiske testeren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron viser en egen kjørbar 3D-scene, wattmål, intervallforløp, pause/segmenthopp og et eksplisitt prestasjonsmål, samtidig tydelig merket som demo med simulerte data.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden viser seks verdener, flere økttyper og fire låste Tron-belønninger med konkrete krav, målefremdrift og navngitte visuelle gevinster.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound skiller seg tydelig fra Tron visuelt og viser et tidsbegrenset veivalg mellom Gjenreis og Utforsk med ulike mål og progresjon.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon har en egen byverden og synlig ekspedisjonsfremdrift, men grunnhandlingen er fortsatt å holde foreskrevet watt mens figuren beveger seg automatisk.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen viser syklet mot planlagt tid, 99 % wattdekning, 97 % måloppnåelse, ti minutter hoppet over, gjenstående plan og et eksplisitt datagap.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Hvert segment får målt/planlagt tid, snitteffekt mot mål, dekning og treffsikkerhet; ikke-syklede segmenter står som uten målinger.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Effektrekorder, sammenligning mot tilsvarende økt og FTP-anslag vises med forklaring; skjermen kaller anslaget et estimat og ikke en FTP-test.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/expedition.ts",
+      "observation": "Ekspedisjonsporter lades bare av ferske oppdateringer innenfor 90–110 % av wattmålet; overskuddseffekt kjøper ikke fremdrift, og kun lagrede ikke-demoøkter teller i kampanjen.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "De fire Tron-belønningene beregnes fra målte sekunder, måloppnåelse og minst 95 % datadekning; demo, poeng og rå høy effekt er ikke opplåsingsgrunnlag.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/sensor-checks.json",
+      "observation": "Den isolerte sensorrøyktesten rapporterer bevarte måleposisjoner etter hopp, pause uten tidsinflasjon, lagret ekspedisjonsvalg og analyse før sammenfoldede spillbelønninger.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 5,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 6,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Tre markant ulike verdener, respons på måloppnåelse og ekte veivalg løfter førsteinntrykket over en ren skjermsparer, selv om hovedsløyfen fortsatt er enkel.",
+    "third_fun": "Ved tredje økt gir vedvarende ekspedisjonskart og dokumenterte belønninger en returgrunn, men de samme binære valgene og watt-holdingen kan begynne å føles repeterende.",
+    "agency": "Spilleren kan velge verden, økt, ekspedisjonsretning, pause og segmenthopp, men kjøringen styres i hovedsak indirekte gjennom watt og valgene endrer lite av treningsmekanikken.",
+    "visuals": "Tron, Neon og Skybound har tydelig egne paletter og rom, og Tron skifter sektor, men sceneinnholdet fremstår fortsatt mer som attraktiv fremdriftsbakgrunn enn som et rikt actionspill.",
+    "clarity": "Wattmål, neste segment, tid, demomerking, målkrav og analysedekning er svært eksplisitte; skillet mellom spillpoeng, måling og FTP-estimat kommuniseres klart.",
+    "interval_fit": "Kontrollene følger øktblokkene, hopp registreres separat, pauser fryser tid, og spillfremdrift belønner planlagt målområde fremfor å presse frem høyere effekt.",
+    "data_trust": "Kilde og tester skiller demo fra måling, lar datagap forbli gap, bevarer planposisjon etter hopp og avviser uobserverte data; fysisk maskinvareytelse er likevel ikke dokumentert her.",
+    "analysis_usefulness": "Oversikt, wattkurve, segmenttabell, sammenligningskrav, rekorder og forsiktig FTP-estimat forklarer både hva som ble gjort og hvorfor en sammenligning kan mangle.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og basert på målte målsekunder med dekningskrav; demo og overskipping gir ikke permanent gevinst, men Neon/Sky-kampanjen bruker hyppige målsekunder som et enklere progresjonsmål enn Tron-belønningene."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Utvalget av verdener, hundre økter og åpne prestasjonskrav vil trolig dempe mistanken om en tom poengfasade, men mengden innhold beviser ennå ikke dybde.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Wattrespons, combo og fremdrift mot et konkret mål vil sannsynligvis kjennes relevant fordi de følger øktplanen, mens automatisk kjøring kan oppleves passiv.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At rolig måloppnåelse fortsatt lader porter og at kontrollert pause har en egen belønning vil trolig gjøre restitusjonen meningsfull uten å oppfordre til å sprenge planen.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Sektorskifte og gjentatte veivalg kan holde oppmerksomheten bedre enn et statisk landskap, men den skeptiske spilleren vil trolig merke at valgene har begrensede mekaniske konsekvenser.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Den detaljerte gjennomføringsanalysen og den tydelige dokumentasjonen av hva som faktisk låste opp noe vil sannsynligvis være det sterkeste argumentet for at systemet er mer enn dekorative poeng.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "En tredje økt er plausibel for å bygge videre på Skybound eller teste en annen verden, men videre retur avhenger av om rutene får mer varige og merkbart ulike konsekvenser.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Tydelig forskjellige verdener med samme presise øktkontroll",
+    "Veivalg og vedvarende kart i Neon og Skybound",
+    "Synlige, dokumenterbare Tron-belønninger knyttet til treningsutførelse",
+    "Analyse som forklarer gap, hopp, måloppnåelse og sammenlignbarhet"
+  ],
+  "frictions": [
+    {
+      "issue": "Den sentrale spillhandlingen er fortsatt hovedsakelig å holde watt mens reisen går automatisk.",
+      "evidence": "Sky- og Neon-bildene viser rutevalg, men src/expedition.ts reduserer løkken til 30 eller 40 sekunder innenfor målområdet før et nytt binært valg.",
+      "severity": "high",
+      "category": "agency"
+    },
+    {
+      "issue": "Langsiktig variasjon er mer lovet av kart, samlinger og verdener enn bevist som mekanisk forskjellig spilling.",
+      "evidence": "Skjermbildene viser store visuelle forskjeller, mens alle verdener bruker samme øktmål og automatisk bevegelse; bare Neon og Sky har ekspedisjonsvalg.",
+      "severity": "medium",
+      "category": "variety"
+    },
+    {
+      "issue": "Gjennomsnittswattgrafen over ulike økter kan være lett å overvurdere som formkurve.",
+      "evidence": "src/ProgressPanel.tsx viser snitteffekt for siste tolv målte økter og presiserer først under grafen at ulik intensitet ikke kan sammenlignes direkte.",
+      "severity": "low",
+      "category": "analysis"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser målt tid, wattdekning, måloppnåelse, hoppet og gjenstående tid samt eksplisitt datagap.",
+      "analysis-intervals.png skiller hvert gjennomført, delvis gjennomført og urørt segment.",
+      "analytics.ts utelater demo og umålte sekunder, krever sammenhengende målevinduer og sammenligner bare relevante økter.",
+      "sensor-checks.json rapporterer lagrede reelle watt-, kadens- og pulssamples samt korrekt pause- og hopphåndtering i isolert test."
+    ],
+    "strengths": [
+      "Demo, spillpoeng, registrerte watt og estimater er tydelig adskilt.",
+      "Manglende data og hopp skjules ikke som null, fullføring eller godkjent tid.",
+      "FTP-anslaget forklares som 95 % av sammenhengende 20 minutter og endrer ikke FTP automatisk."
+    ],
+    "gaps": [
+      "Evidensen bruker syntetiske fixtures og mock BLE; faktisk langtidsstabilitet med spillerens utstyr er ukjent.",
+      "Snitteffekt på tvers av økttyper står i en formvisning selv om teksten advarer mot direkte sammenligning."
+    ],
+    "verdict": "Databehandlingen er uvanlig ærlig og nyttig for en skeptiker, med forbehold om at teknisk korrekthet i virkelig langtidsbruk ikke er demonstrert."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser fire låser med eksakte tids-, presisjons- og dagskrav.",
+      "achievements.ts krever lagrede ikke-demoøkter, minst 95 % datadekning og målte målsekunder.",
+      "expedition.ts krever 90–110 % av wattmålet, lar ikke overskuddseffekt kjøpe fremdrift og utelater demo fra lagret kampanje.",
+      "unit-tests.json rapporterer beståtte tester for demo, datagap, hopp, terskelavrunding, utholdenhet og unike treningsdager."
+    ],
+    "strengths": [
+      "Kriterier og belønninger er synlige før innsats.",
+      "Hardere enn planen gir ingen fordel.",
+      "Kontrollert restitusjon og kontinuitet belønnes sammen med arbeidsdrag."
+    ],
+    "gaps": [
+      "Neon/Sky gir kampanjefremdrift i korte, gjentatte målsekundblokker og kan derfor føles mer som en taktfast teller enn som en prestasjon.",
+      "De visuelle belønningenes varige betydning etter at alle fire Tron-mål er åpnet er ikke dokumentert over mange økter."
+    ],
+    "verdict": "Opplåsingene er rettferdige, forståelige og treningsrelevante, men systemet trenger dypere konsekvenser for å overbevise om langsiktig spillverdi."
+  },
+  "preferred_world": "sky",
+  "world_reason": "Skybound gir den tydeligste kombinasjonen av et særpreget miljø, synlig veiskille og en vedvarende verden; det er det sterkeste motbeviset mot påstanden om bare tall over en skjermsparer.",
+  "one_change": "Gjør Gjenreis og Utforsk til varig forskjellige ruter med egne hendelser, risikoer og senere konsekvenser som fortsatt respekterer samme foreskrevne wattmål.",
+  "return_reason": "Jeg ville kanskje kommet tilbake for å se om Skybound-kartet og de dokumenterte prestasjonene faktisk utvikler seg, men retur utover noen økter krever mer enn gjentatte binære valg.",
+  "counterargument": "For en spiller som først og fremst ønsker at trening skal være oversiktlig og visuelt variert, kan den enkle interaksjonen være en styrke: valgene forstyrrer ikke intervallene, og progresjonen er mer redelig enn i mange poengsystemer.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en gjennomført fysisk økt eller menneskelig brukertest.",
+    "Skjermbildene bruker demo og syntetiske historikkfixtures; opplevd respons, lyd og langtidsglede er ikke målt.",
+    "Mock BLE og automatiserte tester støtter dataløpet, men dokumenterer ikke stabilitet med denne profilens virkelige utstyr.",
+    "Minutt 20 og tredje økt er hypoteser basert på synlige regler og innhold."
+  ],
+  "summary": "SUMMIT har nok faktisk interaksjon, visuell variasjon og redelig treningslogikk til å utfordre skjermsparer-mistanken. Skybound og Neon gir valg og vedvarende kart, mens Tron knytter synlige effekter til dokumentert utførelse. Den svake siden er mekanisk dybde: det meste skjer automatisk mellom korte binære valg, så tredjeøktsverdien er bare blandet."
+}

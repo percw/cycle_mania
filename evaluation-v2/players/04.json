@@ -1,0 +1,185 @@
+{
+  "id": "04",
+  "persona": "Utforskeren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser et lyst øyrike med svevende øyer, fosser, ringporter og et tydelig veiskille mellom Gjenreis og Utforsk; aktivt wattmål og treningskontroller ligger samlet nederst.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron gir en klart annerledes mørk grid-verden, men den synlige scenen er mer rettlinjet og prestasjonsorientert enn Skybound.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden skiller verdener og sjangre tydelig, viser Skybound som utforsking og undring, og gir rask tilgang til lett, rolig og lang intervalløkt.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Etteranalysen skiller syklet, planlagt, hoppet over og manglende wattdata, og viser målt kurve samt gjennomføring per del.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Analysen merker FTP som et øktbasert anslag, sammenligner med tilsvarende økt og viser dokumenterte prestasjoner separat fra spillprogresjon.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/expedition.ts",
+      "observation": "Utforsk-ruten krever 40 observerte sekunder innenfor ±10 % av wattmålet per funn; restitusjon teller likt, overskuddseffekt gir ingen fordel, og demo eller ugyldige resultater bidrar ikke til lagret kampanje.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/SkyWorld.tsx",
+      "observation": "To fysiske trasegrener, 23 øyer, templer med skiftende fasader og synlige strukturer, relikvier og konstellasjon gir romlig respons på valg og varig kampanjefremdrift.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/unit-tests.json",
+      "observation": "Den frosne suiten rapporterer 100 av 100 tester bestått, blant annet at manglende telemetri, for høy watt og tidshopp ikke kan fullføre ekspedisjonsmål, og at bare distinkte ekte resultater teller.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 6,
+    "third_fun": 5,
+    "agency": 5,
+    "visuals": 6,
+    "clarity": 5,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 5,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Skybound treffer profilen raskt med et særpreget sted, et konkret utforskervalg og tidlige funn uten poengoptimalisering.",
+    "third_fun": "Varige relikvier og landemerker gir en returgrunn, men gjentatte valg mellom bare to ruter og forhåndsbestemte fragmenter kan bli gjennomskuelige.",
+    "agency": "Veivalg før turen og ved hver port påvirker fysisk gren og belønningstype, men spilleren styrer ikke fritt og valget koker alltid ned til Gjenreis eller Utforsk.",
+    "visuals": "Svevende øyer, fosser, templer, gyllen vei og responsiv verdensbygging har sterk romfølelse og en rolig, sammenhengende identitet.",
+    "clarity": "Wattmål, portlading, automatisk valg og neste milepæl er forklart, men forholdet mellom målsekunder, funn, fragmenter og full relikvie krever litt lesing.",
+    "interval_fit": "Rolige og harde blokker teller likt når planen følges, og ekstra watt kjøper ingen fremdrift; det støtter en lang kontrollert tur godt.",
+    "data_trust": "Skjerm og kode skiller demo, målte data, hopp og anslag tydelig, men evidensen bruker syntetiske økter og viser ikke en ekte lang tur med fysisk sensor.",
+    "analysis_usefulness": "Per-blokk dekning, datagap og sammenligninger er nyttige, men analysen handler mest om watt og viser lite av rutevalgene eller oppdagelsene fra Skybound.",
+    "unlock_fairness": "Kravene er deterministiske, synlige og basert på ferske målsekunder nær planen; demo, manglende data, overskipping og unødvendig høy watt gir ikke lagret fremdrift."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil trolig velge Skybound og Utforsk fordi startsiden lover et øyrike, relikvier og observatorier, med en rolig økt tilgjengelig med få valg.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Den første porten og et konkret funn vil sannsynligvis gi en tydelig oppdagelsesbelønning samtidig som wattmålet forblir hovedoppgaven.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Vil sannsynligvis oppleve restitusjon som meningsfull fordi korrekt rolig effekt lader porten likeverdig og appen ikke ber om hardere tråkk.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Verdenens landemerker og skiftende fasader kan fortsatt bære turen, men rytmen med 40 målsekunder og samme binære valg kan begynne å kjennes systematisk.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Vil trolig sette pris på synlige funn og videre kampanjefremdrift, men den wattorienterte analysen gir begrenset gjenfortelling av selve ekspedisjonen.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Vil sannsynligvis komme tilbake for neste navngitte relikvie eller øyrike, men trenger flere særpregede hemmeligheter og valgkonsekvenser for varig nysgjerrighet.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "En egen Utforsk-rute med relikvier og observatorier",
+    "Skybound endrer synlige øyer, templer og konstellasjon med lagret fremdrift",
+    "Rolig planoppnåelse gir like mye ekspedisjonsfremdrift som harde blokker",
+    "Navngitte neste landemerker gir en konkret grunn til én tur til"
+  ],
+  "frictions": [
+    {
+      "issue": "Utforskingen består av det samme toveisvalget ved hver port.",
+      "evidence": "src/expedition.ts og src/ExpeditionUI.tsx definerer bare rutene restore og explore, med automatisk gjentakelse etter 12 sekunder.",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "Funnene er en deterministisk liste av relikvier og fragmenter, ikke skjulte steder spilleren selv kan oppsøke.",
+      "evidence": "src/expedition.ts velger navn fra faste terskler, mens src/SkyWorld.tsx binder kjøringen til to forhåndsbygde grener.",
+      "severity": "medium",
+      "category": "variety"
+    },
+    {
+      "issue": "Etteranalysen kobler i liten grad treningsdata til ekspedisjonens valg og oppdagelser.",
+      "evidence": "evaluation-v2/evidence/analysis-overview.png og analysis-comparison.png prioriterer wattutførelse; ekspedisjonsresultatet ligger separat i oppsummeringen.",
+      "severity": "low",
+      "category": "analysis"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "evaluation-v2/evidence/analysis-overview.png viser eksplisitt syklet, hoppet over, gjenstående og manglende wattdata.",
+      "src/analytics.ts utelater demo og datagap fra effektrekorder og merker 20-minuttersverdien som anslag, ikke FTP-test.",
+      "evaluation-v2/evidence/runtime-checks.json sier at aktive turer og historikk i evidensen er simulerte eller syntetiske."
+    ],
+    "strengths": [
+      "Målte sekunder skilles fra demo, manglende data og hoppede deler.",
+      "Gjennomføring vises per blokk, også for rolige deler og restitusjon.",
+      "FTP-anslaget endrer ikke FTP automatisk og forklares med tydelig forbehold."
+    ],
+    "gaps": [
+      "Ingen fysisk langtur eller faktisk sensorstabilitet er dokumentert i skjermbildene.",
+      "Analysen visualiserer ikke hvor veivalg og funn skjedde i økten.",
+      "Lokal nettleserlagring og valgfri backend kan gjøre varighet på tvers av oppsett mindre intuitiv."
+    ],
+    "verdict": "Troverdig og ærlig presentasjon av øktdata, men verdien for denne profilen ville økt dersom dataene også fortalte reisen gjennom Skybound."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "src/expedition.ts krever 40 observerte målsekunder for Utforsk og godtar bare effekt innenfor ±10 % av målet.",
+      "src/expedition.ts lar ikke demo, manglende telemetri, overskuddseffekt eller planens tidshopp fullføre oppdrag.",
+      "src/ExpeditionUI.tsx viser neste relikvie eller landemerke, kostnad og fremdrift før og under turen.",
+      "evaluation-v2/evidence/unit-tests.json bekrefter reglene for ekte, unike resultater og avvisning av ugyldig fremdrift."
+    ],
+    "strengths": [
+      "Rolig, korrekt sykling belønnes uten press om å overstyre planen.",
+      "Kriterier og neste terskel er synlige og deterministiske.",
+      "Demo gir forhåndsvisning uten permanent kampanjefremdrift."
+    ],
+    "gaps": [
+      "Belønningene følger en fast katalog, så rettferdigheten er sterkere enn oppdagelsesfølelsen.",
+      "Store sene terskler kan gjøre avstanden til neste hele relikvie lang selv om fragmenter fortsatt deles ut.",
+      "Evidensen demonstrerer ikke en faktisk flerøkts kampanje over tid."
+    ],
+    "verdict": "Et svært ryddig opplåsingssystem for trening: planen, ikke rå kraft eller snarveier, driver fremdriften. Det trenger mer overraskelse for å bli virkelig utforskende."
+  },
+  "preferred_world": "sky",
+  "world_reason": "Skybound er den eneste viste verdenen som kombinerer et rolig eventyruttrykk, romlige veiskiller, relikvier og en verden som endres mellom turer.",
+  "one_change": "Gjør hvert Skybound-veiskille til et valg mellom ulike navngitte destinasjoner med egne visuelle hendelser, skjulte funn og en ekspedisjonslogg som etter økten viser ruten spilleren faktisk tok.",
+  "return_reason": "Neste synlige relikvie og varige endringer i øyriket gir en konkret grunn til å komme tilbake, selv om systemet trenger mer variasjon etter noen turer.",
+  "counterargument": "Den sterke førstegangsappellen kan overvurderes: ett automatisert skjermbilde og kildekode beviser ikke at den langsomme, repeterende løkken holder oppmerksomheten gjennom en virkelig lang rolig tur.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en faktisk spilt eller fysisk gjennomført økt.",
+    "Skjermbildene er automatiserte demoopptak med akselerert tid og syntetiske historikkdata.",
+    "Lyd, fysisk anstrengelse, maskinytelse og langsiktig opplevelse er ikke observert.",
+    "Bare én aktiv Skybound-tilstand er visuelt dokumentert, så variasjon over en hel langtur er hovedsakelig kildekodestøttet."
+  ],
+  "summary": "Skybound er en sterk profilmatch: vakkert, rolig og treningsmessig rettferdig, med ekte veivalg og varig verdensbygging. Det predikeres høy førsteglede og returvilje, men utforskingen trenger flere destinasjoner, hemmeligheter og etterøktsminner for å tåle gjentatte langturer."
+}

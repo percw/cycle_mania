@@ -1,0 +1,9 @@
+Persona 06 – Tallnerden
+
+Dette er en syntetisk vurdering fra perspektivet til en syklist som bryr seg om FTP, målte watt og sammenlignbare data. Førsteinntrykket er godt: startskjermen viser innstilt FTP, foreskrevet watt, prosent av FTP og øktprofil før start. Under økten er målwatt og faktisk watt tydelig atskilt, mens spillpoeng, flyt, presisjon og pulser ligger i en egen HUD. Det gjør Neon Rush engasjerende uten at 2 571 poeng lett kan forveksles med 122 W.
+
+Intervalltilpasningen får 6/7. Spillet belønner ±10 prosent rundt målet og lar også korrekt restitusjonswatt bygge fremdrift. Regelproben viser samtidig en viktig begrensning: både eksakt mål og jevn variasjon innen ±8 prosent gir 8 081 poeng, mens ±20 prosent gir 1 284 og konstant 125 prosent gir null. Poeng uttrykker derfor først og fremst måloppnåelse, ikke høyere fysisk prestasjon. Dette er fornuftig, men burde forklares tydeligere.
+
+Første gangs moro og forventet tredje økt får begge 5/7. Neon har den sterkeste kroken for denne personaen gjennom personlig rekordspøkelse; Skybound er visuelt distinkt, mens Fjordveien er et roligere alternativ. Visuelt nivå får 6/7. Agency får 4/7 fordi valg av økt og verden er reelle, men verdenene endrer lite ved selve treningsbeslutningen.
+
+Klarhet får 5/7. Resultatet merker demodata og sier eksplisitt at de ikke dokumenterer fysisk fremgang eller FTP. Kilden viser dessuten besteffekt over 5 sek, 1, 5 og 20 minutter, måloppnåelse, sammenligning mot forrige tilsvarende økt, forsiktig FTP-anslag samt FIT- og CSV-eksport. Det er en sterk analysegrunn. Likevel mangler svaret på «hvorfor var denne økten bedre?». Høyest prioritet er derfor en drag-for-drag-tabell med målwatt, faktisk snitteffekt, måloppnåelse og endring fra forrige gjennomføring. Jeg ville kanskje kommet tilbake: datasettet kan bli verdifullt, men først når sammenligningen blir mer presis enn et totalsnitt og en spillscore.

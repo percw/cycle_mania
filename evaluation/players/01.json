@@ -1,0 +1,139 @@
+{
+  "id": "01",
+  "persona": "Konkurransesyklisten",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startskjermen fremhever 4 × 10 min ved 98 % FTP, 64 minutters varighet og et konkret wattmål på 245 W; Neon Rush er valgt, og tre verdener vises side om side."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "Den aktive Neon-scenen viser mål, gjenværende tid, faktisk watt, kadens, fart, øktprofil, poeng, flyt, presisjon og avstand samtidig; i bildet er 128 W nær et mål på 125 W og statusen er «FREKVENS LÅST»."
+    },
+    {
+      "path": "output/playwright/neon-ghost.png",
+      "observation": "En tydelig, transparent personlig ghost er synlig foran rytteren i Neon-byen, men selve skjermbildet viser ikke noen rivalidentitet eller sportslig rangering."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound har en klart annerledes visuell verden med flytende øyer og lyse porter, mens samme trenings-HUD viser 245 W mål, 239 W faktisk effekt og 09:36 igjen av første drag."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatdialogen viser poeng, stjerner, pulser, beste flyt, tid, snitteffekt, distanse, mekanisk arbeid og tid i soner; den viste demoturen merkes uttrykkelig som simulerte data og ikke fysisk fremgang."
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Spilltreff er binære innenfor ±10 % av wattmålet. Sammenhengende treff gir combo og pulser, mens et fullført segment krever minst 85 % datadekning og 70 % treff; ghost-score interpoleres fra lagrede kontrollpunkter."
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "Den kuraterte terskeløkten er faktisk 4 × 10 minutter ved 98 % FTP med tre minutters aktive pauser, ti minutters oppvarming og fem minutters nedkjøring."
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "Personlig beste velges bare blant ekte turer i samme verden og samme workout-id. Ekte turer lagrer wattprøver og kan eksporteres som FIT, mens motstanden må justeres manuelt."
+    },
+    {
+      "path": "src/ProgressPanel.tsx",
+      "observation": "Kildekoden støtter en resultat- og utviklingsvisning med beste 5 sek, 1 min, 5 min og 20 min, sammenligning mot forrige tilsvarende økt og prosent tid innenfor wattmålet."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Den deterministiske 33-minutters motorproben ga identiske 8081 poeng for helt eksakt mål og jevn variasjon innenfor ±8 %, mens 125 % av mål ga 0 poeng. Proben er kun motorbasert og ikke en fysisk eller ende-til-ende sensortest."
+    },
+    {
+      "path": "output/playwright/sensor-smoke/report.json",
+      "observation": "Den isolerte automatiserte sensortesten rapporterer målt watt, kadens og puls, pause uten tidsøkning, lagring av faktiske samples og en FIT-fil som passerte CRC/integritetsdekoding."
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil sannsynligvis like at den foretrukne 4 × 10-økten, 98 % FTP og 245 W ligger synlig på forsiden, men vil undersøke om rekordbegrepet måler treningskvalitet eller bare spillpoeng.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Vil trolig oppleve målwatt, faktisk watt, tid igjen og sonen som svært lett å følge. Ghost og poengdifferanse kan gi et konkurransestikk, men den brede binære ±10 %-sonen vil virke grov for en rytter som bryr seg om jevn terskelpacing.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Den aktive pausen beholder et eget wattmål og gir progresjon uten å belønne unødvendig høy effekt; dette passer en disiplinert intervalløkt bedre enn en mekanikk som oppfordrer til å angripe pausen.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Vil sannsynligvis fortsatt være motivert av neste drag, den personlige ghosten og den tydelige øktprofilen, men poeng, pulser og porter kan begynne å føles som et tynt lag over wattmålet fordi rytteren ikke styrer linje, taktikk eller motstand i spillet.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Kan komme tilbake for samme økt dersom sammenligningen av treffsikkerhet, effektdata og egen ghost oppleves nyttig, men fravær av direkte konkurranse og et presisjonsfølsomt resultat gjør tredje økt mindre sikker enn første.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Personlig ghost og poengdifferanse mot eget beste for samme økt og verden",
+    "En presis 4 × 10-minutters terskeloppskrift med synlig FTP-basert wattmål",
+    "Sportslig etteranalyse med måledata, FIT-eksport, beste effekter og sammenligning mot tilsvarende økt",
+    "Neon Rush gir et visuelt energisk miljø uten å skjule den sentrale intervallinformasjonen"
+  ],
+  "frictions": [
+    {
+      "issue": "Poengsummen skiller ikke mellom helt presis pacing og jevn variasjon innenfor ±8 %, så den oppleves ikke som en finmasket sportslig prestasjon.",
+      "evidence": "evaluation/runtime-probes.json / on_target og gentle_variation",
+      "severity": "high",
+      "category": "fairness"
+    },
+    {
+      "issue": "Konkurransen er begrenset til egen lagrede ghost; det finnes ingen synlig rittaktikk, andre ryttere eller plassering.",
+      "evidence": "src/App.tsx bestRun/ghostScore og output/playwright/neon-ghost.png",
+      "severity": "medium",
+      "category": "social"
+    },
+    {
+      "issue": "Rytterens handling er i praksis å regulere watt. Verden tilbyr ikke synlig styring, rutevalg eller taktiske valg, og appen styrer ikke motstanden.",
+      "evidence": "src/bluetooth.ts BikeConnection og src/App.tsx fine-print om manuell motstand",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "Resultatet legger den store poengsummen foran de mer meningsfulle treningsmålene; sammenligning og effektrekorder ligger i en separat analyse.",
+      "evidence": "output/gameplay/result.png og src/ProgressPanel.tsx RideAnalysis",
+      "severity": "medium",
+      "category": "feedback"
+    },
+    {
+      "issue": "HUD-en er informasjonsrik med flere samtidige paneler, noe som kan kreve mer oppmerksomhet enn ønskelig under et hardt terskeldrag.",
+      "evidence": "output/gameplay/neon-flow.png",
+      "severity": "low",
+      "category": "clarity"
+    }
+  ],
+  "preferred_world": "neon",
+  "world_reason": "Neon Rush kommuniserer fart og personlig rekord tydeligst, og ghosten passer denne personaens konkurransefokus. Skybound er visuelt særpreget, mens Fjordveien virker mer rolig og tradisjonell fra launcher-beviset; ingen aktiv Fjord-scene var tilgjengelig for en full visuell sammenligning.",
+  "one_change": "Erstatt den dominerende poengsummen og ghost-differansen med en transparent, normalisert 0–100 kvalitetsindeks for samme økt som graderer hvert arbeidsdrag etter faktisk avvik fra wattmålet og viser bidraget fra hvert drag.",
+  "return_reason": "Den eksakte terskeløkten, personlige ghosten og målte utviklingsdata kan gjøre SUMMIT nyttig som et fokusert alternativ til Zwift, men retur avhenger av at resultatet oppleves sportslig meningsfullt.",
+  "counterargument": "Verdictet kan være for strengt fordi denne rytteren kan foretrekke en enkel selvkonkurranse uten sosial støy, og den separate analysen gir allerede mer seriøse mål som treffsikkerhet, beste effekter og FIT-data.",
+  "limitations": [
+    "Dette er en syntetisk personavurdering, ikke en menneskelig spill- eller treningstest.",
+    "Ingen fysisk belastning, sensorlatens, støynivå, sykkelergonomi eller faktisk 64-minutters opplevelse ble prøvd.",
+    "Skjermbildene viser hovedsakelig desktop og demodata; den sportslige analysen av ekte turer er verifisert i kildekode og automatiserte rapporter, ikke observert i et komplett ekte brukerforløp.",
+    "Motorproben dekker 33 minutter og bare de oppgitte syntetiske effektstrømmene; den er ikke en ende-til-ende BLE-verifikasjon.",
+    "Aktiv Fjordveien-scene ble ikke dokumentert i det tilgjengelige skjermbildeutvalget."
+  ],
+  "summary": "SUMMIT treffer Konkurransesyklisten godt på selve økten: 4 × 10 minutter ved 98 % FTP er tydelig, sensor- og eksportløpet virker gjennomarbeidet, og egen ghost gir relevant selvkonkurranse. Neon Rush ser sterkt ut, men poengsystemet er for grovt og spillmessig til å være et overbevisende prestasjonsmål for en Zwift-vant rytter. Returintensjonen blir derfor «kanskje»: treningsdataene trekker opp, mens konkurransedybde og meningen bak poengene trekker ned."
+}

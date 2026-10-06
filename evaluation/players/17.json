@@ -1,0 +1,135 @@
+{
+  "id": "17",
+  "persona": "Den usikre tilbakevendende",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startsiden fremhever «4 × 10 min» terskel som dagens utfordring: 64 minutter, 98 % FTP og 245 W ved vist FTP på 250 W. Den viser også nivå, rekord og tre anbefalte økter, men ingen synlig restitusjonsøkt blant disse anbefalingene."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "I oppvarmingen vises mål og faktisk effekt side om side (125 W og 128 W), «100% presisjon», «FREKVENS LÅST», ×3 flyt og «+13 mot eget beste». Tilbakemeldingen er konkret, men flere resultatmål er synlige samtidig."
+    },
+    {
+      "path": "output/gameplay/neon-mastery.png",
+      "observation": "Under aktiv pause viser HUD-en «LADEMODUS» og teksten «Rolig kraft lader like mye. Følg pausens wattmål», samtidig som tre stjerner og 1/4 mestrede drag er synlige."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound viser samme wattstyring og progresjon i et lyst øyrike; ved 239 W mot 245 W mål står «FREKVENS LÅST» og «Perfekt flyt». Spillflaten er visuelt særpreget, men omgis av flere store HUD-paneler."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatet oppsummerer poeng, tre stjerner, pulser, beste flyt, tid, snitteffekt og soner. Det opplyser nøkternt at ni minutter ble hoppet over, uten en eksplisitt negativ dom."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Deterministiske motorprober gir 15 stjerner ved mål og ved variasjon innen ±8 %, men 0 stjerner ved jevn variasjon innen ±20 %. Fatigue-scenarioet gir 9 stjerner totalt, men 0 stjerner i begge arbeidsdragene; konstant 125 % av målet gir 0 poeng og 0 stjerner."
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Koden definerer treff som 90–110 % av wattmålet, nullstiller combo etter mer enn tre sekunder utenfor vinduet og krever minst 85 % dekning samt 70 % treffandel for segmentstjerner."
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "Biblioteket inneholder korte og rolige alternativer, blant annet 10–45 minutter lett tråkk ved 45 % FTP og «Beina i gang», men den fremhevede 4 × 10-økten ligger på 98 % FTP."
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "Under økten finnes pause, hopp til neste segment, avslutt og egen knapp for ferdig oppvarming. FTP kan justeres mellom økter, og direkte wattmeldinger ber brukeren øke eller senke kraften."
+    },
+    {
+      "path": "output/gameplay/report.json",
+      "observation": "Den eksisterende kjøretidsrapporten bekrefter blant annet at pause fryser poeng og treningstid, hoppet oppvarming ikke gir stjerner, foreskrevet recovery gir progresjon, og at verden og spilltilstand gjenopprettes ved omlasting."
+    }
+  ],
+  "ratings": {
+    "first_fun": 4,
+    "third_fun": 3,
+    "agency": 5,
+    "visuals": 6,
+    "clarity": 5,
+    "interval_fit": 4
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Den tydelige verdenen og demoturen senker terskelen for å utforske, men en 64-minutters terskeløkt som hovedvalg kan gjøre førsteinntrykket mer krevende enn trygt for en som nettopp har kommet tilbake.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Wattmål, faktisk effekt og korte råd gjør det lett å forstå hva som skal gjøres. Poeng, presisjon, flyt og egen rekord kan likevel flytte oppmerksomheten fra å fullføre kontrollert til å unngå feil.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Recovery-delen vil trolig oppleves støttende fordi rolig kraft uttrykkelig lader like mye og kan gi stjerner; dette anerkjenner en legitim pause som framgang.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Hvis gammel FTP er for høy eller effekten varierer med tretthet, kan combo-tap og manglende stjerner i arbeidsdragene bekrefte usikkerheten selv om brukeren fortsatt gjennomfører økten.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "En tredje økt er plausibel dersom brukeren finner Skybound og de korte restitusjonsøktene. Uten en tydelig tilbakekomstvei vil eget rekordspøkelse, presisjonsprosent og den strenge belønningen sannsynligvis redusere lysten til å prøve igjen.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Skybounds rolige utforskningspreg og lyse visuelle verden",
+    "Konkrete wattbeskjeder som «øk watt» og «senk watt»",
+    "Recovery og nedkjøring teller positivt i spillprogresjonen",
+    "Pause, segmenthopp og kortere restitusjonsøkter gir reelle utveier",
+    "Demotur lar brukeren forstå mekanikken før en målt økt"
+  ],
+  "frictions": [
+    {
+      "issue": "Første anbefaling er en lang terskeløkt uten en synlig vei merket for tilbakekomst etter pause.",
+      "evidence": "output/gameplay/launcher.png og src/App.tsx (featured 4 × 10 min)",
+      "severity": "high",
+      "category": "onboarding"
+    },
+    {
+      "issue": "Belønningsvinduet er lite tolerant for vanlig variasjon, og combo nullstilles raskt; dette kan gjøre en gjennomført økt til et visuelt nederlag.",
+      "evidence": "evaluation/runtime-probes.json og stepGame i src/game.ts",
+      "severity": "high",
+      "category": "fairness"
+    },
+    {
+      "issue": "Poeng, presisjon, flyt, stjerner, rekord og nivå legger flere prestasjonsmål oppå selve treningsmålet.",
+      "evidence": "output/gameplay/neon-flow.png, output/gameplay/result.png og GameHUD i src/GameHUD.tsx",
+      "severity": "medium",
+      "category": "feedback"
+    },
+    {
+      "issue": "FTP kan korrigeres mellom økter, men intensitetsmålet kan ikke senkes under en pågående økt.",
+      "evidence": "FTP-innstilling og disabled={!!session} i src/App.tsx",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "De mest relevante rolige øktene finnes i biblioteket, men er ikke blant startsidens tre hurtigvalg.",
+      "evidence": "src/training.ts og anbefalingsutvalget i src/App.tsx",
+      "severity": "medium",
+      "category": "onboarding"
+    }
+  ],
+  "preferred_world": "sky",
+  "world_reason": "Skybound rammer aktiviteten inn som utforsking, undring og vekking av en verden, mens Neon Rush tydeligere framhever fart, personlig rekord og arkade. For denne personaen forventes den roligere fortellingen å dempe prestasjonspresset, selv om begge bruker samme strenge poengregler.",
+  "one_change": "Legg en tydelig «Tilbake etter pause»-inngang øverst på startsiden som starter en kort, lett økt med et mer tilgivende progresjonsmål basert på gjennomføring framfor ubrutt combo.",
+  "return_reason": "Ville kanskje komme tilbake fordi verdenene er attraktive, instruksjonene er tydelige og recovery faktisk belønnes, men bare dersom de rolige øktene oppdages før standardutfordringen og resultatpresset skaper en følelse av å mislykkes.",
+  "counterargument": "Personaen kan oppleve personlige rekorder som privat og motiverende, og kan enkelt velge «10 min lett tråkk» eller senke FTP; da kan den strenge tilbakemeldingen fungere som presis struktur i stedet for press.",
+  "limitations": [
+    "Dette er en syntetisk personavurdering, ikke en menneskelig playtest eller målt treningsopplevelse.",
+    "Langtidsreaksjon, motivasjon etter 20 minutter og vilje til en tredje økt er prediksjoner.",
+    "Motorprobene er syntetiske og dokumenterer regler og utfall, ikke menneskelig glede eller maskinvareytelse.",
+    "Skjermbildene viser forhåndsbestemte tilstander; ingen faktisk fysisk anstrengelse eller kroppslig respons ble observert."
+  ],
+  "summary": "SUMMIT ser visuelt innbydende ut og gir klare råd, men startsidens 64-minutters terskeløkt og mange prestasjonsmål er en dårlig førstereise for en usikker tilbakevendende. Den strenge ±10 %-logikken og raske combo-nullstillingen kan gjøre normal variasjon til synlig nederlag. Skybound, belønnet recovery og korte rolige økter trekker opp, så retur er mulig dersom appen gjør en trygg tilbakekomstvei langt mer synlig."
+}

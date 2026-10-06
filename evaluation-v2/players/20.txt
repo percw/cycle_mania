@@ -1,0 +1,11 @@
+Den skeptiske testeren: betinget overbevist
+
+SUMMIT ser ikke ut som bare tall over en skjermsparer. Tron, Neon og Skybound har klart forskjellige rom, og Skybound viser et faktisk veivalg mellom Gjenreis og Utforsk. Valget kommer igjen etter målbasert fremdrift, og det vedvarende kartet gir en konkret grunn til å se hva neste tur endrer. Førsteinntrykket er derfor engasjerende, men ikke fullt overbevisende: mellom valgene går figuren automatisk, og den viktigste handlingen er fremdeles å holde foreskrevet watt.
+
+Det sterkeste argumentet for appen kommer etter økten. Analysen skiller syklet og planlagt tid, datadekning, hopp, gjenstående segmenter og måloppnåelse per blokk. Spillpoeng presenteres separat fra fysisk utvikling. FTP vises uttrykkelig som et øktbasert estimat, ikke en test, og datagap fylles ikke inn som null eller godkjent arbeid. Dette er syntetisk evidens og kode-/teststøtte, ikke dokumentasjon av lang tids bruk med ekte utstyr, men reglene er mer redelige enn profilens utgangspunkt tilsier.
+
+Opplåsingene er også godt begrunnet. Tron krever målte minutter, presisjon, datadekning eller flere treningsdager. Demo, hopp og unødvendig høy effekt gir ikke permanent gevinst. Rolig arbeid og aktive pauser kan bidra uten press om å overskride planen. Neon og Skybound er svakere som prestasjonssystem: 30–40 målsekunder lader neste port, så løkken kan etter hvert kjennes som en pen teller.
+
+Jeg ville kanskje returnert for en tredje økt, særlig i Skybound, men ikke uten forbehold. Den viktigste forbedringen er å gi Gjenreis og Utforsk varig forskjellige hendelser, ruter og konsekvenser, samtidig som begge respekterer samme wattmål. Da blir valget en spillmekanikk med reell betydning, ikke bare et nytt navn på neste fremdriftsmåler.
+
+Skårer: første moro 5/7, tredje økt 4/7, handlekraft 4/7, visuelt 5/7, tydelighet 6/7, intervalltilpasning 6/7, datatillit 6/7, analysenytte 6/7, rettferdige opplåsinger 6/7. Returvalg: kanskje. Konfidens: middels.

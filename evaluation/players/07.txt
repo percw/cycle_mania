@@ -1,0 +1,13 @@
+Spiller 07 – Rytmespilleren
+
+Dette er en syntetisk vurdering for en spiller som kommer fra Beat Saber og andre rytmespill. Neon Rush er den klare favoritten. De repeterende lysportene, reaktortunnelen, fartslinjene og den sentrale ladningsringen gir en sterk arkadefølelse. Skybound er visuelt flott og tilbyr god avveksling, men uttrykket er roligere. Fjordveien virker minst relevant for akkurat denne motivasjonen.
+
+Første økt vurderes til 5/7 i moro og det visuelle til 6/7. Skjermbildene viser tydelig og attraktiv respons gjennom poeng, flyt-kombinasjon, ladning, stjerner og pulser. Klarhet får 5/7: wattmål, gjenværende tid og «FREKVENS LÅST» er forståelige, men mange paneler konkurrerer om oppmerksomheten.
+
+Den største svakheten er at rytmefantasien ikke finnes i selve ferdigheten. Kildekoden viser at treff er watt innenfor 90–110 prosent av målet. Kombinasjonen stiger med sammenhengende tid, og en puls kommer etter omtrent 12 sekunder. Det finnes ingen vurdering av slag, takt eller kadenssynkronisering. Lyd er dessuten avslått som standard og består av korte toner ved segment, puls og mestring, ikke et kontinuerlig musikklag. Derfor får agency 4/7: spilleren påvirker poeng og visuell energi, men har få uttrykksfulle handlinger utover å holde watt stabilt.
+
+Intervalltilpasning får 4/7. Tydelig nedtelling, faseprofil og fortsatt belønning i recovery støtter økten, men arbeid og pause bruker i hovedsak samme spillmekanikk. Etter 20 minutter forventes derfor lavere nyhet, særlig i lange ti-minuttersdrag. Forventet moro i tredje økt blir 4/7, selv med personlig rekordspøkelse og verdensbytte. Returvurderingen er «kanskje».
+
+Den viktigste endringen er et valgfritt, kontinuerlig musikklag der porter og belønningspulser ligger på slagene, og der ønsket kadens eller watt-treff på slagene bygger kombinasjonen. Da ville Neon-estetikken og den faktiske spillferdigheten peke i samme retning.
+
+Vurderingen bygger på statiske skjermbilder, kildekode og motorprober. Opplevelsen av lyd, animasjon og langvarig bruk er ikke observert med en virkelig person eller sykkel.

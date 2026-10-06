@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "checks": [
+    "20valid scenarios",
+    "all20cards displayed",
+    "persona search",
+    "return filter exact count",
+    "detail expansion",
+    "390px no horizontal overflow",
+    "zero browser errors"
+  ],
+  "errors": []
+}

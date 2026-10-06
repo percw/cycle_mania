@@ -1,0 +1,36 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+import { writeFileSync } from 'node:fs';
+const browser = await chromium.launch({headless:true});
+try {
+  const page = await browser.newPage({viewport:{width:1440,height:1000}});
+  const errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://127.0.0.1:5191/report.html');
+  assert.equal(await page.locator('.player').count(),20);
+  assert.equal(await page.locator('.player:visible').count(),20);
+  assert.ok(await page.locator('img').evaluateAll(images=>images.every(i=>i.complete&&i.naturalWidth>0)));
+  await page.screenshot({path:'evaluation/evidence/report-overview.png'});
+  await page.locator('#return').selectOption('yes');
+  assert.equal(await page.locator('.player:visible').count(),4);
+  await page.locator('#return').selectOption('all');
+  await page.locator('#search').fill('Strategispilleren');
+  assert.equal(await page.locator('.player:visible').count(),1);
+  assert.equal(await page.locator('.player:visible').getAttribute('data-id'),'18');
+  await page.locator('.player:visible summary').click();
+  assert.ok(await page.locator('.player:visible details').getAttribute('open')!==null);
+  await page.locator('.player:visible').scrollIntoViewIfNeeded();
+  await page.screenshot({path:'evaluation/evidence/report-player.png'});
+  await page.locator('#search').fill('');
+  await page.locator('#sort').selectOption('third');
+  const third=await page.locator('.player').evaluateAll(cards=>cards.map(c=>Number(c.dataset.third)));
+  assert.deepEqual(third,[...third].sort((a,b)=>b-a));
+  await page.setViewportSize({width:390,height:844});
+  await page.evaluate(()=>window.scrollTo(0,0));
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await page.screenshot({path:'evaluation/evidence/report-mobile.png'});
+  assert.deepEqual(errors,[]);
+  const report={ok:true,checks:['20 profile cards','return filter matches four yes verdicts','persona search','expandable source/rationale','score sorting','screenshots loaded','390px layout without horizontal overflow','no browser exceptions'],errors};
+  writeFileSync('evaluation/report-check.json',JSON.stringify(report,null,2));
+  console.log(JSON.stringify(report));
+} finally {await browser.close();}

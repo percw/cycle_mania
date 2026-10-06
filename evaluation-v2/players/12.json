@@ -1,0 +1,193 @@
+{
+  "id": "12",
+  "persona": "Prestasjonssamleren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden viser fire låste Tron-prestasjoner med navn, eksakte krav, tom progresjon og en konkret visuell belønning for hver.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-launcher.png",
+      "observation": "Fixture-visningen viser alle fire krav som åpnet, målbar fremdrift, belønningene i The Grid og et separat nivå-/XP-spor, men ikke én samlet oversikt over neste milepæl på tvers av systemene.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Den aktive Tron-scenen har en tydelig prestasjons-HUD, wattmål, gjeldende drag, neste segment og en eksplisitt DEMO-markering.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-award.png",
+      "observation": "En midlertidig demobelønning vises med 330/300 målsekunder, 100 % presisjon og 100 % datadekning, samtidig som skjermen sier at den bare er aktivert i prøveturen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon har en egen ekspedisjonsmåler, et navngitt delmål og tydelig 1/5-fremdrift, noe som gir en annen samlerløkke enn Tron.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet, planlagt, hoppet over og gjenstående tid, viser 99 % wattdekning og 97 % innenfor mål, og markerer ti sekunder uten gyldige watt som datagap.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Per-blokk-tabellen viser nøyaktig hvilke drag og pauser som ble målt eller hoppet over, med observert tid, snitt/mål og treffsikkerhet.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Resultatet viser effektrekorder, et uttrykkelig merket øktbasert FTP-anslag, sammenligning mot tilsvarende økt og kvittering for prestasjoner dokumentert i økten.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Prestasjoner beregnes bare fra unike, ikke-demo-økter med minst 95 % dekning og fullt samsvar mellom målte og målrettede sekunder; den aktive økten er bare foreløpig frem til lagring.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/expedition.ts",
+      "observation": "Ekspedisjonsfremdrift krever fersk telemetri innenfor ±10 % av målet; restitusjon teller likt, overskuddseffekt gir ingen fordel, og bare lagrede ekte resultater inngår i kampanjen.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/unit-tests.json",
+      "observation": "De beståtte testene dekker blant annet demoer, datagap, hopp, unike treningsdager, foreløpige live-milepæler, overdreven watt og ugyldig kampanjedata.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 6,
+    "third_fun": 6,
+    "agency": 5,
+    "visuals": 6,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 6,
+    "unlock_fairness": 7
+  },
+  "rating_reasons": {
+    "first_fun": "Fire umiddelbart synlige Tron-mål med navngitte kosmetiske belønninger gir denne profilen en sterk første krok.",
+    "third_fun": "Vedvarende prestasjoner, verdensspesifikke ekspedisjonssamlinger og sammenlignbar øktanalyser gir god returgrunn, selv om den langsiktige samlebredden ikke er fullt synlig.",
+    "agency": "Neon/Sky tilbyr gjentatte restore/explore-valg og økten har pause/segmentkontroll, men Tron-prestasjonene følger i hovedsak planen automatisk.",
+    "visuals": "Tron-belønningene endrer en tydelig, særpreget verden, mens Neon viser at samlingene kan ha visuell variasjon mellom verdener.",
+    "clarity": "Krav, toleranse, datadekning, fremdrift og belønning står eksplisitt på startsiden og demoer er tydelig merket.",
+    "interval_fit": "Fremdrift belønner foreskrevet watt i arbeid og restitusjon; hopping, manglende målinger og unødvendig høy effekt gir ingen snarvei.",
+    "data_trust": "Synlig datagap, skille mellom målt og planlagt tid og kildekodestøttet demo-/dekningsfiltrering gir sterk tillit, men evidensen bruker syntetiske data og mock-sensor.",
+    "analysis_usefulness": "Per-blokk-gjennomføring, rekorder, sammenligning og prestasjonskvittering forklarer både økten og samlerfremdriften svært godt.",
+    "unlock_fairness": "Tron-kravene er uvanlig etterprøvbare og treningsrelevante: eksakte målsekunder, presisjonsgrenser, dekning og treningsdager uten gevinst fra demo, hopp eller overytelse."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil trolig velge Tron fordi fire låste kort straks viser både krav og konkrete ting å samle.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Prestasjonsteller og wattmål vil sannsynligvis gjøre hvert korrekt sekund relevant uten å oppmuntre til å sprenge planen.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Pausekontroll gjør restitusjonen til meningsfull samlerfremdrift, så lavere effekt vil neppe føles som dødtid.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "En synlig Utholdenhet-milepæl og ekspedisjonsfremdrift kan holde motivasjonen oppe, men Tron-løkken gir få aktive valg underveis.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Kvitteringen med dokumentert prestasjon, rekorddata og intervalltabell vil sannsynligvis gi en tilfredsstillende bekreftelse på hva økten faktisk åpnet.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Kontinuitetskravet på tre treningsdager og verdenssamlingene gir en klar returgrunn, men profilen vil da etterspørre en større og samlet samlingsplan.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Fire eksplisitte Tron-prestasjoner med synlige kosmetiske følger",
+    "Kontinuitetsmål som krever tre faktiske treningsdager",
+    "Verdensspesifikke strukturer, relikvier og rutevalg",
+    "Analyse som fungerer som kvittering på målt fremdrift"
+  ],
+  "frictions": [
+    {
+      "issue": "Det mangler en samlet samlingsoversikt som prioriterer nærmeste milepæl på tvers av prestasjoner, XP og verdenskampanjer.",
+      "evidence": "tron-launcher.png viser fire Tron-kort og et separat XP-nivå, mens Neon-skjermen viser sin ekspedisjonsmåler først inne i turen.",
+      "severity": "medium",
+      "category": "progression"
+    },
+    {
+      "issue": "Tron gir sterk måloppfølging, men få meningsfulle valg under selve turen.",
+      "evidence": "tron-active.png viser prestasjonsfremdrift og øktkontroller, mens route-choice-løkken er synlig i Neon/Sky og ikke i Tron.",
+      "severity": "medium",
+      "category": "agency"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser 30:00 syklet av 64:00 planlagt, 10:00 hoppet over, 24:00 gjenstående og et separat datagap på 00:10.",
+      "analysis-intervals.png kartlegger målt tid og treffsikkerhet per drag og pause.",
+      "analytics.ts utelater demoer og ugyldige målinger, bryter rekorder ved datagap og merker FTP som estimat."
+    ],
+    "strengths": [
+      "Målt, planlagt, hoppet over og manglende data holdes adskilt.",
+      "Effektrekorder krever sammenhengende målte vinduer.",
+      "FTP-estimat presenteres som et forsiktig anslag og endrer ikke FTP automatisk."
+    ],
+    "gaps": [
+      "Skjermbildene bygger på syntetiske fixtures, og ingen fysisk økt bekrefter datakvaliteten her.",
+      "Snitteffektgrafen over ulike økter krever fortsatt at brukeren forstår at intensiteter ikke er direkte sammenlignbare."
+    ],
+    "verdict": "Datapresentasjonen er sterk nok til at samlerfremdrift fremstår dokumentert fremfor pyntet, med tydelig usikkerhet rundt det som ikke ble målt."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png oppgir eksakte terskler og belønninger før første kvalifiserende økt.",
+      "achievements.ts krever ekte, lagret måleevidens, minst 95 % dekning og målrettede sekunder.",
+      "unit-tests.json bekrefter tester mot demo, datagap, hopp, avrunding, duplikater og ufortjent progresjon.",
+      "expedition.ts krever effekt innenfor ±10 % og lar hverken overskuddseffekt eller timerhopp kjøpe fremdrift."
+    ],
+    "strengths": [
+      "Kriteriene er synlige før innsatsen og fremdriften er numerisk etterprøvbar.",
+      "Belønningene er koblet til presisjon, utholdenhet, kontrollert restitusjon og kontinuitet.",
+      "Rolige blokker teller på lik linje med harde blokker når de følges korrekt.",
+      "Demoresultater er tydelig midlertidige og kan ikke bli permanente belønninger."
+    ],
+    "gaps": [
+      "Bare fire Tron-prestasjoner er synlige i startvisningen; langsiktig bredde etter disse er uklar.",
+      "Verdenskampanjens neste kostnad og mulig belønning er ikke samlet med dagens øktvalg på startsiden."
+    ],
+    "verdict": "Dette er en svært rettferdig prestasjonsløkke: den belønner dokumentert gjennomføring av planen, ikke tilfeldighet, poengjakt eller rå overytelse."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Tron gjør samlingen mest konkret ved å vise fire krav, løpende målsekunder og synlige endringer i selve verdenen.",
+  "one_change": "Lag én samlingsside som viser nærmeste milepæl i hver verden, hva dagens valgte økt kan bidra til, og den neste låste belønningen etter de fire Tron-prestasjonene.",
+  "return_reason": "Ja: tre-dagerskravet, målbare kosmetiske belønninger og verdenssamlingene gir flere tydelige grunner til å starte en ny økt.",
+  "counterargument": "Hvis de fire Tron-belønningene åpnes raskt og kampanjens senere samlinger ikke blir tydeligere eksponert, kan den sterke første samlerkroken miste kraft etter få økter.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering uten faktisk sykling eller menneskelig brukstest.",
+    "Skjermbildenes historikk er syntetiske fixtures, og de aktive scenene er akselererte demoer.",
+    "Evidensen dokumenterer ikke opplevd lyd, fysisk sensorbruk, grafisk ytelse eller langsiktig innholdsbalanse.",
+    "Vurderingen kan ikke fastslå hvor raskt en ekte spiller vil fullføre hele samlingen."
+  ],
+  "summary": "For Prestasjonssamleren er SUMMIT mest overbevisende når Tron gjør presis trening om til synlige, etterprøvbare samlerobjekter. Analysen gir en troverdig kvittering, og reglene hindrer demo, hopping, manglende data og overytelse i å gi ufortjent progresjon. En samlet langsiktig samlingsplan er den viktigste mangelen."
+}

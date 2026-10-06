@@ -1,0 +1,21 @@
+id,persona,first_fun,third_fun,agency,visuals,clarity,interval_fit,would_return,preferred_world,confidence
+01,Konkurransesyklisten,5,4,4,6,6,6,maybe,neon,medium
+02,Den ferske mosjonisten,4,4,4,6,4,4,maybe,sky,medium
+03,Actionspilleren,5,3,3,6,6,6,maybe,neon,medium
+04,Utforskeren,5,3,2,6,5,6,maybe,sky,medium
+05,Den travle forelderen,5,5,5,6,5,5,yes,neon,medium
+06,Tallnerden,5,5,4,6,5,6,maybe,neon,medium
+07,Rytmespilleren,5,4,4,6,5,4,maybe,neon,medium
+08,Langturssyklisten,5,3,3,6,6,6,maybe,sky,medium
+09,Den visuelle entusiasten,6,4,4,6,5,6,maybe,neon,medium
+10,Mobilbrukeren,5,4,4,5,5,6,yes,sky,medium
+11,Den rolige brukeren,4,3,4,4,5,5,maybe,sky,medium
+12,Prestasjonssamleren,5,4,4,6,5,6,maybe,neon,medium
+13,Den sosiale spilleren,5,4,4,6,5,6,maybe,neon,medium
+14,Veteranen på eldre laptop,4,4,5,5,5,6,maybe,original,medium
+15,Den utålmodige nyhetssøkeren,5,3,3,6,5,5,maybe,sky,medium
+16,Den disiplinerte intervallutøveren,5,5,5,6,6,7,yes,original,medium
+17,Den usikre tilbakevendende,4,3,5,6,5,4,maybe,sky,medium
+18,Strategispilleren,4,3,2,6,6,6,maybe,neon,medium
+19,Den målbevisste morgenmosjonisten,5,5,4,6,6,6,yes,sky,medium
+20,Den skeptiske testeren,5,4,4,6,6,6,maybe,neon,medium

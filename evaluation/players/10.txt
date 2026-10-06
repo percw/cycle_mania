@@ -1,0 +1,9 @@
+Mobilbrukeren – syntetisk evaluering
+
+SUMMIT treffer de viktigste praktiske behovene bedre enn forventet på den dokumenterte 390 × 904-flaten. I Skybound-bildet er 245 W målet klart størst, 09:30 igjen er lett å finne, live-effekten står separat som 248 W, og tidslinjen sier «Neste: Aktiv pause». «Neste segment» er tilgjengelig direkte. Kildekoden viser i tillegg en egen «Jeg er ferdig oppvarmet»-knapp under oppvarming, og eksisterende runtime-tester bekrefter at hopp ikke blåser opp registrert varighet. Derfor får intervalltilpasning 6/7 og klarhet 5/7.
+
+Problemet er mengden samtidig informasjon. På mobil vises målpanel, live-statistikk, spillscore, flyt, ladning, oppdrag, belønningsplakat og øktprofil på én gang. Hovedtallene er gode, men flere etiketter er svært små, og belønningen dekker midten av kjørebanen. Med korte blikk og svette fingre forventer jeg at dette kjennes mer hektisk enn skjermbildets rolige Skybound-scene tilsier. Visuell appell får 5/7: den lyse verdenen er særegen og kontrasten mot panelene fungerer, men HUD-en skjuler mye av utsikten.
+
+Første øktfun får 5/7 fordi tydelig respons, lysfrø og en faktisk 3D-verden gir mer liv enn en vanlig intervallgraf. Forventet tredjeøktfun faller til 4/7. Neon, Skybound og Fjordveien gir miljøvalg, men spillhandlingen er fortsatt hovedsakelig å holde seg innenfor wattvinduet; pause og hopp er de viktigste direkte valgene. Derfor får agency 4/7.
+
+Jeg forventer likevel retur: mål, tid, neste fase og hopp over oppvarming løser mobilbrukerens kjernejobb. Høyeste prioritet er én kompakt mobilmodus med mål-watt, live-watt, nedtelling, neste fase og en stor hoppknapp samlet i ett fast panel; score, oppdrag og belønninger bør kunne foldes bort. Vurderingen har middels sikkerhet fordi launcher og resultat ikke er dokumentert på mobil, og ingen fysisk test med styrefeste, sollys eller svette fingre er gjennomført.

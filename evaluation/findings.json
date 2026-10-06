@@ -1,0 +1,96 @@
+[
+  {
+    "priority": "P0",
+    "title": "La spilleren påvirke et konkret oppdrag",
+    "finding": "Flere spillorienterte profiler ser wattkontroll som nesten hele handlingen. Verdensvalg gir visuelt særpreg, men lite innflytelse på selve reisen. Dette er den viktigste hypotesen å teste for bedre gjenspillingsverdi.",
+    "change": "Prøv ett avgrenset intervalloppdrag: velg hvilket område som skal få energi før et drag, vis et tydelig mål, og la gjennomført drag åpne en bro eller endre området synlig. Valg bør være valgfrie og kunne gjøres før drag eller i pauser; wattmålet og rolig restitusjon beholdes.",
+    "human_test": "Kan deltakeren forklare hvordan eget valg påvirket verden? Beskriver de flere konkrete engasjerende øyeblikk, og velger de oppdraget igjen ved tredje ordinære økt?",
+    "profiles": [
+      "03",
+      "04",
+      "08",
+      "09",
+      "12",
+      "13",
+      "15",
+      "18",
+      "20"
+    ]
+  },
+  {
+    "priority": "P0",
+    "title": "Gi neste økt et synlig mål og varig resultat",
+    "finding": "Poeng, nivå og rekordløp er lagret, men utforskings- og samlerprofilene savner oppdagelser, belønninger og verdensendringer som varer. De korte geometrisløyfene begrenser mengden nytt å se på lange turer.",
+    "change": "Legg til et lite verdenskart med oppdagede steder og ett tydelig neste mål. La noen få nye områder eller kosmetiske belønninger bli tilgjengelige gjennom fullførte planlagte økter. Vis hva neste nivå gir; unngå å gjøre ekstra watt eller straff for tapte dager til progresjonskrav. Tilby også ett konkret forslag til neste økt for dem som prioriterer en enkel treningsvane.",
+    "human_test": "Etter første tur: husker deltakeren hva som ble oppnådd og hva neste tur kan åpne? Observer faktisk gjenbruk over tre vanlige økter.",
+    "profiles": [
+      "04",
+      "08",
+      "12",
+      "15",
+      "18",
+      "19",
+      "20"
+    ]
+  },
+  {
+    "priority": "P1",
+    "title": "Tilpass førstevalget til tid og erfaring",
+    "finding": "Den fremhevede 64-minutters terskeløkten og standardverdien for FTP skaper friksjon for nybegynneren og den som har et kort treningsvindu. Bibliotekets 100 økter hjelper lite dersom riktig startpunkt er vanskelig å finne.",
+    "change": "Gi et enkelt valg av tilgjengelig tid og kjent/ukjent FTP før første økt. Vis total varighet tydelig, tilby en forklart introduksjon og et valg for allerede fullført oppvarming. La brukeren sette treningsmålet bevisst; ikke presenter standard-FTP som et personlig estimat.",
+    "human_test": "Kan nybegynneren velge og starte en passende 20–30-minutters økt uten hjelp, og forklare hva wattmålet bygger på?",
+    "profiles": [
+      "02",
+      "05",
+      "08",
+      "11",
+      "17",
+      "19"
+    ]
+  },
+  {
+    "priority": "P1",
+    "title": "Lag en fokusvisning med færre samtidige paneler",
+    "finding": "Mange profiler oppfatter skjermen som tettpakket. Mobilproben bekrefter en svært liten Avslutt økt-knapp; ved toppen av en 390×844-side ligger den dessuten under den synlige flaten. Skjermbildene dokumenterer layout, ikke faktisk lesbarhet under fysisk anstrengelse.",
+    "change": "Samle wattmål, faktisk watt, tid igjen og neste fase. Gjør spilldetaljer sammenleggbare, behold store pause/segment/slutt-kontroller, og tilby roligere animasjoner. Kameravariasjon og ekstra effekter kan være et separat valg for dem som ønsker det.",
+    "human_test": "Mål om deltakere finner neste fase og segmenthopp med ett kort blikk. Prøv betjening på faktisk styremontert skjerm og sammenlign rolig/vanlig visning.",
+    "profiles": [
+      "01",
+      "02",
+      "04",
+      "05",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "14",
+      "16"
+    ]
+  },
+  {
+    "priority": "P1",
+    "title": "Forklar hva poeng, presisjon og forbedring betyr",
+    "finding": "Konkurranse- og analyseprofilene vil forstå kvalitet per drag. Den faktiske regelen gir samme poeng innenfor hele ±10 %-vinduet, mens HUD-en kan vise 100 % presisjon. Spillpoeng og sportslig utvikling trenger tydeligere forklaring.",
+    "change": "Forklar målområdet og skill spillmestring fra treningsutvikling. Vis måloppnåelse og faktisk effekt per drag sammenlignet med samme økt. Vurder en valgfri, utjevnet pacing-visning for erfarne brukere; ikke stram inn toleransen for alle på grunnlag av disse modellpreferansene.",
+    "human_test": "Kan deltakerne forklare hvorfor de fikk poengene og hva sammenligningen sier om trening? Undersøk om utjevnet watt gir mer ro uten å skjule reelle avvik.",
+    "profiles": [
+      "01",
+      "06",
+      "07",
+      "16",
+      "17"
+    ]
+  },
+  {
+    "priority": "P2",
+    "title": "Gjør avbrudd lette å forstå og løse",
+    "finding": "Pause, lagring og gjenopptakelse er sterke sider for den travle profilen. Profilen med ustabil BLE savner mer synlig hjelp etter at de begrensede gjenkoblingsforsøkene er brukt. Dette er en hypotese om ustabilt utstyr, ikke en påvist feil med brukerens sykkel.",
+    "change": "Vis tilkoblingsstatus og en tydelig Prøv igjen-handling i pausevisningen, med eksplisitt fortsett når ferske målinger er tilbake. Test på faktisk utstyr før gjenkoblingspolicy endres.",
+    "human_test": "Ved et kontrollert brudd: forstår deltakeren at økten er pauset, får de kontakt igjen og fortsetter de uten å miste tillit til lagrede data?",
+    "profiles": [
+      "05",
+      "14"
+    ]
+  }
+]

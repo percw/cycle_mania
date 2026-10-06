@@ -1,0 +1,188 @@
+{
+  "id": "19",
+  "persona": "Den målbevisste morgenmosjonisten",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden samler en valgt 20-minutters restitusjonsøkt, wattmål, FTP-lenke, valget «Jeg er allerede varm» og en tydelig startknapp; ukepanelet viser økter per dag.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Den aktive Tron-visningen holder watt, wattmål, målstatus, gjeldende drag, tid og neste del samlet i et stort bunnpanel med pause og segmenthopp.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon gir en lys og tydelig annerledes byverden, ekspedisjonsfremdrift og samme lesbare øktkonsoll.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser en roligere, lys verden og et tidsavgrenset veivalg mellom gjenreisning og utforsking under økten.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller 30:00 syklet fra 64:00 planlagt, viser 10:00 hoppet over og 24:00 gjenstående, og varsler eksplisitt om ti sekunder uten gyldige watt.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Etteranalysen viser målte effektvinduer, merker FTP-tallet som et øktbasert anslag, sammenligner tilsvarende økter og dokumenterer opptjente prestasjoner.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "Kontinuitet krever tre ulike treningsdager med minst ti målte minutter og 80 % innenfor målet; alle prestasjoner krever minst 95 % datadekning og ekskluderer demoer.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/sensor-checks.json",
+      "observation": "Den isolerte sensorprøven rapporterer start med ett klikk, lagring og gjenopptakelse, korrekte hopp og pauser, samt vedvarende øktdata og gyldig FIT-eksport med mock-BLE.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 4,
+    "visuals": 5,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "En kort, ferdig valgt lettøkt og umiddelbart lesbar Tron-presentasjon gir en lovende start uten mye morgenplanlegging.",
+    "third_fun": "Tre-dagerskravet gir den tredje økten en konkret payoff, mens flere verdener og 100 økter kan bære enkel variasjon; videre retning er mindre tydelig.",
+    "agency": "Valg av verden, økt, varighet, pauser og ekspedisjonsrute er meningsfulle, men selve syklingen følger i stor grad den valgte planen.",
+    "visuals": "Tron, Neon og Skybound er klart forskjellige og øktdataene er lesbare, selv om Tron kan virke mørk og rolig repetisjon ikke er testet over tid.",
+    "clarity": "Start, målwatt, varighet, nåværende og neste blokk, demomerking og ukehistorikk er tydelige; «neste ekspedisjon» er likevel ikke en personlig ukeplan.",
+    "interval_fit": "Pause, fortsettelse, segmenthopp, oppvarmingshopp og tydelige mål støtter både trøtte morgener og planlagt arbeid svært godt.",
+    "data_trust": "Demo, målinger, datagap, hopp, spillpoeng og FTP-anslag skilles eksplisitt, med beståtte mock-sensor- og lagringstester; fysisk maskinvare er ikke testet her.",
+    "analysis_usefulness": "Per-blokk-treff, sammenligning og tydelig hoppregnskap forklarer økten godt, men den tette analysen omsettes ikke til et konkret forslag for neste treningsdag.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og basert på målte sekunder; demo, hopp, datagap, score og overdreven watt gir ingen snarvei."
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Profilen vil sannsynligvis velge den fremhevede korte lettøkten og komme raskt i gang, forutsatt at sykkeltilkoblingen oppfører seg som den isolerte prøven.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Det store wattallet, målstatusen og nedtellingen vil trolig gjøre første drag enkelt å følge selv i trøtt tilstand.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Et eksplisitt pausemål og en egen Pausekontroll-prestasjon kan gjøre rolig sykling meningsfull uten å presse effekten over planen.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "En tydelig profil, neste blokk og enkel visuell fremdrift vil sannsynligvis holde oppmerksomheten gjennom en kort morgenøkt, men dette er ikke observert over reell tid.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Skillet mellom syklet, hoppet over og gjenstående tid vil trolig gi en troverdig mestringsfølelse; detaljnivået kan være mer enn profilen trenger før jobb.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Kontinuitetsopplåsingen passer målet om tre ukentlige økter svært godt og kan utløse en fjerde uke, men appen viser ikke tydelig hvilken økt som bør følge etter milepælen.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "En fremhevet 20-minutters lettøkt med ett tydelig startpunkt",
+    "Ukepanel med antall økter og minutter per dag",
+    "Kontinuitetsbelønning etter tre dokumenterte treningsdager",
+    "Tre markant forskjellige spillverdener med samme øktkonsoll",
+    "Aktiv økt kan gjenopptas pauset etter reload"
+  ],
+  "frictions": [
+    {
+      "issue": "«Din neste ekspedisjon» husker sist valgte økt, men lager ingen tydelig treøkters ukeplan eller anbefaling etter dagens resultat.",
+      "evidence": "src/App.tsx velger summit-last-workout eller statisk recovery-10 som readyWorkout.",
+      "severity": "medium",
+      "category": "progression"
+    },
+    {
+      "issue": "Etteranalysen er detaljert og lang for en bruker som ønsker rask morgenbekreftelse.",
+      "evidence": "evaluation-v2/evidence/analysis-overview.png og analysis-comparison.png viser omfattende graf, intervalltabell, effektvinduer, FTP-anslag og innsikt.",
+      "severity": "low",
+      "category": "analysis"
+    },
+    {
+      "issue": "Kontinuitetsbelønningen er en sterk første vane-krok, men det finnes bare fire eksplisitte Tron-prestasjoner og ingen synlig neste vane-milepæl etter tre dager.",
+      "evidence": "src/achievements.ts definerer fire prestasjoner, hvor Kontinuitet stopper ved tre unike treningsdager.",
+      "severity": "medium",
+      "category": "progression"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "evaluation-v2/evidence/analysis-overview.png viser målt tid, planlagt tid, datadekning, måloppnåelse, hopp og gjenstående tid separat.",
+      "src/analytics.ts ekskluderer demoer og ugyldige målinger, bevarer datagap og krever sammenhengende målte vinduer for effekt- og FTP-analyse.",
+      "evaluation-v2/evidence/sensor-checks.json rapporterer bevart øktposisjon, pausekronologi, lagrede sensormålinger og gyldig FIT-fil i en isolert mock-BLE-prøve."
+    ],
+    "strengths": [
+      "Spillpoeng og fysisk treningsutvikling omtales som separate størrelser.",
+      "Hopp, pauser og manglende watt fylles ikke inn som syklet eller godkjent tid.",
+      "FTP vises som et konservativt øktbasert anslag og endres ikke automatisk.",
+      "Pågående økt lagres lokalt og gjenåpnes pauset."
+    ],
+    "gaps": [
+      "Sensorprøven bruker mock-BLE og beviser ikke stabilitet med profilens egen sykkel.",
+      "Analysen gir ikke et kort, handlingsrettet forslag til neste økt i vaneplanen.",
+      "Langsiktig historikk og tre økter per uke er ikke observert med reelle brukerdata."
+    ],
+    "verdict": "Datamodellen støtter høy tillit til hva som faktisk ble målt og gjennomført, men den gode etteranalysen mangler en enkel bro til neste morgenøkt."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "src/achievements.ts krever målte, målrettede sekunder med minst 95 % datadekning og utelukker demoer.",
+      "evaluation-v2/evidence/tron-new-player.png viser alle fire låste krav og konkrete visuelle belønninger før første økt.",
+      "evaluation-v2/evidence/unit-tests.json rapporterer beståtte tester for at demo, datagap, hopp, score, rå watt og avrunding under terskelen ikke gir prestasjoner."
+    ],
+    "strengths": [
+      "Kontinuitet samsvarer direkte med tre treningsdager og belønner minst ti kontrollerte minutter per dag.",
+      "Krav og løpende bevis vises eksplisitt med sekunder, presisjon og datadekning.",
+      "Høyere effekt enn planen gir ingen fordel.",
+      "Levende milepæler er foreløpige til den målte økten er lagret."
+    ],
+    "gaps": [
+      "Tre-dagersmålet har ingen synlig serie for neste uke eller lengre vanebygging.",
+      "Kravet om 95 % datadekning kan gjøre opplåsing sårbar for sensorgap, selv ved god innsats.",
+      "De eksplisitte prestasjonsopplåsingene er knyttet til Tron; andre verdener bruker en annen ekspedisjonsprogresjon."
+    ],
+    "verdict": "Opplåsingene er uvanlig etterprøvbare og treningsrelevante, og Kontinuitet er en presis krok for denne profilen; systemet trenger et neste vaneledd etter den tredje dagen."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Tron gjør progresjonen mest konkret: fire synlige krav, målte bevis og en kontinuitetsbelønning som matcher målet om tre økter per uke.",
+  "one_change": "Gjør «Din neste ekspedisjon» til en enkel treøkters ukeplan som markerer dagens plass, foreslår neste korte økt fra faktisk gjennomføring og åpner en ny, synlig milepæl etter 3/3 dager.",
+  "return_reason": "Profilen vil sannsynligvis komme tilbake fordi startfriksjonen er lav, dagens mål er lett å lese og den tredje treningsdagen har en konkret, rettferdig belønning.",
+  "counterargument": "Hvis sensoroppsett eller den detaljerte analysen oppleves tungt tidlig om morgenen, kan en statisk lettøkt og kosmetisk Tron-belønning være for lite til å etablere vanen alene.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en menneskelig brukertest eller gjennomført treningsøkt.",
+    "Skjermbildene bruker syntetiske historikkdata og akselererte demoøkter.",
+    "Ingen faktisk tredje økt, vaneutvikling, lydopplevelse eller langvarig glede ble observert.",
+    "Sensorbeviset bruker mock-BLE; reell maskinvarestabilitet og fysisk wattkorrekthet er ikke etablert av evidensen.",
+    "Grafikkbildene er automatiserte opptak og dokumenterer ikke faktisk bildefrekvens."
+  ],
+  "summary": "SUMMIT passer denne morgenprofilen godt: en kort lettøkt ligger klar, øktkonsollen er tydelig, og Tron belønner nøyaktig tre dokumenterte treningsdager. Målelogikken er troverdig og motstår demo, hopp og overstyring, mens etteranalysen forklarer gjennomføringen grundig. Den viktigste mangelen er en faktisk ukeplan som gjør neste økt like tydelig som den første og bygger videre etter 3/3-dagersmilepælen."
+}

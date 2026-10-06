@@ -1,0 +1,136 @@
+{
+  "id": "16",
+  "persona": "Den disiplinerte intervallutøveren",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startskjermen viser FTP på 250 W og en direkte synlig økt for 2 × 20 min terskel, merket 98 % FTP og 60 min. Den viser også valg mellom Neon Rush, Skybound og Fjordveien."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "Den aktive Neon-scenen viser mål 125 W, faktisk 128 W, 100 % presisjon, gjenværende tid, øktprofil og den konkrete instruksjonen om å holde wattmålet til neste energipuls."
+    },
+    {
+      "path": "output/gameplay/neon-mastery.png",
+      "observation": "I en aktiv pause viser HUD-en mål 125 W og faktisk 122 W, statusen LADEMODUS, teksten om at rolig kraft lader like mye, tre stjerner og ett av fire drag mestret."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound viser samme tydelige intervallinformasjon i en visuelt distinkt verden: mål 245 W, faktisk 239 W, 100 % presisjon, tid igjen og hele øktprofilen."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatet samler poeng, stjerner, pulser, beste flyt, tid, snitteffekt, arbeid og tid i soner, og opplyser tydelig at demodata ikke er fysisk fremgang og at hoppede minutter ikke telles som syklet."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Deterministiske regelprober gir samme toppresultat for eksakt mål og jevn variasjon innen ±8 %, null poeng ved konstant 125 % av målet, og full belønning i foreskrevet restitusjon. Manglende data med 83,3 % dekning gir ingen segmentstjerner."
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "Økten threshold-2x20 er definert som to 20-minutters drag på 98 % FTP med fem minutters aktiv pause, foran ti minutters todelt oppvarming og etterfulgt av fem minutters nedkjøring."
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Spillregelen bruker et binært treffvindu på 90–110 % av målet; over- og underkjøring bryter flyten, og segmentstjerner krever minst 85 % dekning og minst 70 % tid i vinduet. completeGameBlock er uttrykkelig for faktisk syklet blokkslutt, ikke hopp."
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "Den virkelige sensorverdien sendes direkte fra siste telemetrioppdatering til stepGame uten rullerende effektutjevning. Pause stopper tick, og segmenthopp flytter planposisjonen uten å fullføre spillblokken."
+    },
+    {
+      "path": "output/playwright/sensor-smoke/report.json",
+      "observation": "Den isolerte ende-til-ende-proben rapporterer fungerende én-klikks tilkobling og start, målt watt/kadens/puls/fart, pause uten tidsinflasjon, lagring og gyldig FIT-eksport uten sidefeil."
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 5,
+    "visuals": 6,
+    "clarity": 6,
+    "interval_fit": 7
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "2 × 20 min på 98 % FTP er lett å finne, FTP-en er synlig, og øktprofilen gjør at planen kan kontrolleres før start. Det gir høy sannsynlighet for tillit fra første skjerm.",
+      "basis": "observed"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Eksakt målwatt, nedtelling og eksplisitt beskjed om å senke eller øke watt støtter jevn gjennomføring. At 125 % overskytelse gir null belønning fjerner et uønsket insentiv til å sprenge planen.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Lademodus og full spillbelønning ved foreskrevet rolig watt gjør pausen til en del av oppgaven i stedet for et tomrom eller en konkurranse om å holde trykket oppe.",
+      "basis": "observed"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Mot slutten av et langt drag vil tid, mål og profil fortsatt være nyttige, men den binære ±10 %-målingen vil trolig føles mindre treningspresis enn spillpresentasjonen lover. Visuell variasjon kan hjelpe oppmerksomheten, men kan også gli over i bakgrunn.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Denne utøveren vil sannsynligvis vende tilbake fordi økten matcher den etablerte 2 × 20-rutinen og personlig rekord gir et kontrollert mål. Verdien vil avhenge mer av presis effektstyring og sammenlignbarhet enn av nye lyseffekter.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Nøyaktig 2 × 20-oppskrift på 98 % FTP med oppvarming, aktiv pause og nedkjøring",
+    "Spillreglene belønner foreskrevet watt i alle faser og straffer overkjøring",
+    "Tydelig målwatt, faktisk watt, tid igjen og øktprofil på samme skjerm",
+    "Eget rekordløp, presisjon, sonetid og lagret historikk gir sammenlignbar progresjon",
+    "Tre verdener gir miljøvalg uten å endre den gyldige intervallmekanikken"
+  ],
+  "frictions": [
+    {
+      "issue": "Eksakt mål og jevn ±8 % variasjon får identisk toppbelønning, så poengsummen skiller ikke virkelig jevn terskeleffekt fra et merkbart bølgende drag.",
+      "evidence": "evaluation/runtime-probes.json / on_target og gentle_variation",
+      "severity": "medium",
+      "category": "feedback"
+    },
+    {
+      "issue": "Spillkvaliteten beregnes fra siste øyeblikkelige sensorverdi uten rullerende snitt, noe som kan gjøre rytmesignalet følsomt for normal wattstøy.",
+      "evidence": "src/App.tsx tick() og src/game.ts stepGame()",
+      "severity": "medium",
+      "category": "feedback"
+    },
+    {
+      "issue": "Toleransevinduet 90–110 % er ikke oppgitt i den aktive HUD-en; 100 % presisjon kan derfor se mer eksakt ut enn regelen faktisk er.",
+      "evidence": "src/game.ts hit-regel og output/gameplay/neon-flow.png",
+      "severity": "medium",
+      "category": "clarity"
+    },
+    {
+      "issue": "Under et 20-minutters drag er spillerens eneste meningsfulle handling å holde effektvinduet; sektorbytter, pulser og kosmetiske verdener kan bli forutsigbare ved gjentatt bruk.",
+      "evidence": "src/game.ts og src/worlds.ts",
+      "severity": "medium",
+      "category": "variety"
+    },
+    {
+      "issue": "Neon-HUD-en legger flere store paneler over selve veien, mens den lyse Skybound-scenen har lavere kontrast i bakgrunnen; begge kan konkurrere med et raskt blikk på måltallene.",
+      "evidence": "output/gameplay/neon-flow.png og output/gameplay/sky-flow.png",
+      "severity": "low",
+      "category": "visuals"
+    }
+  ],
+  "preferred_world": "original",
+  "world_reason": "Fjordveien fremstår som det roligste, klassiske valget og beholder samme intervallmål og valgfrie spillprogresjon. For denne personaen er et mindre påtrengende miljø sannsynligvis best gjennom to lange drag, selv om aktiv Fjord-skjerm ikke inngår i bevismaterialet.",
+  "one_change": "Legg til en valgfri «jevn effekt»-modus som graderer presisjon kontinuerlig etter 3-sekunders snitteffekt rundt målet, i stedet for det binære ±10 %-treffet.",
+  "return_reason": "Ja: produktet tilbyr akkurat 2 × 20-strukturen, lar oppvarming og restitusjon telle riktig, og gir ingen spillgevinst for å kjøre hardere enn foreskrevet. Det gjør det egnet som et visuelt lag over en allerede målrettet terskelrutine.",
+  "counterargument": "Dersom utøveren opplever all spillgrafikk og poeng som unødvendig støy, kan en vanlig sykkelcomputer med 3- eller 10-sekunders snitteffekt være mer tilfredsstillende, uansett hvor godt SUMMITs regler følger planen.",
+  "limitations": [
+    "Dette er en syntetisk persona-evaluering, ikke en menneskelig prøveøkt eller måling av opplevd glede.",
+    "De aktive skjermbildene viser hovedsakelig 4 × 10 min og demodata; vurderingen av et fullt 2 × 20-forløp bygger på felles mekanikk og kildekode.",
+    "Ingen fysisk 60-minutters økt eller virkelig sensor ble brukt av evaluatoren; maskinvarefunksjon er kun støttet av den eksisterende isolerte runtime-rapporten.",
+    "Reaksjonen etter 20 minutter og ønsket om en tredje økt er uttrykkelige prognoser.",
+    "Fjordveien er bare synlig som valg/forhåndsvisning i inspisert skjermmateriale, så verdenspreferansen er mindre sikker enn sammenligningen mellom aktive Neon- og Sky-scener."
+  ],
+  "summary": "SUMMIT passer denne utøveren svært godt som intervallverktøy: 2 × 20 på 98 % FTP er direkte tilgjengelig, foreskrevet restitusjon belønnes, og overkjøring gir ingen fordel. Den største svakheten er at et binært ±10 %-vindu gir samme toppresultat for eksakt mål og ±8 % variasjon, samtidig som siste øyeblikkelige watt brukes uten utjevning. Jeg forventer derfor retur, men mest for den strukturerte økten og sammenlignbar fremgang, ikke for spilldybden alene."
+}

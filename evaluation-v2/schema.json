@@ -1,0 +1,434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "id",
+    "persona",
+    "model",
+    "evidence_manifest_sha256",
+    "contamination",
+    "evidence",
+    "ratings",
+    "training_ratings",
+    "rating_reasons",
+    "would_return",
+    "confidence",
+    "journey",
+    "hooks",
+    "frictions",
+    "training_data",
+    "performance_unlocks",
+    "preferred_world",
+    "world_reason",
+    "one_change",
+    "return_reason",
+    "counterargument",
+    "limitations",
+    "summary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(0[1-9]|1[0-9]|20)$"
+    },
+    "persona": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "const": "gpt-5.6-sol"
+    },
+    "evidence_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "contamination": {
+      "type": "object",
+      "required": [
+        "disclosed",
+        "detail"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "disclosed": {
+          "type": "boolean"
+        },
+        "detail": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "observation",
+          "basis"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "basis": {
+            "enum": [
+              "observed",
+              "source_supported",
+              "prediction"
+            ]
+          }
+        }
+      }
+    },
+    "ratings": {
+      "type": "object",
+      "required": [
+        "first_fun",
+        "third_fun",
+        "agency",
+        "visuals",
+        "clarity",
+        "interval_fit"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "first_fun": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "third_fun": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "agency": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "visuals": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "clarity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "interval_fit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        }
+      }
+    },
+    "training_ratings": {
+      "type": "object",
+      "required": [
+        "data_trust",
+        "analysis_usefulness",
+        "unlock_fairness"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "data_trust": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "analysis_usefulness": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "unlock_fairness": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        }
+      }
+    },
+    "rating_reasons": {
+      "type": "object",
+      "required": [
+        "first_fun",
+        "third_fun",
+        "agency",
+        "visuals",
+        "clarity",
+        "interval_fit",
+        "data_trust",
+        "analysis_usefulness",
+        "unlock_fairness"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "first_fun": {
+          "type": "string",
+          "minLength": 1
+        },
+        "third_fun": {
+          "type": "string",
+          "minLength": 1
+        },
+        "agency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visuals": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clarity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interval_fit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "data_trust": {
+          "type": "string",
+          "minLength": 1
+        },
+        "analysis_usefulness": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unlock_fairness": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "would_return": {
+      "enum": [
+        "yes",
+        "maybe",
+        "no"
+      ]
+    },
+    "confidence": {
+      "enum": [
+        "low",
+        "medium"
+      ]
+    },
+    "journey": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "stage",
+          "reaction",
+          "basis"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "stage": {
+            "enum": [
+              "first_use",
+              "first_interval",
+              "recovery",
+              "minute_20",
+              "after_session",
+              "third_session"
+            ]
+          },
+          "reaction": {
+            "type": "string",
+            "minLength": 1
+          },
+          "basis": {
+            "enum": [
+              "observed",
+              "source_supported",
+              "prediction"
+            ]
+          }
+        }
+      }
+    },
+    "hooks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "frictions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "issue",
+          "evidence",
+          "severity",
+          "category"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "issue": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "severity": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "category": {
+            "enum": [
+              "agency",
+              "variety",
+              "progression",
+              "clarity",
+              "visuals",
+              "onboarding",
+              "fairness",
+              "accessibility",
+              "social",
+              "feedback",
+              "training_data",
+              "analysis",
+              "reliability"
+            ]
+          }
+        }
+      }
+    },
+    "training_data": {
+      "type": "object",
+      "required": [
+        "evidence",
+        "strengths",
+        "gaps",
+        "verdict"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "verdict": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "performance_unlocks": {
+      "type": "object",
+      "required": [
+        "evidence",
+        "strengths",
+        "gaps",
+        "verdict"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "verdict": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preferred_world": {
+      "enum": [
+        "tron",
+        "neon",
+        "sky",
+        "original",
+        "none"
+      ]
+    },
+    "world_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "one_change": {
+      "type": "string",
+      "minLength": 1
+    },
+    "return_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "counterargument": {
+      "type": "string",
+      "minLength": 1
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

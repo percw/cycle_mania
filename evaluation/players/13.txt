@@ -1,0 +1,11 @@
+Persona 13 – Den sosiale spilleren
+
+Dette er en syntetisk vurdering, ikke en menneskelig spilltest. For en syklist som vanligvis velger Zwift-gruppeturer, gir SUMMIT et godt førsteinntrykk: startskjermen er ryddig, de tre verdenene er lette å skille, og Neon Rush signaliserer fart og personlig rekord. Jeg vurderer den visuelle appellen til 6/7. Neon-ghostbildet viser en tydelig holografisk syklist foran spilleren, mens Skybound tilbyr et roligere og markant annerledes miljø.
+
+Førstegangs-moro får 5/7. Poeng, flyt, lading, pulser og stjerner gir raske mål, men den mest relevante kroken for denne personaen – rivalen – finnes ikke før en ekte tur er lagret. Koden viser at ghosten må komme fra samme verden og samme økt, og demoturer teller ikke. Klarheten får derfor 5/7: wattmål, tid og korrigering er tydelige, men vilkåret for å få «mot eget beste» forklares svakt før start.
+
+Intervalltilpasningen får 6/7. Spillet belønner watt innenfor 90–110 prosent av målet, og restitusjon lader fortsatt progresjon. Runtime-probene viser full uttelling ved jevn målfølging og stort fall ved bred variasjon. Dette støtter treningsplanen og gjør at konkurransen ikke oppmuntrer til å overkjøre pausene.
+
+Agency får 4/7. Man kan velge blant mange økter og flere verdener, men underveis påvirkes spillet nesten bare gjennom wattpresisjon. Ghosten gir et meningsfullt mål, men ingen taktikk, samarbeid eller sosial respons. Forventet moro i tredje økt blir 4/7: jeg ville kanskje repetert en Neon-økt for å slå rekorden, men en egen historisk skygge vil neppe erstatte venner, feltfølelse og felles resultatliste over tid.
+
+Høyest prioritet er å la spilleren velge en venns lagrede løp som ghost, med navn/avatar, live segmentdelta og delt resultatliste etterpå. Det bygger direkte videre på den fungerende ghostmekanikken og gir personaen en konkret grunn til å returnere.

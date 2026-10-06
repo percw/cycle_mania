@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "checks": [
+    "20 profile cards",
+    "return filter matches four yes verdicts",
+    "persona search",
+    "expandable source/rationale",
+    "score sorting",
+    "screenshots loaded",
+    "390px layout without horizontal overflow",
+    "no browser exceptions"
+  ],
+  "errors": []
+}

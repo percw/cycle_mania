@@ -1,0 +1,202 @@
+{
+  "id": "15",
+  "persona": "Den utålmodige nyhetssøkeren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron har en tydelig mørk grid-identitet, lyssykkel og en stor, lesbar wattkonsoll, men den aktive demoen viser også at mye av opplevelsen er automatisk fremdrift langs banen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon skiller seg markant fra Tron med lys by, svevesykkel, energimål og ekspedisjonsprogresjon.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser flytende øyer og et tidsavgrenset veivalg mellom Gjenreis og Utforsk, med ulike krav på 30 og 40 målsekunder.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden gjør Tron, Neon, Skybound og den opprinnelige Fjordveien synlige samtidig, og viser konkrete låsekrav før første tur.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-tunnel.png",
+      "observation": "Tron skifter til Datatunnelen etter 100 akselererte arbeidssekunder og viser løpende fremdrift mot Presisjon.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-core.png",
+      "observation": "Et nytt Tron-sektornavn, The Core, og en endret portalgeometri er synlig etter 180 akselererte arbeidssekunder.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-award.png",
+      "observation": "Etter 320 akselererte arbeidssekunder viser demoen Presisjon oppnådd og aktiverer cyan hjulkrans som midlertidig forhåndsvisning.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller 30 minutter syklet, 10 minutter hoppet over, 24 minutter som gjenstår og 10 sekunder uten gyldig watt i den syntetiske målefixturen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Sammenligningsvisningen skiller effektrekorder, et eksplisitt øktbasert FTP-anslag, treningsinnsikt og dokumenterte prestasjonsbelønninger.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/expedition.ts",
+      "observation": "Ekspedisjoner gir fremdrift bare for ferske telemetrisekunder innenfor 90–110 prosent av målet; overskuddseffekt gir ingen fordel, og demoresultater lagres ikke i kampanjen.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "De fire Tron-belønningene bygger på lagrede, ikke-demo økter med minst 95 prosent datadekning og eksplisitte krav til målsekunder og presisjon.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/worlds.ts",
+      "observation": "Katalogen definerer seks verdener; den opprinnelige Fjordveien har også Høyfjell- og Midnattssol-varianter, men kildekode alene viser ikke hvor forskjellige de oppleves over tid.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 6,
+    "third_fun": 4,
+    "agency": 5,
+    "visuals": 6,
+    "clarity": 5,
+    "interval_fit": 5
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Tre svært ulike aktive verdener, raske ekspedisjonsvalg og Trons sektorskifter gir mye nytt innen profilens femminuttersvindu.",
+    "third_fun": "Verdensutvalget kan bære flere økter, men evidensen viser ikke nok nye hendelser eller mekaniske lag innen hver verden til å love varig overraskelse.",
+    "agency": "Neon og Skybound tilbyr gjentatte veivalg, mens Tron og originalverdenen i hovedsak lar spilleren følge wattplanen og hoppe segmenter.",
+    "visuals": "Tron, Neon og Skybound har umiddelbart gjenkjennelige, klart forskjellige silhuetter, paletter og kjøretøy, med god lesbarhet i de viste bildene.",
+    "clarity": "Wattmål, neste segment, demoetikett og låsekrav er tydelige, men flere parallelle progresjonssystemer kan kreve orientering.",
+    "interval_fit": "HUD, pauser, segmenthopp og målbasert fremdrift støtter planen; ekspedisjonsvalg gir variasjon uten å belønne å sprenge wattmålet.",
+    "data_trust": "Demo, målt historikk, datagap, hopp, spillpoeng og FTP-anslag skilles eksplisitt, støttet av 100 beståtte tester, men fysisk sensorbruk er ikke demonstrert her.",
+    "analysis_usefulness": "Per-drag-tabellen og sammenligning mot tilsvarende økt er konkrete, men denne profilen vil trolig oppleve analysen som mindre motiverende enn nye hendelser i verdenen.",
+    "unlock_fairness": "Kravene er synlige og deterministiske, krever høy datadekning og foreskrevet effekt, og demo, manglende målinger, hopping eller ekstra watt kan ikke kjøpe permanent fremdrift."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Verdenskortene og kontrasten mellom Tron, Neon, Skybound og Fjordveien vil sannsynligvis utløse rask utforsking fremfor lang vurdering av én rute.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Trons sektorbytter eller et tidlig ekspedisjonsvalg vil sannsynligvis gi nok nyhet til å holde oppmerksomheten gjennom første drag.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At restitusjon teller likt mot ekspedisjonsmål kan bevare fremdrift, men den passive kjøringen kan fortsatt friste til å bytte verden.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Etter tjue minutter vil gjentatte veivalg og miljøbytter fortsatt hjelpe, men manglende dokumentasjon på dypere overraskelser gjør kjedsomhet plausibel.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Tydelig analyse og konkrete åpninger kan gi en kort belønning, men profilens neste impuls vil trolig være å prøve en annen verden fremfor å studere tallene lenge.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "En tredje økt er mest sannsynlig dersom appen peker på et nytt landemerke, en ny rutevariant eller en konkret visuell endring som kommer snart.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Store visuelle sprang mellom Tron, Neon, Skybound og Fjordveien",
+    "Veivalg hvert 30.–40. målsekund i Neon og Skybound",
+    "Tron-sektorer og synlige prestasjonsdrevne kosmetiske endringer",
+    "Seks verdener og 100 økter gir mye å hoppe mellom"
+  ],
+  "frictions": [
+    {
+      "issue": "Evidensen viser bredde bedre enn langsiktig dybde innen hver verden.",
+      "evidence": "Skjermbildene viser tydelige miljøforskjeller og noen sektor- og rutevalg, men ingen lang sekvens av stadig nye mekanikker.",
+      "severity": "high",
+      "category": "variety"
+    },
+    {
+      "issue": "Tron og originalverdenen tilbyr mindre direkte valg enn ekspedisjonsverdenene.",
+      "evidence": "App.tsx aktiverer ekspedisjonsvalg bare for Neon og Skybound; Tron viser prestasjoner og de klassiske rutene viser poeng/stjerner.",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "Flere samtidige progresjonssystemer kan gjøre det uklart hva som er viktigst.",
+      "evidence": "Evidensen viser nivå/XP, ekspedisjonskjerner og relikvier, Tron-prestasjoner, spillpoeng, stjerner og treningsanalyse.",
+      "severity": "medium",
+      "category": "clarity"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser syklet, hoppet over, gjenstående og manglende watt separat.",
+      "analysis-comparison.png omtaler FTP som et øktbasert estimat og skiller treningsutvikling fra dokumenterte belønninger.",
+      "unit-tests.json rapporterer 100 av 100 beståtte tester; runtime-checks.json bekrefter isolerte syntetiske fixtures og ingen fysisk sensortest."
+    ],
+    "strengths": [
+      "Målte sekunder og datagap regnskapsføres eksplisitt.",
+      "Demoer merkes og kan ikke påvirke formutvikling eller permanente belønninger.",
+      "Sammenligning krever en relevant tidligere økt og skiller spillpoeng fra fysisk fremgang."
+    ],
+    "gaps": [
+      "Ingen fysisk sykkeløkt eller langsiktig personlig historikk inngår i evidensen.",
+      "Analysens detaljnivå er nyttig, men ikke i seg selv en sterk nyhetshendelse for denne profilen."
+    ],
+    "verdict": "Datagrunnlaget fremstår ærlig og godt avgrenset; det bygger tillit, men er sekundært som returmotiv for en spiller som først og fremst søker overraskelser."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser fire konkrete krav og tilhørende visuelle belønninger før de er opptjent.",
+      "achievements.ts krever lagrede ikke-demoøkter, minst 95 prosent datadekning og fastsatte målsekunder/presisjon.",
+      "expedition.ts godkjenner bare fersk telemetri innenfor 90–110 prosent av målet og lar verken manglende data eller høy overskuddseffekt gi fremdrift."
+    ],
+    "strengths": [
+      "Kriteriene er synlige, deterministiske og knyttet til dokumentert måloppnåelse.",
+      "Rolig arbeid og aktive pauser kan bidra uten press om å sykle hardere enn planen.",
+      "Demo og hopping kan ikke gi permanent prestasjonsbelønning."
+    ],
+    "gaps": [
+      "Bare fire eksplisitte Tron-prestasjoner er dokumentert, så den langsiktige strømmen av nye visuelle belønninger kan bli knapp for denne profilen.",
+      "Ekspedisjonsfremdrift er rettferdig, men 30/40-sekunderssløyfen kan føles repeterende uten flere typer valg eller hendelser."
+    ],
+    "verdict": "Opplåsingene er uvanlig rettferdige og etterprøvbare, men bør vokse i variasjon og synlig forhåndsvisning for å holde på en rastløs spiller."
+  },
+  "preferred_world": "sky",
+  "world_reason": "Skybound kombinerer den største visuelle kontrasten med faktiske veivalg og samlingsfunn, og har derfor best sjanse til å levere både umiddelbar undring og korte overraskelser.",
+  "one_change": "Vis en kort, dynamisk «neste overraskelse»-sti for hver verden med neste sektor, valg, landemerke eller visuelle transformasjon og hvor mange målsekunder som gjenstår.",
+  "return_reason": "Retur er mulig for å prøve de resterende verdenene og åpne et nært, synlig landemerke, men blir usikker hvis tredje økt bare gjentar samme 30/40-sekunderssløyfe.",
+  "counterargument": "Seks verdener, 100 økter og vedvarende verdensprogresjon kan gi langt mer variasjon enn skjermbildene alene viser; en spiller som liker å bytte ofte kan bruke bredden som sin egen nyhetsmotor.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke observert menneskelig spilleglede eller faktisk brukstid.",
+    "Aktive bilder er automatiserte demoer med akselerert tid og syntetiske data.",
+    "Ingen fysisk sensor, lydopplevelse, maskinytelse eller langsiktig kampanje ble prøvd.",
+    "Den opprinnelige Fjordveien ble vurdert fra startside og kildekode fordi manifestet ikke inneholder et aktivt skjermbilde av den."
+  ],
+  "summary": "SUMMIT treffer denne profilen sterkt de første fem minuttene med svært ulike verdener, raske ekspedisjonsvalg og tydelige Tron-transformasjoner. Den rettferdige, målbaserte progresjonen gir substans, men evidensen dokumenterer ikke nok langsiktig hendelsesvariasjon til at en tredje økt er sikker."
+}

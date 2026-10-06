@@ -1,0 +1,13 @@
+Neste validering: faktisk spilleglede
+
+Denne planen er et forslag. Ingen mennesker er rekruttert eller testet i denne runden.
+
+1. Rekrutter et lite, variert første utvalg: nybegynnere, erfarne intervallsyklister og spillinteresserte mosjonister. Bruk deres vanlige, passende økt og FTP/oppsett; ikke den automatiske standardverdien som om den var individuelt riktig.
+2. La hver deltaker prøve originalverdenen og en ny verden med samme intervalloppsett. Bytt rekkefølge mellom deltakere for å redusere nyhet og læring som forklaring. Hold total belastning og øktvalg etter deltakerens vanlige trening.
+3. Observer selvstendig oppstart: finner de en passende økt, forstår de wattmål og belønning, klarer de å starte og hoppe over allerede fullført oppvarming? Tell hjelp og misforståelser, ikke bare fullføring.
+4. Still de samme korte spørsmålene etter fem minutter og etter økten: Hvor morsomt var dette (1–7)? Hvor mye kontroll/innflytelse opplevde du (1–7)? Hva var ett konkret engasjerende øyeblikk? Når ønsket du å gjøre noe annet? Hva tror du poeng og stjerner betyr?
+5. Observer blikk og betjening uten å kreve løpende tenking-høyt under harde drag. Noter når HUD, mangel på valg eller sensorhåndtering forstyrrer. Skill friksjon i treningen fra friksjon i spillet.
+6. La dem få tilgang til appen til tre ordinære treningsøkter. Registrer kun med samtykke om de faktisk velger appen igjen, hvilken verden de velger og om de foretrekker annen underholdning. Spør etter tredje økt om opplevelsen endret seg. Ikke erstatt dette med et førstegangs spørsmål om fremtidig bruk.
+7. Sammenlign konkrete observasjoner med hypotesene i report.json: for lite innflytelse, svak langtidsprogresjon, for mye informasjon, for avansert førstevalg og intervallvennlig mestring. Se aktivt etter tilfeller som motsier modellene.
+
+Første forbedringseksperiment kan være et intervalloppdrag med et synlig mål og en varig verdensendring etter hvert fullførte drag, sammenlignet med dagens score/puls-loop. Bruk samme trening og verden på begge varianter. Evaluer forståelse, konkrete engasjerende øyeblikk og frivillig gjenbruk. Et lite utvalg gir kvalitativ retning, ikke et pålitelig prosentestimat for alle brukere.

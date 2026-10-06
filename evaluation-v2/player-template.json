@@ -1,0 +1,103 @@
+{
+  "id": "NN",
+  "persona": "Tildelt profilnavn",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "SHA256",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "Manifestets eksakte filsti",
+      "observation": "Konkret observasjon",
+      "basis": "observed"
+    }
+  ],
+  "ratings": {
+    "first_fun": null,
+    "third_fun": null,
+    "agency": null,
+    "visuals": null,
+    "clarity": null,
+    "interval_fit": null
+  },
+  "training_ratings": {
+    "data_trust": null,
+    "analysis_usefulness": null,
+    "unlock_fairness": null
+  },
+  "rating_reasons": {
+    "first_fun": "",
+    "third_fun": "",
+    "agency": "",
+    "visuals": "",
+    "clarity": "",
+    "interval_fit": "",
+    "data_trust": "",
+    "analysis_usefulness": "",
+    "unlock_fairness": ""
+  },
+  "would_return": "maybe",
+  "confidence": "low",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [],
+  "frictions": [
+    {
+      "issue": "",
+      "evidence": "",
+      "severity": "medium",
+      "category": "clarity"
+    }
+  ],
+  "training_data": {
+    "evidence": [],
+    "strengths": [],
+    "gaps": [],
+    "verdict": ""
+  },
+  "performance_unlocks": {
+    "evidence": [],
+    "strengths": [],
+    "gaps": [],
+    "verdict": ""
+  },
+  "preferred_world": "none",
+  "world_reason": "",
+  "one_change": "",
+  "return_reason": "",
+  "counterargument": "",
+  "limitations": [],
+  "summary": ""
+}

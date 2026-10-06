@@ -1,0 +1,147 @@
+{
+  "id": "08",
+  "persona": "Langturssyklisten",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startskjermen viser Neon Rush, Skybound og Fjordveien som tre tydelig forskjellige verdener, en fremhevet 64-minuttersøkt, nivåprogresjon og inngang til 100 økter."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Den aktive Skybound-scenen har svevende øyer, fossefall, monumentale porter og en lys vei, men store HUD-paneler dekker betydelige deler av landskapet."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "Neon Rush viser en visuelt sterk byscene med kontinuerlig målwatt, tid, watt, kadens, fart, poeng, flyt, ladning og oppdragsstatus samtidig."
+    },
+    {
+      "path": "output/playwright/neon-tunnel.png",
+      "observation": "Reaktortunnelen skiller seg klart fra bydelen gjennom mørkere rom, repeterte rosa/cyan ribber og en trangere trasé."
+    },
+    {
+      "path": "output/playwright/neon-orbit.png",
+      "observation": "Orbitalbroen gir en tredje tydelig Neon-sektor med stor planet, åpen horisont og lysporter."
+    },
+    {
+      "path": "output/final-game/shot-0.png",
+      "observation": "Fjordveien tilbyr et roligere, gjenkjennelig landskap med fjord, fjell, trær og vei, men fremstår visuelt enklere enn de to fantasiverdenene."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatvisningen oppsummerer poeng, stjerner, pulser, beste flyt, tid, snitteffekt, distanse, arbeid og tid i soner, og forklarer at demotur ikke gir fysisk fremgang eller FTP-grunnlag."
+    },
+    {
+      "path": "src/training.ts",
+      "observation": "Treningsbiblioteket definerer jevne utholdenhetsøkter på 60, 75 og 90 minutter ved 65 % FTP, samt sone-2-bølger som veksler mellom 60 og 72 % FTP."
+    },
+    {
+      "path": "src/NeonWorld.tsx",
+      "observation": "Neon-ruten er en sømløs 2400-meters sløyfe med tre faste sektorer; posisjonen beregnes med modulo, så samme geometri repeteres gjennom lange økter."
+    },
+    {
+      "path": "src/SkyWorld.tsx",
+      "observation": "Skybound har 23 øyer, fossefall, porter og templer, men alle objektene resirkuleres på en 1800-meters sløyfe med tre 600-meters sektorer."
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Spillet belønner watt innenfor ±10 % av målet, øker kombinasjonen opp til fire, gir en puls omtrent hvert tolvte treffsekund og tildeler stjerner ved slutten av en tilstrekkelig gjennomført blokk."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Motorproben gir identisk maksimal uttelling for helt jevn målwatt og myk variasjon innenfor ±8 %, mens 125 % av mål gir null; korrekt restitusjon gir full progresjon."
+    },
+    {
+      "path": "output/playwright/sensor-smoke/report.json",
+      "observation": "Den isolerte sensortesten bekrefter oppstart fra ett klikk, automatisk gjenkobling, pause ved avbrudd, målte watt/kadens/puls og lagring av faktisk økt."
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 3,
+    "agency": 3,
+    "visuals": 6,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "De tre verdenene og den umiddelbare demoturen vil trolig vekke nysgjerrighet, og 60–90-minutters utholdenhetsøkter gjør at formatet raskt kan tilpasses vanlig trening.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Tydelig målwatt, visuell fart, ladning og hyppige pulser vil sannsynligvis gjøre det lett å finne jevn sone-2-rytme, men styringen består i praksis av å holde watt innenfor et vindu.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At rolig målwatt fortsatt lader og gir progresjon vil trolig oppleves rettferdig; Skybounds roligere fargeskifte passer godt til å senke innsatsen.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Landskapet vil fortsatt være pent, men Skybound-sløyfen kan allerede ha repetert flere ganger. Poeng, pulser og maksimalt fire i flyt forventes å miste noe av nyhetsverdien.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Personlig rekordspøkelse og nivå kan gi et svakt returmål, men uten nye områder, rutevalg eller langsiktig oppdagelse er det usikkert om dette slår en serie gjennom en hel langtur.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Tre verdener med tydelig forskjellig stemning",
+    "Egne 60-, 75- og 90-minutters sone-2-økter",
+    "Hyppig og lett forståelig wattfeedback",
+    "Personlig rekordspøkelse og permanent nivåprogresjon",
+    "Skybounds øyer, fossefall og templer gir en sterk første oppdagelsesfølelse"
+  ],
+  "frictions": [
+    {
+      "issue": "De faste sløyfene repeteres mange ganger i en 60–90-minutters tur og gir for lite ny landskapsoppdagelse.",
+      "evidence": "NeonWorld.tsx LAP=2400; SkyWorld.tsx CIRCUIT=1800; RideScene.tsx travel % 900",
+      "severity": "high",
+      "category": "variety"
+    },
+    {
+      "issue": "Rytteren kan velge verden og økt, men kan ikke styre, velge veier eller påvirke reisen utover wattpresisjon.",
+      "evidence": "App.tsx WorldScene-props og game.ts stepGame",
+      "severity": "high",
+      "category": "agency"
+    },
+    {
+      "issue": "Belønningssløyfen med puls omtrent hvert tolvte sekund og flyt opp til fire er for grunn til å bære en hel langtur alene.",
+      "evidence": "game.ts stepGame; GameHUD.tsx",
+      "severity": "medium",
+      "category": "progression"
+    },
+    {
+      "issue": "HUD-en dekker mye av landskapet og konkurrerer med selve grunnen denne personaen har for å velge appen.",
+      "evidence": "output/gameplay/sky-flow.png og output/gameplay/neon-flow.png",
+      "severity": "medium",
+      "category": "visuals"
+    },
+    {
+      "issue": "Startskjermen fremhever en terskeløkt selv om personaens hovedbehov er rolig 60–90-minutters sone 2.",
+      "evidence": "output/gameplay/launcher.png; App.tsx featured workout selection",
+      "severity": "low",
+      "category": "onboarding"
+    }
+  ],
+  "preferred_world": "sky",
+  "world_reason": "Skybound gir den rikeste og roligste landskapsopplevelsen med øyer, fossefall, vegetasjon, ruiner, templer og et skip. Det passer langturens tone best, selv om den korte sløyfen blir den tydeligste svakheten over tid.",
+  "one_change": "Gjør Skybound til en sammenhengende 60–90-minutters ekspedisjon med nye delområder og landemerker som låses opp etter tilbakelagt distanse, i stedet for å resirkulere 1,8-kilometerssløyfen.",
+  "return_reason": "Jeg forventer én ny tur for å prøve en annen verden eller jage egen rekord, men fast retur krever at landskapet fortsetter å utvikle seg gjennom hele langturen.",
+  "counterargument": "Hvis rytteren først og fremst trenger et visuelt bakteppe og svært enkel wattbekreftelse, kan de tre verdenene, 100 øktene og rekordspøkelset gi mer varighet enn den korte geometrisløyfen tilsier.",
+  "limitations": [
+    "Dette er en syntetisk persona-evaluering, ikke en menneskelig trenings- eller fornøyelsesmåling.",
+    "Langtidsreaksjoner og returvilje er prediksjoner; skjermbildene dokumenterer bare enkelte tilstander.",
+    "Ingen fysisk sykkel, skjermstørrelse, lydopplevelse eller 60–90-minutters ende-til-ende-økt ble prøvd av evaluator.",
+    "Runtime-probene tester regler og sensorflyt, ikke opplevd landskapsrepetisjon eller motivasjon."
+  ],
+  "summary": "SUMMIT treffer langturssyklistens treningsform godt med 60–90-minutters sone-2-økter, tydelige mål og visuelt sterke verdener. Skybound er det beste valget for rolig landskapsopplevelse, men en 1,8-kilometers resirkulert sløyfe og liten påvirkning på selve reisen gjør at nyhetsverdien trolig faller før økten er ferdig. Første tur forventes å være engasjerende, mens en tredje tur avhenger av mer langsiktig oppdagelse enn poeng og personlig rekord alene gir."
+}

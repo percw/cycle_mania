@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "checks": [
+    "Tron world selectable with four earned, explicit performance requirements from isolated measured fixtures",
+    "distinct Tron scene runs the selected workout and performance HUD",
+    "pause freezes training timer in Tron",
+    "Tron mobile controls remain visible and demo save cannot grant permanent awards",
+    "measured summary prioritizes execution, honest datagaps and correctly mapped skipped intervals",
+    "Neon and Sky expeditions still render with unchanged workout rules",
+    "no browser exceptions or console errors"
+  ],
+  "errors": [],
+  "fixtureNotes": "All API data isolated in memory. Three prior measured-looking rides are synthetic fixtures, not user records. Active rides are demos with accelerated time; no physical sensor test."
+}

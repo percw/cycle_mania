@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+test-results
+output
+
+data/
+.playwright-cli/
+*.tsbuildinfo
+.snapshots/
+
+# Local-only evaluation archive (duplicate of an old build)
+evaluation-v2/frozen-build/
+.vercel

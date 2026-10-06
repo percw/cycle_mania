@@ -1,0 +1,9 @@
+SUMMIT treffer denne profilen godt fordi den reduserer morgenens viktigste hinder: å måtte bestemme for mye før økten. Startsiden legger frem en 20-minutters lettøkt med varighet, wattmål, FTP-lenke, oppvarmingsvalg og en tydelig startknapp. Under syklingen samles watt, målområde, gjeldende blokk, nedtelling og neste blokk i ett lesbart panel. Pause, fortsettelse og segmenthopp gir nødvendig toleranse når morgenen ikke går etter planen.
+
+Tron er den beste verdenen for denne profilen. Den mest relevante belønningen, Kontinuitet, krever tre ulike treningsdager med minst ti målte minutter og 80 prosent innenfor wattmålet. Det matcher vanemålet direkte. Kravene er også rettferdige: kildekode og tester viser at demoer, hopp, datagap, spillpoeng, rå watt og overdreven innsats ikke gir snarveier. Neon og Skybound gir nyttig visuell variasjon og enkle veivalg, men Tron gjør årsaken til fremdriften tydeligst.
+
+Etter økten skiller analysen ærlig mellom syklet, hoppet over og gjenstående tid. Den viser datagap, gjennomføring per blokk, sammenlignbare økter og et tydelig merket FTP-anslag. Dette støtter tillit, men skjermen er tettere enn en trøtt bruker trenger. En kort bekreftelse og ett anbefalt neste steg burde komme først.
+
+Returvalget er ja, med middels sikkerhet. Den tredje økten har en konkret payoff, og ukepanelet synliggjør rytmen. Svakheten er at «Din neste ekspedisjon» i praksis husker sist valgte økt eller viser en statisk lettøkt; den lager ikke en treøkters ukeplan. Den viktigste forbedringen er derfor å vise dag 1–3, anbefale neste korte økt fra faktisk gjennomføring og åpne en ny vane-milepæl etter 3/3 dager.
+
+Dette er en prediktiv designevaluering basert på automatiserte skjermbilder, syntetiske historikkdata, kildekode og mock-BLE-prøver. Ingen reell tredje økt, fysisk belastning, maskinvarestabilitet eller langvarig glede er observert.

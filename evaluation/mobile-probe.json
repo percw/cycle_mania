@@ -1,0 +1,78 @@
+{
+  "kind": "isolated_live_dom_probe",
+  "afterStart": {
+    "buttons": [
+      {
+        "label": "Neste segment",
+        "x": 14,
+        "y": 306,
+        "width": 109.015625,
+        "height": 38,
+        "fullyInsideViewport": true
+      },
+      {
+        "label": "Jeg er ferdig oppvarmet",
+        "x": 14,
+        "y": 352,
+        "width": 144.859375,
+        "height": 37,
+        "fullyInsideViewport": true
+      },
+      {
+        "label": "Avslutt økt",
+        "x": 308.359375,
+        "y": 799.5,
+        "width": 52.640625,
+        "height": 10,
+        "fullyInsideViewport": true
+      }
+    ],
+    "scrollY": 60,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "document": {
+      "width": 390,
+      "height": 904
+    }
+  },
+  "atTop": {
+    "buttons": [
+      {
+        "label": "Neste segment",
+        "x": 14,
+        "y": 366,
+        "width": 109.015625,
+        "height": 38,
+        "fullyInsideViewport": true
+      },
+      {
+        "label": "Jeg er ferdig oppvarmet",
+        "x": 14,
+        "y": 412,
+        "width": 144.859375,
+        "height": 37,
+        "fullyInsideViewport": true
+      },
+      {
+        "label": "Avslutt økt",
+        "x": 308.359375,
+        "y": 859.5,
+        "width": 52.640625,
+        "height": 10,
+        "fullyInsideViewport": false
+      }
+    ],
+    "scrollY": 0,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "document": {
+      "width": 390,
+      "height": 904
+    }
+  },
+  "limitation": "Fresh 390x844 browser context; all API requests mocked in-memory. Records automatic post-click scroll and explicit scroll-to-top. No physical mobile device, input comfort or human readability tested."
+}

@@ -1,0 +1,13 @@
+Profil 05 – Den travle forelderen
+
+Dom: Ja, denne profilen vil sannsynligvis komme tilbake. SUMMIT treffer det viktigste behovet godt: en allerede oppvarmet bruker kan velge «20 min lett tråkk», markere at oppvarmingen er gjort og komme direkte til hoveddelen. Den faste konsollen viser watt, wattmål, intervalltid, neste del, pause og segmenthopp uten at brukeren må lete. Det gir en troverdig 25-minuttersøkt, selv om nedkjøringen kan måtte forkortes.
+
+Avbruddshåndteringen er den sterkeste grunnen til den positive vurderingen. Kilden og de frosne kjøresjekkene støtter at pause fryser treningstiden, at en lagret økt åpnes pauset etter omlasting, og at brudd eller gamle wattdata pauser automatisk. Hopp flytter planposisjonen uten å telle tiden som syklet. Et forbehold er sjekkpunktlagring omtrent hvert femte sekund, som kan gi et lite tilbakesprang ved en brå omlasting.
+
+Tron foretrekkes fremfor Neon. Det mørke sporet er tydelig, og prestasjonskortene gir konkrete, målte mål uten ekstra ekspedisjonsvalg. Visuelt er opplevelsen engasjerende, men store kort og effekter kan trekke oppmerksomhet fra økten. Selve handlingsrommet er godt for trening – verden, økt, pause og hopp – men syklingen følger fortsatt en fast plan.
+
+Treningsdataene virker tillitvekkende innenfor evidensen: analysevisningen skiller syklet, hoppet og gjenstående tid, viser manglende watt og bryter gjennomføringen ned per blokk. FTP presenteres som et anslag, og demo holdes utenfor fysisk fremgang. Analysen er likevel lang for noen som må videre umiddelbart.
+
+Opplåsingene er rettferdige. De krever målte sekunder, høy datadekning og presisjon rundt planlagt watt; demo, poeng, overskipping og unødvendig høy effekt gir ingen snarvei. Viktigste forbedring er en ett-trykks 25-minuttersmodus med sist brukte oppsett, automatisk tilpasset avslutning og en kompakt oppsummering.
+
+Skårer: første glede 5, tredje økt 5, handlingsrom 5, visuelt 5, tydelighet 6, intervalltilpasning 6, datatillit 6, analysenytte 5, opplåsingsrettferdighet 6.

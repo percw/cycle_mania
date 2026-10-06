@@ -1,0 +1,181 @@
+{
+  "id": "13",
+  "persona": "Den sosiale spilleren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-active.png",
+      "observation": "Tron viser en tydelig soloscene, wattmål, intervallforløp og prestasjonsstatus, men ingen synlig medspiller eller rival i selve veibanen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden forklarer fire målbare Tron-prestasjoner, viser flere verdener og økter, men presenterer ingen sosial funksjon eller rival før historikk finnes.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon gir en romlig variert ekspedisjon og viser fremdrift mot porter, samtidig som opplevelsen visuelt er alene.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser et tidsavgrenset veivalg mellom gjenreisning og utforsking, som gir et konkret valg under økten.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet, hoppet over og gjenstående plantid, viser wattdekning, målpresisjon, graf og gjennomføring per intervall.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-comparison.png",
+      "observation": "Resultatet viser egne effektrekorder, eksplisitt FTP-estimat, sammenligning med en tilsvarende tidligere økt og dokumenterte opplåsinger.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "Aktiv rival velges som beste lagrede, ikke-demo spillresultat for samme verden og øktplan; livepoeng sammenlignes mot dette løpet.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/GameHUD.tsx",
+      "observation": "Rivalen uttrykkes som et løpende poengavvik merket «mot eget beste», uten synlig rytter, navn, nærvær eller gruppefunksjon.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 5,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 6,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "De tydelige verdenene, responsen på wattmålet og et forståelig oppdrag gir en engasjerende første solotur, men den sosiale tomheten er merkbar.",
+    "third_fun": "Eget beste kan skape gjentakelseslyst fra andre økt, men et lite poengavvik er trolig for abstrakt til å erstatte gruppeturer over tid.",
+    "agency": "Verdensvalg, øktvalg og ekspedisjonenes veiskiller er meningsfulle, mens selve syklingen hovedsakelig styres av å holde foreskrevet watt.",
+    "visuals": "Tron, Neon og Skybound har klart ulike, lesbare identiteter og god romfølelse; den personlige rivalen er derimot ikke visuelt legemliggjort.",
+    "clarity": "Wattmål, neste segment, pauser, hopp og analyse er tydelige, men sammenhengen mellom rekordløp og rival blir først fullt relevant etter en lagret sammenlignbar økt.",
+    "interval_fit": "Spillbelønningen følger målområdet, rolig kraft belønnes i pausene, og hopping blåser ikke opp syklet tid eller dokumentert fremdrift.",
+    "data_trust": "Demo, målte data, datagap, hopp og FTP-estimat skilles eksplisitt, og testbevis støtter lagring og sensordata; fysisk maskinvarebredde er ikke fullstendig verifisert.",
+    "analysis_usefulness": "Per-drag måloppnåelse og sammenligning med en tilsvarende tidligere økt gjør egen utvikling konkret og gir en nyttig asynkron rival.",
+    "unlock_fairness": "Kravene er synlige og bygger på målte sekunder, dekning og målpresisjon; demo, hopp og ekstra høy watt gir ikke dokumentert fordel."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Jeg forventer å forstå økt- og verdensvalget raskt, men ser ingen sosial inngang eller rival på en tom konto.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Presis wattrespons, flyt og sceneeffekter vil trolig gjøre første drag engasjerende selv uten andre ryttere.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At rolig kraft fortsatt bygger fremdrift støtter gruppetur-lignende disiplin og reduserer presset om å angripe pausen.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Visuell variasjon og ekspedisjonsvalg kan holde oppmerksomheten, men ensomheten blir trolig tydeligere enn i en Zwift-gruppe.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Sammenligningen og dokumenterte prestasjoner vil gi et ryddig bilde av hva som faktisk ble bedre og etablere grunnlaget for eget beste.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Jeg vil kanskje komme tilbake for å slå eget løp, men en tall-delta alene vil neppe dekke behovet for følge, felles tempo og delte øyeblikk.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Live avstand til eget beste for samme verden og økt",
+    "Tydelig forskjell mellom Tron, Neon og Skybound",
+    "Veivalg og vedvarende ekspedisjonsprogresjon",
+    "Detaljert sammenligning etter økten"
+  ],
+  "frictions": [
+    {
+      "issue": "Ingen dokumentert venneliste, gruppetur, delt mål eller annen menneskelig tilstedeværelse.",
+      "evidence": "Alle inspiserte aktive scener viser én rytter, og relevante kilder viser kun sammenligning med egen historikk.",
+      "severity": "high",
+      "category": "social"
+    },
+    {
+      "issue": "Den personlige rivalen er et numerisk poengavvik og har svak romlig tilstedeværelse.",
+      "evidence": "GameHUD viser «mot eget beste», mens tron-active.png ikke viser et rivalspor eller en ghost-rytter.",
+      "severity": "medium",
+      "category": "feedback"
+    },
+    {
+      "issue": "Første økt kan ikke ha en personlig rival fordi sammenlignbar historikk mangler.",
+      "evidence": "App.tsx krever et tidligere ikke-demo resultat med samme verden og workoutId før ghostScore kan beregnes.",
+      "severity": "medium",
+      "category": "social"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser 30:00 syklet av 64:00, 10:00 hoppet over, 24:00 gjenstående og 10 sekunder datagap.",
+      "analytics.ts krever målte, sammenhengende data til rekorder og sammenligner bare relevante tidligere ekte økter.",
+      "sensor-checks.json dokumenterer mock-BLE-pakker, lagrede målinger, gjenkobling og FIT-dekoding, men ikke en bred fysisk maskinvaretest."
+    ],
+    "strengths": [
+      "Spillpoeng, wattprestasjon, demo og FTP-estimat er tydelig adskilt.",
+      "Sammenligningen mot forrige tilsvarende økt er mer treningsrelevant enn en generell poengtavle.",
+      "Datagap og hopp blir synlige i stedet for å fylles eller godkjennes."
+    ],
+    "gaps": [
+      "Ingen sammenligning med venners data eller gruppens tempo.",
+      "Evidensen kan ikke bekrefte sensorpålitelighet på tvers av reelle sykler og lange økter."
+    ],
+    "verdict": "Sterk og ærlig egenmåling gir en troverdig personlig målestokk, men datalaget skaper foreløpig bare en enslig rivalisering mot egen historikk."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser tersklene for Presisjon, Utholdenhet, Pausekontroll og Kontinuitet før de er oppnådd.",
+      "achievements.ts krever lagrede ikke-demo økter, minst 95 prosent datadekning og spesifikke målsekunder innenfor wattmålet.",
+      "expedition.ts gir bare fremdrift for observerte sekunder innenfor pluss/minus 10 prosent av målet og lar ikke overskuddseffekt kjøpe raskere fremdrift."
+    ],
+    "strengths": [
+      "Krav, progresjon og visuelle belønninger er konkrete og etterprøvbare.",
+      "Rolig kontroll og kontinuitet verdsettes sammen med arbeidsdrag.",
+      "Demo og overskipping kan ikke gi permanent prestasjonsfremdrift."
+    ],
+    "gaps": [
+      "Belønningene er individuelle og gir ingen felles milepæl eller sosial status blant venner.",
+      "Ekspedisjonsprogresjon er treningsrelevant, men mindre eksplisitt dokumentert på startsiden enn Tron-prestasjonene."
+    ],
+    "verdict": "Rettferdige solo-opplåsinger støtter vaner og mestring, men for denne profilen mangler de en delt eller synlig sosial ramme."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Tron knytter samme verden og øktplan til et løpende «mot eget beste»-delta og gjør derfor den personlige rivalen mest konkret, selv om rivalen bare vises som tall.",
+  "one_change": "Vis eget beste som en tydelig ghost-rytter eller lyslinje i banen, med navngitte splittpunkter og et stabilt avstandsmål som følger samme øktplan.",
+  "return_reason": "Jeg ville kanskje returnert for å etablere og slå et eget referanseløp, men ikke fordi opplevelsen foreløpig erstatter en gruppetur med venner.",
+  "counterargument": "For en sosial spiller som også liker strukturert egentrening kan den stille, rettferdige konkurransen mot egen historikk være nok; den unngår koordinering og urettferdig matchmaking.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering basert på frosne skjermbilder, kildekode og automatiserte resultater, ikke en gjennomført menneskelig treningsøkt.",
+    "Lyd, fysisk belastning, faktisk langtidsmotivasjon og ytelse på reell maskinvare ble ikke erfart.",
+    "Skjermbildenes treningshistorikk og målte resultater er syntetiske fixtures."
+  ],
+  "summary": "SUMMIT har en troverdig kjerne for solokonkurranse: presis wattstyring, tydelige verdener, rettferdige opplåsinger og en live sammenligning mot eget beste. For den sosiale spilleren blir rivalen likevel for abstrakt. Et tall i HUD-en kan motivere til en ny økt, men gir lite av nærværet, samkjøringen og de delte øyeblikkene fra en gruppetur."
+}

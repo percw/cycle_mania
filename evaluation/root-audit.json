@@ -1,0 +1,55 @@
+[
+  {
+    "id": "R1",
+    "kind": "source_verified",
+    "finding": "HUD labels flow as ×1–×4, but regular per-second score uses 1 + (combo - 1) * .25, yielding 1–1.75 before pulse/star bonuses. Consider clarifying that these are flow tiers rather than literal total score multipliers.",
+    "evidence": [
+      "src/GameHUD.tsx",
+      "src/game.ts"
+    ],
+    "judgment": "Copy/clarity issue, not evidence of less enjoyment."
+  },
+  {
+    "id": "R2",
+    "kind": "source_verified",
+    "finding": "Neon travel wraps at 2400 m and Skybound at 1800 m. At a hypothetical constant 30 km/h, geometry repeats approximately every 4.8 and 3.6 minutes respectively.",
+    "evidence": [
+      "src/NeonWorld.tsx:7",
+      "src/SkyWorld.tsx:5"
+    ],
+    "judgment": "Loop lengths are verified; boredom is a hypothesis and depends on player preferences."
+  },
+  {
+    "id": "R3",
+    "kind": "source_verified",
+    "finding": "Career progression sums game scores from real rides, assigns levels/titles, and retains best runs. No unlock inventory, persistent altered-world state, branching route selection, or world map appears in the implemented source.",
+    "evidence": [
+      "src/GameHUD.tsx:WorldShelf",
+      "src/game.ts:careerLevel",
+      "src/WorldScene.tsx",
+      "src/worlds.ts"
+    ],
+    "judgment": "Describes present scope; different personas may or may not need additional systems."
+  },
+  {
+    "id": "R4",
+    "kind": "interpretation",
+    "finding": "Some competitive personas ask for stricter precision scoring. That preference is not proof that a narrower watt band is better training or better for novices. Preserve tolerance and distinguish game skill from physical fitness when testing improvements.",
+    "evidence": [
+      "src/game.ts",
+      "evaluation/runtime-probes.json"
+    ],
+    "judgment": "Root synthesis, not an additional participant or a medical recommendation."
+  },
+  {
+    "id": "R5",
+    "kind": "runtime_verified",
+    "finding": "In an isolated 390x844 browser, Next segment and Skip warmup are within the viewport and about 38 px tall. End workout has a roughly 53x10 px DOM box. After automatic click scrolling (scrollY=60), it is inside the viewport at y=799.5; at scrollY=0 it is below the viewport at y=859.5. Document is 904 px tall with no horizontal overflow.",
+    "evidence": [
+      "evaluation/mobile-probe.json",
+      "evaluation/evidence/mobile-viewport.png",
+      "evaluation/evidence/mobile-at-top.png"
+    ],
+    "judgment": "Measured layout at two explicit scroll positions, not a physical touch-comfort test. Prioritize a larger, consistently reachable End workout control in the compact mode."
+  }
+]

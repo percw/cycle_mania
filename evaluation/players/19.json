@@ -1,0 +1,136 @@
+{
+  "id": "19",
+  "persona": "Den målbevisste morgenmosjonisten",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startskjermen har én tydelig hovedhandling, viser wattmål, øktprofil og varighet, samt ukekort og nivåprogresjon. Den fremhevede 4 × 10 min-økten er samtidig oppgitt til 64 minutter."
+    },
+    {
+      "path": "output/gameplay/neon-flow.png",
+      "observation": "Aktiv Neon-visning viser nåværende wattmål, tid igjen i draget, målt watt, neste segment, øktprofil, poeng, flyt og presisjon samtidig."
+    },
+    {
+      "path": "output/gameplay/neon-mastery.png",
+      "observation": "I aktiv pause vises lavt wattmål, teksten om at rolig kraft lader like mye, opparbeidede poeng og ett mestret drag; recovery er dermed presentert som en del av mestringen."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound har en tydelig annen, lys og roligere verden med samme intervallpaneler og fremdriftsinformasjon som Neon."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatdialogen oppsummerer poeng, stjerner, pulser, beste flyt, tid, effekt, distanse, arbeid og sonetid, men viser ingen konkret anbefaling for neste økt."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Ved nøyaktig måloppfølging gir motorproben 8 081 poeng, 15 stjerner og to mestrede arbeidsblokker. Fatigue-scenarioet gir fortsatt 6 295 poeng og ni stjerner, men ingen mestrede arbeidsblokker; jevn variasjon på ±20 % gir ingen stjerner."
+    },
+    {
+      "path": "output/playwright/sensor-smoke/report.json",
+      "observation": "Den isolerte sensortesten rapporterer at ett Start-klikk både kobler til sykkelen og starter økten, og at en husket sykkel kobles til igjen uten ny velger etter omlasting."
+    },
+    {
+      "path": "src/game.ts",
+      "observation": "Spillreglene gir poeng og combo innenfor 90–110 % av wattmålet, nullstiller combo etter mer enn tre sekunders bom og krever minst 85 % dekning og 70 % treffandel for segmentstjerner."
+    },
+    {
+      "path": "src/GameHUD.tsx",
+      "observation": "HUD-koden gir eksplisitte råd om å øke eller senke watt, viser egen rekord som ghost-differanse og forklarer at rolig kraft i recovery lader like mye."
+    },
+    {
+      "path": "src/App.tsx",
+      "observation": "Appen lagrer aktive økter, stopper ved manglende ferske wattdata, tilbyr pause og segmenthopp, og viser ukeminutter og antall økter; det finnes ikke et synlig mål om tre økter eller en neste-økt-handling i resultatdialogen."
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 5,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 6,
+    "interval_fit": 6
+  },
+  "would_return": "yes",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Den store Start økten-knappen, wattmålet og den ferdige øktprofilen reduserer beslutningsarbeidet, men en trøtt morgenbruker kan oppleve dagens 64-minutters forslag som for omfattende og første Bluetooth-oppsett som et ekstra hinder.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Målwatt, egen watt, tid igjen og direkte opp/ned-råd gjør den første arbeidsperioden enkel å følge. Poeng og ladning gir nok lett underholdning for en bruker som primært vil få økten gjort.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Recovery oppleves sannsynligvis meningsfull fordi den fortsatt lader progresjon og kan belønnes med stjerner, samtidig som lavere wattmål er tydelig merket.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Visuell bevegelse, sektorbytter og løpende poeng bør holde en enkel morgenøkt levende, men den sentrale handlingen er fortsatt å holde watt innenfor samme toleranse. For denne personaen er det akseptabelt, selv om nyhetseffekten trolig flater ut.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Ukekort, nivå, XP og rekordmotstander gir en grunn til å komme tilbake, men brukeren må selv velge hvordan tre-øktersmålet skal fylles. Mangelen på et konkret neste forslag svekker vanebyggingen akkurat når resultatdialogen kunne ha gjort valget enkelt.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Én fremhevet økt med tydelig wattmål og stor startknapp",
+    "Ukentlig oversikt over minutter og antall gjennomførte økter",
+    "Nivå, XP og personlig rekordløp som gir enkel langsiktig progresjon",
+    "Recovery gir fortsatt energi og mestring i stedet for å føles som dødtid",
+    "Tre visuelt ulike hovedverdener gjør gjentatte økter mindre ensartede"
+  ],
+  "frictions": [
+    {
+      "issue": "Ingen eksplisitt tre-øktersplan eller tydelig anbefalt neste økt etter fullføring.",
+      "evidence": "output/gameplay/launcher.png og output/gameplay/result.png",
+      "severity": "high",
+      "category": "progression"
+    },
+    {
+      "issue": "Den fremhevede morgeninngangen er en 64-minutters 4 × 10 min-økt, som kan være for lang når personaen starter trøtt.",
+      "evidence": "output/gameplay/launcher.png, Dagens utfordring",
+      "severity": "medium",
+      "category": "onboarding"
+    },
+    {
+      "issue": "Spillhandlingen består hovedsakelig av å holde watt innenfor ±10 %; rutevalg endrer uttrykk og tema mer enn selve beslutningene underveis.",
+      "evidence": "src/game.ts stepGame og src/worlds.ts",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "En trøtt økt med gradvis fall til 85 % kan gi mange poeng, men null mestrede arbeidsblokker, noe som kan gjøre progresjonen strengere enn innsatsen oppleves.",
+      "evidence": "evaluation/runtime-probes.json, fatigue-scenario",
+      "severity": "medium",
+      "category": "fairness"
+    },
+    {
+      "issue": "Første ekte økt krever støttet nettleser, Bluetooth-valg og ferske wattdata før start.",
+      "evidence": "src/App.tsx start/deviceModal og src/bluetooth.ts connect",
+      "severity": "low",
+      "category": "onboarding"
+    }
+  ],
+  "preferred_world": "sky",
+  "world_reason": "Skybound kombinerer en lysere og roligere morgenstemning med samme presise intervallinformasjon og progresjon som Neon. Neon har sterkere kontrast og mer arkadeenergi, mens den opprinnelige Fjordveien virker rolig og kjent; Sky gir denne personaen mest variasjon uten å øke den mentale belastningen.",
+  "one_change": "Legg inn en synlig tre-økters ukeplan som etter hver fullføring foreslår én konkret, passende kort neste økt med én Start neste økt-knapp.",
+  "return_reason": "Ja: etter første sensorautorisasjon er starten dokumentert som kort, økten er svært tydelig å følge, og uke-, nivå- og rekordprogresjon passer et enkelt tre-ganger-i-uken-mål. Returen avhenger av at brukeren selv tolererer eller omgår det lange standardforslaget.",
+  "counterargument": "Biblioteket med 100 økter kan inneholde korte og godt varierte alternativer som gjør tre-øktersvanen langt lettere enn de synlige 38–64-minutters eksemplene antyder; dette er ikke demonstrert i den undersøkte evidensen.",
+  "limitations": [
+    "Dette er en syntetisk persona-evaluering, ikke en menneskelig trenings- eller fornøyelsestest.",
+    "Ingen ekte fysisk belastning, morgentrøtthet eller langvarig bruk ble observert.",
+    "Skjermbildene viser demodata, og runtime-probene er deterministiske motor- og sensortester.",
+    "Tredje-øktsreaksjonen og returviljen er hypoteser basert på synlig progresjon og regler.",
+    "Originalverdenen ble vurdert fra startskjerm, verdenskatalog og kildekode, ikke fra et eget aktivt skjermbilde."
+  ],
+  "summary": "For den målbevisste morgenmosjonisten er SUMMIT lett å følge og visuelt motiverende, med særlig god støtte for selve intervallene og recovery. Jeg forventer at personen kommer tilbake fordi sensorene kan huskes og uke-, nivå- og rekordprogresjon gir enkel kontinuitet. Den største mangelen er at produktet ikke omsetter målet om tre økter i uken til en konkret plan og et tydelig neste valg etter økten."
+}

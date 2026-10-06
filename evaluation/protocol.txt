@@ -1,0 +1,35 @@
+SUMMIT — 20 independent synthetic player evaluations
+Date: 2026-09-30. Requested evaluator model: gpt-5.6-sol.
+This is a structured design evaluation by language models, NOT a human playtest, measured enjoyment, exercise trial, retention forecast, or statistical population sample.
+
+Each agent receives one assigned persona and the same evidence. Do not read other player evaluations or any aggregate result. Do not flatter the developer, infer the desired verdict, or invent hands-on physical sensations. Distinguish observations from predictions. No application modifications. No writes to the running API, real sensor connection, or database. Do not spawn further agents.
+
+STRICT EVIDENCE BOUNDARY: Do not open evaluation/root-audit.json, audit.json, findings.json, report.*, excluded/*, or any other player's files. Avoid broad searches over evaluation/. Only read your assigned profile, this protocol, runtime-probes.json, the listed src/ files and output/ evidence. If you accidentally see root synthesis or other judgments, disclose it so root can replace the evaluation before aggregation.
+
+Evidence to inspect (open at least THREE screenshots with view_image, including an active scene and result/launcher; mobile persona must inspect mobile-sky):
+- output/gameplay/launcher.png, neon-flow.png, neon-mastery.png, sky-flow.png, mobile-sky.png, result.png
+- output/playwright/neon-city.png, neon-tunnel.png, neon-orbit.png, neon-ghost.png
+- output/final-neon-game/state-0.json and shot-0.png
+- output/gameplay/report.json and output/playwright/sensor-smoke/report.json
+- src/game.ts, src/GameHUD.tsx, src/worlds.ts, relevant sections of App.tsx/NeonWorld.tsx/SkyWorld.tsx/useSensors.ts/bluetooth.ts
+Existing screenshots and runtime tests are direct evidence. Source reading can verify available interaction and rules. You may not describe source-only behavior as something you personally observed happening. Do not launch GPU browsers concurrently; root is running shared runtime probes. Read evaluation/runtime-probes.json if present, but absence is not a blocker.
+
+Simulate this persona's first use, first interval, recovery, 20 minutes, and consideration of a third session. Compare Neon/Sky/original as relevant. Long-duration reactions and return intentions are explicit hypotheses, not observed use. Ratings should reflect THIS persona's priorities, not a generic product review.
+
+Use 1–7 anchored ratings (integer): 1 actively off-putting; 2 mostly frustrating/boring; 3 weak with a few positives; 4 mixed/adequate; 5 engaging with clear gaps; 6 strongly engaging; 7 exceptional/compelling. Rate first-session fun, expected third-session fun, agency, visual appeal, clarity, interval fit. Each rating is a model prediction based on evidence, not self-reported human enjoyment.
+
+Write ONLY your evaluation/players/NN.json and evaluation/players/NN.txt. JSON schema:
+{
+  "id":"NN", "persona":"name", "model":"gpt-5.6-sol",
+  "evidence":[{"path":"...","observation":"specific actual evidence"}],
+  "ratings":{"first_fun":1,"third_fun":1,"agency":1,"visuals":1,"clarity":1,"interval_fit":1},
+  "would_return":"yes|maybe|no", "confidence":"low|medium",
+  "journey":[{"stage":"first_use|first_interval|recovery|minute_20|third_session","reaction":"...","basis":"observed|source_supported|prediction"}],
+  "hooks":["..."],
+  "frictions":[{"issue":"...","evidence":"file/function/UI element","severity":"high|medium|low","category":"agency|variety|progression|clarity|visuals|onboarding|fairness|accessibility|social|feedback"}],
+  "preferred_world":"neon|sky|original|none", "world_reason":"...",
+  "one_change":"single concrete highest-impact improvement",
+  "return_reason":"...", "counterargument":"strongest reason your verdict could be wrong",
+  "limitations":["..."], "summary":"2–4 sentences in Norwegian"
+}
+The TXT is a concise Norwegian persona report (~200–400 words), not fabricated quotations from a real participant. Include why ratings were chosen. Report completion to root with ratings and highest-priority finding.

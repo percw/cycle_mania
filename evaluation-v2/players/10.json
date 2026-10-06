@@ -1,0 +1,190 @@
+{
+  "id": "10",
+  "persona": "Mobilbrukeren",
+  "model": "gpt-5.6-sol",
+  "evidence_manifest_sha256": "96e912ea5be2e46efad2322f4a49e3a9d1e1b9f4a24d0b01d2ea131509167899",
+  "contamination": {
+    "disclosed": false,
+    "detail": ""
+  },
+  "evidence": [
+    {
+      "path": "evaluation-v2/evidence/tron-mobile.png",
+      "observation": "På 390 × 844 er watt, wattmål, målstatus, gjeldende drag, tid, neste del, øktprofil, pause, Neste segment, lyd og Avslutt økt synlige nederst. Det store demo-prestasjonspanelet dekker samtidig mye av den øvre scenen.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/tron-new-player.png",
+      "observation": "Startsiden viser avkryssingen «Jeg er allerede varm», tydelig startknapp, wattmål og fire eksplisitte prestasjonskrav, men opptaket er fra bred skjerm og dokumenterer ikke mobil oppstart.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/neon-active.png",
+      "observation": "Neon viser en lys og tydelig alternativ verden med samme bunnkonsoll og et separat ekspedisjonsmål øverst.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/sky-active.png",
+      "observation": "Skybound viser et lyst miljø og et tidsbegrenset veivalg, mens treningsmål og kontroller fortsatt ligger samlet nederst.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-overview.png",
+      "observation": "Analysen skiller syklet, hoppet over og gjenstående tid, viser wattdekning, datagap, måloppnåelse og wattkurve før spillbelønninger.",
+      "basis": "observed"
+    },
+    {
+      "path": "evaluation-v2/evidence/analysis-intervals.png",
+      "observation": "Tabellen viser målt tid, planlagt tid, snittwatt, wattmål, treffprosent og datadekning for hvert enkelt drag og hver aktiv pause.",
+      "basis": "observed"
+    },
+    {
+      "path": "src/RideConsole.tsx",
+      "observation": "Konsollen har egne handlinger for pause/fortsett, neste segment og «Jeg er ferdig oppvarmet»; sistnevnte vises bare i oppvarmingsblokker.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "src/achievements.ts",
+      "observation": "De fire Tron-belønningene beregnes fra lagrede, ikke-demo målinger med minst 95 % dekning; kravene bruker tid og presisjon mot foreskrevet mål, ikke rå høy watt eller poeng.",
+      "basis": "source_supported"
+    },
+    {
+      "path": "evaluation-v2/evidence/sensor-checks.json",
+      "observation": "Mock-BLE-kontrollen rapporterer at hopp ikke øker registrert varighet, pause fryser tiden, planposisjon og wattmål bevares etter hopp og omstart, og lagrede målinger overlever backend-omstart.",
+      "basis": "source_supported"
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 5,
+    "clarity": 5,
+    "interval_fit": 6
+  },
+  "training_ratings": {
+    "data_trust": 6,
+    "analysis_usefulness": 5,
+    "unlock_fairness": 6
+  },
+  "rating_reasons": {
+    "first_fun": "Tron gir en umiddelbart tydelig fartsscene, og mobilbildet holder watt, mål og tid synlige, men prestasjonspanelet tar mye plass.",
+    "third_fun": "Flere verdener og synlige belønninger kan bære gjentakelse, men den sentrale syklingen virker hovedsakelig automatisk og mobile langtidsinntrykk er ikke dokumentert.",
+    "agency": "Pause, segmenthopp, oppvarmingshopp og Skybound-veivalg gir reelle valg, men selve styringen i Tron fremstår begrenset.",
+    "visuals": "Tron er kontrastrik og lett å lese på mobilen, mens Neon og Skybound gir variasjon; store overlegg reduserer utsynet på 390 px.",
+    "clarity": "Kjerneverdiene og neste del er samlet nederst, men flere tekster er svært små på mobil og demo-panelet konkurrerer med øktinformasjonen.",
+    "interval_fit": "Tydelig wattmål, målstatus, gjeldende/neste blokk, pause og sikre hopp støtter en strukturert økt svært godt.",
+    "data_trust": "Evidensen skiller demo, målinger, poeng, datagap og hopp, og testene dekker lagring og posisjonering; fysisk mobil- og sykkelhårdvare er ikke testet her.",
+    "analysis_usefulness": "Per-drag-data og ærlig tidsregnskap er nyttig, men den dokumenterte analysen er på bred skjerm og mobil lesbarhet er ukjent.",
+    "unlock_fairness": "Kravene er synlige, deterministiske og knyttet til dekning og målpresisjon; demo, hopp og ekstra høy watt kan ikke gi varige snarveier i evidensen."
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Vil trolig finne rask oppstart og «allerede varm»-valget nyttig, men mobiloppsettet før start er ikke vist og kan kreve mer scrolling enn ønsket.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Vil sannsynligvis kunne lese watt, mål, målstatus og resterende tid med korte blikk, selv om de små sekundærtekstene kan forsvinne under belastning.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "Neste blokk og wattmål gir god støtte, og pauseknappen er stor nok til å være praktisk; prestasjonsoverlegget kan stjele oppmerksomhet.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "Den faste bunnkonsollen vil trolig holde økten styrbar, men automatisk kjøring og begrenset sceneareal kan gjøre opplevelsen mindre engasjerende over tid.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "after_session",
+      "reaction": "Vil trolig verdsette det presise skillet mellom syklet, hoppet over og manglende data, men kan måtte åpne analysen på en større skjerm hvis mobiltabellen blir trang.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Kan komme tilbake for en effektiv intervalløkt og målbare Tron-krav, men retur avhenger av at mobile overlegg blir roligere og berøringsflyten holder seg enkel.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "Watt, wattmål og tid er samlet i én fast mobilkonsoll.",
+    "Oppvarming kan markeres ferdig, og neste segment kan hoppes over.",
+    "Tron-belønninger viser konkrete krav knyttet til planpresisjon.",
+    "Neon og Skybound gir tydelig visuell variasjon fra samme treningsramme."
+  ],
+  "frictions": [
+    {
+      "issue": "Prestasjonspanelet dekker en stor del av den smale scenen.",
+      "evidence": "I tron-mobile.png fyller panelet nesten hele bredden og omtrent de øverste 150 pikslene av selve kjøreområdet.",
+      "severity": "high",
+      "category": "visuals"
+    },
+    {
+      "issue": "Flere viktige forklaringer og neste-blokk-teksten er svært små på mobil.",
+      "evidence": "tron-mobile.png viser lesbar hovedwatt og tid, men «MÅL», målstatus, dragnavn og «Neste» er vesentlig mindre; mobil-CSS bruker 7–8 px for flere av disse tekstene.",
+      "severity": "medium",
+      "category": "accessibility"
+    },
+    {
+      "issue": "Mobilvisning av startside og etteranalyse er ikke dokumentert.",
+      "evidence": "Manifestet har ett mobilbilde av aktiv Tron-scene, mens tron-new-player.png og analysebildene er brede opptak.",
+      "severity": "medium",
+      "category": "clarity"
+    }
+  ],
+  "training_data": {
+    "evidence": [
+      "analysis-overview.png viser 30:00 syklet av 64:00, 10:00 hoppet over, 24:00 gjenstående og 00:10 datagap uten å fylle manglende watt.",
+      "analysis-intervals.png fordeler målt tid og målpresisjon eksplisitt per planblokk.",
+      "sensor-checks.json rapporterer at pause, hopp, målposisjon, lagring og omstart håndteres uten å blåse opp varigheten."
+    ],
+    "strengths": [
+      "Skiller målt watt fra demo og spillpoeng.",
+      "Hopp og pauser telles ikke som syklet tid.",
+      "Datagap vises og fylles ikke med oppdiktede nuller eller godkjente sekunder.",
+      "FTP vises som øktbasert anslag og omtales ikke som en direkte test."
+    ],
+    "gaps": [
+      "Ingen fysisk mobil, svetteberøring eller komplett sensoroppsett ble testet.",
+      "Etteranalysens mobiltilpasning er ikke vist.",
+      "Historikken i opptakene er syntetisk og sier ikke noe om langtidsbruk."
+    ],
+    "verdict": "Datamodellen og analysereglene virker tillitvekkende for mobilprofilens behov, men presentasjonen etter økten trenger egen mobil dokumentasjon."
+  },
+  "performance_unlocks": {
+    "evidence": [
+      "tron-new-player.png viser krav for Presisjon, Utholdenhet, Pausekontroll og Kontinuitet før de er åpnet.",
+      "src/achievements.ts krever ikke-demo målinger, minst 95 % dekning og dokumentert tid innenfor wattmål.",
+      "unit-tests.json rapporterer beståtte tester for at demo, datagap, hopp, rå watt og spillpoeng ikke kan gi ufortjent åpning."
+    ],
+    "strengths": [
+      "Kriteriene er synlige og konkrete.",
+      "Hardere enn planen gir ingen fordel.",
+      "Restitusjon og kontinuitet belønnes sammen med arbeidsdrag.",
+      "Demofremgang lagres ikke som varig prestasjon."
+    ],
+    "gaps": [
+      "Mobilbildet viser et stort ferdig-statuspanel uten å vise de enkelte kravene i aktiv økt.",
+      "Belønningene endrer primært Tron-presentasjonen og gir begrenset ny beslutningsdybde."
+    ],
+    "verdict": "Opplåsingene er uvanlig etterprøvbare og treningsrelevante, men aktiv mobilkommunikasjon bør komprimeres kraftig."
+  },
+  "preferred_world": "tron",
+  "world_reason": "Trons mørke bakgrunn, sterke cyan/oransje linjer og store faste wattvisning gir best kontrast ved korte blikk, selv om prestasjonspanelet må krympes.",
+  "one_change": "Erstatt det store prestasjonspanelet på mobil med en énlinjes statusbrikke som kan utvides etter trykk, slik at wattmål, neste drag og veien får mesteparten av 390 px-flaten.",
+  "return_reason": "Retur er mulig fordi økten kan styres raskt og datareglene virker solide, men mobil lesbarhet utenfor den aktive konsollen og overleggene er fortsatt for lite dokumentert til et sikkert ja.",
+  "counterargument": "Hovedverdiene er allerede store og kontrollene har minst omtrent 44 px høyde, så en bruker som ignorerer sekundærtekstene kan oppleve mobilflyten som klart bedre enn skårene antyder.",
+  "limitations": [
+    "Dette er en prediktiv designevaluering, ikke en menneskelig brukertest eller faktisk treningsøkt.",
+    "Bare den aktive Tron-scenen er dokumentert i 390 px bredde.",
+    "Berøring med svette fingre, fysisk styremontering, sollys, lyd og faktisk maskinytelse er ikke målt.",
+    "Sensor-smoke bruker mock BLE; den dokumenterer programflyt, ikke denne profilens maskinvareopplevelse."
+  ],
+  "summary": "SUMMIT støtter mobil intervallstyring bedre enn den tette skjermen først antyder: watt, mål, tid, pause og hopp er tilgjengelige, og måle- og opplåsingsreglene er ryddige. Det største problemet er at store statusoverlegg og svært liten sekundærtekst bruker for mye av 390 px-flaten."
+}

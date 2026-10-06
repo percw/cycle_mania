@@ -1,0 +1,11 @@
+SUMMIT – syntetisk spillerprofil 03: Actionspilleren
+
+Vurderingen er et modellanslag basert på skjermbilder, kildekode og deterministiske regelprober, ikke en menneskelig eller fysisk spilltest.
+
+Førsteinntrykket vil trolig være godt. Neon Rush har den klart sterkeste actionappellen: svevesykkelen, lysportene, fartsuttrykket og det holografiske rekordspøkelset gir et tydelig mål å jage. HUD-en svarer hyppig med poeng, flyt, ladning, pulser og stjerner. Derfor får første økt 5/7 i forventet moro og grafikken 6/7. Skybound er også særpreget og pent, men roligere. Fjordveien virker mest som en klassisk virtuell sykkeltur.
+
+30/30-økten passer systemet godt. Biblioteket har 3 × 10 × 30/30, og målwatt, segmenttid, femsekunders nedtelling og tydelig beskjed om å øke eller senke kraften gjør raske skifter lesbare. Aktiv pause belønnes fortsatt når det rolige wattmålet treffes. Det gir 6/7 både for klarhet og intervalltilpasning.
+
+Hovedproblemet er handlingsrommet, vurdert til 3/7. Banen kjører automatisk etter beregnet fart; spilleren styrer ikke, velger ikke rute, unnviker ingenting og angriper ingenting. Poengreglene er dessuten grove: alt innenfor ±10 prosent teller likt. Motorproben ga identisk toppresultat for helt presis effekt og variasjon innenfor ±8 prosent. Etter omtrent 20 minutter vil poengsløyfen trolig føles gjennomskuet selv om sektorene og rekordspøkelset fortsatt hjelper.
+
+Forventet moro i tredje økt blir derfor 3/7, og returvurderingen er «kanskje». Rekordjakt og selve treningen kan trekke personaen tilbake, men kosmetisk verdensvariasjon holder neppe alene. Høyest effekt ville komme fra en faktisk styrings- og rutevalgsløyfe i Neon: korte risikobelønningsporter eller unnvikelser, styrt separat fra wattmålet, som påvirker poeng og løpsforløp uten å ødelegge intervallet.

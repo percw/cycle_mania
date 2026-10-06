@@ -1,0 +1,9 @@
+Persona 05: Den travle forelderen
+
+Denne syntetiske evalueringen tilsier at SUMMIT passer den travle forelderen best når økten allerede er i gang. Aktivskjermen har synlig Pause, Neste segment og «Jeg er ferdig oppvarmet», mens wattmål, tid igjen og nåverdi er lette å finne. Eksisterende kjøretidstester viser også at pause fryser både treningsklokke og spillpoeng, at sensorbrudd setter økten på pause, og at reload henter den tilbake i pauset tilstand. Det er akkurat den typen toleranse et 25-minutters vindu med mulige avbrytelser trenger.
+
+Før start er opplevelsen svakere. Startsiden fremhever 4 × 10 min på 64 minutter, og de tre andre synlige øktene varer 38–60 minutter. Passende alternativer finnes: «10 min lett tråkk» varer totalt 20 minutter og «15 min lett tråkk» totalt 25 minutter med opp- og nedkjøring. De ligger imidlertid i et bibliotek med 100 økter uten et filter for tilgjengelig tid. At brukeren allerede er varm hjelper først etter start, når oppvarmingen kan hoppes over.
+
+Jeg setter førsteøktsmoro til 5/7 og forventet tredjeøkt til 5/7. Neon Rush er visuelt slående og gir rask belønning, mens favoritter, husket sykkel og stille gjenkobling kan gjøre senere økter smidigere. Visuelt får løsningen 6/7. Agency, klarhet og intervalltilpasning får 5/7: kontrollene dekker de praktiske valgene denne personaen trenger, men valg av riktig kortøkt krever for mye leting, og den aktive HUD-en er tett når oppmerksomheten deles.
+
+Jeg forventer at personaen vil returnere, særlig fordi en avbrutt økt ikke går tapt. Den viktigste forbedringen er en synlig hurtigstart: «Jeg har 25 min og er allerede varm», som velger en passende kortøkt, hopper over oppvarmingen og bruker den huskede sykkelen. Vurderingen er en modellprognose basert på eksisterende skjermbilder, kildekode og kjøretidsrapporter, ikke en menneskelig playtest eller en fysisk sensorprøve.

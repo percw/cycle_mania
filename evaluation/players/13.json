@@ -1,0 +1,130 @@
+{
+  "id": "13",
+  "persona": "Den sosiale spilleren",
+  "model": "gpt-5.6-sol",
+  "evidence": [
+    {
+      "path": "output/gameplay/launcher.png",
+      "observation": "Startskjermen viser Neon Rush, Skybound og Fjordveien, dagens utfordring, ukesprogresjon og tilgang til 100 økter. Neon-kortet fremhever personlig rekord, men skjermen viser ingen venner, grupper, arrangementer eller sosial rangering."
+    },
+    {
+      "path": "output/playwright/neon-ghost.png",
+      "observation": "En lysende, delvis gjennomsiktig syklist er tydelig synlig foran spillerens svevesykkel i Neon-byen, slik at den personlige rekorden får en fysisk rival i løypa."
+    },
+    {
+      "path": "output/gameplay/sky-flow.png",
+      "observation": "Skybound har en klart annerledes scene med svevende øyer. HUD-en viser blant annet wattmål, gjenværende tid, 123 poeng, ×2 flyt, 72 % lading og 0/4 drag mestret; denne demoturen viser ingen rekorddelta."
+    },
+    {
+      "path": "output/gameplay/result.png",
+      "observation": "Resultatdialogen oppsummerer 2 687 poeng, 3 stjerner, 67 pulser og ×4 beste flyt, og forklarer at ekte sykkelturer bygger nivå og rekordløp. Den markerer også at 9 minutter ble hoppet over."
+    },
+    {
+      "path": "src/App.tsx:355",
+      "observation": "Kildekoden velger beste ikke-demoresultat kun for samme verden og samme økt, og beregner ghostens poeng ved samme forløpte tid. Første ekte gjennomføring kan derfor ikke ha en tidligere rival."
+    },
+    {
+      "path": "src/GameHUD.tsx:292",
+      "observation": "Når en rekord finnes, viser HUD-en løpende poengforskjell merket «mot eget beste». Resultatet lagrer poeng, stjerner, pulser, beste flyt og mestrede drag."
+    },
+    {
+      "path": "src/game.ts:38",
+      "observation": "Spillregelen gir treff innenfor 90–110 % av wattmålet, bygger opptil ×4 kombinasjon, pulser og poeng, og premierer fullførte blokker basert på dekning og måltreff."
+    },
+    {
+      "path": "evaluation/runtime-probes.json",
+      "observation": "Deterministiske motorprober gir 8 081 poeng og 15 stjerner ved jevn målfølging, også progresjon i foreskrevet restitusjon, mens ±20 % variasjon gir 1 284 poeng og ingen stjerner."
+    },
+    {
+      "path": "output/gameplay/report.json",
+      "observation": "Den eksisterende runtime-rapporten bekrefter lagret beste-motstander, pause som fryser spill- og treningstid, gyldig progresjon i restitusjon og distinkte Neon- og Sky-scener uten konsollfeil."
+    }
+  ],
+  "ratings": {
+    "first_fun": 5,
+    "third_fun": 4,
+    "agency": 4,
+    "visuals": 6,
+    "clarity": 5,
+    "interval_fit": 6
+  },
+  "would_return": "maybe",
+  "confidence": "medium",
+  "journey": [
+    {
+      "stage": "first_use",
+      "reaction": "Neon Rush og løftet om personlig rekord vil sannsynligvis trekke meg inn, men førsteinntrykket mangler venner, gruppetur og en forklaring på når rivalen dukker opp.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "first_interval",
+      "reaction": "Poeng, flyt, lading og direkte wattkorrigering vil trolig gjøre intervallet mer lekent, men uten en lagret ekte tur kjører jeg fortsatt alene.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "recovery",
+      "reaction": "At rolig kraft fortsatt lader og kan gi segmentbelønning passer intervalløkten godt og reduserer fristelsen til å konkurrere gjennom pausen.",
+      "basis": "source_supported"
+    },
+    {
+      "stage": "minute_20",
+      "reaction": "En synlig rekordghost og live poengdelta kan holde konkurranseinstinktet i gang, men etter hvert vil rivalen trolig føles mer som en personlig fartsholder enn som selskap.",
+      "basis": "prediction"
+    },
+    {
+      "stage": "third_session",
+      "reaction": "Jeg vil kanskje gjenta samme Neon-økt for å slå ghosten, men uten venners lagrede løp, gruppehendelser eller en delt resultatliste er det usikkert om dette erstatter en Zwift-gruppetur.",
+      "basis": "prediction"
+    }
+  ],
+  "hooks": [
+    "En faktisk lagret personlig rekord blir en synlig rival med løpende poengdelta.",
+    "Neons tydelige fartspreg og rekordtema støtter konkurransefølelsen.",
+    "Poeng, ×4 flyt, pulser, stjerner og mestrede drag gir hyppige felles samtalepunkter selv om økten kjøres alene.",
+    "Tre tydelig forskjellige verdener og 100 økter gir valgmuligheter mellom gjentatte rekordforsøk."
+  ],
+  "frictions": [
+    {
+      "issue": "Den eneste rivalen er egen tidligere prestasjon; det finnes ingen venn, gruppe, invitasjon eller delt rangering i den inspiserte flyten.",
+      "evidence": "App.tsx bestRun og GameHUD.tsx «mot eget beste»; launcher.png",
+      "severity": "high",
+      "category": "social"
+    },
+    {
+      "issue": "Første ekte tur mangler ghost fordi systemet krever et tidligere ikke-demoresultat fra samme verden og økt.",
+      "evidence": "App.tsx:355–364 og resultatets tekst om at ekte turer bygger rekordløp",
+      "severity": "high",
+      "category": "onboarding"
+    },
+    {
+      "issue": "Ghosten er bundet til nøyaktig samme kombinasjon av verden og økt, så variasjon i treningsvalg gjør rivalen utilgjengelig.",
+      "evidence": "App.tsx bestRun-filter på worldId og workoutId",
+      "severity": "medium",
+      "category": "variety"
+    },
+    {
+      "issue": "Under kjøring er spillpåvirkningen i hovedsak wattpresisjon; rivalen kan ikke utfordres taktisk gjennom valg, samarbeid eller direkte forbikjøringshandlinger.",
+      "evidence": "game.ts stepGame og GameHUD.tsx",
+      "severity": "medium",
+      "category": "agency"
+    },
+    {
+      "issue": "Startskjermen fremhever personlig rekord, men forklarer ikke tydelig forutsetningen om en tidligere ekte tur fra samme oppsett.",
+      "evidence": "launcher.png og App.tsx bestRun-filter",
+      "severity": "medium",
+      "category": "clarity"
+    }
+  ],
+  "preferred_world": "neon",
+  "world_reason": "Neon har den tydeligste konkurranseidentiteten, omtaler personlig rekord direkte og viser rivalen som en lettlest holografisk syklist. Sky er visuelt vakker og Fjordveien mer jordnær, men de gir mindre av følelsen av et løp mot en annen deltaker.",
+  "one_change": "La brukeren utfordre en venns lagrede løp i samme økt, med vennens navn/avatar som ghost, live segmentdelta og en liten delt resultatliste etterpå.",
+  "return_reason": "Jeg ville kanskje kommet tilbake for å etablere og deretter slå en Neon-rekord, særlig fordi ghosten sammenligner samme tidspunkt og gjør fremgang synlig; uten en venn å måle meg mot blir dette mer supplement enn erstatning for gruppetur.",
+  "counterargument": "Hvis denne spilleren primært søker konkurranse og struktur fremfor faktisk samtale, kan en konsekvent personlig ghost, 100 økter og tydelig nivåprogresjon være nok til å skape sterkere tredjesesjonsmotivasjon enn vurderingen antar.",
+  "limitations": [
+    "Dette er en syntetisk personavurdering, ikke en observert menneskelig spilltest eller målt treningsøkt.",
+    "Langtidsreaksjon, sosial erstatningsverdi og returintensjon er hypoteser basert på skjermbilder, kildekode og deterministiske prober.",
+    "Ingen ekte BLE-sykkel eller vennedata ble brukt, og evalueringen utførte ingen nettleser- eller API-mutasjoner.",
+    "Fravær av sosiale funksjoner er vurdert ut fra den inspiserte appflyten og relevante kildesøk."
+  ],
+  "summary": "For den sosiale spilleren er SUMMIT visuelt sterkt og uvanlig godt tilpasset intervaller, men den personlige ghosten erstatter bare konkurransedelen av en gruppetur. Neon kan gi en god andre og tredje økt når en ekte rekord finnes, men første tur er uten rival og systemet tilbyr ingen venner, gruppehendelser eller delt rangering. Returintensjonen blir derfor «kanskje»."
+}
