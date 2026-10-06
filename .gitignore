@@ -12,3 +12,4 @@ data/
 # Local-only evaluation archive (duplicate of an old build)
 evaluation-v2/frozen-build/
 .vercel
+.claude/
