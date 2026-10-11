@@ -202,7 +202,14 @@ try {
   // The cockpit shows 3 s average power (display only); it must settle on the exact sensor value.
   await page.waitForFunction(() => document.querySelector('.ride-console .power-focus > strong')?.textContent === '267W', null, { timeout: 8000 });
   assert.deepEqual((await page.locator('.ride-console .secondary-metrics b').allTextContents()).slice(0, 2), ['92', '156']);
-  assert.equal(await page.locator('.ride-console .secondary-metrics b').nth(2).textContent(), (await state()).session.distanceKm.toFixed(1));
+  {
+    // Speed and distance sit in the capsule; arcade worlds show their own exaggerated distance.
+    const live = (await state()).session;
+    const shown = Number(await page.locator('.speed-capsule .hud-distance b').textContent());
+    const km = ['tron', 'neon', 'sky'].includes(live.world) ? live.arcadeKm : live.distanceKm;
+    assert.ok(Math.abs(shown - km) < 0.15, `capsule shows ${shown} km, session has ${km}`);
+    assert.ok(Number.parseInt(await page.locator('.speed-capsule strong').textContent()) > 0);
+  }
   check('ride console displays measured 267 W, 92 rpm, 156 bpm and accumulated distance');
 
   const beforeWarmup = (await state()).session;

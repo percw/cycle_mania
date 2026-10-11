@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/screenshots/hero-vestland.jpg" alt="SUMMIT ride cockpit on Vestlandsveien, a fjord road rendered in real time" width="100%">
+<img src="docs/screenshots/hero-vestland.jpg" alt="SUMMIT on Vestlandsveien: handlebar view with the training panels at the edges" width="100%">
 
 # SUMMIT
 
@@ -21,7 +21,10 @@ It is built for bikes without automatic resistance control as well as smart trai
 - Power as a 3-second average, next to a ±10 % target band. Instead of a raw number to interpret, it tells you what to do: *Øk 24 W* (push 24 W) or *Senk 18 W* (ease off 18 W).
 - The screen edge glows green, blue or amber, so you know whether you are on target without looking at the numbers.
 - Big 3‑2‑1 countdown with the next target, a short receipt after every completed interval, and the whole plan drawn with your actual power on top.
-- Focus mode (`H`) hides every game element and leaves only the training.
+- Two transparent glass panels sit at the screen edges, so the centre stays free for the road, the bike and the handlebar.
+- Speed and distance at the top. Speed follows watts relative to FTP with real inertia: a surge is felt as acceleration, easing off rolls out.
+- **Automatic resistance (ERG)** for smart trainers that support FTMS control: the target changes at every block, never every second, and switches off safely on pause or disconnect.
+- Focus mode (`H`) hides every game element and leaves only the training. A ride can be discarded without saving.
 
 **Training**
 - 100 structured workouts across recovery, endurance, tempo, sweet spot, threshold, VO₂max, anaerobic and sprint.
@@ -32,7 +35,8 @@ It is built for bikes without automatic resistance control as well as smart trai
 - A full-page report: an honest one-line verdict, normalized power, IF and TSS calculated from measured watts, and an interactive power chart coloured by training zone.
 - One card per interval, plus pacing feedback (*"power dropped 6 points from the first to the last interval"*).
 - Weekly load for the last eight weeks, rolling 28-day comparison, and a mean-maximal power curve from 5 s to 60 min.
-- FIT export through Garmin's official SDK, plus CSV and JSON.
+- FIT export through Garmin's official SDK (encoded in the browser), plus CSV and JSON.
+- A share card (1080×1350 image) for Strava or Instagram, and rides can be deleted from their report.
 
 **Worlds**
 - Seven real-time 3D worlds in Three.js with WebGPU and automatic WebGL2 fallback:
@@ -41,21 +45,22 @@ It is built for bikes without automatic resistance control as well as smart trai
   - **Neon Rush:** a hover-bike city.
   - **Skybound:** floating islands.
   - **Three classic fjord routes.**
+- Road worlds keep believable speeds (about 40 km/h at FTP). The futuristic worlds run on arcade speed: about 300 km/h at FTP and far beyond in a sprint, with a widening field of view and a camera that pulls back as you surge. Arcade speed is presentation only; the ride stores virtual distance from watts.
 - The game layer follows the training plan. Rewards come only from seconds within the target, including during recovery. Riding harder than prescribed earns nothing extra.
 
 **Data you can trust**
 - Skipped time never counts as ridden.
 - Data gaps stay gaps; they are never filled with zeros or approved seconds.
 - Demo rides are clearly labelled and never count towards records, FTP or progression.
-- Rides are stored locally (browser storage plus a local SQLite database). Training data is never sent anywhere.
+- Rides are stored on your device: IndexedDB in the browser, plus a local SQLite database when the optional Node backend runs. Training data is never sent anywhere. Backup and import are one click.
 - The hosted version counts a few anonymous, cookie-free usage events (bucketed, no IDs, no watts or FTP), explained under *Personvern* in the app. Local and development builds send nothing.
 
 ## Screenshots
 
 | | |
 |---|---|
-| <img src="docs/screenshots/cockpit-tron.jpg" alt="On target in The Grid"> | <img src="docs/screenshots/cockpit-under.jpg" alt="Below target: the cue says push 49 W"> |
-| **On target.** Green band, green number, calm edge glow. | **Below target.** The cue tells you exactly how much to add. |
+| <img src="docs/screenshots/cockpit-tron.jpg" alt="On target in The Grid at 297 km/h arcade speed"> | <img src="docs/screenshots/cockpit-surge.jpg" alt="A surge to 380 W: 529 km/h and the cue says ease off 135 W"> |
+| **On target.** Green band, green number, calm edge glow; arcade speed at the top. | **A surge.** 380 W launches The Grid past 500 km/h, and the cue still tells you to ease off. |
 | <img src="docs/screenshots/report-chart.jpg" alt="Interactive power chart in the ride report"> | <img src="docs/screenshots/progress.jpg" alt="Weekly load and power curve"> |
 | **Ride report.** Zone-coloured power against the target band; hover any second. | **Progress.** Weekly TSS, rolling load and a mean-max power curve. |
 | <img src="docs/screenshots/world-neon.jpg" alt="Neon Rush"> | <img src="docs/screenshots/world-sky.jpg" alt="Skybound"> |
@@ -87,12 +92,13 @@ npm start          # http://127.0.0.1:3001
 
 | | Supported |
 |---|---|
-| **Bluetooth profiles** | FTMS Indoor Bike Data, Cycling Power, Heart Rate |
+| **Bluetooth profiles** | FTMS Indoor Bike Data and Control Point (ERG), Cycling Power (incl. crank cadence), Cycling Speed and Cadence, Heart Rate |
 | **ANT+** | Power and heart rate via a USB stick and the local Node bridge |
 | **Browsers** | Chrome, Edge and other Chromium browsers on Windows, macOS, Linux, ChromeOS and Android |
-| **Not supported** | Safari and every iOS browser (no Web Bluetooth in WebKit), Firefox |
+| **iPhone and iPad** | Through a Web Bluetooth browser such as Bluefy; Safari itself has no Web Bluetooth |
+| **Not supported** | Firefox, older proprietary trainer protocols (shown as "known, not supported yet" on the device check page) |
 
-The app reads data and does not yet control resistance; you adjust it on the bike. Watts and cadence over Bluetooth have been confirmed on a 2019 Xebex console. Other hardware paths are covered by protocol-level tests with simulated devices.
+**Test sykkelen din** (test your bike) lists what a device exposes, shows live values, runs a short ERG test on capable trainers and ends with a plain verdict. Watts and cadence over Bluetooth have been confirmed on a 2019 Xebex console. ERG and the other profiles are covered by protocol-level tests with simulated devices; they have not yet been tried on physical smart trainers.
 
 ## How it works
 
@@ -133,14 +139,14 @@ node scripts/sensor-smoke.mjs    # simulated BLE bike + HR, SQLite, FIT round tr
 node scripts/ui-smoke.mjs        # UI flows against a running dev server
 ```
 
-Nine browser smoke suites (UI, sensors, ramp test, builder, expeditions, journeys, gameplay, Vestlandsveien, The Grid) drive the real app with Playwright. They use isolated, mocked APIs and temporary databases, so personal ride data is never touched.
+Twelve browser smoke suites (UI, sensors, ERG, ramp test, static hosting, builder, expeditions, journeys, gameplay, Vestlandsveien, The Grid) drive the real app with Playwright. They use isolated, mocked APIs and temporary databases, so personal ride data is never touched.
 
 ## Roadmap
 
-- **Resistance control** via the FTMS control point: ERG mode for workouts and slope simulation for the worlds.
-- **Fully in-browser hosting:** IndexedDB storage, in-browser FIT encoding, installable PWA and screen wake lock.
-- **More sensors:** speed/cadence sensors with clearly labelled estimated power, and a "test your bike" compatibility page.
-- **iPad and iPhone** through Web Bluetooth browsers such as Bluefy, and later a native wrapper.
+- **Slope simulation** in the road worlds through FTMS (the control path exists; the worlds do not drive it yet).
+- **Verification on physical smart trainers** (Wahoo, Tacx, Elite) and on iPad with Bluefy.
+- **Clearly labelled estimated power** for speed/cadence-only setups.
+- **A native iPad/iPhone wrapper** if the browser route proves too limiting.
 
 ## Status
 

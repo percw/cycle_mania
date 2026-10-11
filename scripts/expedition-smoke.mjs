@@ -17,6 +17,8 @@ async function arriveAtChoice(){let s=await state();if(!s.session.expedition.cho
 await mkdir('output/expedition',{recursive:true});
 try{
  await page.goto(process.env.SUMMIT_UI_URL||'http://127.0.0.1:3001');await page.waitForFunction(()=>!!window.render_game_to_text);await page.waitForTimeout(1200);
+ // History now loads asynchronously (IndexedDB, then the local API); wait for the saved campaign instead of a fixed delay.
+ await page.waitForFunction(()=>JSON.parse(window.render_game_to_text()).campaign.restored===4,null,{timeout:15000});
  assert.ok(await page.locator('.featured').getByText('10 min lett tråkk',{exact:true}).isVisible());assert.equal((await state()).campaign.restored,4);
  await page.screenshot({path:'output/expedition/launcher.png',fullPage:true});check('20-minute easy first choice, selectable missions and real saved campaign loaded');
  await start();let s=await state();assert.equal(s.session.expedition.worldRestored,4);await arriveAtChoice();

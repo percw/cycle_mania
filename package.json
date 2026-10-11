@@ -14,7 +14,8 @@
     "test:sensors": "node scripts/sensor-smoke.mjs",
     "test:erg": "node scripts/erg-smoke.mjs",
     "test:ui": "node scripts/ui-smoke.mjs",
-    "test:expedition": "node scripts/expedition-smoke.mjs"
+    "test:expedition": "node scripts/expedition-smoke.mjs",
+    "test:ride-actions": "node scripts/ride-actions-smoke.mjs"
   },
   "dependencies": {
     "@garmin/fitsdk": "21.217.0",

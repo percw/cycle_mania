@@ -178,9 +178,12 @@ try {
   await click(page.getByRole('button',{name:'Avslutt økt',exact:true}));
   await click(page.getByRole('button',{name:'Lagre og avslutt',exact:true}));
   await page.locator('.session-analysis').waitFor();
+  // Rides are written to IndexedDB first and then sent to the local API; wait for that request.
+  for(let i=0;i<100&&!records.length;i++)await page.waitForTimeout(100);
   assert.equal(records.length,1);assert.equal(records[0].worldId,'vestland');assert.equal(records[0].demo,true);
   assert.equal(records[0].seconds,final.elapsed);assert.equal(records[0].distance,final.distanceKm);
-  assert.ok(records[0].samples.length>1000);assert.equal(records[0].distanceMeasured,false);
+  // One stored sample per ridden second (virtual speed now follows watts/FTP, so the exact count depends on it).
+  assert.ok(records[0].samples.length>=Math.floor(final.elapsed)-2&&records[0].samples.length>800,`samples ${records[0].samples.length} for ${final.elapsed} s`);assert.equal(records[0].distanceMeasured,false);
   assert.equal(records[0].expedition,undefined);
   await capture('analysis');check('Summary saves world identity, samples and exact ride totals to an isolated API mock');
   assert.deepEqual(errors,[]);

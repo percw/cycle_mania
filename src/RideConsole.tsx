@@ -66,8 +66,8 @@ function WorkoutGraph({ workout, samples, ftp, progress, index }: { workout: Wor
         const w = Math.max(gap, block.seconds - gap), state = i < index ? 'past' : i === index ? 'now' : 'future';
         // Neutral bodies with a zone-coloured cap: low-opacity zone fills turn muddy on dark glass.
         return <g key={i} className={state}>
-          <rect x={starts[i]} y={100 - h} width={w} height={h} className="block-body" style={state === 'now' ? { fill: zoneColor(block.intensity) } : undefined} />
-          {state !== 'now' && <rect x={starts[i]} y={100 - h} width={w} height={Math.min(h, 5)} className="block-cap" fill={zoneColor(block.intensity)} />}
+          <rect x={starts[i]} y={100 - h} width={w} height={h} className="block-body" />
+          <rect x={starts[i]} y={100 - h} width={w} height={Math.min(h, state === 'now' ? 8 : 5)} className="block-cap" fill={zoneColor(block.intensity)} />
         </g>;
       })}
       {trace && <path d={trace} className="graph-trace" style={{ stroke: `url(#${gradientId})` }} vectorEffect="non-scaling-stroke" />}
@@ -179,9 +179,6 @@ export default function RideConsole({ workout, current, elapsed, skippedSeconds,
         </div>
         <div className="ride-toolbar">
           <button onClick={onPause} className="console-pause">{running ? <Pause size={18} /> : <Play size={18} />}<span>{running ? 'Pause' : 'Fortsett'}</span></button>
-          {!rampStatus && <button onClick={onSkip}><SkipForward size={17} /><span>Neste segment</span></button>}
-          {rampStatus && block.kind==='work' && !rampStatus.ended && <button onClick={onSkip} className="ramp-exhaustion" disabled={!running}>Jeg klarer ikke mer</button>}
-          {!rampStatus && block.kind === 'warmup' && <button onClick={onWarmup} className="warmup-skip"><Check size={16} /><span>Jeg er ferdig oppvarmet</span></button>}
           <div className="console-spacer" />
           <button onClick={onFocus} aria-pressed={focus} aria-label={focus ? 'Vis spillpaneler' : 'Fokusmodus'} title="Fokusmodus (H)">{focus ? <EyeOff size={17} /> : <Eye size={17} />}</button>
           <button onClick={onSound} aria-label={sound ? 'Slå av lyd' : 'Slå på lyd'}>{sound ? <Volume2 size={17} /> : <VolumeX size={17} />}</button>
@@ -218,6 +215,11 @@ export default function RideConsole({ workout, current, elapsed, skippedSeconds,
           </div>
         </div>
         <WorkoutGraph workout={workout} samples={samples} ftp={ftp} progress={current.progress} index={current.index} />
+        <div className="hud-actions">
+          {!rampStatus && block.kind === 'warmup' && <button onClick={onWarmup} className="warmup-skip"><Check size={16} /><span>Jeg er ferdig oppvarmet</span></button>}
+          {!rampStatus && <button onClick={onSkip} className="skip-segment" aria-label="Neste segment"><SkipForward size={17} /><span>Neste segment</span></button>}
+          {rampStatus && block.kind==='work' && !rampStatus.ended && <button onClick={onSkip} className="ramp-exhaustion" disabled={!running}>Jeg klarer ikke mer</button>}
+        </div>
         <div className="secondary-metrics">
           <span><b>{cadence ?? '—'}</b> rpm</span>
           <span><b>{heartRate && heartRate > 0 ? heartRate : '—'}</b> puls</span>
