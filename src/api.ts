@@ -16,7 +16,40 @@ export interface AntStatus {
   heartRateUpdatedAt: number | null;
   powerUpdatedAt: number | null;
 }
+/**
+ * 'local': the Node/SQLite backend answers /api/health (npm run dev / npm start).
+ * 'browser': static hosting without a backend. Data lives in IndexedDB, and API
+ * calls fail fast without touching the network.
+ */
+export type BackendMode = 'local' | 'browser';
+export class BrowserModeError extends Error {
+  constructor() { super('ANT+ og SQLite krever den lokale SUMMIT-serveren. Bluetooth og lagring virker direkte i nettleseren.'); this.name = 'BrowserModeError'; }
+}
+let backendMode: BackendMode | null = null;
+let detection: Promise<BackendMode> | null = null;
+async function healthAnswers(timeoutMs: number): Promise<boolean> {
+  try {
+    const response = await fetch('/api/health', { cache: 'no-store', signal: AbortSignal.timeout(timeoutMs) });
+    if (!response.ok || !(response.headers.get('content-type') || '').includes('application/json')) return false;
+    const body = await response.json();
+    return body?.ok === true && body.storage === 'sqlite';
+  } catch { return false; }
+}
+/** One shared health probe decides the mode for this page load. */
+export function detectBackend(timeoutMs = 4000): Promise<BackendMode> {
+  if (backendMode) return Promise.resolve(backendMode);
+  detection ??= healthAnswers(timeoutMs).then(ok => (backendMode = ok ? 'local' : 'browser'));
+  return detection;
+}
+/** Quiet re-check from browser mode, e.g. when the local server is started after the page. */
+export async function recheckBackend(): Promise<BackendMode> {
+  const mode = await detectBackend();
+  if (mode === 'browser' && await healthAnswers(4000)) backendMode = 'local';
+  return backendMode ?? mode;
+}
+export const currentBackendMode = () => backendMode;
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  if (await detectBackend() === 'browser') throw new BrowserModeError();
   let response: Response;
   try {
     response = await fetch(`/api${path}`, { ...init, headers: { ...(init?.body ? { 'Content-Type': 'application/json' } : {}), ...init?.headers }, signal: AbortSignal.timeout(12000) });
@@ -33,6 +66,7 @@ export const putCustomWorkout = (workout:CustomWorkoutDraft) => request<CustomWo
 export const deleteCustomWorkout = (id:string) => request<{ok:boolean}>(`/workouts/${encodeURIComponent(id)}`, {method:'DELETE'});
 export const deleteRideRemote = (id: string) => request<{ ok: boolean }>(`/rides/${encodeURIComponent(id)}`, { method: 'DELETE' });
 export const persistRide = (ride: RideRecord) => request<RideRecord>('/rides', { method: 'POST', body: JSON.stringify(ride) });
+export const deleteRemoteRide = (id: string) => request<{ ok: boolean; deleted: boolean }>(`/rides/${encodeURIComponent(id)}`, { method: 'DELETE' });
 export const getFitUrl = (id: string) => `/api/rides/${encodeURIComponent(id)}/fit`;
 export const getBackendStatus = () => request<BackendStatus>('/health');
 export const getProfile = () => request<Profile>('/profile');

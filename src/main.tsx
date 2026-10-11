@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { readArrival } from './deepLink';
+import { registerServiceWorker } from './registerServiceWorker';
 import { initTelemetry, track, workoutCategory } from './telemetry';
 import { workouts } from './training';
 import './styles.css';
@@ -16,3 +17,4 @@ track('app_open', {
 if (arrival.fromWorkoutPage) track('workout_page_cta', { category: workoutCategory(workouts.find(w => w.id === arrival.workoutId)) });
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App linkedWorkoutId={arrival.workoutId} /></React.StrictMode>);
+registerServiceWorker();

@@ -82,10 +82,13 @@ export function ProgressPanel({
   history,
   ftp,
   online,
+  browserMode = false,
 }: {
   history: RideRecord[];
   ftp: number;
   online: boolean;
+  /** Static hosting without the local backend: data lives in IndexedDB. */
+  browserMode?: boolean;
 }) {
   const rides = useMemo(
     () =>
@@ -112,9 +115,11 @@ export function ProgressPanel({
           <span className="eyebrow">MÅLT OVER TID</span>
           <h2>Formen din, økt for økt.</h2>
         </div>
-        <span className={`backend-badge ${online ? "online" : ""}`}>
+        <span className={`backend-badge ${online || browserMode ? "online" : ""}`}>
           <Database size={12} />
-          {online
+          {browserMode
+            ? "Lagret i denne nettleseren"
+            : online
             ? "Lokal database tilkoblet"
             : "Nettleserlagring · backend frakoblet"}
         </span>
