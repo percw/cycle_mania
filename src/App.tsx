@@ -90,6 +90,8 @@ import {
   type BikeTelemetry,
 } from "./bluetooth";
 import { readStored, saveStored, type RideRecord } from "./storage";
+import { trackOnce, trackRideSaved, trackRideStarted } from "./telemetry";
+import { PrivacyLink } from "./PrivacyNote";
 
 import WorkoutBuilder from './WorkoutBuilder';
 import {compileCustomWorkout,validateWorkoutSnapshot,type CustomWorkoutDraft} from './customWorkouts';
@@ -214,7 +216,7 @@ function download(name: string, content: string, type = "application/json") {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 const initialFtp = Number(readStored("summit-ftp", 250));
-export default function App() {
+export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: string | null } = {}) {
   const customLibrary=useCustomWorkouts();
   const workouts=useMemo(()=>[...builtInWorkouts,...customLibrary.drafts.map(compileCustomWorkout)],[customLibrary.drafts]);
   const [builder,setBuilder]=useState<CustomWorkoutDraft|null|undefined>(undefined);
@@ -425,7 +427,16 @@ export default function App() {
   const featured =
     workouts.find((w) => w.id === "recovery-10") ??
     workouts[0];
-  const [readyWorkout, setReadyWorkout] = useState<Workout>(() => workouts.find(w => w.id === readStored('summit-last-workout', '')) ?? featured);
+  // Deep link (/?workout=<id>, e.g. from /okter/<id>/) wins over the last workout; unknown ids are ignored.
+  const [linkedWorkout] = useState(() => workouts.find(w => w.id === linkedWorkoutId));
+  const [readyWorkout, setReadyWorkout] = useState<Workout>(() => linkedWorkout ?? workouts.find(w => w.id === readStored('summit-last-workout', '')) ?? featured);
+  useEffect(() => { if (linkedWorkout && !sessionRef.current) document.querySelector('.session-card')?.scrollIntoView({ block: 'center' }); }, [linkedWorkout]);
+  // Anonymous telemetry: which kind of sensor connected, once per page load and kind.
+  useEffect(() => {
+    const bike = sensorSource === 'ant' ? (sensors.ant?.status === 'connected' ? 'ant' : null) : bleStatus === 'connected' ? connection.current?.profile ?? null : null;
+    if (bike) trackOnce(`sensor-${bike}`, 'sensor_connected', { kind: bike });
+    if (sensors.hrStatus === 'connected') trackOnce('sensor-hr', 'sensor_connected', { kind: 'hr' });
+  }, [bleStatus, sensorSource, sensors.ant?.status, sensors.hrStatus]);
   const activeWorld = session?.worldId ?? route;
   const featuredRoute = worldById(activeWorld);
   const expeditionEnabled = !session?.ramp && (activeWorld === "tron" || activeWorld === "neon" || activeWorld === "sky");
@@ -571,6 +582,7 @@ export default function App() {
     const next = [record, ...history];
     setHistory(next);
     saveStored("summit-history", next);
+    trackRideSaved(record, next);
     void persistRide(record)
       .then(() => setBackendOnline(true))
       .catch(() => {
@@ -914,6 +926,7 @@ export default function App() {
       zoneSeconds: Array(7).fill(0),
       samples: [],
     });
+    trackRideStarted(workout, route, demo);
     beep();
   }
   useEffect(() => {
@@ -1602,7 +1615,7 @@ export default function App() {
             <span>
               {workouts.length} økter <i /> {routes.length} verdener <i /> Uendelige muligheter
             </span>
-            <span>SUMMIT / XEBEX</span>
+            <span>SUMMIT / XEBEX <i /> <PrivacyLink /></span>
           </footer>
         </main>
       )}

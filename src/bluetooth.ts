@@ -525,6 +525,8 @@ export class BikeConnection extends SensorConnection {
       await characteristic.startNotifications()
     } catch { /* Optional cadence source. */ }
   }
+  /** Standard profile of the current subscription (anonymous telemetry only reads this). */
+  get profile(): 'ftms' | 'power' { return this.protocol === 0 ? 'ftms' : 'power' }
   protected receive(view: DataView) {
     const data = this.protocol === 0 ? parseIndoorBikeData(view) : parseCyclingPower(view)
     if (this.protocol === 1) {

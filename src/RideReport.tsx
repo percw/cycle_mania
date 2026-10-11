@@ -5,6 +5,8 @@ import { normalizedPower, pacing, sampleAverages, trainingLoad, verdict, type To
 import { SessionAnalysis } from './SessionAnalysis';
 import { ReportChart } from './ReportChart';
 import { RideAnalysis } from './ProgressPanel';
+import { RideSurvey } from './RideSurvey';
+import { ShareCardButton } from './ShareCardButton';
 import type { RideRecord, RideSample } from './storage';
 import { formatTime, zones } from './training';
 import { worldById } from './worlds';
@@ -49,6 +51,7 @@ export function RideReport({ ride, samples, history, onClose, onHistory, onFit, 
   const world = ride.worldId ? worldById(ride.worldId) : null;
   const zoneTotal = ride.zoneSeconds.reduce((a, b) => a + b, 0);
   const status = ride.demo ? 'Demotur' : ride.completed ? 'Fullført' : 'Avsluttet tidlig';
+  const shareInput = { ride, samples, verdict: judged.title, tone: judged.tone, np, tss: load?.tss ?? null, adherence: ride.demo || ramp ? null : adherence, worldName: world?.name };
   const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => { closeRef.current?.focus({ preventScroll: true }); }, [ride.id]);
 
@@ -68,6 +71,7 @@ export function RideReport({ ride, samples, history, onClose, onHistory, onFit, 
       <header className="report-bar">
         <span className="report-brand">Øktrapport</span>
         <div>
+          <ShareCardButton input={shareInput} variant="chip" />
           <button className="report-chip" onClick={onFit} disabled={fitDisabled} title={fitTitle}><ArrowDownToLine size={15} />FIT</button>
           <button ref={closeRef} className="report-close" onClick={onClose} aria-label="Lukk"><X size={20} /></button>
         </div>
@@ -87,6 +91,8 @@ export function RideReport({ ride, samples, history, onClose, onHistory, onFit, 
       <section className="report-metrics" aria-label="Nøkkeltall">
         {metrics.map(m => <div key={m.label}><span>{m.label}</span><strong>{m.value}{m.unit && <small> {m.unit}</small>}</strong>{m.sub && <em>{m.sub}</em>}</div>)}
       </section>
+
+      <RideSurvey key={ride.id} ride={ride} history={history} />
 
       {ramp ? <>
         {ramp}
@@ -123,6 +129,7 @@ export function RideReport({ ride, samples, history, onClose, onHistory, onFit, 
       <footer className="report-actions">
         <button className="primary" onClick={onHistory}>Se min utvikling <ArrowRight size={17} /></button>
         <button className="secondary" onClick={onFit} disabled={fitDisabled} title={fitTitle}><ArrowDownToLine size={16} />Last ned FIT-fil</button>
+        <ShareCardButton input={shareInput} variant="secondary" />
         <button className="text-button" onClick={onCsv}><ArrowDownToLine size={15} />{csvLabel}</button>
       </footer>
     </div>
