@@ -3,6 +3,7 @@ import * as THREE from 'three/webgpu';
 import { pass } from 'three/tsl';
 import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 import type { WorldSceneProps } from './worlds';
+import { ArcadeMotion, speedFactor, surgeFactor } from './rideFeel';
 
 const LAP = 2400;
 const route = (z: number) => 58 * Math.sin(z / LAP * Math.PI * 2) + 20 * Math.sin(z / LAP * Math.PI * 6);
@@ -294,18 +295,21 @@ export default function TronWorld(props: WorldSceneProps & { achievements?: stri
     const ghostSkin = light('#ffa943', 1.2, 0.4);
     const ghostBody = mesh(geo(new THREE.SphereGeometry(1, 12, 8)), ghostSkin, ghost); ghostBody.scale.set(0.7, 0.65, 2.1); ghostBody.position.y = 1.2;
     for (const z of [-1.57, 1.57]) { const wheel = mesh(ringShape, ghostSkin, ghost); wheel.rotation.y = Math.PI / 2; wheel.position.set(0, 0.94, z); }
-    let travel = Math.max(0, live.current.progress) * 8400, last = 0, lastSector = -1;
+    // Arcade speed: the scene runs on its own exaggerated speed, decoupled from recorded distance.
+    const motion = new ArcadeMotion(Math.max(0, live.current.progress) * 8400);
+    let travel = motion.travel, last = 0, lastSector = -1, kick = 0;
     let cameraYaw = heading(-travel), frozenGame = live.current.game;
     const ahead = new THREE.Vector3();
     const animate = (time: number) => {
       if (disposed || !renderer) return;
       const dt = last ? Math.min(0.06, (time - last) / 1000) : 0; last = time;
       const state = live.current;
+      const jumped = motion.update(dt, state.running, state.speed, Math.max(0, state.progress) * 8400);
+      travel = motion.travel;
+      if (jumped) cameraYaw = heading(-travel % LAP);
+      const fast = speedFactor(motion.speed);
+      kick += (surgeFactor(motion.accel) - kick) * Math.min(1, dt * 4);
       if (state.running) {
-        travel += Math.max(0, state.speed) / 3.6 * dt;
-        const expected = Math.max(0, state.progress) * 8400;
-        if (Math.abs(expected - travel) > 35) {travel = expected; cameraYaw = heading(-travel % LAP);}
-        else if (Math.abs(expected - travel) > 8) travel += (expected - travel) * Math.min(1, dt * 2);
         frozenGame = state.game;
         frozenJourney = state.journey;
       }
@@ -350,7 +354,7 @@ export default function TronWorld(props: WorldSceneProps & { achievements?: stri
       const locked = game.quality === 'locked';
       cyan.color.set(locked ? '#6defff' : '#48c8e7').multiplyScalar(locked ? 2.2 : 1.7);
       tunnelTrim.color.set(game.phase === 'recovery' || game.phase === 'cooldown' ? '#92e6ed' : '#65dfff').multiplyScalar(1.5);
-      const trailLength = 42 + (earned.has('consistency') ? 26 : 0);
+      const trailLength = 42 + (earned.has('consistency') ? 26 : 0) + fast * 70;
       for (let i = 0; i <= trailSegments; i++) {
         const tz = z + 2.42 + i / trailSegments * trailLength, tx = route(tz), height = 1.55;
         trailPositions.set([tx, 0.055, tz, tx, height, tz], i * 6); edgePositions.set([tx, height, tz], i * 3);
@@ -365,11 +369,13 @@ export default function TronWorld(props: WorldSceneProps & { achievements?: stri
       // Anchor translation to the cycle; smoothing heading only prevents simulation jumps leaving the rider behind.
       const angularDelta = Math.atan2(Math.sin(yaw - cameraYaw), Math.cos(yaw - cameraYaw));
       if (state.running) cameraYaw += angularDelta * Math.min(1, dt * 3);
-      const portrait = camera.aspect < 0.85, follow = portrait ? 14.5 : 12.5, side = portrait ? 3.8 : 5.4;
-      camera.position.set(x + Math.sin(cameraYaw) * follow + Math.cos(cameraYaw) * side, portrait ? 8 : 6.4, z + Math.cos(cameraYaw) * follow - Math.sin(cameraYaw) * side);
+      // Speed pulls the camera back and down; a surge widens the view for a moment. Above ~300 km/h the rig hums.
+      const portrait = camera.aspect < 0.85, follow = (portrait ? 14.5 : 12.5) + fast * 3.5 + kick * 1.5, side = portrait ? 3.8 : 5.4;
+      const shake = Math.max(0, fast - 0.5) * 0.14, hum = time * 0.001;
+      camera.position.set(x + Math.sin(cameraYaw) * follow + Math.cos(cameraYaw) * side + Math.sin(hum * 41) * shake, (portrait ? 8 : 6.4) - fast * 1.3 + Math.sin(hum * 53) * shake, z + Math.cos(cameraYaw) * follow - Math.sin(cameraYaw) * side);
       ahead.set(route(z - 18), -6, z - 18); camera.lookAt(ahead);
-      const desiredFov = portrait ? 68 : 62;
-      if (camera.fov !== desiredFov) { camera.fov = desiredFov; camera.updateProjectionMatrix(); }
+      const desiredFov = (portrait ? 68 : 62) + fast * 20 + kick * 9;
+      if (Math.abs(camera.fov - desiredFov) > 0.02) { camera.fov += (desiredFov - camera.fov) * Math.min(1, dt * 5); camera.updateProjectionMatrix(); }
       grid.position.z = Math.round(z / 20) * 20; floor.position.z = z;
       const u = ((-z % LAP) + LAP) % LAP, sector = u < 800 ? 0 : u < 1250 ? 1 : 2;
       if (sector !== lastSector) { lastSector = sector; setSectorName(['01 / THE GRID', '02 / DATA TUNNEL', '03 / THE CORE'][sector]); live.current.onSector?.(sector); }

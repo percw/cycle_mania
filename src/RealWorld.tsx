@@ -133,7 +133,7 @@ export default function RealWorld(props:WorldSceneProps){
    travel=motion.current!.update(now);if(state.running)waterTime+=dt;
    const p=routeAt(travel/REAL_LAP_METERS,1.3),ahead=routeAt((travel+22)/REAL_LAP_METERS,1.3),scenic=viewRef.current==='scenic',immersive=viewRef.current==='cockpit';
    camera.position.set(p.x,p.y+(scenic?3.8:immersive?1.9:1.72),p.z);camera.lookAt(ahead.x,ahead.y+(scenic?1.8:immersive?-.6:1.55),ahead.z);
-   const fov=67;if(camera.fov!==fov){camera.fov=fov;camera.updateProjectionMatrix();}
+   const fov=66+Math.min(1,Math.max(0,(state.speed-20)/45))*6;if(Math.abs(camera.fov-fov)>.02){camera.fov+=(fov-camera.fov)*Math.min(1,dt*3);camera.updateProjectionMatrix();}
    cockpit.visible=immersive;
    if(immersive){
     const visibleHeight=Math.tan(THREE.MathUtils.degToRad(camera.fov/2));

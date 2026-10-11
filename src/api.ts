@@ -31,6 +31,7 @@ export const loadRides = () => request<RideRecord[]>('/rides');
 export const loadCustomWorkouts = () => request<CustomWorkoutDraft[]>('/workouts');
 export const putCustomWorkout = (workout:CustomWorkoutDraft) => request<CustomWorkoutDraft>('/workouts', {method:'POST',body:JSON.stringify(workout)});
 export const deleteCustomWorkout = (id:string) => request<{ok:boolean}>(`/workouts/${encodeURIComponent(id)}`, {method:'DELETE'});
+export const deleteRideRemote = (id: string) => request<{ ok: boolean }>(`/rides/${encodeURIComponent(id)}`, { method: 'DELETE' });
 export const persistRide = (ride: RideRecord) => request<RideRecord>('/rides', { method: 'POST', body: JSON.stringify(ride) });
 export const getFitUrl = (id: string) => `/api/rides/${encodeURIComponent(id)}/fit`;
 export const getBackendStatus = () => request<BackendStatus>('/health');

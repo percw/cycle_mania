@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Check, ChevronDown, ChevronsDown, ChevronsUp, Eye, EyeOff, Maximize, Pause, Play, SkipForward, Volume2, VolumeX } from 'lucide-react';
 import { formatTime, getZone, workoutDuration, zones, type Workout, type getWorkoutState } from './training';
 import type { GameState } from './game';
@@ -47,8 +47,20 @@ function WorkoutGraph({ workout, samples, ftp, progress, index }: { workout: Wor
   const trace = useMemo(() => tracePath(workout, samples, ftp, maxIntensity), [workout, samples.length, ftp, maxIntensity]);
   const gap = total * 0.0018;
   const playhead = Math.min(1, Math.max(0, progress)) * total;
+  // Colour the measured trace by training zone: a zone boundary at k×FTP sits at y = 100 − k/max·92.
+  const gradientId = useId().replace(/:/g, '');
+  const zoneStops = useMemo(() => {
+    const y = (k: number) => Math.max(0, Math.min(100, 100 - (k / maxIntensity) * 92)) / 100;
+    return zones.flatMap((z, i) => {
+      const lower = i ? zones[i - 1].max : 0, upper = Number.isFinite(z.max) ? z.max : 9;
+      return [{ offset: y(upper), color: z.color, zone: i }, { offset: y(lower), color: z.color, zone: i }];
+    }).sort((a, b) => a.offset - b.offset || b.zone - a.zone);
+  }, [maxIntensity]);
   return <div className="console-profile cockpit-graph" aria-label="Øktgraf: planlagte mål og faktisk watt">
     <svg viewBox={`0 0 ${total} 100`} preserveAspectRatio="none" role="img" aria-hidden="true">
+      <defs><linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+        {zoneStops.map((stop, i) => <stop key={i} offset={stop.offset} stopColor={stop.color} />)}
+      </linearGradient></defs>
       {workout.blocks.map((block, i) => {
         const h = blockHeight(block, maxIntensity);
         const w = Math.max(gap, block.seconds - gap), state = i < index ? 'past' : i === index ? 'now' : 'future';
@@ -58,16 +70,18 @@ function WorkoutGraph({ workout, samples, ftp, progress, index }: { workout: Wor
           {state !== 'now' && <rect x={starts[i]} y={100 - h} width={w} height={Math.min(h, 5)} className="block-cap" fill={zoneColor(block.intensity)} />}
         </g>;
       })}
-      {trace && <path d={trace} className="graph-trace" vectorEffect="non-scaling-stroke" />}
+      {trace && <path d={trace} className="graph-trace" style={{ stroke: `url(#${gradientId})` }} vectorEffect="non-scaling-stroke" />}
       <line x1={playhead} x2={playhead} y1={0} y2={100} className="graph-playhead" vectorEffect="non-scaling-stroke" />
     </svg>
     <span className="graph-marker" style={{ left: `${(playhead / total) * 100}%` }} />
   </div>;
 }
 
-export default function RideConsole({ workout, current, elapsed, skippedSeconds, distance, target, power: livePower, cadence, heartRate, energy, running, sound, game, ghostDelta,
-  rampStatus, erg, samples, ftp, focus, onFocus, onPause, onSkip, onWarmup, onSound, onFullscreen, onFinish }: {
+export default function RideConsole({ workout, current, elapsed, skippedSeconds, target, power: livePower, cadence, heartRate, energy, running, sound, game, ghostDelta,
+  speedKmh, sceneKm, arcade, rampStatus, erg, samples, ftp, focus, onFocus, onPause, onSkip, onWarmup, onSound, onFullscreen, onFinish }: {
   workout: Workout; current: Current; elapsed: number; skippedSeconds: number; distance: number; energy: number;
+  /** On-screen speed and distance for this world (arcade worlds exaggerate; recorded data does not). */
+  speedKmh: number; sceneKm: number; arcade: boolean;
   target: number; power: number | undefined; cadence: number | null | undefined; heartRate: number | null | undefined; running: boolean; sound: boolean; game: GameState; ghostDelta?: number | null;
   rampStatus?: {interrupted:boolean;belowTargetSeconds:number;ended:boolean};
   /** Automatic resistance is holding the trainer: the cue informs instead of instructing. */
@@ -137,50 +151,31 @@ export default function RideConsole({ workout, current, elapsed, skippedSeconds,
       <span><small>{lap.label} fullført</small><strong>{lap.avg} W snitt <em>mål {lap.target} W</em></strong></span>
       {lap.inBand !== undefined && <b>{Math.round(lap.inBand * 100)} %<small>i målområdet</small></b>}
     </div>}
-    <section className={`ride-console cockpit state-${feedback.state} phase-${block.kind} ${soft ? 'soft' : ''}`} aria-label="Øktkontroller" style={{ ['--zone' as string]: zoneColor(block.intensity) }}>
-      {rampStatus && <div className="ramp-live-cue" role="status"><strong>{rampStatus.interrupted?'Testen ble avbrutt – FTP blir ikke godkjent':rampStatus.ended?'Testdelen er ferdig · rolig nedkjøring':block.kind==='warmup'?'FTP-test · varm opp og finn jevn tråkkrytme':`Rampe · steg ${current.index} · ${formatTime(current.remaining)} til neste wattsteg`}</strong><span>{rampStatus.ended?'Du kan lagre nå eller fullføre nedkjøringen.':rampStatus.belowTargetSeconds>0?`${Math.max(0,Math.ceil(10-rampStatus.belowTargetSeconds))} s til automatisk avslutning hvis du blir under 80 % av målet.`:'Sitt rolig. Følg wattmålet uten å spurte. Avslutt når du ikke klarer å holde målet.'}</span></div>}
-      <div className="ride-console-main">
-        <div className={`power-focus ${feedback.state === 'on' ? 'on-target' : ''}`}>
-          <span className="cockpit-eyebrow">Watt <small>3 s</small>{erg && <em className={`erg-pill ${erg.status}`} title="Automatisk motstand">{erg.status === 'error' ? 'ERG feil' : `ERG ${erg.watts ?? '…'} W`}</em>}</span>
-          <strong>{power ?? '—'}<small>W</small></strong>
-          <span className="target-readout">Mål <b>{target} W</b></span>
-        </div>
-        <div className="cockpit-target">
-          <div className={`cockpit-cue ${running ? feedback.state : 'none'} ${soft ? 'soft' : ''}`} aria-live="off">
-            {running && !ergOn && feedback.state === 'under' && <ChevronsUp size={22} />}
-            {running && !ergOn && feedback.state === 'over' && <ChevronsDown size={22} />}
-            {running && feedback.state === 'on' && <Check size={20} />}
-            {!running && <Pause size={18} />}
-            <strong>{cue}</strong>
-            {running && (feedback.state === 'on' || (ergOn && feedback.state !== 'none')) && <small>{feedback.delta >= 0 ? '+' : ''}{feedback.delta} W</small>}
+    <div className={`speed-capsule ${arcade ? 'arcade' : ''}`} role="group" aria-label="Fart og distanse">
+      <strong>{Math.round(speedKmh)}<small>km/t</small></strong>
+      <span className="hud-distance"><b>{sceneKm.toFixed(1)}</b> km{arcade ? <em> · arkade</em> : null}</span>
+    </div>
+    <section className={`ride-console cockpit hud state-${feedback.state} phase-${block.kind} ${soft ? 'soft' : ''}`} aria-label="Øktkontroller" style={{ ['--zone' as string]: zoneColor(block.intensity) }}>
+      {/* Two glass panels at the edges keep the centre free for the bike, the road and the handlebar. */}
+      <div className="hud-panel hud-left">
+        {rampStatus && <div className="ramp-live-cue" role="status"><strong>{rampStatus.interrupted?'Testen ble avbrutt – FTP blir ikke godkjent':rampStatus.ended?'Testdelen er ferdig · rolig nedkjøring':block.kind==='warmup'?'FTP-test · varm opp og finn jevn tråkkrytme':`Rampe · steg ${current.index} · ${formatTime(current.remaining)} til neste wattsteg`}</strong><span>{rampStatus.ended?'Du kan lagre nå eller fullføre nedkjøringen.':rampStatus.belowTargetSeconds>0?`${Math.max(0,Math.ceil(10-rampStatus.belowTargetSeconds))} s til automatisk avslutning hvis du blir under 80 % av målet.`:'Sitt rolig. Følg wattmålet uten å spurte. Avslutt når du ikke klarer å holde målet.'}</span></div>}
+        <div className="ride-console-main">
+          <div className={`power-focus ${feedback.state === 'on' ? 'on-target' : ''}`}>
+            <span className="cockpit-eyebrow">Watt <small>3 s</small>{erg && <em className={`erg-pill ${erg.status}`} title="Automatisk motstand">{erg.status === 'error' ? 'ERG feil' : `ERG ${erg.watts ?? '…'} W`}</em>}</span>
+            <strong>{power ?? '—'}<small>W</small></strong>
+            <span className="target-readout">Mål <b>{target} W</b></span>
           </div>
-          <TargetGauge power={power} target={target} state={feedback.state} />
-        </div>
-        <div className="interval-focus">
-          <span className="cockpit-eyebrow"><i style={{ background: zone.color }} />Z{zone.id} {zone.name} · {Math.round(block.intensity * 100)} % FTP</span>
-          <span className="interval-label">{block.label}</span>
-          <strong>{distanceRemaining !== undefined ? meters(distanceRemaining) : formatTime(current.remaining)}</strong>
-          {distanceRemaining !== undefined && <small>Virtuell distanse igjen</small>}
-          <div className="block-progress" aria-hidden="true"><i style={{ width: `${Math.min(100, Math.max(0, blockProgress * 100))}%` }} /></div>
-          <small className="lap-average">{live.avgPower !== undefined && live.seconds >= 3 ? <>Snitt i {block.kind === 'work' ? 'draget' : 'blokken'} <b>{live.avgPower} W</b></> : ' '}</small>
-        </div>
-        <div className="cockpit-next">
-          <span className="cockpit-eyebrow">Neste</span>
-          {next ? <>
-            <strong><i style={{ background: zoneColor(next.intensity) }} />{next.label}</strong>
-            <span>{nextText(next)}</span>
-            {afterNext && <small>Så: {afterNext.label} · {Math.round(afterNext.intensity * ftp)} W</small>}
-          </> : <><strong>Målgang</strong><span>Siste blokk</span></>}
-        </div>
-      </div>
-      <WorkoutGraph workout={workout} samples={samples} ftp={ftp} progress={current.progress} index={current.index} />
-      <div className="cockpit-foot">
-        <div className="secondary-metrics">
-          <span><b>{cadence ?? '—'}</b> rpm</span>
-          <span><b>{heartRate ?? '—'}</b> puls</span>
-          <span><b>{distance.toFixed(1)}</b> km</span>
-          <span className="metric-wide"><b>{formatTime(elapsed)}</b> {rampStatus && !rampStatus.ended ? '· rampe til utmattelse' : <>/ {hasDistance ? '≈ ' : ''}{formatTime(workoutDuration(workout) - skippedSeconds)}</>}</span>
-          <span className="metric-wide"><b>{Math.round(energy)}</b> kJ</span>
+          <div className="cockpit-target">
+            <div className={`cockpit-cue ${running ? feedback.state : 'none'} ${soft ? 'soft' : ''}`} aria-live="off">
+              {running && !ergOn && feedback.state === 'under' && <ChevronsUp size={22} />}
+              {running && !ergOn && feedback.state === 'over' && <ChevronsDown size={22} />}
+              {running && feedback.state === 'on' && <Check size={20} />}
+              {!running && <Pause size={18} />}
+              <strong>{cue}</strong>
+              {running && (feedback.state === 'on' || (ergOn && feedback.state !== 'none')) && <small>{feedback.delta >= 0 ? '+' : ''}{feedback.delta} W</small>}
+            </div>
+            <TargetGauge power={power} target={target} state={feedback.state} />
+          </div>
         </div>
         <div className="ride-toolbar">
           <button onClick={onPause} className="console-pause">{running ? <Pause size={18} /> : <Play size={18} />}<span>{running ? 'Pause' : 'Fortsett'}</span></button>
@@ -197,9 +192,37 @@ export default function RideConsole({ workout, current, elapsed, skippedSeconds,
             <span>{game.stars} stjerner · flytnivå {game.combo}/4</span>
             <span>{Math.round(game.accuracy * 100)} % av måletiden innenfor ±10 %</span>
             <span>Watt vises som 3 sekunders snitt. Lagrede målinger er rådata hvert sekund.</span>
+            <span>{arcade ? 'Farten i denne verdenen er arkadefart og lagres ikke. Økten lagrer virtuell distanse fra watt.' : 'Fart og distanse er virtuelle og beregnes fra watt mot FTP.'}</span>
             <small>Spillpoeng måler måloppnåelse. Treningsutviklingen vises i økthistorikken.</small>
           </div></details>
           <button onClick={onFinish} className="end-ride">{rampStatus?.ended ? "Lagre test" : rampStatus ? "Avbryt test" : "Avslutt økt"}</button>
+        </div>
+      </div>
+      <div className="hud-panel hud-right">
+        <div className="hud-interval">
+          <div className="interval-focus">
+            <span className="cockpit-eyebrow"><i style={{ background: zone.color }} />Z{zone.id} {zone.name} · {Math.round(block.intensity * 100)} % FTP</span>
+            <span className="interval-label">{block.label}</span>
+            <strong>{distanceRemaining !== undefined ? meters(distanceRemaining) : formatTime(current.remaining)}</strong>
+            {distanceRemaining !== undefined && <small>Virtuell distanse igjen</small>}
+            <div className="block-progress" aria-hidden="true"><i style={{ width: `${Math.min(100, Math.max(0, blockProgress * 100))}%` }} /></div>
+            <small className="lap-average">{live.avgPower !== undefined && live.seconds >= 3 ? <>Snitt i {block.kind === 'work' ? 'draget' : 'blokken'} <b>{live.avgPower} W</b></> : '\u00a0'}</small>
+          </div>
+          <div className="cockpit-next">
+            <span className="cockpit-eyebrow">Neste</span>
+            {next ? <>
+              <strong><i style={{ background: zoneColor(next.intensity) }} />{next.label}</strong>
+              <span>{nextText(next)}</span>
+              {afterNext && <small>Så: {afterNext.label} · {Math.round(afterNext.intensity * ftp)} W</small>}
+            </> : <><strong>Målgang</strong><span>Siste blokk</span></>}
+          </div>
+        </div>
+        <WorkoutGraph workout={workout} samples={samples} ftp={ftp} progress={current.progress} index={current.index} />
+        <div className="secondary-metrics">
+          <span><b>{cadence ?? '—'}</b> rpm</span>
+          <span><b>{heartRate && heartRate > 0 ? heartRate : '—'}</b> puls</span>
+          <span className="metric-wide"><b>{formatTime(elapsed)}</b> {rampStatus && !rampStatus.ended ? '· rampe' : <>/ {hasDistance ? '≈ ' : ''}{formatTime(workoutDuration(workout) - skippedSeconds)}</>}</span>
+          <span className="metric-wide"><b>{Math.round(energy)}</b> kJ</span>
         </div>
       </div>
     </section>

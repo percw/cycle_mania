@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three/webgpu';
 import type { WorldSceneProps } from './worlds';
+import { ArcadeMotion, speedFactor, surgeFactor } from './rideFeel';
 
 const CIRCUIT = 1800;
 const FORK_LENGTH = 300;
@@ -419,6 +420,8 @@ export default function SkyWorld(props: WorldSceneProps) {
     const glowRandom = seeded(982);
     const motes = Array.from({ length: 80 }, () => ({ x: (glowRandom() - 0.5) * 90, y: glowRandom() * 28, z: -glowRandom() * 145, phase: glowRandom() * TAU }));
     let elapsed = 0, travel = Math.max(0, Number.isFinite(live.current.progress) ? live.current.progress : 0) * 8400, last = 0, previousEvent = live.current.game.eventSerial, burst = 0;
+    const motion = new ArcadeMotion(travel);
+    let kick = 0;
     let lastSector = -1, ghostOffset = 0;
     let previousExpeditionEvent = live.current.expedition?.eventSerial ?? 0;
     let reveal = 0;
@@ -432,16 +435,13 @@ export default function SkyWorld(props: WorldSceneProps) {
       if (disposed || !renderer) return;
       const dt = last ? Math.min(0.05, (time - last) / 1000) : 0; last = time;
       const state = live.current;
-      if (state.running) {
-        travel += Math.max(0, state.speed) / 3.6 * dt;
-        const expected = Math.max(0, state.progress) * 8400;
-        const correction = expected - travel;
-        // Resuming/skipping/virtual time must resync the whole chase rig immediately.
-        if (Math.abs(correction) > 35) travel = expected;
-        else if (Math.abs(correction) > 8) travel += correction * Math.min(1, dt * 2);
-        elapsed += dt; burst = Math.max(0, burst - dt * 0.6);
-      }
-      const travelJump = Math.abs(travel - previousTravel) > 6;
+      // Arcade speed; recorded jumps (restore, skip, virtual time) still resync the chase rig at once.
+      const jumpedNow = motion.update(dt, state.running, state.speed, Math.max(0, state.progress) * 8400);
+      travel = motion.travel;
+      const fast = speedFactor(motion.speed);
+      kick += (surgeFactor(motion.accel) - kick) * Math.min(1, dt * 4);
+      if (state.running) { elapsed += dt; burst = Math.max(0, burst - dt * 0.6); }
+      const travelJump = jumpedNow || Math.abs(travel - previousTravel - motion.speed / 3.6 * dt) > 6;
       const wrapped = Math.floor(travel / CIRCUIT) !== Math.floor(previousTravel / CIRCUIT);
       previousTravel = travel;
       if (state.game.eventSerial !== previousEvent) { previousEvent = state.game.eventSerial; burst = 1; }
@@ -569,7 +569,9 @@ export default function SkyWorld(props: WorldSceneProps) {
       if (!cameraReady || travelJump || wrapped) chaseDirection.copy(chaseTarget);
       else if (state.running) chaseDirection.lerp(chaseTarget, 1 - Math.exp(-dt * 7)).normalize();
       const portrait = camera.aspect < 0.8;
-      const chaseDistance = portrait ? 16 : 12.5;
+      const chaseDistance = (portrait ? 16 : 12.5) + fast * 3 + kick * 1.2;
+      const desiredFov = 58 + fast * 18 + kick * 8;
+      if (Math.abs(camera.fov - desiredFov) > 0.02) { camera.fov += (desiredFov - camera.fov) * Math.min(1, dt * 5); camera.updateProjectionMatrix(); }
       camera.position.set(
         rider.position.x + chaseDirection.x * chaseDistance,
         rider.position.y + (portrait ? 7 : 6.5),

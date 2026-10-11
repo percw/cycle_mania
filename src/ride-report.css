@@ -225,3 +225,16 @@
 .ride-report .session-analysis-heading { color: var(--accent); }
 .ride-report .session-analysis .analysis-notice { background: rgba(242, 179, 86, 0.08); }
 .report-chart text { fill: #8d95a2; }
+
+/* Delete: one quiet chip, then an explicit confirmation strip. */
+.report-chip.report-delete:hover { border-color: rgba(239, 100, 97, 0.5); color: #ffb4b0; }
+.report-confirm {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 14px; padding: 14px 18px;
+  border-radius: 16px; border: 1px solid rgba(239, 100, 97, 0.35); background: rgba(239, 100, 97, 0.08);
+}
+.report-confirm > div { flex: 1 1 280px; display: flex; flex-direction: column; gap: 3px; }
+.report-confirm strong { font-size: 15px; color: var(--text); }
+.report-confirm span { font-size: 13px; color: var(--text-2); }
+.report-danger { min-height: 44px; padding: 0 16px; border-radius: 12px; background: var(--bad); color: #1d0b0a; font: 650 14px "DM Sans", sans-serif; }
+.report-danger:hover { background: #ff807c; color: #1d0b0a; }
+@media (max-width: 860px) { .report-chip.report-delete span { display: none; } }

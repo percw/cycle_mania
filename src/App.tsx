@@ -34,6 +34,7 @@ import { campaignFor, createExpedition, stepExpedition, chooseExpeditionRoute, f
 import { performanceAchievements } from './achievements';
 import { AchievementBoard, AchievementReceipt } from './AchievementsUI';
 import { RideReport } from './RideReport';
+import { approachSpeed, feelProfile, targetSpeed } from './rideFeel';
 import { TrainingTrends } from './TrainingTrends';
 import { rideLoad } from './trends';
 import { journeyFor, journeyForRide } from './journey';
@@ -64,6 +65,7 @@ import {
   loadRides,
   persistRide,
   getFitUrl,
+  deleteRideRemote,
   getBackendStatus,
   getProfile,
   saveProfile,
@@ -118,6 +120,11 @@ type Session = {
   running: boolean;
   demo: boolean;
   distance: number;
+  /** Virtual road speed (km/h) that drives recorded virtual distance and road worlds. */
+  roadSpeed?: number;
+  /** Arcade worlds: exaggerated on-screen speed and distance, never saved as training data. */
+  arcadeSpeed?: number;
+  arcadeKm?: number;
   energy: number;
   powerTime: number;
   measuredSeconds: number;
@@ -321,6 +328,28 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
           ? "connecting"
           : "disconnected";
   const historyRef = useRef(history);
+  const deletedRides = useRef(new Set(readStored<string[]>("summit-deleted-rides", [])));
+  function forgetDeleted(id: string) {
+    deletedRides.current.delete(id);
+    saveStored("summit-deleted-rides", [...deletedRides.current]);
+  }
+  function deleteRide(id: string) {
+    deletedRides.current.add(id);
+    saveStored("summit-deleted-rides", [...deletedRides.current]);
+    const next = historyRef.current.filter((ride) => ride.id !== id);
+    historyRef.current = next;
+    setHistory(next);
+    saveStored("summit-history", next);
+    setSummary(null);
+    void deleteRideRemote(id).then(() => forgetDeleted(id)).catch(() => {});
+  }
+  const [confirmDiscard, setConfirmDiscard] = useState(false);
+  function discardSession() {
+    // Nothing is saved: the checkpoint, samples and game state are dropped.
+    setConfirmDiscard(false);
+    setSelected(null);
+    updateSession(null);
+  }
   historyRef.current = history;
   useEffect(() => {
     let active = true;
@@ -336,7 +365,9 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
         ]);
         if (!active) return;
         setBackendOnline(true);
-        const merged = new Map(remote.map((ride) => [ride.id, ride]));
+        // Deleted rides stay deleted even while the backend still holds a copy; retry the delete.
+        for (const ride of remote) if (deletedRides.current.has(ride.id)) void deleteRideRemote(ride.id).then(() => forgetDeleted(ride.id)).catch(() => {});
+        const merged = new Map(remote.filter((ride) => !deletedRides.current.has(ride.id)).map((ride) => [ride.id, ride]));
         for (const local of historyRef.current) {
           if (!merged.has(local.id)) {
             await persistRide(local);
@@ -496,6 +527,8 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
         ],
       };
     if (s?.running && !previous?.running) resumedSample.current = true;
+    // A paused bike stands still: the next start launches from zero.
+    if (s && !s.running && previous?.running) s = { ...s, roadSpeed: 0, arcadeSpeed: 0 };
     sessionRef.current = s;
     setSession(s);
     if (
@@ -631,14 +664,15 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
       const power = s.demo
         ? Math.round(target * (1 + 0.025 * Math.sin(s.elapsed * 0.8)))
         : telemetryRef.current.power;
-      const speed = s.planCursor
-        ? (s.demo || Date.now()-lastPower.current<=5000 ? Math.cbrt(Math.max(0,power??0))*5.3 : 0)
-        : s.demo
-        ? Math.max(12, Math.cbrt(Math.max(0, power ?? 0)) * 5.3)
-        : (telemetryRef.current.speed ??
-          ((power ?? 0) > 0 ? Math.cbrt(power ?? 0) * 5.3 : 0));
+      // Virtual speed comes from watts relative to FTP (rideFeel), never from the console's own speed.
+      const speed = s.roadSpeed ?? 0;
       const dt=Math.min(remaining,1,s.planCursor?planStepLimit(s.workout,s.planCursor,speed/3.6):state.remaining||1);
       s.distance += (speed * dt) / 3600;
+      const feelPower = s.demo || Date.now() - lastPower.current <= 5000 ? power : undefined;
+      const feelFtp = s.ramp?.referenceFtp ?? ftp;
+      s.roadSpeed = approachSpeed(speed, targetSpeed('road', feelPower, feelFtp), dt, 'road');
+      s.arcadeSpeed = approachSpeed(s.arcadeSpeed ?? 0, targetSpeed('arcade', feelPower, feelFtp), dt, 'arcade');
+      s.arcadeKm = (s.arcadeKm ?? 0) + (s.arcadeSpeed * dt) / 3600;
       if (power !== undefined && (s.demo || Date.now() - lastPower.current <= 5000)) {
         s.powerTime += power * dt;
         s.measuredSeconds += dt;
@@ -777,6 +811,9 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
                 elapsed: session.elapsed,
                 demo: session.demo,
                 distanceKm: session.distance,
+                roadSpeedKmh: session.roadSpeed ?? 0,
+                arcadeSpeedKmh: session.arcadeSpeed ?? 0,
+                arcadeKm: session.arcadeKm ?? 0,
                 ...sessionState(session),
                 planCursor:session.planCursor,
                 ramp:session.ramp,
@@ -1006,11 +1043,9 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
   const livePower = session?.demo
     ? Math.round(target * (1 + 0.025 * Math.sin(session.elapsed * 0.8)))
     : telemetry.power;
-  const liveSpeed = session?.planCursor
-    ? Math.cbrt(Math.max(0,livePower??0))*5.3
-    : session?.demo
-    ? Math.max(12, Math.cbrt(livePower ?? 0) * 5.3)
-    : (telemetry.speed ?? Math.cbrt(Math.max(0, livePower ?? 0)) * 5.3);
+  const feel = feelProfile(activeWorld);
+  const sceneSpeed = session ? (feel === "arcade" ? session.arcadeSpeed ?? 0 : session.roadSpeed ?? 0) : 0;
+  const sceneKm = session ? (feel === "arcade" ? session.arcadeKm ?? 0 : session.distance) : 0;
   const liveZone = getZone(livePower ?? 0, session?.ramp?.referenceFtp??ftp);
   const dialogOpen = settings || selected || deviceModal || routePicker || rampSetup;
   const modalOpen = dialogOpen || summary;
@@ -1121,7 +1156,7 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
       </header>
       {session && current ? (
         <main className={`ride-view expedition-ride world-${activeWorld} ${focusMode ? "focus-mode" : ""}`}>
-          <WorldScene running={session.running} speed={liveSpeed} progress={session.distance / 8.4}
+          <WorldScene running={session.running} speed={sceneSpeed} progress={session.distance / 8.4}
             zoneColor={liveZone.color} world={activeWorld} journey={activeWorld==="tron"?sceneJourney:undefined} achievements={currentAchievements.filter(x=>x.ready).map(x=>x.id)} expedition={expeditionEnabled?expedition:undefined}
             game={{...game,ghostDelta:ghost===null?undefined:game.score-ghost}}
             onSector={setSceneSector} onRenderer={setRenderer}/>
@@ -1134,7 +1169,7 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
           </div>
           {!session.ramp && (activeWorld==="tron"?<JourneyHUD journey={journey} state={expedition} paused={!session.running} onChoice={chooseMission} items={currentAchievements}/>:expeditionEnabled?<ExpeditionHUD progress={campaign} state={expedition} onChoice={chooseMission} paused={!session.running} demo={session.demo}/>:<div className="classic-progress">{Math.round(game.score).toLocaleString("nb-NO")} poeng · {game.stars} stjerner</div>)}
           <RideConsole workout={sessionWorkout(session)} current={current} elapsed={session.elapsed} skippedSeconds={session.skippedSeconds||0}
-            distance={session.distance} target={target} power={livePower}
+            distance={session.distance} speedKmh={sceneSpeed} sceneKm={sceneKm} arcade={feel === "arcade"} target={target} power={livePower}
             cadence={session.demo?88:liveCadence===undefined?undefined:Math.round(liveCadence)}
             erg={erg.active ? { status: erg.status === "off" ? "pending" : erg.status, watts: erg.targetWatts } : null}
             heartRate={session.demo?null:(sensors.heartRate??telemetry.heartRate)}
@@ -1658,6 +1693,7 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
           fitDisabled={summary.demo || !summary.samples?.length}
           fitTitle={summary.demo ? "FIT krever ekte sensordata. Demoturer kan eksporteres som CSV." : undefined}
           csvLabel={`Eksporter ${summarySamples.length ? "måledata (CSV)" : "øktoppsummering"}`}
+          onDelete={() => deleteRide(summary.id)}
           onCsv={() => summarySamples.length
             ? download("summit-okt.csv", "sekund,watt,kadens,puls\n" + summarySamples.map((s) => `${s.second},${s.power},${s.cadence ?? ""},${s.heartRate ?? ""}`).join("\n"), "text/csv")
             : download("summit-okt.json", JSON.stringify(summary, null, 2))}
@@ -1991,11 +2027,21 @@ export default function App({ linkedWorkoutId = null }: { linkedWorkoutId?: stri
                   className="secondary full"
                   onClick={() => {
                     setSelected(null);
+                    setConfirmDiscard(false);
                     togglePause();
                   }}
                 >
                   Fortsett økten
                 </button>
+                {confirmDiscard ? (
+                  <div className="discard-confirm" role="alert">
+                    <p>Økten blir ikke lagret. Tid, watt og fremdrift i verdenen forsvinner.</p>
+                    <button className="danger full" onClick={discardSession}>Forkast økten</button>
+                    <button className="text-button center" onClick={() => setConfirmDiscard(false)}>Angre</button>
+                  </div>
+                ) : (
+                  <button className="text-button center discard-link" onClick={() => setConfirmDiscard(true)}>Forkast økten uten å lagre</button>
+                )}
               </>
             ) : selected ? (
               <>

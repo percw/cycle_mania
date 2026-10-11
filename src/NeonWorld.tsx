@@ -3,6 +3,7 @@ import * as THREE from 'three/webgpu';
 import { pass } from 'three/tsl';
 import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 import type { WorldSceneProps } from './worlds';
+import { ArcadeMotion, speedFactor, surgeFactor } from './rideFeel';
 
 const LAP = 2400;
 const TAU = Math.PI * 2;
@@ -386,7 +387,8 @@ export default function NeonWorld(props: WorldSceneProps) {
     const sparks = Array.from({ length: 60 }, () => ({ x: (rand() - 0.5) * 2, y: rand() * 1.7, z: (rand() - 0.5) * 2 }));
     burst.visible = false;
     const look = new THREE.Vector3();
-    let travel = Math.max(0, live.current.progress) * 8400;
+    const motion = new ArcadeMotion(Math.max(0, live.current.progress) * 8400);
+    let travel = motion.travel, kick = 0;
     let last = 0;
     let clock = 0;
     let burstAge = 10;
@@ -404,8 +406,11 @@ export default function NeonWorld(props: WorldSceneProps) {
       if (disposed || !renderer) return;
       const dt = last ? Math.min((time - last) / 1000, 0.06) : 0; last = time;
       const state = live.current;
-      const speed = Math.max(0, state.speed);
-      if (state.running) { travel += speed / 3.6 * dt; const expected=Math.max(0,state.progress)*8400;if(Math.abs(expected-travel)>8)travel+=(expected-travel)*Math.min(1,dt*2); clock += dt; burstAge += dt; }
+      motion.update(dt, state.running, state.speed, Math.max(0, state.progress) * 8400);
+      travel = motion.travel;
+      const speed = motion.speed, fast = speedFactor(speed);
+      kick += (surgeFactor(motion.accel) - kick) * Math.min(1, dt * 4);
+      if (state.running) { clock += dt; burstAge += dt; }
       const z = 45 - travel % LAP;
       const bikeZ = z - 10;
       if (state.running) frozenExpedition = state.expedition;
@@ -452,7 +457,7 @@ export default function NeonWorld(props: WorldSceneProps) {
         trail.scale.z = length; trail.position.z = 1.1 + length / 2;
         (trail.material as THREE.MeshBasicMaterial).opacity = state.running ? 0.15 + charge * 0.3 : 0;
       }
-      for (const thruster of thrusters) thruster.scale.y = state.running ? 0.3 + speed * 0.018 + charge * 0.8 : 0.15;
+      for (const thruster of thrusters) thruster.scale.y = state.running ? 0.3 + fast * 2.4 + kick * 0.8 + charge * 0.8 : 0.15;
       if (state.game.eventSerial !== lastEvent) { lastEvent = state.game.eventSerial; burstAge = 0; burstOrigin.copy(bike.position).y += 1; }
       burst.visible = burstAge < 1.8;
       if (burst.visible) for (let i = 0; i < sparks.length; i++) {
@@ -465,7 +470,7 @@ export default function NeonWorld(props: WorldSceneProps) {
         const mz = z - ((local + 250) % 250);
         const r = route(mz);
         const visible = work || i < 35;
-        place(motes, i, r.x + t.x, r.y + t.y, mz, visible ? 0.045 : 0, 0.045, state.running ? 0.3 + speed * 0.02 : 0.09);
+        place(motes, i, r.x + t.x, r.y + t.y, mz, visible ? 0.045 : 0, 0.045, state.running ? 0.3 + fast * 3 : 0.09);
       }
       motes.instanceMatrix.needsUpdate = true;
       if (expedition) {
@@ -508,8 +513,8 @@ export default function NeonWorld(props: WorldSceneProps) {
       camera.position.set(camRoute.x + 0.6, camRoute.y + 4.8, z);
       const ahead = currentRoute(z - 43); look.set(ahead.x, ahead.y - 6, z - 43); camera.lookAt(look);
       camera.rotateZ(bike.rotation.z * -0.1);
-      const desiredFov = 63 + Math.min(speed, 60) * 0.09 + charge * 2;
-      if (Math.abs(camera.fov - desiredFov) > 0.02) { camera.fov += (desiredFov - camera.fov) * Math.min(1, dt * 3); camera.updateProjectionMatrix(); }
+      const desiredFov = 63 + fast * 22 + kick * 9 + charge * 2;
+      if (Math.abs(camera.fov - desiredFov) > 0.02) { camera.fov += (desiredFov - camera.fov) * Math.min(1, dt * 5); camera.updateProjectionMatrix(); }
       sky.position.copy(camera.position);
       planet.position.set(camera.position.x + 520, 280, z - 1700);
       horizon.position.z = z;

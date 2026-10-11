@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, type ReactNode } from 'react';
-import { ArrowDownToLine, ArrowRight, X } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { ArrowDownToLine, ArrowRight, Trash2, X } from 'lucide-react';
 import { analyzeRide, measuredSamples } from './analytics';
 import { normalizedPower, pacing, sampleAverages, trainingLoad, verdict, type Tone } from './reportInsights';
 import { SessionAnalysis } from './SessionAnalysis';
@@ -32,9 +32,11 @@ function MiniGauge({ mean, target }: { mean: number; target: number }) {
  * Full-page post-ride report. `ramp` switches to FTP-test mode: the ramp result
  * replaces the target-adherence verdict, interval cards and workout comparison.
  */
-export function RideReport({ ride, samples, history, onClose, onHistory, onFit, onCsv, csvLabel, fitDisabled, fitTitle, ramp, achievements, rewards }: {
+export function RideReport({ ride, samples, history, onClose, onHistory, onFit, onCsv, onDelete, csvLabel, fitDisabled, fitTitle, ramp, achievements, rewards }: {
   ride: RideRecord; samples: RideSample[]; history: RideRecord[];
   onClose: () => void; onHistory: () => void; onFit: () => void; onCsv: () => void; csvLabel: string;
+  /** Permanently removes this ride; the report asks for confirmation first. */
+  onDelete?: () => void;
   fitDisabled: boolean; fitTitle?: string; ramp?: ReactNode; achievements?: ReactNode; rewards?: ReactNode;
 }) {
   const analysis = useMemo(() => analyzeRide({ ...ride, samples }, history), [ride, samples, history]);
@@ -53,6 +55,7 @@ export function RideReport({ ride, samples, history, onClose, onHistory, onFit, 
   const status = ride.demo ? 'Demotur' : ride.completed ? 'Fullført' : 'Avsluttet tidlig';
   const shareInput = { ride, samples, verdict: judged.title, tone: judged.tone, np, tss: load?.tss ?? null, adherence: ride.demo || ramp ? null : adherence, worldName: world?.name };
   const closeRef = useRef<HTMLButtonElement>(null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   useEffect(() => { closeRef.current?.focus({ preventScroll: true }); }, [ride.id]);
 
   const metrics: { label: string; value: ReactNode; unit?: string; sub?: string }[] = [
@@ -73,9 +76,15 @@ export function RideReport({ ride, samples, history, onClose, onHistory, onFit, 
         <div>
           <ShareCardButton input={shareInput} variant="chip" />
           <button className="report-chip" onClick={onFit} disabled={fitDisabled} title={fitTitle}><ArrowDownToLine size={15} />FIT</button>
+          {onDelete && <button className="report-chip report-delete" onClick={() => setConfirmDelete(true)} aria-label="Slett økten"><Trash2 size={15} /><span>Slett</span></button>}
           <button ref={closeRef} className="report-close" onClick={onClose} aria-label="Lukk"><X size={20} /></button>
         </div>
       </header>
+      {confirmDelete && onDelete && <div className="report-confirm" role="alertdialog" aria-label="Slette økten?">
+        <div><strong>Slette økten?</strong><span>Økten, målingene og analysen fjernes permanent fra denne nettleseren og den lokale databasen.</span></div>
+        <button className="report-danger" onClick={onDelete}>Slett økten</button>
+        <button className="report-chip" onClick={() => setConfirmDelete(false)}>Avbryt</button>
+      </div>}
 
       <section className={`report-hero tone-${judged.tone}`} style={{ ['--world' as string]: world?.color ?? '#f48468' }}>
         <div className="hero-copy">
