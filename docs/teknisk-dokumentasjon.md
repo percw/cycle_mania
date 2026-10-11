@@ -214,3 +214,26 @@ Grensesnittet bygger på fjorden en vinterkveld. Bakgrunnen er blekksvart med et
 | `--warn` | `#f2b356` | Over mål (senk kraften) |
 
 Treningssonene beholder sine kjente farger. Gult og oransje vises aldri med lav opasitet på mørk bakgrunn, fordi dempet gult blir oliven. Grafer bruker derfor nøytrale grafittflater, og sonefargen ligger i selve linjen eller i blokken du er i. Tokenene står i `:root` øverst i `src/styles.css`. 3D-verdenene har egne fargepaletter og påvirkes ikke.
+
+## Nettleserdrift (statisk hosting) og lokal backend
+
+SUMMIT kan ligge som et statisk nettsted (for eksempel Vercel) uten Node-server. Ved oppstart spør appen `/api/health` én gang:
+
+- **Lokal backend svarer:** som før. Økter, FTP og egne maler synkroniseres med SQLite hvert 30. sekund, og ANT+ er tilgjengelig.
+- **Ingen backend:** nettlesermodus. Ingen feilmeldinger om backend og ingen polling; API-kall avvises lokalt uten nettverkstrafikk. «Min utvikling» viser «Lagret i denne nettleseren». På `localhost`/`127.0.0.1` sjekkes det stille hvert 30. sekund om serveren er startet senere, og lokale økter synkroniseres da.
+
+**Lagring.** Økter med alle målinger ligger i IndexedDB (database `summit`, lager `rides`). FTP-profil og egne øktmaler speiles i IndexedDB (`kv`) og gjenopprettes derfra hvis localStorage er tømt. Innstillinger, favoritter og kontrollpunktet for en aktiv økt ligger fortsatt i localStorage. Gammel historikk i `summit-history` flyttes én gang til IndexedDB; nøkkelen fjernes først når alle økter er lest tilbake, og oppføringer som ikke kan flyttes, blir liggende. Uten IndexedDB brukes localStorage som før. Etter første lagrede ekte økt ber appen nettleseren om varig lagring (`navigator.storage.persist()`).
+
+**Sletting.** `deleteRide(id)` i `src/useRideHistory.ts` fjerner økten fra listen, IndexedDB, den gamle localStorage-nøkkelen og SQLite (`DELETE /api/rides/:id`, idempotent). Er backend nede, huskes ID-en i `summit-deleted-rides`, og neste synkronisering sletter den i SQLite uten å hente økten tilbake.
+
+**FIT** lages i nettleseren (`src/fitExport.ts`) i begge moduser, med Garmins SDK og samme regler som `server/fit.mjs`: innendørs sykling, bare målte sekunder, pauser som timerhendelser, ingen oppdiktet GPS, puls eller distanse, og ingen FIT for demoturer. En test sammenligner filene byte for byte med serverens. Koden lastes først når du eksporterer.
+
+**Sikkerhetskopi.** På «Min utvikling» lagrer «Sikkerhetskopi» økter, FTP og egne øktmaler i én JSON-fil. «Importer» leser slike filer (og den eldre «Eksporter»-listen) og slår sammen etter økt-ID; økter som finnes fra før, beholdes uendret. FTP fra filen brukes bare hvis du trykker «Bruk … W som FTP».
+
+**Under økten** holder appen skjermen våken (Screen Wake Lock) og henter låsen igjen når fanen blir synlig. Låsen slippes ved pause og når økten er ferdig.
+
+**PWA.** `public/manifest.webmanifest`, ikoner i `public/icons/` (lages med `node scripts/generate-icons.mjs`) og en håndskrevet `public/sw.js`: sider hentes fra nettet først med lagret kopi uten nett, hashede filer i `/assets/` hentes fra cache først, og `/api/*` caches aldri. Service workeren registreres bare i produksjonsbygg på et ekte domene, aldri på `localhost`/`127.0.0.1` (heller ikke den lokale backenden på port 3001).
+
+**Vercel.** `vercel.json` bygger med `npm run build` til `dist`, gir `no-cache` for `/`, `/index.html` og `/sw.js`, og lang cache for hashede filer i `/assets/`. Teksturer under `/assets/vestland/` og `/assets/rider/` har ikke hash og caches i ett døgn.
+
+Verifikasjon: `npm run build && node scripts/static-smoke.mjs` serverer `dist/` uten `/api` på port 5302 og tester migrering, demotur, wake lock, import/eksport, FIT, gjenoppretting fra IndexedDB, offline-start via service worker og mobilvisning. Merk at `npm run preview` bruker `server.proxy` fra `vite.config.ts` og dermed sender `/api` til `127.0.0.1:3001`; det er derfor ikke en ren statisk test.

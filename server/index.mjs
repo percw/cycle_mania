@@ -137,6 +137,7 @@ export function createLocalServer({ dbPath = process.env.SUMMIT_DB || resolve(pr
   const allRides = db.prepare('SELECT data FROM rides ORDER BY date DESC, id DESC');
   const oneRide = db.prepare('SELECT data FROM rides WHERE id=?');
   const putRide = db.prepare('INSERT INTO rides(id,date,data) VALUES(?,?,?) ON CONFLICT(id) DO UPDATE SET date=excluded.date,data=excluded.data');
+  const deleteRide = db.prepare('DELETE FROM rides WHERE id=?');
   const readProfile = () => { const row = db.prepare('SELECT ftp, updated_at AS updatedAt FROM profile WHERE id=1').get(); return row || { ftp: 250, updatedAt: null }; };
   const json = (res, status, value) => { res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(value)); };
   const server = createServer(async (req, res) => {
@@ -169,6 +170,9 @@ export function createLocalServer({ dbPath = process.env.SUMMIT_DB || resolve(pr
         putRide.run(ride.id, new Date(ride.date).toISOString(), JSON.stringify(ride));
         return json(res, 200, ride);
       }
+      // Idempotent: deleting an unknown ride is not an error, so queued deletes can be replayed.
+      const rideMatch = path.match(/^\/api\/rides\/([a-zA-Z0-9_-]{1,128})$/);
+      if (req.method === 'DELETE' && rideMatch) return json(res, 200, { ok: true, deleted: deleteRide.run(rideMatch[1]).changes > 0 });
       const fitMatch = path.match(/^\/api\/rides\/([a-zA-Z0-9_-]{1,128})\/fit$/);
       if (req.method === 'GET' && fitMatch) {
         const row = oneRide.get(fitMatch[1]);
@@ -203,7 +207,7 @@ export function createLocalServer({ dbPath = process.env.SUMMIT_DB || resolve(pr
         const candidate = resolve(distDir, relative || 'index.html');
         if (!candidate.startsWith(resolve(distDir) + sep)) throw new RequestError('Ugyldig filsti.', 403);
         const file = existsSync(candidate) && statSync(candidate).isFile() ? candidate : resolve(distDir, 'index.html');
-        const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.woff2': 'font/woff2' }[extname(file)] || 'application/octet-stream';
+        const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json', '.ico': 'image/x-icon', '.woff2': 'font/woff2' }[extname(file)] || 'application/octet-stream';
         res.writeHead(200, { 'Content-Type': mime, 'Cache-Control': extname(file) === '.html' ? 'no-cache' : 'public, max-age=3600' });
         const stream = createReadStream(file);
         stream.on('error', () => res.destroy());

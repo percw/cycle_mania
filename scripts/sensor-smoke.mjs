@@ -343,7 +343,13 @@ try {
   await backend.close();
   backend = createLocalServer({ dbPath: database, antBridge: antStub });
   const restartedApi = await listen(backend, Number(new URL(apiBase).port));
-  assert.deepEqual(await (await fetch(`${restartedApi}/api/rides`)).json(), rides);
+  // FIT is now encoded in the browser, so this runs within Node's keep-alive window and
+  // the pooled socket may still point at the closed server: retry once on that error only.
+  const restartedRides = await fetch(`${restartedApi}/api/rides`).catch(error => {
+    if (error.cause?.code !== 'UND_ERR_SOCKET') throw error;
+    return fetch(`${restartedApi}/api/rides`);
+  });
+  assert.deepEqual(await restartedRides.json(), rides);
   check('SQLite retains the ride after restarting the isolated backend');
   if (tron) {
     await page.reload({ waitUntil: 'networkidle' });

@@ -57,14 +57,10 @@ import {
 } from "./game";
 import SensorPanel from "./SensorPanel";
 import { useSensors } from "./useSensors";
-import {
-  loadRides,
-  persistRide,
-  getFitUrl,
-  getBackendStatus,
-  getProfile,
-  saveProfile,
-} from "./api";
+// Browser-hosting: IndexedDB history + optional local backend, backup, wake lock.
+import { useRideHistory } from "./useRideHistory";
+import { useWakeLock } from "./useWakeLock";
+import { DataBackup } from "./DataBackup";
 import { ProgressPanel } from "./ProgressPanel";
 import {
   workouts as builtInWorkouts,
@@ -252,18 +248,6 @@ export default function App() {
     const v = readStored<unknown>("summit-favorites", []);
     return Array.isArray(v) ? v.filter((x) => typeof x === "string") : [];
   });
-  const [history, setHistory] = useState<RideRecord[]>(() => {
-    const v = readStored<unknown>("summit-history", []);
-    return Array.isArray(v)
-      ? (v.filter(
-          (x) =>
-            x &&
-            typeof x === "object" &&
-            typeof x.seconds === "number" &&
-            Array.isArray(x.zoneSeconds),
-        ) as RideRecord[])
-      : [];
-  });
   const [session, setSession] = useState<Session | null>(() => {
     const saved = readStored<Session | null>("summit-active-session", null);
     let workout = workouts.find((w) => w.id === saved?.workout?.id);
@@ -299,7 +283,14 @@ export default function App() {
   const lastPower = useRef(0);
   const [deviceModal, setDeviceModal] = useState(false);
   const [error, setError] = useState("");
-  const [backendOnline, setBackendOnline] = useState(false);
+  // Rides live in IndexedDB and sync to SQLite when the local backend answers (see useRideHistory).
+  const rideStore = useRideHistory({
+    notify: setError,
+    isRiding: () => !!sessionRef.current,
+    applyFtp: (value) => { setFtp(value); setFtpDraft(String(value)); },
+  });
+  const history = rideStore.history;
+  useWakeLock(!!session?.running); // screen stays on while riding; released on pause/finish
   const [sensorSource, setSensorSource] = useState<"ble" | "ant">("ble");
   const sensorSourceRef = useRef(sensorSource);
   sensorSourceRef.current = sensorSource;
@@ -315,51 +306,6 @@ export default function App() {
         : sensors.ant?.status === "connecting"
           ? "connecting"
           : "disconnected";
-  const historyRef = useRef(history);
-  historyRef.current = history;
-  useEffect(() => {
-    let active = true;
-    async function sync() {
-      try {
-        const ftpBeforeSync=readStored('summit-ftp',250);
-        await getBackendStatus();
-        const pendingFtp=readStored<number|null>('summit-pending-ftp',null);
-        if(pendingFtp!==null && pendingFtp>=50 && pendingFtp<=600){await saveProfile(pendingFtp);if(readStored('summit-pending-ftp',null)===pendingFtp)saveStored('summit-pending-ftp',null);}
-        const [remote, profile] = await Promise.all([
-          loadRides(),
-          getProfile(),
-        ]);
-        if (!active) return;
-        setBackendOnline(true);
-        const merged = new Map(remote.map((ride) => [ride.id, ride]));
-        for (const local of historyRef.current) {
-          if (!merged.has(local.id)) {
-            await persistRide(local);
-            merged.set(local.id, local);
-          }
-        }
-        if (!active) return;
-        const next = [...merged.values()].sort(
-          (a, b) => Date.parse(b.date) - Date.parse(a.date),
-        );
-        setHistory(next);
-        saveStored("summit-history", next);
-        if (profile.updatedAt && !sessionRef.current && readStored('summit-pending-ftp',null)===null && readStored('summit-ftp',250)===ftpBeforeSync) {
-          setFtp(profile.ftp);
-          setFtpDraft(String(profile.ftp));
-          saveStored("summit-ftp", profile.ftp);
-        }
-      } catch {
-        if (active) setBackendOnline(false);
-      }
-    }
-    void sync();
-    const timer = setInterval(() => void sync(), 30000);
-    return () => {
-      active = false;
-      clearInterval(timer);
-    };
-  }, []);
   useEffect(() => {
     if (sensorSource !== "ant") return;
     const ant = sensors.ant;
@@ -391,23 +337,11 @@ export default function App() {
     setTelemetry({});
   }
   async function exportFit(record: RideRecord) {
-    try {
-      await persistRide(record);
-      const response = await fetch(getFitUrl(record.id));
-      if (!response.ok) throw new Error("FIT-eksport feilet.");
-      const url = URL.createObjectURL(await response.blob());
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `summit-${record.id}.fit`;
-      link.click();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    } catch (e) {
-      setError(
-        e instanceof Error
-          ? e.message
-          : "Start lokal backend for å eksportere FIT.",
-      );
-    }
+    // Encoded in the browser in both modes: same bytes as server/fit.mjs
+    // (server/fit-parity.test.mjs), and works without the local backend.
+    let fit: typeof import("./fitExport");
+    try { fit = await import("./fitExport"); } catch { setError("FIT-eksporten kunne ikke lastes. Sjekk nettforbindelsen og prøv igjen."); return; }
+    try { fit.downloadFit(record); } catch (e) { setError(e instanceof Error ? e.message : "FIT-eksport feilet."); }
   }
   const [sound, setSound] = useState(false);
   const [focusMode, setFocusMode] = useState(() => readStored<unknown>("summit-focus", false) === true);
@@ -565,17 +499,7 @@ export default function App() {
       ...(s.expedition ? { expedition: finishExpedition(s.expedition) } : {}),
     };
     if (s.expedition && !s.demo) selectMissionRoute(s.expedition.route);
-    const next = [record, ...history];
-    setHistory(next);
-    saveStored("summit-history", next);
-    void persistRide(record)
-      .then(() => setBackendOnline(true))
-      .catch(() => {
-        setBackendOnline(false);
-        setError(
-          "Økten er lagret i nettleseren. Start lokal backend for databasesynkronisering og FIT-eksport.",
-        );
-      });
+    void rideStore.addRide(record);
     setSummary(record);
     setSummarySamples(s.samples);
     updateSession(null);
@@ -936,7 +860,7 @@ export default function App() {
   function startRamp(protocol:RampProtocol,demo:boolean){start(rampWorkout(protocol,ftp),demo);}
   function persistFtp(value:number){
     setFtp(value);setFtpDraft(String(value));saveStored('summit-ftp',value);saveStored('summit-pending-ftp',value);
-    void saveProfile(value).then(()=>{if(readStored('summit-pending-ftp',null)===value)saveStored('summit-pending-ftp',null);setBackendOnline(true);}).catch(()=>{setBackendOnline(false);setError('FTP er lagret lokalt og synkroniseres når backend er tilgjengelig.');});
+    void rideStore.saveFtp(value);
   }
   function applyRampFtp(value:number){
     if(sessionRef.current || !summary || value<50 || value>600 || analyzeRampTest(summary)?.estimatedFtp!==value)return;
@@ -1507,6 +1431,7 @@ export default function App() {
                   <button className="today-stat" disabled={!history.length} onClick={() => download("summit-treningshistorikk.json", JSON.stringify(history, null, 2))}>
                     <ArrowDownToLine size={16} /><b>Eksporter</b>
                   </button>
+                  <DataBackup history={history} ftp={ftp} customWorkouts={customLibrary.drafts} onImportRides={rideStore.importRides} onImportWorkouts={customLibrary.importDrafts} onApplyFtp={session ? undefined : persistFtp} />
                 </div>
               </div>
               <TrainingTrends history={history} />
@@ -1514,7 +1439,8 @@ export default function App() {
               <ProgressPanel
                 history={history}
                 ftp={ftp}
-                online={backendOnline}
+                online={rideStore.status === "local"}
+                browserMode={rideStore.status === "browser" || rideStore.status === "checking"}
               />
               {history.length ? (
                 <div className="history-list">
